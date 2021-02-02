@@ -1,0 +1,14 @@
+# Book settings
+title: Object Recognition Lecture
+author: Prof. Dr. Johannes Maucher
+logo: hdmlogomed.jpg
+
+parse:
+  myst_extended_syntax: true
+
+latex:
+  latex_documents:
+    targetname: or.tex
+
+
+

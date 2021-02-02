@@ -1,0 +1,17 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+- file: intro
+
+- part: Image Processing
+  chapters:
+  - file: preprocessing/01accessImage
+  - file: preprocessing/02filtering
+  - file: preprocessing/04gaussianDerivatives
+  - file: preprocessing/03LowPassFilter
+  - file: preprocessing/05GaussianLowPassFilter
+  - file: preprocessing/06GaussianNoiseReduction
+
+#- part: Global, Local and Subspace Features
+#  chapters:
+#  - file: 

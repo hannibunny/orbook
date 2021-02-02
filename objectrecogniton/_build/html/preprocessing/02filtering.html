@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Filter Operations &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gaussian Filter and Derivatives of Gaussian" href="04gaussianDerivatives.html" />
+    <link rel="prev" title="Basic Image Access Operations" href="01accessImage.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/preprocessing/02filtering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/preprocessing/02filtering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensional-filtering">
+   1-dimensional Filtering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-dimensional-discrete-filtering">
+     Example 1-dimensional discrete filtering:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signal-extension-padding">
+     Signal Extension (Padding)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation-of-1-dimensional-discrete-filtering">
+     Implementation of 1-dimensional discrete filtering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   2-dimensional Filtering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2-dimensional-discrete-filtering">
+     Example 2-dimensional discrete filtering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation-of-2-dimensional-discrete-filtering">
+     Implementation of 2-dimensional discrete filtering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filters-for-edge-detection">
+   Filters for Edge Detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal">
+     Filter for calculating 1st order derivative of discrete 1-dimensional signal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filters-for-calculating-1st-order-derivative-in-images">
+     Filters for calculating 1st order derivative in images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation-of-edge-detection-in-images">
+     Implementation of Edge Detection in Images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-rgb-image-and-convert-to-greyscale">
+     Read RGB image and convert to greyscale
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-sobel-filter-for-calculating-the-x-derivative-and-y-derivative">
+     Apply Sobel Filter for calculating the x-derivative and y-derivative
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#template-matching">
+   Template Matching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="basic-filter-operations">
+<h1>Basic Filter Operations<a class="headerlink" href="#basic-filter-operations" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 28th January 2021</p></li>
+</ul>
+<p>Object Recognition integrates image processing techniques. Image Processing is realized by applying <strong>filters</strong> on the image. Examples for filtering in Object Recognition:</p>
+<ul class="simple">
+<li><p>Preprocessing of images to <strong>enhance quality</strong>, e.g. noise surpression</p></li>
+<li><p>Local feature based recognition techniques apply filter methods for <strong>finding keypoints</strong></p></li>
+<li><p><strong>Template Matching</strong> is a simple object recognition method which just correlates a filter with the image.</p></li>
+<li><p>In order to achieve <strong>scale invariance</strong> in recognition, usually Gaussian Pyramids are applied to generate different scale levels.</p></li>
+</ul>
+<div class="section" id="dimensional-filtering">
+<h2>1-dimensional Filtering<a class="headerlink" href="#dimensional-filtering" title="Permalink to this headline">¶</a></h2>
+<p><strong>Notation:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(i)\)</span> is the <span class="math notranslate nohighlight">\(i.th\)</span> component of the 1-D diskret input signal</p></li>
+<li><p><span class="math notranslate nohighlight">\(h(u)\)</span> is the <span class="math notranslate nohighlight">\(u.th\)</span> component of the 1-D diskret filter kernel (or the <span class="math notranslate nohighlight">\(u.th\)</span> filter weight). Total filter length is <span class="math notranslate nohighlight">\(2k+1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(g(i)\)</span> is the <span class="math notranslate nohighlight">\(i.th\)</span> component of the 1-D diskret output signal</p></li>
+</ul>
+<p><strong>Correlation Filtering</strong> <span class="math notranslate nohighlight">\(g=h \circledast f\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-b70d6114-0fc8-4079-a77e-da041bb12450">
+<span class="eqno">(1)<a class="headerlink" href="#equation-b70d6114-0fc8-4079-a77e-da041bb12450" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
+\end{equation}\]</div>
+<p><strong>Convolution Filtering</strong> <span class="math notranslate nohighlight">\(g=h*f\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-ace137a5-b8bc-4e15-93bf-a6444f5a16ee">
+<span class="eqno">(2)<a class="headerlink" href="#equation-ace137a5-b8bc-4e15-93bf-a6444f5a16ee" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u) 
+\end{equation}\]</div>
+<p><strong>Correlation- and Convolutional Filtering of a 1-dimensional analog signal:</strong></p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/ComparisonConvolutionCorrelation.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ComparisonConvolutionCorrelation.png" />
+<div class="section" id="example-1-dimensional-discrete-filtering">
+<h3>Example 1-dimensional discrete filtering:<a class="headerlink" href="#example-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
+<p><strong>Without extension (padding) of the signal</strong></p>
+<p>The input signal:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-868b0fea-6946-4e7e-83cc-fb20a91f250c">
+<span class="eqno">(3)<a class="headerlink" href="#equation-868b0fea-6946-4e7e-83cc-fb20a91f250c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f= \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
+\end{equation}\]</div>
+<p>shall be convolved with the <strong>length-3 moving average filter:</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-454f1e78-2b1b-491e-82c3-f7d0f081bb9f">
+<span class="eqno">(4)<a class="headerlink" href="#equation-454f1e78-2b1b-491e-82c3-f7d0f081bb9f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+h=\left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right]
+\end{equation}\]</div>
+<p>The result <span class="math notranslate nohighlight">\(g\)</span> of convolutional filtering is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+g &amp;=&amp; h * f \\
+  &amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \\
+  &amp;=&amp; \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
+\end{eqnarray*}\]</div>
+<p><a id="1dextension"></a></p>
+</div>
+<div class="section" id="signal-extension-padding">
+<h3>Signal Extension (Padding)<a class="headerlink" href="#signal-extension-padding" title="Permalink to this headline">¶</a></h3>
+<p>As can be seen in the previous example the output of the filtering <span class="math notranslate nohighlight">\(g\)</span> is shorter than the input <span class="math notranslate nohighlight">\(f\)</span>. This is due to the fact that the first position, at which the scalar-product between the filter coefficients and the signal-values can be calculated, is not at the first position, but at the <span class="math notranslate nohighlight">\(p.th\)</span>, position of the signal, where</p>
+<div class="math notranslate nohighlight">
+\[
+p=\lfloor \frac{a-1}{2} \rfloor
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(a\)</span> is the filter size (number of filter-coefficients). As can be seen the filtered signal is <span class="math notranslate nohighlight">\(2 \cdot p\)</span> components shorter, than the input.</p>
+<p>In order to avoid shorter output-signals, the input signal is usually <strong>extended (padded)</strong>. This means that <span class="math notranslate nohighlight">\(p\)</span> values are attached at the start and at the end of the signal. For the question <em>which values shall be attached to the signal?</em> the following options exist:</p>
+<ul class="simple">
+<li><p><strong>nearest:</strong> Use the value at the boundary</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left[1,2,3 \right] \Rightarrow \left[1,1,2,3,3 \right]
+\]</div>
+<ul class="simple">
+<li><p><strong>wrap:</strong> Periodically replicate the array</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left[1,2,3 \right] \Rightarrow \left[3,1,2,3,1 \right]
+\]</div>
+<ul class="simple">
+<li><p><strong>reflect:</strong> Reflect the array at the boundary</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left[1,2,3 \right] \Rightarrow \left[1,1,2,3,3 \right]
+\]</div>
+<ul class="simple">
+<li><p><strong>constant</strong> Use a constant value, e.g. <span class="math notranslate nohighlight">\(0.0\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\left[1,2,3 \right] \Rightarrow \left[0,1,2,3,0 \right]
+\]</div>
+<p>See also <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">Scipy documentation</a></p>
+<p>With the extension option <strong>nearest</strong> the output of the example above is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+g &amp;=&amp; h * f \\
+  &amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \\
+  &amp;=&amp; \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
+\end{eqnarray*}\]</div>
+</div>
+<div class="section" id="implementation-of-1-dimensional-discrete-filtering">
+<h3>Implementation of 1-dimensional discrete filtering<a class="headerlink" href="#implementation-of-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
+<p>In this subsection the already introduced example signal <span class="math notranslate nohighlight">\(f\)</span> is convolved with different filters <span class="math notranslate nohighlight">\(g\)</span>. The goals are</p>
+<ul class="simple">
+<li><p>to demonstrate how filtering can be implemented in Python</p></li>
+<li><p>introduce some important filters and show their effect</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The input signal x1 (same as <span class="math notranslate nohighlight">\(f\)</span> in the example above) is defined as a numpy-array. It is then displayed using a matplotlib stem-plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">t1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Signal: &quot;</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;1-Dimensional Input Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Signal:  [1 1 1 1 2 2 2 1 1 1 1]
+</pre></div>
+</div>
+<img alt="../_images/02filtering_11_1.png" src="../_images/02filtering_11_1.png" />
+</div>
+</div>
+<p><strong>Average Filter:</strong></p>
+<p>Signal x1 is then convolved with an average-filter of length 3. For this the scipy function <code class="docutils literal notranslate"><span class="pre">convolve1d()</span></code> is applied. Same as the input signal, the filter is also implemented as a numpy-array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FL</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#filter length</span>
+<span class="n">filt</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">FL</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">FL</span><span class="p">)</span> <span class="c1">#Average Filter</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filter: &quot;</span><span class="p">,</span><span class="n">filt</span><span class="p">)</span>
+<span class="n">fo1</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve1d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">filt</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">fo1</span><span class="p">,</span><span class="n">linefmt</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Output of length 3 moving average-filter&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.55</span><span class="p">,</span><span class="s1">&#39;Applied Filter: H=[1/3,1/3,1/3]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filter:  [0.333 0.333 0.333]
+</pre></div>
+</div>
+<img alt="../_images/02filtering_13_1.png" src="../_images/02filtering_13_1.png" />
+</div>
+</div>
+<p><a id="1dimgrad"></a>
+<strong>Gradient Filter:</strong></p>
+<p>Next the same input signal x1 is convolved with a gradient-filter</p>
+<div class="math notranslate nohighlight">
+\[
+h=[1,0,-1].
+\]</div>
+<p>The output of this filter can be interpreted as the gradient of the input signal. The output is 0, at all positions, where there is no variation in the signal values, the output is <span class="math notranslate nohighlight">\(&gt;0\)</span>, if the signal-values increase and <span class="math notranslate nohighlight">\(&lt;0\)</span> if the signal values decrease:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo2</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve1d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">fo2</span><span class="p">,</span><span class="n">linefmt</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Output of derivative-filter&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="s1">&#39;Applied Filter: H=[1.0,0.0,-1.0]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(6, 0.5, &#39;Applied Filter: H=[1.0,0.0,-1.0]&#39;)
+</pre></div>
+</div>
+<img alt="../_images/02filtering_15_1.png" src="../_images/02filtering_15_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>2-dimensional Filtering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The same concepts as introduced above for the 1-dimensional case can be applied for 2-dimensional signals and 2-dimensional filters.</p>
+<p><strong>Notation:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F(i,j)\)</span> is the component in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the 2-dimensional diskret input signal</p></li>
+<li><p><span class="math notranslate nohighlight">\(H(u,v)\)</span> is the component in row <span class="math notranslate nohighlight">\(u\)</span>, column <span class="math notranslate nohighlight">\(v\)</span> of the 2-dimensional diskret filter kernel</p></li>
+<li><p><span class="math notranslate nohighlight">\(G(i,j)\)</span> is the component in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the 2-dimensional diskret output signal</p></li>
+</ul>
+<p><strong>Correlation Filtering <span class="math notranslate nohighlight">\(G=H \circledast F\)</span></strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-7521e9d5-2fbf-4c9e-8a56-fe159bbb004f">
+<span class="eqno">(5)<a class="headerlink" href="#equation-7521e9d5-2fbf-4c9e-8a56-fe159bbb004f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v) 
+\label{eq:2dimFilter} 
+\end{equation}\]</div>
+<p><strong>Convolution Filtering <span class="math notranslate nohighlight">\(G=H*F\)</span>:</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-0bfda07a-19a8-4bf2-bf0c-0b941739d537">
+<span class="eqno">(6)<a class="headerlink" href="#equation-0bfda07a-19a8-4bf2-bf0c-0b941739d537" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
+\end{equation}\]</div>
+<div class="section" id="example-2-dimensional-discrete-filtering">
+<h3>Example 2-dimensional discrete filtering<a class="headerlink" href="#example-2-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
+<p><strong>Without extension:</strong></p>
+<p>For the sake of clarity, in the picture below only the first and last positon are shown. However, the calculation of the 2-dimensional scalar-product between the filter-coefficients and the input-signal is performed at any possible shift of the filter within the image.</p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" style="width: 500px;" /></a>
+<p>For 2-dimensional filtering the same extension-options (padding) can be applied as mentioned in the <a class="reference external" href="#1dextension">1-dimensional case</a>.</p>
+</div>
+<div class="section" id="implementation-of-2-dimensional-discrete-filtering">
+<h3>Implementation of 2-dimensional discrete filtering<a class="headerlink" href="#implementation-of-2-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
+<p>The required packages are again</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Two 2-dimensional signals x1 and x2 are implemented below. Both images are defined as numpy-arrays of shape (10,10).</p>
+<ul class="simple">
+<li><p><strong>Image x1:</strong> The signal values are 1 (white) in the (4,4)-center region and 0 (black) elsewhere.</p></li>
+<li><p><strong>Image x2:</strong> The pixels of this image are random integers within the range <span class="math notranslate nohighlight">\([0,\ldots,9]\)</span>.</p></li>
+</ul>
+<p>For the display of the 2-dimensional signal the matplotlib method imshow() is applied</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">x1</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">x2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image x1&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image x2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Image x2&#39;)
+</pre></div>
+</div>
+<img alt="../_images/02filtering_24_1.png" src="../_images/02filtering_24_1.png" />
+</div>
+</div>
+<p>We define an average-filter of size <span class="math notranslate nohighlight">\((3,3)\)</span>. The filter is also implemented as a numpy-array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">avg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.111, 0.111, 0.111],
+       [0.111, 0.111, 0.111],
+       [0.111, 0.111, 0.111]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The scipy method <code class="docutils literal notranslate"><span class="pre">convolve()</span></code> is applied to filter images <span class="math notranslate nohighlight">\(x1\)</span> and <span class="math notranslate nohighlight">\(x2\)</span> with the average-filter <span class="math notranslate nohighlight">\(avg\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg1</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">avg</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">avg2</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">avg</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below the filtered images are visualized. It can be seen, that the average-filter yields bluring.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">avg1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average-filtered Image x1&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">avg2</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average-filtered Image x2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Average-filtered Image x2&#39;)
+</pre></div>
+</div>
+<img alt="../_images/02filtering_30_1.png" src="../_images/02filtering_30_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="filters-for-edge-detection">
+<h2>Filters for Edge Detection<a class="headerlink" href="#filters-for-edge-detection" title="Permalink to this headline">¶</a></h2>
+<p>The defining property of <strong>Edges</strong> are distinctive changes of pixel intensities. The change of values in a mathematical function <span class="math notranslate nohighlight">\(f(x)\)</span> is measured by the function’s 1st order derivative <span class="math notranslate nohighlight">\(f'(x)\)</span>. High positive values in <span class="math notranslate nohighlight">\(f'(x)\)</span> correspond to a strong increase of values in <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f'(x)=0\)</span> indicates no change in the values of <span class="math notranslate nohighlight">\(f(x)\)</span>. This means that edges can be found by searching for the locations, where the 1st order derivative of an image has high absolut values.</p>
+<p>We start by recalling the definition of the 1st order derivative of uni- and bivariate functions:</p>
+<ul class="simple">
+<li><p>1-dimensional continuous function:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-30a92f02-c0c5-4201-a602-5031d71e5dae">
+<span class="eqno">(7)<a class="headerlink" href="#equation-30a92f02-c0c5-4201-a602-5031d71e5dae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f'(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon} 
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>1-dimensional discrete function:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-a3378c55-d3d8-469b-94d5-ce33de75b504">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a3378c55-d3d8-469b-94d5-ce33de75b504" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+f'(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>2-dimensional continuous function:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-881aa7a6-a73c-427f-bd02-c7477100dc1d">
+<span class="eqno">(9)<a class="headerlink" href="#equation-881aa7a6-a73c-427f-bd02-c7477100dc1d" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+\frac{\partial f(x,y)}{\partial x} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon} \\
+\frac{\partial f(x,y)}{\partial y} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
+\end{eqnarray}\]</div>
+<ul class="simple">
+<li><p>2-dimensional discrete function (<strong>Image</strong>):</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-d6bc38b3-6745-46e1-ba37-678b8c2fac20">
+<span class="eqno">(10)<a class="headerlink" href="#equation-d6bc38b3-6745-46e1-ba37-678b8c2fac20" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+\frac{\partial f(x,y)}{\partial x} &amp; \approx &amp; \frac{f(x+1,y)-f(x,y)}{1} \\
+\frac{\partial f(x,y)}{\partial y} &amp; \approx &amp; \frac{f(x,y+1)-f(x,y)}{1}
+\end{eqnarray}\]</div>
+<div class="section" id="filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal">
+<h3>Filter for calculating 1st order derivative of discrete 1-dimensional signal<a class="headerlink" href="#filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal" title="Permalink to this headline">¶</a></h3>
+<p>For a discrete 1-dimensional function the derivative is just the <strong>difference between two successive values</strong>. Calculating the difference of successive values in signal <span class="math notranslate nohighlight">\(f\)</span> can be realized by convolving the signal with the filter</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c10de420-5c0c-4437-9fd3-2aff6d8b4465">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c10de420-5c0c-4437-9fd3-2aff6d8b4465" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+h=(1,-1)
+\end{equation}\]</div>
+<p>or better (due to symmetry)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-626223f8-3d88-4607-9305-131af32abcce">
+<span class="eqno">(12)<a class="headerlink" href="#equation-626223f8-3d88-4607-9305-131af32abcce" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+h=(1,0,-1)
+\end{equation}\]</div>
+<p>The discrete derivative of <span class="math notranslate nohighlight">\(f\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b1f600c1-80dd-4f1d-a85f-9cfc0dbf90af">
+<span class="eqno">(13)<a class="headerlink" href="#equation-b1f600c1-80dd-4f1d-a85f-9cfc0dbf90af" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{\partial f}{\partial x}=h*f
+\end{equation}\]</div>
+<p>This filter operation for calculating the 1st order derivative of a 1-dimensional signal has already be implemented <a class="reference external" href="#1dimgrad">above</a></p>
+</div>
+<div class="section" id="filters-for-calculating-1st-order-derivative-in-images">
+<h3>Filters for calculating 1st order derivative in images<a class="headerlink" href="#filters-for-calculating-1st-order-derivative-in-images" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the 1-dimensional case, for a 2-dimensional discrete signals <span class="math notranslate nohighlight">\(F\)</span> the <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(x\)</span></strong> is calculated as convolution</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e8cdfde4-88f8-46e7-b2de-6bb0288b40ad">
+<span class="eqno">(14)<a class="headerlink" href="#equation-e8cdfde4-88f8-46e7-b2de-6bb0288b40ad" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{\partial F}{\partial x}=H_x * F
+\end{equation}\]</div>
+<p>with the derivative filter</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ddbcde7f-728f-4bb0-8835-f0c3b3395887">
+<span class="eqno">(15)<a class="headerlink" href="#equation-ddbcde7f-728f-4bb0-8835-f0c3b3395887" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_x = \left[ 
+\begin{array}{ccc}
+1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \\
+\end{array}
+\right]
+\end{equation}\]</div>
+<p>The <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(y\)</span></strong> is calculated as convolution</p>
+<div class="amsmath math notranslate nohighlight" id="equation-03979679-03a7-462a-8656-47ed3c672d0b">
+<span class="eqno">(16)<a class="headerlink" href="#equation-03979679-03a7-462a-8656-47ed3c672d0b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{\partial F}{\partial y}=H_y * F
+\end{equation}\]</div>
+<p>with the derivative filter</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1971ce40-fdb2-4402-a6d8-37a0fb041b82">
+<span class="eqno">(17)<a class="headerlink" href="#equation-1971ce40-fdb2-4402-a6d8-37a0fb041b82" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_y = \left[ 
+\begin{array}{ccc}
+1 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0 \\
+-1 &amp; -1 &amp; -1 \\
+\end{array}
+\right]
+\end{equation}\]</div>
+<p>The filter pair <span class="math notranslate nohighlight">\(H_x\)</span> and <span class="math notranslate nohighlight">\(H_y\)</span> as defined above is called <strong>Prewitt Filter</strong>.</p>
+<p>Another frequently applied filter for edge-detection is the <strong>Sobel Filter</strong>, which is defined by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3780f47b-6b0e-4b63-8cad-153745b9e786">
+<span class="eqno">(18)<a class="headerlink" href="#equation-3780f47b-6b0e-4b63-8cad-153745b9e786" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+H_x = \left[ 
+\begin{array}{ccc}
+1 &amp; 0 &amp; -1 \\
+2 &amp; 0 &amp; -2 \\
+1 &amp; 0 &amp; -1 \\
+\end{array}
+\right] \quad \mbox{ and }
+H_y = \left[ \begin{array}{ccc}
+1 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 \\
+-1 &amp; -2 &amp; -1 \\
+\end{array}
+\right]
+\end{equation}\]</div>
+<p>There exists even more edge-detection filters, for example der derivatives of the Gaussian, which are introduced in the <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">next section</span></a>.</p>
+<p>For all of the edge detectors</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ae03c6bc-6f1e-4950-a67e-4336794de5fb">
+<span class="eqno">(19)<a class="headerlink" href="#equation-ae03c6bc-6f1e-4950-a67e-4336794de5fb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{\partial F}{\partial x}= H_x * F
+\quad \mbox{ and } \quad
+\frac{\partial F}{\partial y}= H_y * F
+\end{equation}\]</div>
+<p>constitute the <strong>gradient of image <span class="math notranslate nohighlight">\(F\)</span></strong>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-77c1bef9-c5fa-442d-8bdc-1dad0659e4d6">
+<span class="eqno">(20)<a class="headerlink" href="#equation-77c1bef9-c5fa-442d-8bdc-1dad0659e4d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\nabla F = \left( \begin{array}{c}
+\frac{\partial F}{\partial x} \\
+\frac{\partial F}{\partial y}
+\end{array} \right)
+\end{equation}\]</div>
+<p>The magnitude of the gradient is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4991c874-f848-422e-a0ec-d990c9c80c0b">
+<span class="eqno">(21)<a class="headerlink" href="#equation-4991c874-f848-422e-a0ec-d990c9c80c0b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\Vert \nabla F \Vert = \sqrt{\left(\frac{\partial F}{\partial x}\right)^2 + \left(\frac{\partial F}{\partial y}\right)^2}
+\end{equation}\]</div>
+<p>and its direction is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-62db04e2-5a2a-45de-9a12-e47bd2ef44f3">
+<span class="eqno">(22)<a class="headerlink" href="#equation-62db04e2-5a2a-45de-9a12-e47bd2ef44f3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\theta = \arctan\left( \frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x}}\right)
+\end{equation}\]</div>
+<p><strong>Edges</strong> are at the <strong>extremas</strong> of <span class="math notranslate nohighlight">\(\Vert \nabla F \Vert\)</span>.</p>
+</div>
+<div class="section" id="implementation-of-edge-detection-in-images">
+<h3>Implementation of Edge Detection in Images<a class="headerlink" href="#implementation-of-edge-detection-in-images" title="Permalink to this headline">¶</a></h3>
+<p>The Prewitt filter for calculating the 1st order derivative of an image in x-direction is implemented as a 2-dimensional numpy-array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prewitt Filter: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prewitt Filter: 
+ [[ 1.  0. -1.]
+ [ 1.  0. -1.]
+ [ 1.  0. -1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For calculating the partial derivation in y-direction the transpose of dx is applied</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filter: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filter: 
+ [[ 1.  1.  1.]
+ [ 0.  0.  0.]
+ [-1. -1. -1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The x-derivative and y-derivative of the 2-dimensional input signal x1 can then be calculated as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prewitt Filter</span>
+<span class="n">fo1</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="c1">#fo1=ndi.prewitt(x1,axis=1,output=np.float64, mode=&#39;nearest&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fo1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on Prewitt x-derivative filter&#39;</span><span class="p">)</span>
+<span class="n">fo2</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fo2</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on Prewitt y-derivative filter&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Response on Prewitt y-derivative filter&#39;)
+</pre></div>
+</div>
+<img alt="../_images/02filtering_42_1.png" src="../_images/02filtering_42_1.png" />
+</div>
+</div>
+<p>Another commonly applied filter for calculating the image gradient in x- and y direction is the <strong>Sobel Filter</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sobel Filter</span>
+<span class="n">dx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],])</span>
+<span class="n">dy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filter Sobel-x: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filter Sobel-y: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span>
+<span class="n">fo1</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="c1">#fo1=ndi.prewitt(x1,axis=1,output=np.float64, mode=&#39;nearest&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fo1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on Sobel x-derivative filter&#39;</span><span class="p">)</span>
+
+<span class="n">fo2</span><span class="o">=</span><span class="n">ndi</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fo2</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.65&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response on Sobel y-derivative filter&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filter Sobel-x: 
+ [[ 1.  0. -1.]
+ [ 2.  0. -2.]
+ [ 1.  0. -1.]]
+Filter Sobel-y: 
+ [[ 1.  2.  1.]
+ [ 0.  0.  0.]
+ [-1. -2. -1.]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Response on Sobel y-derivative filter&#39;)
+</pre></div>
+</div>
+<img alt="../_images/02filtering_44_2.png" src="../_images/02filtering_44_2.png" />
+</div>
+</div>
+<p>Above different techniques to calculate the derivatives of a 2-dimensional input signal have been shown. Now, the 2-dimensional input signal is a real greyscale image. In order to determine the horizontal and vertical edges of the image a Sobel filter is applied - here the Sobel-filter provided by the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/ndimage.html">Scipy ndimage package</a>.</p>
+</div>
+<div class="section" id="read-rgb-image-and-convert-to-greyscale">
+<h3>Read RGB image and convert to greyscale<a class="headerlink" href="#read-rgb-image-and-convert-to-greyscale" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#im = np.array(Image.open(&quot;C:\Users\maucher\DataSets\ObjRec/alcatraz1.jpg&quot;).convert(&#39;L&#39;))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../Data/a4weiss.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02filtering_47_0.png" src="../_images/02filtering_47_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="apply-sobel-filter-for-calculating-the-x-derivative-and-y-derivative">
+<h3>Apply Sobel Filter for calculating the x-derivative and y-derivative<a class="headerlink" href="#apply-sobel-filter-for-calculating-the-x-derivative-and-y-derivative" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">ndi</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">sobel</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">imx</span><span class="p">)</span>
+<span class="n">imy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">ndi</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">sobel</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">imy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 1., 3.],
+       [0., 0., 0., ..., 0., 1., 3.],
+       [0., 0., 0., ..., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of the Sobel filter is stored in the numpy arrays imx and imy, respectively. This type of filter invocation is recommended since it allows to control the accuracy. In Scipy multidimensional filter outputs are calculated by applying a sequence of 1-dimensional filters. The intermediate arrays are stored in the same data type as the output. Therefore, for output types with a lower precision, the results may be imprecise because intermediate results may be stored with insufficient precision. This can be prevented by specifying a more precise output type.</p>
+<p>Moreover, the magnitude of the gradient is calculated and plotted to the matplotlib figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnitude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">imx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">imy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">magnitude</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Magnitude of Gradient&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imx</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Derivative in x-direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Derivative in y-direction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imy</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02filtering_51_0.png" src="../_images/02filtering_51_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="template-matching">
+<h2>Template Matching<a class="headerlink" href="#template-matching" title="Permalink to this headline">¶</a></h2>
+<p>Template matching is a technique to find patterns in an image. For this a filter is configured whose response is the pattern. This filter is correlated over the image. A high correlation value at a given position indicates a high probability for the pattern at this position.</p>
+<p><a class="reference external" href="http://scikit-image.org/">Scikits-Image</a> modules are applied in this excercise for importing the data, for template-matching and for indicating the positions where the pattern (template) is found in the image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from skimage import data</span>
+<span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">match_template</span>
+<span class="kn">from</span> <span class="nn">skimage.draw</span> <span class="kn">import</span> <span class="n">circle</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The image is imported in python. The template applied here is a region of the image, which contains the identifiaction of a chip on a platine. The pattern and the image are plotted</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../Data/platine.JPG&#39;</span><span class="p">)</span>
+<span class="n">template</span><span class="o">=</span><span class="n">full</span><span class="p">[</span><span class="mi">285</span><span class="p">:</span><span class="mi">309</span><span class="p">,</span><span class="mi">149</span><span class="p">:</span><span class="mi">264</span><span class="p">]</span>  <span class="c1">#crop the pattern of interest</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">template</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02filtering_55_0.png" src="../_images/02filtering_55_0.png" />
+</div>
+</div>
+<p>The Scikits Image method match_template calculates the correlation of the pattern and the image at all possible positions. The returned matrx contains all correlation values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation</span><span class="o">=</span><span class="n">match_template</span><span class="p">(</span><span class="n">full</span><span class="p">,</span><span class="n">template</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the following loop all positions with a correlation value &gt;0.9 are extracted from the correlation matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xcoords</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ycoords</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="n">correlation</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.9</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">correlation</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">])</span>
+                        <span class="n">xcoords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+                        <span class="n">ycoords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>285 149 [1.]
+285 430 [0.964]
+285 718 [0.95]
+285 992 [0.973]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>732 147 [0.954]
+732 428 [0.971]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, the positions with correlation value &gt;0.9 are marked in the image</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">full</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Search pattern in this image&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">full</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Found patterns&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xcoords</span><span class="p">,</span><span class="n">ycoords</span><span class="p">,</span><span class="s1">&#39;om&#39;</span><span class="p">,</span><span class="n">ms</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;found matches&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1216</span><span class="p">,</span><span class="mi">1049</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02filtering_61_0.png" src="../_images/02filtering_61_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Calculate Sobel-derivatives of the image <em>smallimg</em> as defined in the next row. Calculate magnitude and direction of sobel gradient. At which position of the image appears the maximum magnitude of the gradient?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smallimg</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">smallimg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 5, 6],
+       [1, 6, 6],
+       [6, 6, 1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">smallimg</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">ndi</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">sobel</span><span class="p">(</span><span class="n">smallimg</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">imx</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
+<span class="n">imy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">smallimg</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">ndi</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">sobel</span><span class="p">(</span><span class="n">smallimg</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">imy</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gradient in x-direction&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gradient in y-direction&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gradient in x-direction
+[[ 17.  20.   3.]
+ [ 14.  10.  -4.]
+ [  5. -10. -15.]]
+Gradient in y-direction
+[[  1.   2.   1.]
+ [ 16.   2. -14.]
+ [ 15.   0. -15.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnitude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">imx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">imy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Magnitude of Gradient:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Magnitude of Gradient:
+[[17.029 20.1    3.162]
+ [21.26  10.198 14.56 ]
+ [15.811 10.    21.213]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">direction</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">imy</span><span class="o">/</span><span class="n">imx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Direction of Gradient:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Direction of Gradient:
+[[ 0.059  0.1    0.322]
+ [ 0.852  0.197  1.292]
+ [ 1.249 -0.     0.785]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./preprocessing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="01accessImage.html" title="previous page">Basic Image Access Operations</a>
+    <a class='right-next' id="next-link" href="04gaussianDerivatives.html" title="next page">Gaussian Filter and Derivatives of Gaussian</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
