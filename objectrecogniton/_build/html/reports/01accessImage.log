@@ -32,15 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-try:
-    cam = cv2.VideoCapture(0) #Index in brackets determine the camera. If there is only one camera available the index must be 0
-    while True:
-        img2 = cam.read()[1]
-        cv2.imshow("Video",img2)
-        if cv2.waitKey(1) == 27: # Stop if ESC is pressed
-                break
-except:
-    print("No camera available")
-cv2.destroyAllWindows()
+['file="../Data/4p-c1.avi"', 'cam = cv2.VideoCapture(file)', 'print("Video Properties:")', '#print "\\t Width: ",cam.get(cv2.CV_CAP_PROP_FRAME_WIDTH)', '#print "\\t Height: ",cam.get(cv2.CV_CAP_PROP_FRAME_HEIGHT)']
+...
+['        print("Frame can not be displayed")', '    if cv2.waitKey(33) == 27: ', '        break', 'cam.release()', 'cv2.destroyAllWindows()']
 -------------------
 

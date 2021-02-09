@@ -3,6 +3,9 @@ title: Object Recognition Lecture
 author: Prof. Dr. Johannes Maucher
 logo: hdmlogomed.jpg
 
+bibtex_bibfiles:
+  - cvReferences.bib
+
 parse:
   myst_extended_syntax: true
 

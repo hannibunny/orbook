@@ -552,26 +552,79 @@ plt.axis([0,1216,1049,0])
 plt.legend()
 plt.show()
 
-## Exercise
-Calculate Sobel-derivatives of the image *smallimg* as defined in the next row. Calculate magnitude and direction of sobel gradient. At which position of the image appears the maximum magnitude of the gradient?
+## Mathematical Properties of Filters
 
-smallimg=np.array([[1,5,6],[1,6,6],[6,6,1]])
-smallimg
+- **Shift Invariance:** A filter is shift invariant, if it's output depends only on the values in the relevant region, not on the position of the region.
 
-imx = np.zeros(smallimg.shape,dtype=np.float64)
-ndi.filters.sobel(smallimg,1,imx,mode="nearest")
-imy = np.zeros(smallimg.shape,dtype=np.float64)
-ndi.filters.sobel(smallimg,0,imy,mode="nearest")
-print("Gradient in x-direction")
-print(imx)
-print("Gradient in y-direction")
-print(imy)
+- **Linear Filter**, A filter is a linear filter, if and only if it fulfills the following two properties:
 
-magnitude=np.sqrt(imx**2+imy**2)
-print("Magnitude of Gradient:")
-print(magnitude)
+    - Superposition
+    
+        \begin{equation}
+        H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
+        \end{equation}
+        
+    - Scaling
+    
+        \begin{equation}
+        H \odot (k F) = k(H \odot F)
+        \end{equation}
 
-direction =np.arctan(imy/imx)
-print("Direction of Gradient:")
-print(direction)
+Here $\odot$ denotes an arbitrary filter operation, not necessarily correlation or convolution.
 
+The convolution operation $*$ is **shift invariant and linear**. Moreover, convolution has the following properties: 
+
+- Commutative: 
+
+$$H*G = G*H$$
+
+- Associative: 
+
+$$F*(G*H)=(F*G)*H$$
+
+- Identity: 
+
+$$
+H * \delta = H, \mbox{ where }  \delta \mbox{ is the unit impulse } \delta=\left[ \ldots,0,0,1,0,0,\ldots \right]
+$$ 
+
+- Differentiation:
+
+\begin{equation}
+\frac{\partial}{\partial x}(H*G) = \frac{\partial H}{\partial x} *G
+\end{equation} 
+
+- **Fourier Transform:**
+\begin{equation}
+\mathcal{F}(H*G)=\mathcal{F}(H)\cdot \mathcal{F}(G)
+\end{equation}
+
+**Examples:**
+
+- Averaging Filter (=Uniform Filter) and Gaussian Filter can be described as convolution. Thus they are linear and shift invariant.
+- The Median Filter (next subsection) can not be described as convolution and is not linear.
+
+
+## Median Filter
+
+A median filter can not be described by convolution. As mentioned above, it is not a linear-filter. The median filter $H_k$ of half-width $k$ calculates it's output $G(i,j)$ from the Input $F$ as follows: 
+
+1. Order all pixel values in the region 
+
+$$
+F[i-k:i+k,j-k:j+k]
+$$
+
+2. Then the filter output $G(i,j)$ is the value, which is in the center of the ordered list.
+
+**Example:**
+
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/medianFilter.png" style="width:500px" align="center">
+
+Important features of the Median Filter are:
+
+- No new pixel values
+- Keeps edges sharp
+- Removes spikes (Salt and Pepper Noise)
+
+The application of the Median Filter on images, disturbed by Salt-and-Pepper Noise is shown in [this section](06GaussianNoiseReduction).

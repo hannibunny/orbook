@@ -9,8 +9,9 @@
   - file: preprocessing/02filtering
   - file: preprocessing/04gaussianDerivatives
   - file: preprocessing/03LowPassFilter
-  - file: preprocessing/05GaussianLowPassFilter
   - file: preprocessing/06GaussianNoiseReduction
+  - file: preprocessing/05GaussianLowPassFilter
+  - file: referenceSection
 
 #- part: Global, Local and Subspace Features
 #  chapters:
