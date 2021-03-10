@@ -9,4 +9,4 @@ Jupyter notebooks are in subdirectories
 - ...
 
 # Jupyterbook
-The statis html book is in subdirectory [objectrecogniton/_build/html/](objectrecogniton/_build/html/). Open the book by klicking this link: [objectrecogniton/_build/html/index.html](objectrecogniton/_build/html/index.html) 
+The statis html book is in subdirectory [objectrecogniton/_build/html/](objectrecogniton/_build/html/). Open the book by klicking this link: [objectrecogniton/_build/html/index.html](objectrecogniton/_build/html/intro.md) 
