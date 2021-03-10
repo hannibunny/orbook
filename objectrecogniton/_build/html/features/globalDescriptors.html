@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Image Features &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Similarity Measures" href="similarityMetrics.html" />
+    <link rel="prev" title="References" href="../referenceSection.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/features/globalDescriptors.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/globalDescriptors.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categorization-image-features-in-general">
+   Categorization Image Features in General
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pixel-intensities">
+   Pixel Intensities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#colour-histograms">
+   Colour Histograms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dimensional-histogram">
+     1-dimensional Histogram
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensional-histogram-of-greyscale-image">
+       1-dimensional Histogram of Greyscale Image
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dimensional-histograms-of-colour-images">
+       1-dimensional Histograms of Colour Images
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-dimensional-histogram">
+     Multi-dimensional Histogram
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="global-image-features">
+<h1>Global Image Features<a class="headerlink" href="#global-image-features" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 10th February 2021</p></li>
+</ul>
+<div class="section" id="categorization-image-features-in-general">
+<h2>Categorization Image Features in General<a class="headerlink" href="#categorization-image-features-in-general" title="Permalink to this headline">¶</a></h2>
+<p>For object recognition and other computer-vision tasks images must be described by one or more numeric representations. These numeric representations should contain the relevant <strong>features</strong> of the image. On an abstract level, the methods to calculate features from a given image can be categorized as follows:</p>
+<ul class="simple">
+<li><p><strong>Global features:</strong> One numeric representation (vector) is calculated for the entire image. Further recognition/identification applies this single image descriptor as input. Example: Color-Histogram</p></li>
+<li><p><strong>Subwindow features:</strong> The entire image is partitioned into subwindows. For each subwindow one numeric representation is calculated and recognition/identification is performed for each single subwindow.</p></li>
+<li><p><strong>Local features:</strong> A set of numeric representations (vectors) is calculated for a given image. Each of these vectors describes a local area within the image. Further recognition/identification is performed by taking into account the entire set of local descriptors. Example: SIFT-features</p></li>
+</ul>
+<p>The general notion <em>Object Recognition</em>, can actually be subdivided into many subtasks. Here and in the next sections, we just distinguish</p>
+<ul class="simple">
+<li><p><strong>Object recognition:</strong> Determine which object-category, e.g. car, person, building etc. is in the image</p></li>
+<li><p><strong>Identification:</strong> Determine which concrete instance is in the image, e.g. which concrete person</p></li>
+</ul>
+<p>The application of global features in the context of a <em>Content Based Image Retrieval (CBIR)</em> system is demonstrated below. For each image a global descriptor is calculated and stored in a database. The task of CBIR is to find for a given query-image the most similar images in the database. For this the global image descriptor is calculated for the query-image and this descriptor is compared with all descriptors (vectors) in the database. The images of the most similar descriptors are returned.</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/globalDescriptorRecog.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/globalDescriptorRecog.png" />
+</div>
+<div class="section" id="pixel-intensities">
+<h2>Pixel Intensities<a class="headerlink" href="#pixel-intensities" title="Permalink to this headline">¶</a></h2>
+<p>The most direct and obvious form of a global image descriptor to just write the values of all pixels and all channels into a long descriptor-vector. The image below displays only a small section out of such an image descriptor. For the marked image-region (left), the corresponding pixel values are displayed in the right part. For 8-bit images all pixel-values are in the range between 0 and <span class="math notranslate nohighlight">\(2^8-1=255\)</span>.</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/strawberryIntensities.PNG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/strawberryIntensities.PNG" />
+<p>Global image descriptors of this type are very long. For an <span class="math notranslate nohighlight">\(L-\)</span>channel image of size <span class="math notranslate nohighlight">\(r \times c\)</span> the length of the desriptor vector is <span class="math notranslate nohighlight">\(L \cdot r \cdot c\)</span>. E.g. a relatively small RGB-image of size <span class="math notranslate nohighlight">\((200 \times 300)\)</span> has a length of <span class="math notranslate nohighlight">\(3 \cdot 200 \cdot 300 = 180000\)</span>.</p>
+<p><strong>Drawbacks:</strong> Besides the huge length, this type of descriptor is extremly unrobust with respect to variations in translation, rotation, scale, cropping, background, illumination, contrast and partial occlusion.</p>
+<p>Due to this drawbacks this type of descriptor can hardly be applied for object recognition and identification. An application, for which this descriptor may be useful is change-detection in successive frames of a video.</p>
+</div>
+<div class="section" id="colour-histograms">
+<h2>Colour Histograms<a class="headerlink" href="#colour-histograms" title="Permalink to this headline">¶</a></h2>
+<p>More robust global descriptors are colour histograms. They can be applied, whenever the color-distribution in images can be assumed to constitute significant information for the given task.</p>
+<p>In contrast to the pixel-intensities-descriptor the histogram is <strong>orderless</strong>, i.e. it does not matter where the color occurs. It is quite robust w.r.t.</p>
+<ul class="simple">
+<li><p>geometric transformations</p></li>
+<li><p>moderate view point changes</p></li>
+<li><p>partial occlusion</p></li>
+<li><p>contrast change (if intensity-normalized values are used)</p></li>
+</ul>
+<p>It is not robust w.r.t. exposure changes.</p>
+<div class="section" id="dimensional-histogram">
+<h3>1-dimensional Histogram<a class="headerlink" href="#dimensional-histogram" title="Permalink to this headline">¶</a></h3>
+<p>For a given variable <span class="math notranslate nohighlight">\(X\)</span> with value-range <span class="math notranslate nohighlight">\(V(X)\)</span>, the histogram <span class="math notranslate nohighlight">\(hist(X)\)</span> counts vor each possible value <span class="math notranslate nohighlight">\(x \in V(X)\)</span> the frequency of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="section" id="dimensional-histogram-of-greyscale-image">
+<h4>1-dimensional Histogram of Greyscale Image<a class="headerlink" href="#dimensional-histogram-of-greyscale-image" title="Permalink to this headline">¶</a></h4>
+<p>For example in an 8-Bit greyscale image <span class="math notranslate nohighlight">\(I\)</span> the value range is <span class="math notranslate nohighlight">\(V(I)=\left[0,\ldots,255 \right]\)</span> and <span class="math notranslate nohighlight">\(h=hist(I)\)</span> is a vector of length <span class="math notranslate nohighlight">\(256\)</span>, where <span class="math notranslate nohighlight">\(h[j]\)</span> is the frequency of value <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<p>Below the <a class="reference external" href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_histograms/py_histogram_begins/py_histogram_begins.html">CalcHist()-method from opencv</a> is applied to calculate the 1-dimensional histogram of a greyscale image. We start with reading the image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">imgpath</span><span class="o">=</span><span class="s1">&#39;../Data/mo.png&#39;</span>
+<span class="n">pil_im_grey</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">np_im_grey</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pil_im_grey</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of numpy array : </span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np_im_grey</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np_im_grey</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of numpy array : 	 (388, 599)
+</pre></div>
+</div>
+<img alt="../_images/globalDescriptors_7_1.png" src="../_images/globalDescriptors_7_1.png" />
+</div>
+</div>
+<p>Next, the 1-dimensional histogram is calculated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">256</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Length of histogram: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of histogram:  256
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen the histogram is a 1-dimensional array of length 256. The <span class="math notranslate nohighlight">\(j.th\)</span> element of this vector counts how often the pixel-intensity-value <span class="math notranslate nohighlight">\(j\)</span> appears in the image. Below the frequency of the pixel intensities 0 to 9 is plotted:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frequency of value </span><span class="si">%2d</span><span class="s2"> in the image is </span><span class="si">%3d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">hist</span><span class="p">[</span><span class="n">j</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Frequency of value  0 in the image is  20
+Frequency of value  1 in the image is  69
+Frequency of value  2 in the image is  79
+Frequency of value  3 in the image is  90
+Frequency of value  4 in the image is 168
+Frequency of value  5 in the image is 140
+Frequency of value  6 in the image is 156
+Frequency of value  7 in the image is 179
+Frequency of value  8 in the image is 288
+Frequency of value  9 in the image is 469
+</pre></div>
+</div>
+</div>
+</div>
+<p>The histogram can be visualized as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">),</span><span class="n">hist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Greyscale Image&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Values&quot;</span><span class="p">)</span>
+<span class="c1">#plt.xticks(np.arange(0,256,16))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frequencies&#39;)
+</pre></div>
+</div>
+<img alt="../_images/globalDescriptors_13_1.png" src="../_images/globalDescriptors_13_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">np_im_grey</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="mi">16</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 6345, 16170, 13283, 13234, 11107,  7962, 10996, 32676, 68747,
+       24729,  6378,  6515,  5639,  6402,  1727,   502])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  0.,  16.,  32.,  48.,  64.,  80.,  96., 112., 128., 144., 160.,
+       176., 192., 208., 224., 240., 256.])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Binning:</strong></p>
+<p>Histograms, as introduced so far, count the frequencies of each possible value. However, it is more common, particularly if the value-range has a high cardinality, to partition the entire value range in bins and count the frequency of values in each bin.</p>
+<p>Below, the entire value-range is subdivided in 16 bins, where each bin comprises 8 adjacent values, e.g. the first bin contains the pixel-intensities from 0 to 7 and the corresponding histograms counts in it’s first element how often values between 0 and 7 (inclusive) occur in the image. Similarly, the second component of the histogram counts how often values between 8 and 15 occur in the image, etc.:</p>
+<p>16-Bin Histogram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16bin</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16bin</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16bin</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6345.],
+       [16170.],
+       [13283.],
+       [13234.],
+       [11107.],
+       [ 7962.],
+       [10996.],
+       [32676.],
+       [68747.],
+       [24729.],
+       [ 6378.],
+       [ 6515.],
+       [ 5639.],
+       [ 6402.],
+       [ 1727.],
+       [  502.]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, the 16-bin and the 32-bin historgrams are visualized:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16bin</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Greyscale Image&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+
+<span class="n">hist32bin</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">32</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">hist32bin</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;32-Bin Histogram of Greyscale Image&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Values Ranges&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frequencies&#39;)
+</pre></div>
+</div>
+<img alt="../_images/globalDescriptors_22_1.png" src="../_images/globalDescriptors_22_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="dimensional-histograms-of-colour-images">
+<h4>1-dimensional Histograms of Colour Images<a class="headerlink" href="#dimensional-histograms-of-colour-images" title="Permalink to this headline">¶</a></h4>
+<p>For multichannel images (colour images), there exist two different options to calculate histograms:</p>
+<ol class="simple">
+<li><p>Calculate ons 1-dimensional histogram for each channel. A global image descriptor can then be obtained by concatenating these three 1-d histograms</p></li>
+<li><p>Calulate a a multidimensional histogram. In multidimensional histograms the bins are not 1-dimensional but e.g. 3-dimensional for 3-channel images. In each Bin the occurence of tuples <span class="math notranslate nohighlight">\((x,y,z)\)</span> within the bin’s range is counted.</p></li>
+</ol>
+<p>We start with the first option. The second option, multidimensional histogram, is described in the next subsection.</p>
+<p><strong>Read colour image:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imgpath</span><span class="o">=</span><span class="s1">&#39;../Data/66obj/images/image045.JPG&#39;</span>
+<span class="n">pil_im_col</span><span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span>
+<span class="n">np_im_col</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pil_im_col</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of numpy array : </span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np_im_col</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np_im_col</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of numpy array : 	 (240, 320, 3)
+</pre></div>
+</div>
+<img alt="../_images/globalDescriptors_25_1.png" src="../_images/globalDescriptors_25_1.png" />
+</div>
+</div>
+<p><strong>Calculate a 1-dimensional histogram for each of the 3 channels:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16binRed</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="n">hist16binGreen</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">1</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="n">hist16binBlue</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">2</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Visualize the three 1-dimensional histograms:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16binRed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Red-Channel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16binGreen</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Green-Channel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16binBlue</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Blue-Channel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frequencies&#39;)
+</pre></div>
+</div>
+<img alt="../_images/globalDescriptors_29_1.png" src="../_images/globalDescriptors_29_1.png" />
+</div>
+</div>
+<p><strong>Image Descriptor:</strong>
+The global image descriptor in this case is just the concatenation of the three 1-dimensional histograms. Since in the example each histogram is of length 16, the global image descriptor is a one-dimensional vector of length 48.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imageDescriptor1dim</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">hist16binRed</span><span class="p">,</span><span class="n">hist16binGreen</span><span class="p">,</span><span class="n">hist16binBlue</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imageDescriptor1dim</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(48, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imageDescriptor1dim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1629.],
+       [  784.],
+       [  738.],
+       [  988.],
+       [ 1589.],
+       [ 1727.],
+       [ 2135.],
+       [ 2998.],
+       [ 6281.],
+       [21844.],
+       [12831.],
+       [ 9859.],
+       [12414.],
+       [  607.],
+       [  189.],
+       [  187.],
+       [14684.],
+       [ 3559.],
+       [ 2087.],
+       [ 2016.],
+       [ 1897.],
+       [ 1608.],
+       [ 1657.],
+       [ 2148.],
+       [ 2141.],
+       [ 7642.],
+       [15759.],
+       [ 4946.],
+       [11749.],
+       [ 4806.],
+       [   58.],
+       [   43.],
+       [16080.],
+       [ 3630.],
+       [ 3284.],
+       [ 3514.],
+       [ 2337.],
+       [ 2412.],
+       [ 1809.],
+       [ 1451.],
+       [11924.],
+       [ 9930.],
+       [ 3935.],
+       [11121.],
+       [ 5280.],
+       [   58.],
+       [   27.],
+       [    8.]], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multi-dimensional-histogram">
+<h3>Multi-dimensional Histogram<a class="headerlink" href="#multi-dimensional-histogram" title="Permalink to this headline">¶</a></h3>
+<p>As already mentioned above, in multidimensional histograms the bins are not 1-dimensional but e.g. 3-dimensional for 3-channel images. In each Bin the occurence of tuples <span class="math notranslate nohighlight">\((x,y,z)\)</span> within the bin’s range is counted.</p>
+<p>Next, a 3-dimensional histogram with <span class="math notranslate nohighlight">\(8 \times 8 \times 8 = 512\)</span> bins is calculated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histCol</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histCol</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8, 8, 8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The bin <code class="docutils literal notranslate"><span class="pre">histCol[0,0,0]</span></code> counts the number of pixels in the image, for which the values of the red, green and blue channel are in the range between 0 and 15 (inclusive).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histCol</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2208.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The bin <code class="docutils literal notranslate"><span class="pre">histCol[7,7,7]</span></code> counts the number of pixels in the image, for which the values of the red, green and blue channel are in the range between 240 and 255 (inclusive).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histCol</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Image Descriptor:</strong>
+The global image descriptors are just the serializations of the multidimensional histograms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imageDescriptor3dim</span><span class="o">=</span><span class="n">histCol</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Length of the global image descriptor: &quot;</span><span class="p">,</span><span class="n">imageDescriptor3dim</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of the global image descriptor:  (512,)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Visualization of 3-dimensional Color Histogram:</strong></p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">plot3Dhistogram()</span></code>, defined below, can be applied to visualize the 3-dimensional histogram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot3Dhistogram</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Visualize a 3D histogram</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    h: histogram array of shape (M,N,O)</span>
+<span class="sd">    </span>
+<span class="sd">    Note, that M,N and O must be either 2,4,8,16,32,64 or 128 </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">O</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">idxR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">idxG</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">idxB</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+
+    <span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">idxR</span><span class="p">,</span> <span class="n">idxG</span><span class="p">,</span> <span class="n">idxB</span><span class="p">)</span>
+    <span class="c1">#a = np.diff(e[0])[0]</span>
+    <span class="n">a</span><span class="o">=</span><span class="mi">256</span><span class="o">/</span><span class="n">M</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">R</span> <span class="o">+</span> <span class="n">b</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">256</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">G</span> <span class="o">+</span> <span class="n">b</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">256</span><span class="o">/</span><span class="n">O</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">B</span> <span class="o">+</span> <span class="n">b</span>
+
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">R</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">G</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">B</span><span class="o">.</span><span class="n">flatten</span><span class="p">()))</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="mi">255</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>     
+    <span class="n">mxbins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">O</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">G</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">B</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">s</span><span class="o">=</span><span class="n">h</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">mxbins</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Red&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Green&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Blue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">plot3Dhistogram</span><span class="p">(</span><span class="n">histCol</span><span class="p">,</span><span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/globalDescriptors_46_0.png" src="../_images/globalDescriptors_46_0.png" />
+</div>
+</div>
+<p><strong>Application:</strong></p>
+<p>A common application of global image descriptors from multidimensional color-histograms is <strong>Content Based Image Retrieval (CBIR)</strong>. Here, the task is to find an arbitrary query-image the most similar image(s) in a given image-database. In the case that images are described by their 3-dimensional color-histograms CBIR requires a <strong>method to determine similarity</strong> between histograms. In <a class="reference internal" href="similarityMetrics.html"><span class="doc std std-doc">section Similarity Measures</span></a> common metrics to measure similarity between vectors in general and histograms in particular are described. In <a class="reference internal" href="ImageRetrieval.html"><span class="doc std std-doc">section Image Retrieval</span></a> a CBIR based on 3-dimensioanl color-histograms is implemented and evaluated for different similarity metrics.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./features"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../referenceSection.html" title="previous page">References</a>
+    <a class='right-next' id="next-link" href="similarityMetrics.html" title="next page">Similarity Measures</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

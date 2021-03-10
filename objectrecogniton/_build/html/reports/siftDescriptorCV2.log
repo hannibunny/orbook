@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 1087, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/asyncio/base_events.py", line 608, in run_until_complete
+    return future.result()
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 540, in async_execute
+    await self.async_execute_cell(
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 832, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 740, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+plt.imshow(img)
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-5-878eb3b29097>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mplt[0m[0;34m.[0m[0mimshow[0m[0;34m([0m[0mimg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mplt[0m[0;34m.[0m[0mshow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/matplotlib/pyplot.py[0m in [0;36mimshow[0;34m(X, cmap, norm, aspect, interpolation, alpha, vmin, vmax, origin, extent, filternorm, filterrad, resample, url, data, **kwargs)[0m
+[1;32m   2722[0m         [0mfilternorm[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m [0mfilterrad[0m[0;34m=[0m[0;36m4.0[0m[0;34m,[0m [0mresample[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0murl[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2723[0m         data=None, **kwargs):
+[0;32m-> 2724[0;31m     __ret = gca().imshow(
+[0m[1;32m   2725[0m         [0mX[0m[0;34m,[0m [0mcmap[0m[0;34m=[0m[0mcmap[0m[0;34m,[0m [0mnorm[0m[0;34m=[0m[0mnorm[0m[0;34m,[0m [0maspect[0m[0;34m=[0m[0maspect[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2726[0m         [0minterpolation[0m[0;34m=[0m[0minterpolation[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0malpha[0m[0;34m,[0m [0mvmin[0m[0;34m=[0m[0mvmin[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/matplotlib/__init__.py[0m in [0;36minner[0;34m(ax, data, *args, **kwargs)[0m
+[1;32m   1436[0m     [0;32mdef[0m [0minner[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1437[0m         [0;32mif[0m [0mdata[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1438[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0mmap[0m[0;34m([0m[0msanitize_sequence[0m[0;34m,[0m [0margs[0m[0;34m)[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1439[0m [0;34m[0m[0m
+[1;32m   1440[0m         [0mbound[0m [0;34m=[0m [0mnew_sig[0m[0;34m.[0m[0mbind[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/matplotlib/axes/_axes.py[0m in [0;36mimshow[0;34m(self, X, cmap, norm, aspect, interpolation, alpha, vmin, vmax, origin, extent, filternorm, filterrad, resample, url, **kwargs)[0m
+[1;32m   5521[0m                               resample=resample, **kwargs)
+[1;32m   5522[0m [0;34m[0m[0m
+[0;32m-> 5523[0;31m         [0mim[0m[0;34m.[0m[0mset_data[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   5524[0m         [0mim[0m[0;34m.[0m[0mset_alpha[0m[0;34m([0m[0malpha[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   5525[0m         [0;32mif[0m [0mim[0m[0;34m.[0m[0mget_clip_path[0m[0;34m([0m[0;34m)[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/envs/books/lib/python3.8/site-packages/matplotlib/image.py[0m in [0;36mset_data[0;34m(self, A)[0m
+[1;32m    698[0m         if (self._A.dtype != np.uint8 and
+[1;32m    699[0m                 not np.can_cast(self._A.dtype, float, "same_kind")):
+[0;32m--> 700[0;31m             raise TypeError("Image data of dtype {} cannot be converted to "
+[0m[1;32m    701[0m                             "float".format(self._A.dtype))
+[1;32m    702[0m [0;34m[0m[0m
+
+[0;31mTypeError[0m: Image data of dtype object cannot be converted to float
+TypeError: Image data of dtype object cannot be converted to float
+

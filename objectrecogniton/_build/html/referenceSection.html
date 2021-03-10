@@ -56,6 +56,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Global Image Features" href="features/globalDescriptors.html" />
     <link rel="prev" title="Gaussian and Difference of Gaussian Pyramid" href="preprocessing/05GaussianLowPassFilter.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -89,7 +90,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   Welcome to your Jupyter Book
+   Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
@@ -129,6 +130,85 @@
    Gaussian and Difference of Gaussian Pyramid
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    References
@@ -210,8 +290,32 @@
 <h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
 <p><a class="bibtex reference internal" href="#szeliski10" id="id1">[Sze10]</a></p>
 <p id="bibtex-bibliography-referenceSection-0"><dl class="citation">
+<dt class="bibtex label" id="felleman"><span class="brackets">FvE91</span></dt>
+<dd><p>D.J. Felleman and D.C. van Essen. Distributed hierarchical processing in the primate cerebral cortex. <em>Cereb Cortex</em>, pages 1–47, 1991.</p>
+</dd>
+<dt class="bibtex label" id="graumanleibe"><span class="brackets">GL11</span></dt>
+<dd><p>K. Grauman and B. Leibe. <em>Visual Object Recognition</em>. Synthesis Lectures on Artificial Intelligence and Machine Learning. Morgan &amp; Claypool Publishers, 2011.</p>
+</dd>
+<dt class="bibtex label" id="harris88"><span class="brackets">HS88</span></dt>
+<dd><p>C. Harris and M. Stephens. A combined corner and edge detector. In <em>In Proc. of Fourth Alvey Vision Conference</em>, 147–151. 1988.</p>
+</dd>
+<dt class="bibtex label" id="lowe04"><span class="brackets">Low04</span></dt>
+<dd><p>D. G. Lowe. Distinctive image features from scale-invariant keypoints. <em>International Journal of Computer Vision</em>, 60(2):91–110, 2004.</p>
+</dd>
+<dt class="bibtex label" id="schielec00"><span class="brackets">SC00</span></dt>
+<dd><p>B. Schiele and J.L. Crowley. Recognition without correspondence using multidimensional receptive field histograms. <em>International Journal of Computer Vision</em>, 36(1):31–50, 2000.</p>
+</dd>
+<dt class="bibtex label" id="swainballard"><span class="brackets">SB91</span></dt>
+<dd><p>Michael J. Swain and Dana H. Ballard. Color indexing. <em>Int. J. Comput. Vision</em>, 7(1):11–32, 1991. URL: <a class="reference external" href="https://doi.org/10.1007/BF00130487">https://doi.org/10.1007/BF00130487</a>, <a class="reference external" href="https://doi.org/10.1007/BF00130487">doi:10.1007/BF00130487</a>.</p>
+</dd>
 <dt class="bibtex label" id="szeliski10"><span class="brackets"><a class="fn-backref" href="#id1">Sze10</a></span></dt>
 <dd><p>R. Szeliski. <em>Computer Vision: Algorithms and Applications</em>. Springer-Verlag New York, Inc., New York, NY, USA, 1st edition, 2010. ISBN 1848829345, 9781848829343.</p>
+</dd>
+<dt class="bibtex label" id="tuyte07"><span class="brackets">TM07</span></dt>
+<dd><p>T. Tuytelaars and K. Mikolajczyk. Local invariant feature detectors: a survey. <em>Foundations and Trends in Computer Graphics and Vision</em>, 3(3):177–280, 2007.</p>
+</dd>
+<dt class="bibtex label" id="rubner"><span class="brackets">RubnerTomasiGuibas98</span></dt>
+<dd><p>Y. Rubner, C. Tomasi, and L. J. Guibas. A metric for distributions with applications to image databases. In <em>Sixth International Conference on Computer Vision (IEEE Cat. No.98CH36271)</em>, volume, 59–66. 1998. <a class="reference external" href="https://doi.org/10.1109/ICCV.1998.710701">doi:10.1109/ICCV.1998.710701</a>.</p>
 </dd>
 </dl>
 </p>
@@ -246,6 +350,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="preprocessing/05GaussianLowPassFilter.html" title="previous page">Gaussian and Difference of Gaussian Pyramid</a>
+    <a class='right-next' id="next-link" href="features/globalDescriptors.html" title="next page">Global Image Features</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

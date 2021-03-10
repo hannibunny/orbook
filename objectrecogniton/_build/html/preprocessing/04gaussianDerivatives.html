@@ -90,7 +90,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
-   Welcome to your Jupyter Book
+   Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
@@ -130,6 +130,85 @@
    Gaussian and Difference of Gaussian Pyramid
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -276,8 +355,8 @@
 <div class="section" id="dimensional-gaussian-filter">
 <h2>1-dimensional Gaussian Filter<a class="headerlink" href="#dimensional-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The univariate Gauss-function is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-799b2321-e7cb-4665-ba63-d441d98a262a">
-<span class="eqno">(27)<a class="headerlink" href="#equation-799b2321-e7cb-4665-ba63-d441d98a262a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eeb47f1b-57ce-4ebd-9730-d096be91ee20">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eeb47f1b-57ce-4ebd-9730-d096be91ee20" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g_{\sigma,\mu}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(x-\mu)^2}{2 \sigma^2}\right),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation and <span class="math notranslate nohighlight">\(\mu\)</span> is the mean. In the context of filtering, the mean is always <span class="math notranslate nohighlight">\(\mu=0\)</span>, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> is a parameter, which determines the width of the filter. In the sequel the mean is implicetly assumed to be <span class="math notranslate nohighlight">\(\mu=0.\)</span></p>
@@ -325,8 +404,8 @@ g_{\sigma,\mu}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(x-\mu)^2}
 </div>
 </div>
 <p>In image processing we have discrete signals (the pixels of an image) and discrete filters. For the discrete index <span class="math notranslate nohighlight">\(u\)</span>, the <strong>discrete Gaussian filter</strong> is defined to be (for <span class="math notranslate nohighlight">\(\mu=0\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35704714-0f5d-404a-b9a3-8ba07b711008">
-<span class="eqno">(28)<a class="headerlink" href="#equation-35704714-0f5d-404a-b9a3-8ba07b711008" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7e8b0014-3406-4e5f-b70d-fce27309844d">
+<span class="eqno">(28)<a class="headerlink" href="#equation-7e8b0014-3406-4e5f-b70d-fce27309844d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g_{\sigma}(u) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(u)^2}{2 \sigma^2}\right),
 \end{equation}\]</div>
 <p>For discrete Gauss-filters, u is an integer in the range</p>
@@ -336,8 +415,8 @@ u \in [-z, \ldots, z],
 \]</div>
 <p>where usually <span class="math notranslate nohighlight">\(z=\lceil 3\sigma \rceil\)</span>.</p>
 <p>The output of the discrete Gaussian filtering, if applied to the discrete signal <span class="math notranslate nohighlight">\(f(i)\)</span> is than</p>
-<div class="amsmath math notranslate nohighlight" id="equation-52a49d7f-0df1-40aa-be42-fd7eb63cd7db">
-<span class="eqno">(29)<a class="headerlink" href="#equation-52a49d7f-0df1-40aa-be42-fd7eb63cd7db" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a0deb505-8e03-4045-8041-e8186595ac19">
+<span class="eqno">(29)<a class="headerlink" href="#equation-a0deb505-8e03-4045-8041-e8186595ac19" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 h(i) = \sum\limits_{u=-z}^{z} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{u^2}{2 \sigma^2}\right) f(i-u)
 \end{equation}\]</div>
 <p>Below, two discrete Gauss functions with different <span class="math notranslate nohighlight">\(\sigma\)</span> are plotted:</p>
@@ -404,18 +483,18 @@ h(i) = \sum\limits_{u=-z}^{z} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{
 <div class="section" id="derivatives-of-1-dimensional-gaussian-filter">
 <h2>Derivatives of 1-dimensional Gaussian Filter<a class="headerlink" href="#derivatives-of-1-dimensional-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The 1st order derivative of the zero mean Gaussian function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7129aca4-05f6-47a6-bb8f-c27578254f93">
-<span class="eqno">(30)<a class="headerlink" href="#equation-7129aca4-05f6-47a6-bb8f-c27578254f93" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4740e0cd-c3b0-4cbb-bb22-47ba1d9dbde4">
+<span class="eqno">(30)<a class="headerlink" href="#equation-4740e0cd-c3b0-4cbb-bb22-47ba1d9dbde4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g_{\sigma}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right)
 \end{equation}\]</div>
 <p>can easily be calcultated to be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9919b5c1-f191-4a3c-a1b5-ca7df6371a14">
-<span class="eqno">(31)<a class="headerlink" href="#equation-9919b5c1-f191-4a3c-a1b5-ca7df6371a14" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8bb1cbfd-9745-44e2-9933-f69abba59eb7">
+<span class="eqno">(31)<a class="headerlink" href="#equation-8bb1cbfd-9745-44e2-9933-f69abba59eb7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g'_{\sigma}(x)=\frac{\partial g_{\sigma}(x)}{\partial x}= -\frac{x}{\sigma^2} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = -\frac{x}{\sigma^2} g_{\sigma}(x),
 \end{equation}\]</div>
 <p>And the 2nd order derivative is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f746ce79-6557-4845-9754-28b01624acb0">
-<span class="eqno">(32)<a class="headerlink" href="#equation-f746ce79-6557-4845-9754-28b01624acb0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d60c86f-2e18-4ded-8a48-10861a7980da">
+<span class="eqno">(32)<a class="headerlink" href="#equation-9d60c86f-2e18-4ded-8a48-10861a7980da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g''_{\sigma}(x)=\frac{\partial^2 g_{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = \left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) g_{\sigma}(x).
 \end{equation}\]</div>
 <p>Below, the gaussian function and it’s 1st and 2nd order derivative are visualized:</p>
@@ -456,8 +535,8 @@ g''_{\sigma}(x)=\frac{\partial^2 g_{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\
 <div class="section" id="id1">
 <h2>2-dimensional Gaussian Filter<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>A 2-dimensional continous Gaussian filter (again <span class="math notranslate nohighlight">\(\mu=0\)</span>) is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74aa2d16-b0e0-4c4b-a8fb-e68229d3b557">
-<span class="eqno">(33)<a class="headerlink" href="#equation-74aa2d16-b0e0-4c4b-a8fb-e68229d3b557" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c4e5f52-3233-41ee-ac79-b07c903cb114">
+<span class="eqno">(33)<a class="headerlink" href="#equation-0c4e5f52-3233-41ee-ac79-b07c903cb114" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 G_{\sigma}(x,y) = \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{x^2+y^2}{2 \sigma^2}\right)
 \end{equation}\]</div>
 <p>The following function <code class="docutils literal notranslate"><span class="pre">gauss2d(mu,sigma,order)</span></code> plots either</p>
@@ -540,14 +619,14 @@ G_{\sigma}(x,y) = \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{x^2+y^2}{2 \sigma
 </div>
 </div>
 <p>The discrete form of the Gaussian filter is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f5a8debe-69c3-4976-a91e-c4d3f7d445e1">
-<span class="eqno">(34)<a class="headerlink" href="#equation-f5a8debe-69c3-4976-a91e-c4d3f7d445e1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2e52bda-69ad-4864-98e0-3b3bb40756a0">
+<span class="eqno">(34)<a class="headerlink" href="#equation-d2e52bda-69ad-4864-98e0-3b3bb40756a0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 G_{\sigma}(u,v)  =  \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{u^2+v^2}{2 \sigma^2}\right),
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are integers in the range of <span class="math notranslate nohighlight">\([-z, \ldots, z]\)</span>, and <span class="math notranslate nohighlight">\(z=\lceil 3\sigma \rceil\)</span>.</p>
 <p>The convolution of a discrete 2-dimensional signal <span class="math notranslate nohighlight">\(F\)</span> with the 2-dimensional Gaussian filter <span class="math notranslate nohighlight">\(G\)</span> is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d85d1dee-3733-496a-a0af-980c5eb51eec">
-<span class="eqno">(35)<a class="headerlink" href="#equation-d85d1dee-3733-496a-a0af-980c5eb51eec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5d55499d-312e-4ac8-b80a-0910158ef053">
+<span class="eqno">(35)<a class="headerlink" href="#equation-5d55499d-312e-4ac8-b80a-0910158ef053" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H(i,j) = \sum\limits_{u=-k}^{k} \sum\limits_{v=-k}^{k} \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{u^2+v^2}{2 \sigma^2}\right) F(i-u,j-v).
 \end{equation}\]</div>
 <p>Next, 2-dimensional Gaussian filtering is demonstrated. For this we define
@@ -604,8 +683,8 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 <div class="section" id="derivatives-of-the-2-dimensional-gauss-filter">
 <h2>Derivatives of the 2-dimensional Gauss filter<a class="headerlink" href="#derivatives-of-the-2-dimensional-gauss-filter" title="Permalink to this headline">¶</a></h2>
 <p>For the 2-dimensional Gaussian <span class="math notranslate nohighlight">\(G_{\sigma}(x,y)\)</span> the 1st order partial derivatives are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-43e169b6-d040-4af1-9031-0aaf922a84d1">
-<span class="eqno">(36)<a class="headerlink" href="#equation-43e169b6-d040-4af1-9031-0aaf922a84d1" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-97603d94-7956-48ae-bcf8-bc9882a4ae56">
+<span class="eqno">(36)<a class="headerlink" href="#equation-97603d94-7956-48ae-bcf8-bc9882a4ae56" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \frac{\partial G_{\sigma}(x,y)}{\partial x} &amp; = &amp; -\frac{x}{\sigma^2} G_{\sigma}(x,y) \\
 \frac{\partial G_{\sigma}(x,y)}{\partial y} &amp; = &amp; -\frac{y}{\sigma^2} G_{\sigma}(x,y)
 \end{eqnarray}\]</div>
@@ -720,16 +799,16 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 <ul class="simple">
 <li><p>The <strong>Laplacian Operator <span class="math notranslate nohighlight">\(\nabla^2 F\)</span></strong> is the undirected 2nd derivative of a 2-dimensional image <span class="math notranslate nohighlight">\(F\)</span>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-07efddd5-5af2-4ada-8037-9393c746c294">
-<span class="eqno">(38)<a class="headerlink" href="#equation-07efddd5-5af2-4ada-8037-9393c746c294" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2f10d95-cf12-4ced-bf71-8296d392c2b1">
+<span class="eqno">(38)<a class="headerlink" href="#equation-e2f10d95-cf12-4ced-bf71-8296d392c2b1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \nabla^2 F = \frac{\partial^2 F}{\partial x^2}+\frac{\partial^2 F}{\partial y^2}
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>The second order derivatives of the 2-dim Gaussian filter are defined in <a class="reference internal" href="#equation-2nd-derivative-gauss">(37)</a></p></li>
 <li><p>Smoothing an image <span class="math notranslate nohighlight">\(F\)</span> with a Gaussian and then taking its Laplacian operator is equivalent to convolving the image <span class="math notranslate nohighlight">\(F\)</span> with the <strong>Laplacian of Gaussian (LoG) Filter</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-d29b1bd2-186b-4257-b25d-97c2701c3cb1">
-<span class="eqno">(39)<a class="headerlink" href="#equation-d29b1bd2-186b-4257-b25d-97c2701c3cb1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2188c37-1cdc-4e03-9f20-229f68b11a8a">
+<span class="eqno">(39)<a class="headerlink" href="#equation-d2188c37-1cdc-4e03-9f20-229f68b11a8a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \nabla^2 G_{\sigma}(x,y)=\left(\frac{x^2+y^2}{\sigma^4} - \frac{2}{\sigma^2}\right) G_{\sigma}(x,y) 
 \end{equation}\]</div>
 <div class="cell docutils container">

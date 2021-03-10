@@ -5,7 +5,6 @@
 
 In the previous sections two important applications of Gaussian filters, bluring and noise suppression, have been introduced. Another frequent application is to construct **Gaussian and Laplacian pyramides**. Pyramides are used to generate different sizes of an images. The levels in a pyramid differ in their scale. Different scales are required for example for implementing scale-invariant recognition. This will be elaborated in detail in the later section on **SIFT features**.    
 
-In {cite}`Szeliski10` it is
 
 A **Gaussian pyramide** is constructed as follows:
 
@@ -14,7 +13,7 @@ A **Gaussian pyramide** is constructed as follows:
 3. Downsample the smoothed $G_l$ by a factor of 2. The result is $G_{l+1}$
 4. Set $l=l+1$ and continue with step 2 until $G_l$ contains only a single pixel
 
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss" style="width:500px" align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" style="width:600px" align="center">
 
 *Image Source: {cite}`Szeliski10`*
 
@@ -26,7 +25,7 @@ $$
 
 represents the high frequencies which are filtered out in level $l$, where $G_{l+1}^{\uparrow}$ is the upsampled (interpolated) version of $G_{l+1}$. The pyramide of all $D_l$ constitute the **Laplacian Pyramide.**
 
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" style="width:500px" align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" style="width:600px" align="center">
 
 *Image Source: {cite}`Szeliski10`*
 
@@ -74,7 +73,7 @@ def plotSpectrum(y,Fs,title=""):
 def calcGaussian(x,m,sig):
     return np.exp(-((tf-m)/sig)**2/2)/(sig*np.sqrt(2*np.pi))
 
-### Plot signal, filter and filtered signal in time- and frequency domain
+**Plot signal, filter and filtered signal in time- and frequency domain:**
 
 Fs = 200.0;  # sampling rate
 Ts = 1.0/Fs; # sampling interval

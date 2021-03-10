@@ -90,7 +90,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
-   Welcome to your Jupyter Book
+   Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
@@ -130,6 +130,85 @@
    Gaussian and Difference of Gaussian Pyramid
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -226,13 +305,6 @@
   <a class="reference internal nav-link" href="#spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
    Spectrum of 1-dimensional Gaussian and Difference Of Gaussian Filter
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain">
-     Plot signal, filter and filtered signal in time- and frequency domain
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gaussian-pyramide-and-laplacian-pyramide-of-images">
@@ -257,7 +329,6 @@
 <li><p>Last Update: 28th January 2021</p></li>
 </ul>
 <p>In the previous sections two important applications of Gaussian filters, bluring and noise suppression, have been introduced. Another frequent application is to construct <strong>Gaussian and Laplacian pyramides</strong>. Pyramides are used to generate different sizes of an images. The levels in a pyramid differ in their scale. Different scales are required for example for implementing scale-invariant recognition. This will be elaborated in detail in the later section on <strong>SIFT features</strong>.</p>
-<p>In <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id1">[Sze10]</a> it is</p>
 <p>A <strong>Gaussian pyramide</strong> is constructed as follows:</p>
 <ol class="simple">
 <li><p>Set level index <span class="math notranslate nohighlight">\(l=0\)</span>; Set <span class="math notranslate nohighlight">\(G_{l=0}\)</span> to be the original image</p></li>
@@ -265,8 +336,8 @@
 <li><p>Downsample the smoothed <span class="math notranslate nohighlight">\(G_l\)</span> by a factor of 2. The result is <span class="math notranslate nohighlight">\(G_{l+1}\)</span></p></li>
 <li><p>Set <span class="math notranslate nohighlight">\(l=l+1\)</span> and continue with step 2 until <span class="math notranslate nohighlight">\(G_l\)</span> contains only a single pixel</p></li>
 </ol>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss" />
-<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id2">[Sze10]</a></em></p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" />
+<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id1">[Sze10]</a></em></p>
 <p>In the Gaussian pyramide in each level the input image is <strong>low pass filtered</strong>. Thus in each level finer structures (higher frequencies) are filtered out. At high levels <span class="math notranslate nohighlight">\(l\)</span> only coarse structures (<strong>low frequencies</strong>) are represented in <span class="math notranslate nohighlight">\(G_l\)</span>. The Difference at level <span class="math notranslate nohighlight">\(l\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -274,7 +345,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
 \]</div>
 <p>represents the high frequencies which are filtered out in level <span class="math notranslate nohighlight">\(l\)</span>, where <span class="math notranslate nohighlight">\(G_{l+1}^{\uparrow}\)</span> is the upsampled (interpolated) version of <span class="math notranslate nohighlight">\(G_{l+1}\)</span>. The pyramide of all <span class="math notranslate nohighlight">\(D_l\)</span> constitute the <strong>Laplacian Pyramide.</strong></p>
 <img alt="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" />
-<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id3">[Sze10]</a></em></p>
+<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id2">[Sze10]</a></em></p>
 <div class="section" id="spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
 <h2>Spectrum of 1-dimensional Gaussian and Difference Of Gaussian Filter<a class="headerlink" href="#spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>Below the spectrum of</p>
@@ -330,8 +401,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
 </div>
 </div>
 </div>
-<div class="section" id="plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain">
-<h3>Plot signal, filter and filtered signal in time- and frequency domain<a class="headerlink" href="#plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain" title="Permalink to this headline">¶</a></h3>
+<p><strong>Plot signal, filter and filtered signal in time- and frequency domain:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mf">200.0</span><span class="p">;</span>  <span class="c1"># sampling rate</span>
@@ -384,8 +454,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05GaussianLowPassFilter_11_0.png" src="../_images/05GaussianLowPassFilter_11_0.png" />
-</div>
+<img alt="../_images/05GaussianLowPassFilter_13_0.png" src="../_images/05GaussianLowPassFilter_13_0.png" />
 </div>
 </div>
 </div>
@@ -412,7 +481,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05GaussianLowPassFilter_14_0.png" src="../_images/05GaussianLowPassFilter_14_0.png" />
+<img alt="../_images/05GaussianLowPassFilter_16_0.png" src="../_images/05GaussianLowPassFilter_16_0.png" />
 </div>
 </div>
 <p>Calculate Gaussian- and Laplacian Pyramide:</p>
@@ -458,7 +527,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05GaussianLowPassFilter_19_0.png" src="../_images/05GaussianLowPassFilter_19_0.png" />
+<img alt="../_images/05GaussianLowPassFilter_21_0.png" src="../_images/05GaussianLowPassFilter_21_0.png" />
 </div>
 </div>
 <p>In the left column of the picture above the Gaussian pyramide, in the right column the Laplacian pyramide is shown (both upsidedown).</p>

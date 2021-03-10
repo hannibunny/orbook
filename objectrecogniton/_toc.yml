@@ -13,6 +13,28 @@
   - file: preprocessing/05GaussianLowPassFilter
   - file: referenceSection
 
+- part: Features
+  chapters:
+  - file: features/globalDescriptors
+  - file: features/similarityMetrics
+  - file: features/ImageRetrieval
+  - file: features/multiReceptiveFields
+  - file: features/naiveBayesHistogram
+  - file: features/probRecognition
+  - file: features/localFeatures
+  - file: features/harrisCornerDetection
+  - file: features/siftDescriptorCV2
+  - file: features/HoGfeatures
+  - file: features/HOGpedestrianDetection
+
+- part: Object Recognition
+  chapters:
+  - file: recognition/
+
+- part: References
+  chapters:
+  - file: referenceSection 
+
 #- part: Global, Local and Subspace Features
 #  chapters:
 #  - file: 

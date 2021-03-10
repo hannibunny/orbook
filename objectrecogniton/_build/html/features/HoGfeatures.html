@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Histogram of Oriented Gradients: Step-by-Step &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HOG-based Pedestrian Detection" href="HOGpedestrianDetection.html" />
+    <link rel="prev" title="Example: Create SIFT Descriptors with openCV" href="siftDescriptorCV2.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/features/HoGfeatures.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/HoGfeatures.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extract-image-patch">
+   Extract Image Patch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-gradient">
+   Calculate Gradient
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-sobel-filter-to-calculate-partial-derivations">
+     Apply Sobel Filter to calculate partial derivations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-pixels-and-gradients-in-a-8-times-8-region">
+     Analyse Pixels and Gradients in a
+     <span class="math notranslate nohighlight">
+      \(8 \times 8\)
+     </span>
+     region
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#magnitude-and-angle-of-the-gradients">
+     Magnitude and Angle of the Gradients
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apply-max-operator-over-channels">
+   Apply max-operator over channels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-histogram-of-single-8-times-8-region">
+   Create Histogram of single
+   <span class="math notranslate nohighlight">
+    \(8 \times 8\)
+   </span>
+   -region
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalization">
+   Normalization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hog-descriptor-for-entire-image-patch">
+   HoG-Descriptor for entire image patch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-references">
+   Further References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="histogram-of-oriented-gradients-step-by-step">
+<h1>Histogram of Oriented Gradients: Step-by-Step<a class="headerlink" href="#histogram-of-oriented-gradients-step-by-step" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last update: 03.03.2021</p></li>
+</ul>
+<p>Histogram of Oriented Gradients (HoG) is a global feature representation, in the sense that one feature description is calculated for the entire image or an image-patch. The descriptor is a vector which contains many histograms. Each histogram belongs to a local area within the image and counts the frequency of gradient-directions in this local area.</p>
+<p>In images gradients in x- and y-direction, can easily be calculated by filters like <em>Prewitt</em>, <em>Sobel</em>, or the first-order derivative of a Gaussian. The magnitude of a gradient is large at edges and the orientation of the gradient-vector indicates the orientation of edges. Hence HoG-features encode the structure of objects in an image and can be applied for all detection and recognition tasks, for which structure-information is assumed to be crucial.</p>
+<p>HoG is particularly well suited for human detection and tracking. For this task it has initially be investigated in <a class="reference external" href="http://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf">Dalal and Triggs; Histograms of Oriented Gradients for Human Detection</a>.</p>
+<p>In this notebook the calculation of a HoG-descriptor of an image-patch is demonstrated step-by-step. In follow-up notebooks the application of HoG-descriptors for the detection of pedestrians in images and for tracking of pedestrians in videos are demonstrated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from __future__ import print_function</span>
+<span class="c1">#from imutils.object_detection import non_max_suppression</span>
+<span class="c1">#from imutils import paths</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#import imutils</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="c1">#from PIL import Image</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imagePath</span><span class="o">=</span><span class="s2">&quot;../Data/mo.png&quot;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/HoGfeatures_2_1.png" src="../_images/HoGfeatures_2_1.png" />
+</div>
+</div>
+<div class="section" id="extract-image-patch">
+<h2>Extract Image Patch<a class="headerlink" href="#extract-image-patch" title="Permalink to this headline">¶</a></h2>
+<p>HoG are calculated for image patches (i.e. sub-windows within the image). For example in a pedestrian-detection task a window is slided over the entire image. At each window-position the HoG-descriptor is calculated. This HoG-descriptor is then passed to a binary classifier, e.g. a Support-Vector-Machine (SVM), which determines whether or not there is a pedestrian in the current sub-window.</p>
+<p>In this exercise a patch-size of 128 rows and 64 columns is applied. In the code cell below the upper-left corner of the patch is at position <code class="docutils literal notranslate"><span class="pre">Location</span></code>. The patch is further subdivided into regions of size <span class="math notranslate nohighlight">\(8 \times 8\)</span>. For each of these region an individual histogram is calculated. The entire HoG-descriptor of the patch is the concatenation of all regional histograms within the patch.</p>
+<blockquote>
+<div><p><strong>Note:</strong> The origin of the numpy-array, to which the image has been imported by <code class="docutils literal notranslate"><span class="pre">cv2.imread()</span></code> is at the upper-left corner. The first axis corresponts to the vertical, the second to the horizontal and the third to the channel-dimension.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_im</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1">#Location=[0,0]</span>
+<span class="n">Location</span><span class="o">=</span><span class="p">[</span><span class="mi">120</span><span class="p">,</span><span class="mi">190</span><span class="p">]</span>  <span class="c1"># first component is vertical axis, second is horizontal axis </span>
+<span class="n">PatchSize</span><span class="o">=</span><span class="p">[</span><span class="mi">128</span><span class="p">,</span><span class="mi">64</span><span class="p">]</span>  <span class="c1"># first component is vertical axis, second is horizontal axis</span>
+<span class="n">numlinesY</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">numlinesX</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">#Draw frame around selected patch</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">np_im</span><span class="p">,</span> <span class="p">(</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> 
+                      <span class="p">(</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> 
+                     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#Draw region boundaries within the patch</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numlinesX</span><span class="p">):</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">np_im</span><span class="p">,(</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numlinesY</span><span class="p">):</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">np_im</span><span class="p">,(</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span>
+                   <span class="p">(</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span>
+                   <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np_im</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_4_0.png" src="../_images/HoGfeatures_4_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="calculate-gradient">
+<h2>Calculate Gradient<a class="headerlink" href="#calculate-gradient" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="apply-sobel-filter-to-calculate-partial-derivations">
+<h3>Apply Sobel Filter to calculate partial derivations<a class="headerlink" href="#apply-sobel-filter-to-calculate-partial-derivations" title="Permalink to this headline">¶</a></h3>
+<p>For each of the 3 channels the derivation in x- and y-direction is calculated by applying the <em>Sobel-filter</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_im2</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gx</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Sobel</span><span class="p">(</span><span class="n">np_im2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32F</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">Sobel</span><span class="p">(</span><span class="n">np_im2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32F</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599, 3)
+(388, 599, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gx</span><span class="p">,)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../_images/HoGfeatures_8_1.png" src="../_images/HoGfeatures_8_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gx</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../_images/HoGfeatures_10_1.png" src="../_images/HoGfeatures_10_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="analyse-pixels-and-gradients-in-a-8-times-8-region">
+<h3>Analyse Pixels and Gradients in a <span class="math notranslate nohighlight">\(8 \times 8\)</span> region<a class="headerlink" href="#analyse-pixels-and-gradients-in-a-8-times-8-region" title="Permalink to this headline">¶</a></h3>
+<p>For the upper left <span class="math notranslate nohighlight">\(8 \times 8\)</span>-region of the selected patch the pixel values of channel <code class="docutils literal notranslate"><span class="pre">Chan</span></code> are displayed and visualized in the following code cells. There is a vertical edge in within this region. Hence there should be high values for the gradients in direction of <em>x</em>.</p>
+<blockquote>
+<div><p><strong>Note:</strong> In this notebook an angle of 0 degrees points to the right and an angle of 90 degrees points to the top.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Chan</span><span class="o">=</span><span class="mi">0</span>  <span class="c1"># Channel to be used for visualisation</span>
+<span class="n">W</span><span class="o">=</span><span class="mi">8</span>     <span class="c1"># Region-width and -height</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pixel values in the selected channel at the selected region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np_im2</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Chan</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 30  17  31  26 102 114  98 102]
+ [ 47  45  36  30  50 133 235 244]
+ [ 30  31  59  56   0  82 232 210]
+ [ 39  36  11  33   0  64 222 195]
+ [ 44  34  51  52  23  72 226 223]
+ [ 37  29  47  28  11  40 201 233]
+ [ 49  51  23  22  16  39 203 231]
+ [ 25  31  57  53  14  25 193 217]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np_im2</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_15_0.png" src="../_images/HoGfeatures_15_0.png" />
+</div>
+</div>
+<p>Gradient <span class="math notranslate nohighlight">\(g_x\)</span> in x-direction of the selected channel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gx</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Chan</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-15.   1.   9.  71.  88.  -4. -12.  25.]
+ [  2. -11. -15.  14. 103. 185. 111.  13.]
+ [  1.  29.  25. -59.  26. 232. 128. -15.]
+ [ -4. -28.  -3. -11.  31. 222. 131.  -9.]
+ [ -8.   7.  18. -28.  20. 203. 151.   0.]
+ [ -3.  10.  -1. -36.  12. 190. 193.  30.]
+ [ 12. -26. -29.  -7.  17. 187. 192.  23.]
+ [ 10.  32.  22. -43. -28. 179. 192.  33.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gradient <span class="math notranslate nohighlight">\(g_y\)</span> in y-direction of the selected channel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gy</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Chan</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  31.   23.    8.    4.   26.   99.  165.  152.]
+ [   0.   14.   28.   30. -102.  -32.  134.  108.]
+ [  -8.   -9.  -25.    3.  -50.  -69.  -13.  -49.]
+ [  14.    3.   -8.   -4.   23.  -10.   -6.   13.]
+ [  -2.   -7.   36.   -5.   11.  -24.  -21.   38.]
+ [   5.   17.  -28.  -30.   -7.  -33.  -23.    8.]
+ [ -12.    2.   10.   25.    3.  -15.   -8.  -16.]
+ [ -16.  -37.    5.   16.   32.    1.  -27.    8.]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="magnitude-and-angle-of-the-gradients">
+<h3>Magnitude and Angle of the Gradients<a class="headerlink" href="#magnitude-and-angle-of-the-gradients" title="Permalink to this headline">¶</a></h3>
+<p>The magnitude and the direction of the gradient can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+|g| = \sqrt{g_x^2+g_y^2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\Theta = arctan\left( \frac{g_y}{g_x}\right)
+\]</div>
+<p>For this calculation <em>opencv</em>’s <code class="docutils literal notranslate"><span class="pre">cartToPolar()</span></code>-function can be applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag</span><span class="p">,</span> <span class="n">angle</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cartToPolar</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span> <span class="n">gy</span><span class="p">,</span> <span class="n">angleInDegrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mag</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599, 3)
+(388, 599, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>For ease of visualization, magnitude and angle are represented as integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag</span><span class="o">=</span><span class="n">mag</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gradient-magnitude of the selected channel and region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mag</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Chan</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 34  23  12  71  91  99 165 154]
+ [  1  17  31  33 144 187 174 108]
+ [  8  30  35  59  56 242 128  51]
+ [ 14  28   8  11  38 222 131  15]
+ [  8   9  40  28  22 204 152  38]
+ [  5  19  28  46  13 192 194  31]
+ [ 16  26  30  25  17 187 192  28]
+ [ 18  48  22  45  42 179 193  33]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mag</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../_images/HoGfeatures_27_1.png" src="../_images/HoGfeatures_27_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599, 3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-max-operator-over-channels">
+<h2>Apply max-operator over channels<a class="headerlink" href="#apply-max-operator-over-channels" title="Permalink to this headline">¶</a></h2>
+<p>Up to now gradients have been calculated for all channels individually. For calculating the HOG-descriptor, at each pixel-position the channel with the highest gradient at this position is determined. Only the gradients of the locally strongest channel are applied in the HoG-descriptor.</p>
+<p>The array <code class="docutils literal notranslate"><span class="pre">maxChan</span></code>, as calculated below, contains for each pixel the channel with the highest magnitude at the pixel’s position.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maxChan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">mag</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As shown below, at the upper-left pixel in the selected patch channel 0 has the strongest gradient. One pixel below, the highest gradient-magnitude is in channel 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">maxChan</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 0 0 1 1 1 1 1]
+ [1 1 2 1 1 0 0 2]
+ [1 0 0 0 1 0 0 1]
+ [1 1 2 0 1 1 0 1]
+ [1 0 2 0 1 0 0 1]
+ [1 0 0 0 1 0 0 0]
+ [0 1 1 1 1 1 0 0]
+ [0 0 1 0 0 1 2 2]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate a 2-dimensional array, which contains only the <strong>gradient-magnitude</strong> of the locally <em>strongest</em> channel (strongest=channel with highest gradient).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maxmag</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">maxmag</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">mag</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">maxChan</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">maxmag</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualisation of the maximum Gradient:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">maxmag</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_37_0.png" src="../_images/HoGfeatures_37_0.png" />
+</div>
+</div>
+<p>Calculate a 2-dimensional array, which contains only the <strong>gradient-angles</strong> of the locally <em>strongest</em> channel (strongest=channel with highest gradient).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maxangle</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxChan</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">maxangle</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">angle</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">maxChan</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">maxangle</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(388, 599)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Strongest gradient-magnitudes in the selected region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">maxmag</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 34.  23.  12.  95. 115. 130. 203. 184.]
+ [  3.  27.  32.  54. 168. 187. 174. 120.]
+ [  9.  30.  35.  59.  89. 242. 128.  77.]
+ [ 15.  39.  10.  11.  63. 227. 131.  50.]
+ [ 11.   9.  42.  28.  44. 204. 152.  50.]
+ [  7.  19.  28.  46.  32. 192. 194.  31.]
+ [ 16.  33.  34.  27.  32. 189. 192.  28.]
+ [ 18.  48.  24.  45.  42. 181. 195.  35.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Strongest gradient-angles in the selected region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">maxangle</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[115.  87.  41.   0.  21.  97. 100.  87.]
+ [180. 154. 126.  27. 323. 350.  50.  92.]
+ [237. 342. 315. 177. 313. 343. 354. 228.]
+ [129. 175. 216. 199.  15. 354. 357. 176.]
+ [199. 315.  67. 190.  19. 353. 352. 135.]
+ [140.  59. 267. 219. 334. 350. 353.  14.]
+ [315. 173. 154.  77. 354. 353. 357. 325.]
+ [302. 310.  34. 159. 131. 357. 351.  17.]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-histogram-of-single-8-times-8-region">
+<h2>Create Histogram of single <span class="math notranslate nohighlight">\(8 \times 8\)</span>-region<a class="headerlink" href="#create-histogram-of-single-8-times-8-region" title="Permalink to this headline">¶</a></h2>
+<p>For each <span class="math notranslate nohighlight">\(8 \times 8\)</span>-region of the selected patch a 9-bin histogram is calculated. The bin-centers are</p>
+<div class="math notranslate nohighlight">
+\[0°,20°,40°,60°,80°,100°,120°,140°,160°.\]</div>
+<p>Gradient angles <span class="math notranslate nohighlight">\(\Theta\)</span> with a value of <span class="math notranslate nohighlight">\(\Theta&gt;180°\)</span> are mapped to their opposite direction <span class="math notranslate nohighlight">\(\Theta'=\Theta-180°\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">anglemapper</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span><span class="mi">180</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">-</span><span class="mi">180</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vfunc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">anglemapper</span><span class="p">)</span>
+<span class="n">mappedAngles</span><span class="o">=</span><span class="p">(</span><span class="n">vfunc</span><span class="p">(</span><span class="n">maxangle</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mappedAngles</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[115.  87.  41.   0.  21.  97. 100.  87.]
+ [  0. 154. 126.  27. 143. 170.  50.  92.]
+ [ 57. 162. 135. 177. 133. 163. 174.  48.]
+ [129. 175.  36.  19.  15. 174. 177. 176.]
+ [ 19. 135.  67.  10.  19. 173. 172. 135.]
+ [140.  59.  87.  39. 154. 170. 173.  14.]
+ [135. 173. 154.  77. 174. 173. 177. 145.]
+ [122. 130.  34. 159. 131. 177. 171.  17.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>After this mapping into the range <span class="math notranslate nohighlight">\(\left[ 0,180 \right]\)</span>, each of the 64 gradient-angles in the region contributes to one or two bins of the histogram as follows:</p>
+<ul>
+<li><p>If the gradient-angle <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span> is equal to one of the 9 bin-centers, then position <span class="math notranslate nohighlight">\(i,j\)</span> adds the value <span class="math notranslate nohighlight">\(\Theta_{ij} \cdot |g_{ij}|\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span>, where <span class="math notranslate nohighlight">\(|g_{ij}|\)</span> is the gradient-magnitude at position <span class="math notranslate nohighlight">\(i,j\)</span>.</p></li>
+<li><p>If the gradient-angle <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span> lies between two bin-centers, where <span class="math notranslate nohighlight">\(\Theta_L\)</span> is the next lower and <span class="math notranslate nohighlight">\(\Theta_R\)</span> ist the next higher bin-center, then position <span class="math notranslate nohighlight">\(i,j\)</span> adds</p>
+<ul class="simple">
+<li><p>the value <span class="math notranslate nohighlight">\(\Theta_{ij} \cdot |g_{ij}| \cdot r\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_R\)</span>, and</p></li>
+<li><p>the value <span class="math notranslate nohighlight">\(\Theta_{ij} \cdot |g_{ij}| \cdot (1-r)\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_L\)</span>,</p></li>
+</ul>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[r=\frac{\Theta_{ij}-\Theta_L}{20}.\]</div>
+<p>Due to the circular nature of angles, the next higher bin center <span class="math notranslate nohighlight">\(\Theta_R\)</span> for all angles <span class="math notranslate nohighlight">\(160°&lt;\Theta_{ij}&lt;180°\)</span> is <span class="math notranslate nohighlight">\(0°\)</span>.</p>
+</li>
+</ul>
+<p><strong>Example:</strong> Assume that at a given pixel the gradient-magnitude is <span class="math notranslate nohighlight">\(|g|=40\)</span> and the gradient-angle is <span class="math notranslate nohighlight">\(325°\)</span>. The gradient-angle is mapped to <span class="math notranslate nohighlight">\(\Theta=325-180=145\)</span>. The next lower bin-center is <span class="math notranslate nohighlight">\(\Theta_L=140\)</span>, the next higher bin-center is <span class="math notranslate nohighlight">\(\Theta_L=160\)</span>. This gradient contributes a value of <span class="math notranslate nohighlight">\(0.25 \cdot 40 = 10\)</span> to the bin centered at <span class="math notranslate nohighlight">\(\Theta_R=160\)</span> and a value of <span class="math notranslate nohighlight">\(0.75 \cdot 40 = 30\)</span> to the bin centered at <span class="math notranslate nohighlight">\(\Theta_L=140\)</span>.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">createHist()</span></code>, as defined in the following code cell, calculates for the gradient-angles <code class="docutils literal notranslate"><span class="pre">AngArray</span></code> and the gradient magnitudes <code class="docutils literal notranslate"><span class="pre">MagArray</span></code> of a given array the corresponding histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">createHist</span><span class="p">(</span><span class="n">AngArray</span><span class="p">,</span><span class="n">MagArray</span><span class="p">,</span><span class="n">BS</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">BINS</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">hist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">BINS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">AngArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">AngArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="c1">#print(AngArray[r,c])</span>
+            <span class="n">binel</span><span class="p">,</span><span class="n">rem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="n">AngArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">],</span><span class="n">BS</span><span class="p">)</span>
+            <span class="n">weight0</span><span class="o">=</span><span class="n">rem</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="n">BS</span>
+            <span class="n">weight1</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">weight0</span>
+            <span class="n">delta0</span><span class="o">=</span><span class="n">MagArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="n">weight0</span>
+            <span class="n">delta1</span><span class="o">=</span><span class="n">MagArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="n">weight1</span>
+            <span class="n">bin0</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">binel</span><span class="p">)</span>
+            <span class="n">bin1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">bin0</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">BINS</span><span class="p">)</span>
+            <span class="n">hist</span><span class="p">[</span><span class="n">bin0</span><span class="p">]</span><span class="o">+=</span><span class="n">delta0</span>
+            <span class="n">hist</span><span class="p">[</span><span class="n">bin1</span><span class="p">]</span><span class="o">+=</span><span class="n">delta1</span>
+    <span class="k">return</span> <span class="n">hist</span>         
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we apply this function <code class="docutils literal notranslate"><span class="pre">createHist()</span></code> for calculating the histogram of the upper left region in the selected patch:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotAngles</span><span class="o">=</span><span class="n">mappedAngles</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">]</span>
+<span class="n">spotMag</span><span class="o">=</span><span class="n">maxmag</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">]</span>
+<span class="n">spotHist</span><span class="o">=</span><span class="n">createHist</span><span class="p">(</span><span class="n">spotAngles</span><span class="p">,</span><span class="n">spotMag</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient histogram of the selected region:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spotHist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gradient histogram of the selected region:
+[1183.45  238.75  299.95  184.55  296.1   245.75  417.1   288.45 1849.9 ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="n">spotHist</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">160</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Gradients in selected patch&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_53_0.png" src="../_images/HoGfeatures_53_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="normalization">
+<h2>Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h2>
+<p>The historgrams of gradients must be normalized in order to make them robust with respect to overall lighting. For example, consider the case, where a stronger lighting of the scene yields a doubling of all pixel values. Then also the gradient-magnitudes and thus the histogram-values will be doubled. In order to avoid this a <em>L2-normalization</em> is applied. However, this normalization is not processed across a single histogram but across a <em>super-region</em> of size <span class="math notranslate nohighlight">\(16 \times 16\)</span>, which is covered by 4 histograms.</p>
+<p>The following code cells draws the first two super-regions in the upper-left part of the considered patch. Each super-region contains <span class="math notranslate nohighlight">\(2 \times 2\)</span> regions of size <span class="math notranslate nohighlight">\(8 \times 8\)</span>. First a 36-Bin normalized histogram is calculated for the green super-region. Then the window is shifted by 8 pixels to the right to the position of the red super-region and so on. All in all there will be <span class="math notranslate nohighlight">\(7 \times 15 =105\)</span> super-region positions within this patch, resulting in a HoG-descriptor of length <span class="math notranslate nohighlight">\(105 \times 36 = 7380 Bins.\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch</span> <span class="o">=</span> <span class="n">np_im</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">PatchSize</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">SR</span><span class="o">=</span><span class="mi">16</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">patch</span><span class="p">,</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">W</span><span class="o">+</span><span class="n">SR</span><span class="p">,</span><span class="n">SR</span><span class="p">),(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">patch</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">SR</span><span class="p">,</span><span class="n">SR</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_55_0.png" src="../_images/HoGfeatures_55_0.png" />
+</div>
+</div>
+<p>In the following code-cells the normalized 36-Bin histogram for the green super-region is calculated.</p>
+<p>First, the four 9-Bin histograms for the regions within the green super-region are obtained:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist11</span><span class="o">=</span><span class="n">spotHist</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hist11</span><span class="p">)</span>
+<span class="n">spotAngles</span><span class="o">=</span><span class="n">mappedAngles</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">]</span>
+<span class="n">spotMag</span><span class="o">=</span><span class="n">maxmag</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">]</span>
+<span class="n">hist12</span><span class="o">=</span><span class="n">createHist</span><span class="p">(</span><span class="n">spotAngles</span><span class="p">,</span><span class="n">spotMag</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hist12</span><span class="p">)</span>
+<span class="n">spotAngles</span><span class="o">=</span><span class="n">mappedAngles</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">]</span>
+<span class="n">spotMag</span><span class="o">=</span><span class="n">maxmag</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">]</span>
+<span class="n">hist21</span><span class="o">=</span><span class="n">createHist</span><span class="p">(</span><span class="n">spotAngles</span><span class="p">,</span><span class="n">spotMag</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hist21</span><span class="p">)</span>
+<span class="n">spotAngles</span><span class="o">=</span><span class="n">mappedAngles</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">]</span>
+<span class="n">spotMag</span><span class="o">=</span><span class="n">maxmag</span><span class="p">[</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">,</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">W</span><span class="p">:</span><span class="n">Location</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">W</span><span class="p">]</span>
+<span class="n">hist22</span><span class="o">=</span><span class="n">createHist</span><span class="p">(</span><span class="n">spotAngles</span><span class="p">,</span><span class="n">spotMag</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hist22</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1183.45  238.75  299.95  184.55  296.1   245.75  417.1   288.45 1849.9 ]
+[ 305.6   649.05  548.    141.8  1021.6  1923.35  454.05  218.05  160.5 ]
+[ 571.45  950.4    66.35    6.     19.2   113.7   148.35  116.65 1917.9 ]
+[264.8  127.85  77.45 178.1  374.5  560.9  269.9  217.   260.5 ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The four non-normalized histograms are visualized in the code-cell below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histList</span><span class="o">=</span><span class="p">[</span><span class="n">hist11</span><span class="p">,</span><span class="n">hist12</span><span class="p">,</span><span class="n">hist21</span><span class="p">,</span><span class="n">hist22</span><span class="p">]</span>
+<span class="n">titles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Upper Left&quot;</span><span class="p">,</span><span class="s2">&quot;Upper Right&quot;</span><span class="p">,</span><span class="s2">&quot;Lower Left&quot;</span><span class="p">,</span><span class="s2">&quot;Lower Right&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">histList</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot; Region&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">160</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">2000</span><span class="p">))</span>
+    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="c1">#plt.title(&quot;Histogram of Gradients in selected patch&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_59_0.png" src="../_images/HoGfeatures_59_0.png" />
+</div>
+</div>
+<p>Next, L2-normalization is performed over a vector, which is the concatenation of all 4 histograms in the region:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histRegion</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">bin</span> <span class="k">for</span> <span class="n">hist</span> <span class="ow">in</span> <span class="n">histList</span> <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Raw Histogram of upper-left super-region:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">histRegion</span><span class="p">)</span>
+
+<span class="n">l2norm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">histRegion</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">L2-Norm:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l2norm</span><span class="p">)</span>
+<span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-6</span> <span class="c1"># define epsilon in order to prevent division by zero</span>
+<span class="n">histRegionNormed</span><span class="o">=</span><span class="n">histRegion</span><span class="o">/</span><span class="p">(</span><span class="n">l2norm</span><span class="o">+</span><span class="n">epsilon</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Normalized Histogram of upper-left super-region:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">histRegionNormed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raw Histogram of upper-left super-region:
+[1183.45  238.75  299.95  184.55  296.1   245.75  417.1   288.45 1849.9
+  305.6   649.05  548.    141.8  1021.6  1923.35  454.05  218.05  160.5
+  571.45  950.4    66.35    6.     19.2   113.7   148.35  116.65 1917.9
+  264.8   127.85   77.45  178.1   374.5   560.9   269.9   217.    260.5 ]
+
+L2-Norm:
+4122.47236133852
+
+Normalized Histogram of upper-left super-region:
+[0.29 0.06 0.07 0.04 0.07 0.06 0.1  0.07 0.45 0.07 0.16 0.13 0.03 0.25
+ 0.47 0.11 0.05 0.04 0.14 0.23 0.02 0.   0.   0.03 0.04 0.03 0.47 0.06
+ 0.03 0.02 0.04 0.09 0.14 0.07 0.05 0.06]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="mi">4</span><span class="p">),</span><span class="n">histRegionNormed</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="mi">4</span><span class="p">),[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">160</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">8.5</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="mi">9</span><span class="p">,</span><span class="mf">8.5</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="mi">9</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],</span><span class="s2">&quot;r--&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Normalized Histogram of upper-left super-region (= 4 regions)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/HoGfeatures_62_0.png" src="../_images/HoGfeatures_62_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="hog-descriptor-for-entire-image-patch">
+<h2>HoG-Descriptor for entire image patch<a class="headerlink" href="#hog-descriptor-for-entire-image-patch" title="Permalink to this headline">¶</a></h2>
+<p>The HoG-descriptor of the entire image-patch consists of all normalized-region histograms within the patch. Each normalized region histogram contains 36 elements and is calculated as shown in the subsection above. In the subsection above the normalized histogram is calculated for the upper-left <span class="math notranslate nohighlight">\(16 \times 16\)</span>-window in the patch (green rectangle in the patch-visualization). Next, the window is shifted by 8 pixels to the right and the next 36 elements of the HoG-descriptor are calculated (red rectangle). The vertical-stepsize is also 8 pixels.</p>
+<p>All in all for a patch of height <span class="math notranslate nohighlight">\(h\)</span> and width <span class="math notranslate nohighlight">\(w\)</span> the number of window positions, i.e. the number of 36-Bin normalized histograms is:</p>
+<div class="math notranslate nohighlight">
+\[\left( \frac{h-16}{8}+1 \right) \left( \frac{w-16}{8}+1 \right)\]</div>
+<p>In the example of this notebook, the patch-height is <span class="math notranslate nohighlight">\(h=128\)</span> and it’s width is <span class="math notranslate nohighlight">\(w=64\)</span>. The HoG-descriptor of the entire patch then contains $<span class="math notranslate nohighlight">\( 15 \cdot 7 \cdot 36 =  105 \cdot 36 = 3780 Bins.\)</span>$</p>
+</div>
+<div class="section" id="further-references">
+<h2>Further References<a class="headerlink" href="#further-references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://scikit-image.org/docs/dev/auto_examples/features_detection/plot_hog.html">HOG in scikit image</a></p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./features"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="siftDescriptorCV2.html" title="previous page">Example: Create SIFT Descriptors with openCV</a>
+    <a class='right-next' id="next-link" href="HOGpedestrianDetection.html" title="next page">HOG-based Pedestrian Detection</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

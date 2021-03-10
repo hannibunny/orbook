@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Histogram-based Image Retrieval &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multidimensional Receptive Field Histograms" href="multiReceptiveFields.html" />
+    <link rel="prev" title="Similarity Measures" href="similarityMetrics.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/features/ImageRetrieval.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/ImageRetrieval.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Histogram-based Image Retrieval
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testprocedure">
+     Testprocedure
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation">
+     Implementation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#distance-functions">
+       Distance functions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="histogram-based-image-retrieval">
+<h1>Histogram-based Image Retrieval<a class="headerlink" href="#histogram-based-image-retrieval" title="Permalink to this headline">¶</a></h1>
+<p>As introduced in <a class="reference external" href="http://www.cs.utexas.edu/~dana/Swain1.pdf">Swain, Ballard</a> (<a class="bibtex reference internal" href="../referenceSection.html#swainballard" id="id1">[SB91]</a>)  3-dimensional color histograms can be applied for specific object recognition. We consider the image retrieval case, i.e. given a large database of images and a novel query image, the task is to determine the database image which is most similar to the query image. The images in the database as well as the query image are represented by their 3-dimensional color histograms. Hence, the search for the most similar image in the database is equal to find the 3-d color histogram, which matches best to the 3-d color historgram of the query image.</p>
+<p>In this demo the <a class="reference external" href="http://www.vision.ee.ethz.ch/datasets/index.en.html">Another 53 objects database</a> is applied. The database contains for each of the 53 objects 5 images, which differ in viewpoint, rotation vertical- and horizontal alignment of the object. Actually, the dataset contains one object, for which only one image exists. This image (image215) has been removed for the test below. A sample of the image database is shown in the picture below.</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/53objects.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/53objects.png" />
+<div class="section" id="testprocedure">
+<h2>Testprocedure<a class="headerlink" href="#testprocedure" title="Permalink to this headline">¶</a></h2>
+<p>In order to evaluate the recognition performance of the 3-d color histogram image retrieval system a leave-one-out test procedure is applied. This means that in each of the 265 iterations one image is selected as query image and the remaining 264 images constitute the database. The recognition is considered to be correct, if the best matching image contains the same object as the query image.</p>
+<p>Recognition performance depends on the metric used for comparing multidimensional histograms. In this demo the following distance measures are compared:</p>
+<ul class="simple">
+<li><p>Euclidean</p></li>
+<li><p>Pearson Correlation</p></li>
+<li><p>Canberra</p></li>
+<li><p>Bray-Curtis</p></li>
+<li><p>Intersection</p></li>
+<li><p>Bhattacharyya</p></li>
+<li><p>Chi-Square</p></li>
+</ul>
+<p>For a formal definition of these metrics see <a class="reference internal" href="similarityMetrics.html"><span class="doc std std-doc">previous section</span></a>.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The following modules are applied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">wasserstein_distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="distance-functions">
+<h3>Distance functions<a class="headerlink" href="#distance-functions" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/spatial.distance.html">Scipy package spatial.distance</a> contains methods for calculating the euclidean-, Pearson-Correlation-, Canberra- and Bray-Curtis-distance. The remaining distance measures as well as a corresponding normalization function are defined in this python program.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="n">s</span>
+
+<span class="k">def</span> <span class="nf">mindist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">bhattacharyya</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="c1"># this is acutally the Hellinger distance,</span>
+                        <span class="c1"># which is a modification of Bhattacharyya</span>
+                        <span class="c1"># Implementation according to http://en.wikipedia.org/wiki/Bhattacharyya_distance</span>
+    <span class="n">anorm</span><span class="o">=</span><span class="n">normalize</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">bnorm</span><span class="o">=</span><span class="n">normalize</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">BC</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">anorm</span><span class="o">*</span><span class="n">bnorm</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">BC</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1">#print BC</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">BC</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">chi2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">idx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">af</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">bf</span><span class="o">=</span><span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">af</span><span class="o">-</span><span class="n">bf</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">af</span><span class="o">+</span><span class="n">bf</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The applied metrics are defined as a list of function names and as a list of strings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="n">euclidean</span><span class="p">,</span><span class="n">correlation</span><span class="p">,</span><span class="n">canberra</span><span class="p">,</span><span class="n">braycurtis</span><span class="p">,</span><span class="n">mindist</span><span class="p">,</span><span class="n">bhattacharyya</span><span class="p">,</span><span class="n">chi2</span><span class="p">,</span><span class="n">wasserstein_distance</span><span class="p">]</span>
+<span class="n">methodName</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span><span class="s2">&quot;correlation&quot;</span><span class="p">,</span><span class="s2">&quot;canberra&quot;</span><span class="p">,</span><span class="s2">&quot;braycurtis&quot;</span><span class="p">,</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span><span class="s2">&quot;bhattacharyya&quot;</span><span class="p">,</span><span class="s2">&quot;chi2&quot;</span><span class="p">,</span><span class="s2">&quot;emd&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, the number of bins per dimension B is defined. The 3-dimensional color histogram then consists of <span class="math notranslate nohighlight">\(B\cdot B\cdot B\)</span> bins. The images are imported from the locally saved image database, which contains the 265 .jpeg images. For calculating the 3-dimensional color histograms of the images the Numpy method histogramdd is applied. The histograms are normalized and flattened (transformed into a 1-dimensional array)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="o">=</span><span class="mi">10</span>
+<span class="c1"># create a list of images</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../Data/66obj/images&#39;</span>
+<span class="n">imlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.JPG&quot;</span><span class="p">)]</span>
+<span class="n">imlist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="c1">#print(imlist)</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">imlist</span><span class="p">),</span> <span class="n">B</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">B</span><span class="p">])</span>
+<span class="n">hists</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imlist</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+    <span class="c1"># multi-dimensional histogram</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">im</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="n">B</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">B</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">normalize</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="c1">#normalization</span>
+    <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">hists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">N_IM</span><span class="o">=</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(265, 1000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">resultDF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">methodName</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Correct&quot;</span><span class="p">,</span> <span class="s2">&quot;Error&quot;</span><span class="p">])</span>
+<span class="n">resultDF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Correct</th>
+      <th>Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>euclidean</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>correlation</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>canberra</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>braycurtis</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>intersection</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>bhattacharyya</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>chi2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>emd</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The following outer loop iterates over all distance-metrics defined in list <em>methods</em>. For each metric first the distance for all pairs of images is calculated and stored in the variable 2-dimensional array <em>dist</em>. The entry in row i, column j of this matrix stores the distance between the histograms of the i.th and the j.th image. Applying numpy’s <em>argsort()</em> method on each row of the 2 dimensional array <em>dist</em> another 2-dimensional array <em>s</em> is calculated. The i.th row of this matrix contains the indicees of all images, sorted w.r.t. increasing distance to image <em>i</em>. I.e. in the first column of the i.th row of s is the index <em>i</em> and in the second column is the index of the image, which matches best with image <em>i</em>. In order to determine if the recognition is correct, one must just check if the index in the second column of <em>s</em> belongs to the same object as the index of the corresponding row. This can be done by a simple integer division, since the images are indexed such that indicees 0 to 4 belong to the same object, indicees 5 to 9 belong to the next object, and so on. The results are saved in the pandas dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">methods</span><span class="p">):</span>
+    <span class="n">dist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N_IM</span><span class="p">,</span><span class="n">N_IM</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">h1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_IM</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">h2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="n">N_IM</span><span class="p">):</span>
+           <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">methods</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">dist</span><span class="p">[</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">]</span><span class="o">=</span><span class="n">wasserstein_distance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span><span class="n">values</span><span class="p">,</span><span class="n">features</span><span class="p">[</span><span class="n">h1</span><span class="p">,:],</span><span class="n">features</span><span class="p">[</span><span class="n">h2</span><span class="p">,:])</span>
+           <span class="k">else</span><span class="p">:</span> 
+            <span class="n">dist</span><span class="p">[</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">]</span><span class="o">=</span><span class="n">m</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">h1</span><span class="p">,:],</span><span class="n">features</span><span class="p">[</span><span class="n">h2</span><span class="p">,:])</span>
+           <span class="n">dist</span><span class="p">[</span><span class="n">h2</span><span class="p">,</span><span class="n">h1</span><span class="p">]</span><span class="o">=</span><span class="n">dist</span><span class="p">[</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">]</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">correct</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">error</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_IM</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">):</span>
+                <span class="n">error</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">correct</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">resultDF</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">methodName</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="s2">&quot;Correct&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">correct</span>
+    <span class="n">resultDF</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">methodName</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="s2">&quot;Error&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">error</span>
+<span class="n">resultDF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Correct</th>
+      <th>Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>euclidean</th>
+      <td>151</td>
+      <td>114</td>
+    </tr>
+    <tr>
+      <th>correlation</th>
+      <td>149</td>
+      <td>116</td>
+    </tr>
+    <tr>
+      <th>canberra</th>
+      <td>255</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>braycurtis</th>
+      <td>229</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>intersection</th>
+      <td>229</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>bhattacharyya</th>
+      <td>246</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>chi2</th>
+      <td>241</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>emd</th>
+      <td>174</td>
+      <td>91</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="use-pretrained-cnns-for-retrieval">
+<h1>Use pretrained CNNs for Retrieval<a class="headerlink" href="#use-pretrained-cnns-for-retrieval" title="Permalink to this headline">¶</a></h1>
+<p>Convolutional Neural Networks (CNN) consist of a feature-extractor part and a classifier. The last part of the CNN (blue part in the image below) is the classifier, consisting one or more dense layers. All other layers (orange part in the image below) constitute the feature extractor part, usually realised by convolutional and pooling layers.
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/dnnExtractorClassifier.png" style="width:600px" align="middle">
+In a well trained CNN, the feature-extractor part provides a good representation of the input image to the classifier.</p>
+<p>In the context of image retrieval one can apply the pretrained feature-extractor part to calculate a good representation of all images - hopefully this representation is better than e.g. a global color-histogram. Instead of comparing color histograms of images in order to find the best matching image, one can compare these dnn-generated features for image retrieval.</p>
+<p>In the remainder of this notebook we apply different pretrained deep neural networks to calculate good representations. Based on these representations best matching image-pairs are determined in the same way as above. All CNNs have been pretrained on the imagenet-dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="kn">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">load_img</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">img_to_array</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.imagenet_utils</span> <span class="kn">import</span> <span class="n">decode_predictions</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Load pretrained CNNs without the classifier part, i.e. only the feature-extractor part:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vgg_model</span> <span class="o">=</span> <span class="n">vgg16</span><span class="o">.</span><span class="n">VGG16</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">inception_model</span> <span class="o">=</span> <span class="n">inception_v3</span><span class="o">.</span><span class="n">InceptionV3</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">resnet_model</span> <span class="o">=</span> <span class="n">resnet50</span><span class="o">.</span><span class="n">ResNet50</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mobilenet_model</span> <span class="o">=</span> <span class="n">mobilenet</span><span class="o">.</span><span class="n">MobileNet</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span><span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:`input_shape` is undefined or non-square, or `rows` is not in [128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IMGSIZE_X</span><span class="o">=</span><span class="mi">224</span>
+<span class="n">IMGSIZE_Y</span><span class="o">=</span><span class="mi">224</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_batch</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">imlist</span><span class="p">),</span><span class="n">IMGSIZE_X</span><span class="p">,</span><span class="n">IMGSIZE_Y</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">filename</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imlist</span><span class="p">):</span>
+    <span class="c1">#im = np.array(Image.open(f))</span>
+    <span class="n">original</span> <span class="o">=</span> <span class="n">load_img</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="n">IMGSIZE_X</span><span class="p">,</span><span class="n">IMGSIZE_Y</span><span class="p">))</span>
+    <span class="n">numpy_image</span> <span class="o">=</span> <span class="n">img_to_array</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+    <span class="n">image_batch</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">numpy_image</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">image_batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(265, 224, 224, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nets</span><span class="o">=</span><span class="p">[</span><span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span><span class="p">]</span>
+<span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="n">vgg_model</span><span class="p">,</span> <span class="n">inception_model</span><span class="p">,</span> <span class="n">resnet_model</span><span class="p">,</span> <span class="n">mobilenet_model</span><span class="p">]</span>
+<span class="n">modelNames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vgg&quot;</span><span class="p">,</span><span class="s2">&quot;inception&quot;</span><span class="p">,</span><span class="s2">&quot;resnet&quot;</span><span class="p">,</span><span class="s2">&quot;mobilenet&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">resultDF2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">modelNames</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Correct&quot;</span><span class="p">,</span> <span class="s2">&quot;Error&quot;</span><span class="p">])</span>
+<span class="n">resultDF2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Correct</th>
+      <th>Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>vgg</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>inception</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>resnet</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>mobilenet</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metric</span><span class="o">=</span><span class="n">correlation</span> <span class="c1">#euclidean</span>
+<span class="k">for</span> <span class="n">net</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nets</span><span class="p">,</span><span class="n">models</span><span class="p">,</span><span class="n">modelNames</span><span class="p">):</span>
+    <span class="n">processed_image</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">preprocess_input</span><span class="p">(</span><span class="n">image_batch</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">processed_image</span><span class="p">)</span>
+    <span class="n">features</span><span class="o">=</span><span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">265</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1">#modelDict[name][&quot;features&quot;]=features</span>
+    
+    <span class="n">dist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N_IM</span><span class="p">,</span><span class="n">N_IM</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">h1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_IM</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">h2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="n">N_IM</span><span class="p">):</span>
+           <span class="n">dist</span><span class="p">[</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">]</span><span class="o">=</span><span class="n">metric</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">h1</span><span class="p">,:],</span><span class="n">features</span><span class="p">[</span><span class="n">h2</span><span class="p">,:])</span>
+           <span class="n">dist</span><span class="p">[</span><span class="n">h2</span><span class="p">,</span><span class="n">h1</span><span class="p">]</span><span class="o">=</span><span class="n">dist</span><span class="p">[</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">]</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">correct</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">error</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_IM</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">):</span>
+                <span class="n">error</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">correct</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">resultDF2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">,</span><span class="s2">&quot;Correct&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">correct</span>
+    <span class="n">resultDF2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">,</span><span class="s2">&quot;Error&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">error</span>
+    <span class="c1">#print(&quot;Name: %s: \t Correct: %3d \t Error: %3d&quot;%(name,correct,error))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultDF2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Correct</th>
+      <th>Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>vgg</th>
+      <td>248</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>inception</th>
+      <td>248</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>resnet</th>
+      <td>260</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>mobilenet</th>
+      <td>253</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./features"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="similarityMetrics.html" title="previous page">Similarity Measures</a>
+    <a class='right-next' id="next-link" href="multiReceptiveFields.html" title="next page">Multidimensional Receptive Field Histograms</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
