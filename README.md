@@ -1,6 +1,9 @@
 # Slides
 Slides are in subdirectory [Slides/](Slides/)
 
+# Assignments
+The assignment-notebooks are in subdirectory [Assignments/](Assignments/)
+
 # Jupyter Notebooks
 Jupyter notebooks are in subdirectories
 - [objectrecognition/preprocessing/](objectrecogniton/preprocessing/)
