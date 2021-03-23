@@ -333,17 +333,17 @@
 <h2>Naive Bayes Histogram-based Objectrecognition<a class="headerlink" href="#naive-bayes-histogram-based-objectrecognition" title="Permalink to this headline">¶</a></h2>
 <p>The probabilistic object recognition as defined in <a class="bibtex reference internal" href="../referenceSection.html#schielec00" id="id2">[SC00]</a>, calculates the a-posteriori <span class="math notranslate nohighlight">\(p(o_n|R)\)</span> by applying Bayes-rule:</p>
 <div class="math notranslate nohighlight" id="equation-bayesrule">
-<span class="eqno">(61)<a class="headerlink" href="#equation-bayesrule" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(62)<a class="headerlink" href="#equation-bayesrule" title="Permalink to this equation">¶</a></span>\[
 p(o_n|R) = \frac{p(R|o_n) \cdot p(o_n)}{P(R)}
 \]</div>
 <p>In the most simple (and not practical) setting, <span class="math notranslate nohighlight">\(R\)</span> is just a measurement <span class="math notranslate nohighlight">\(m\)</span> of the relevant features at a single pixel within the image <span class="math notranslate nohighlight">\(I\)</span>, where feature can be anything for which a one- or multi-dimensional histogram can be obtained, e.g.</p>
 <ul class="simple">
 <li><p>single-channel pixel intensity</p></li>
 <li><p>multi-channel pixel intensity for color images</p></li>
-<li><p>arbitrary multidimensional receptive fields, such as gradient-magnitude, gradient-angle, etc. For the single measurement case equation <a class="reference internal" href="#equation-bayesrule">(61)</a> is</p></li>
+<li><p>arbitrary multidimensional receptive fields, such as gradient-magnitude, gradient-angle, etc. For the single measurement case equation <a class="reference internal" href="#equation-bayesrule">(62)</a> is</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-bayesrulesingle">
-<span class="eqno">(62)<a class="headerlink" href="#equation-bayesrulesingle" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(63)<a class="headerlink" href="#equation-bayesrulesingle" title="Permalink to this equation">¶</a></span>\[
 p(o_n|m) = \frac{p(m|o_n) \cdot p(o_n)}{P(m)} = \frac{p(m|o_n) \cdot p(o_n)}{\sum_i(p(m|o_i) \cdot p(o_i))},
 \]</div>
 <p>where</p>
@@ -351,7 +351,7 @@ p(o_n|m) = \frac{p(m|o_n) \cdot p(o_n)}{P(m)} = \frac{p(m|o_n) \cdot p(o_n)}{\su
 <li><p><span class="math notranslate nohighlight">\(p(o_i)\)</span> is the a-priori probability of object <span class="math notranslate nohighlight">\(o_i\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(p(m|o_i)\)</span> is the probability-density function of object <span class="math notranslate nohighlight">\(o_i\)</span>, which determines the probability, that measurement <span class="math notranslate nohighlight">\(m\)</span> is obtained in an image with object <span class="math notranslate nohighlight">\(o_i\)</span>.</p></li>
 </ul>
-<p>Applying equation <a class="reference internal" href="#equation-bayesrulesingle">(62)</a> to calculate <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> requires that the a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and the probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are known. Where do they come from? They are estimated in the training-phase from training data:</p>
+<p>Applying equation <a class="reference internal" href="#equation-bayesrulesingle">(63)</a> to calculate <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> requires that the a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and the probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are known. Where do they come from? They are estimated in the training-phase from training data:</p>
 <ol>
 <li><p>The estimate for <span class="math notranslate nohighlight">\(p(o_i)\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -379,7 +379,7 @@ p(o_n|m) = \frac{p(m|o_n) \cdot p(o_n)}{P(m)} = \frac{p(m|o_n) \cdot p(o_n)}{\su
      \]</div>
 </li>
 </ul>
-<p>Hence, in the <strong>training-phase</strong> all a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and all probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are estimated from training-data. Then in the <strong>inference-phase</strong> equation <a class="reference internal" href="#equation-bayesrulesingle">(62)</a> is applied to determine the a-posteriori <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> for all objects <span class="math notranslate nohighlight">\(o_n\)</span>, and the object, which yields the largest <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> is the classification decision.</p>
+<p>Hence, in the <strong>training-phase</strong> all a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and all probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are estimated from training-data. Then in the <strong>inference-phase</strong> equation <a class="reference internal" href="#equation-bayesrulesingle">(63)</a> is applied to determine the a-posteriori <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> for all objects <span class="math notranslate nohighlight">\(o_n\)</span>, and the object, which yields the largest <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> is the classification decision.</p>
 <p>Now, we just have to go from the simple but unrealistic case, where only one measurement is taken in the image, to the practical case, where a set of <span class="math notranslate nohighlight">\(k\)</span> measurements</p>
 <div class="math notranslate nohighlight">
 \[
@@ -387,12 +387,12 @@ p(o_n|m) = \frac{p(m|o_n) \cdot p(o_n)}{P(m)} = \frac{p(m|o_n) \cdot p(o_n)}{\su
 \]</div>
 <p>are obtained from the image, which shall be classified. In this case the Bayes-Rule is</p>
 <div class="math notranslate nohighlight" id="equation-bayesrulemulti">
-<span class="eqno">(63)<a class="headerlink" href="#equation-bayesrulemulti" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(64)<a class="headerlink" href="#equation-bayesrulemulti" title="Permalink to this equation">¶</a></span>\[
 p(o_n|m_1,m_2, \ldots, m_k) = \frac{p(m_1,m_2, \ldots, m_k|o_n) \cdot p(o_n)}{P(m_1,m_2, \ldots, m_k)} = \frac{p(m_1,m_2, \ldots, m_k|o_n) \cdot p(o_n)}{\sum_i(p(m_1,m_2, \ldots, m_k|o_i) \cdot p(o_i))},
 \]</div>
 <p>With the <strong>naive assumption</strong> that the <span class="math notranslate nohighlight">\(k\)</span> measurements are independent of each other, the joint conditional probability in the equation above can be represented as a product of conditional probabilities:</p>
 <div class="math notranslate nohighlight" id="equation-naivebayes">
-<span class="eqno">(64)<a class="headerlink" href="#equation-naivebayes" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(65)<a class="headerlink" href="#equation-naivebayes" title="Permalink to this equation">¶</a></span>\[
 p(o_n|m_1,m_2, \ldots, m_k) = \frac{ \prod_j p(m_j|o_n) \cdot p(o_n)}{\sum_i \prod_j p(m_j|o_i) \cdot p(o_i))}.
 \]</div>
 <p>This formula is calculated in the inference-phase in order to determine the most probable object <span class="math notranslate nohighlight">\(o_n\)</span>, given the set of <span class="math notranslate nohighlight">\(k\)</span> measurements. The required a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are the same as in the simple single-measurement case, described above.</p>

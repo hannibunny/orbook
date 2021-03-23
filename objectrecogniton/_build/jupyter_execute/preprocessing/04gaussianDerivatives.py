@@ -142,6 +142,16 @@ plt.grid(True)
 plt.plot(x,devx2gauss)
 plt.title("2nd order derivative of Gaussian Filter")
 
+**Gradient of a Signal:**
+
+In [section filtering](02filtering.ipynb) it was shown that the gradient $\frac{\partial f}{\partial x}$ of a 1-dimensional discrete signal $f$ can be calculated by convolving the signal with the filter $h=(1,0,-1)$:
+
+\begin{equation}
+\frac{\partial f}{\partial x}=h*f
+\end{equation} 
+
+By comparing the form of filter $h$, with the first derivative of the Gaussian, it becomes obvious, that the first derivative of the Gaussian is a smoothed form of $h$. **Filtering a signal $f$ with a Gaussian and then calculating its gradient is the same as filtering the signal $f$ with the first order derivative of the Gaussian.**
+
 ## 2-dimensional Gaussian Filter
 
 
@@ -292,6 +302,19 @@ plt.grid(b=True,which='major',color='0.65')
 plt.title('Response on Gaussian y-derivative filter')
 plt.show()
 
+- *Vertical Edges* in $F$ are **extemas** in 
+
+$$
+\frac{\partial G}{\partial x} * F
+$$
+
+- *Horizontal Edges* in $F$ are **extemas** in 
+
+$$
+\frac{\partial G}{\partial y} * F
+$$
+
+**2nd order Derivatives:**
 
 Further derivation of the 1st order derivatives yields the **2nd order derivatives of the Gaussian** yields:
 
