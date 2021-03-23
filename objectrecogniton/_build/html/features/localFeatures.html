@@ -205,6 +205,18 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
   References
  </span>
 </p>
@@ -578,8 +590,8 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 </li>
 <li><p><strong>Difference of Gaussian (DoG)</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-3444b5af-117b-43ca-a122-0dfc79af0b23">
-<span class="eqno">(68)<a class="headerlink" href="#equation-3444b5af-117b-43ca-a122-0dfc79af0b23" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-59548415-ef67-45c0-9788-c2d6c8c66047">
+<span class="eqno">(68)<a class="headerlink" href="#equation-59548415-ef67-45c0-9788-c2d6c8c66047" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \\
               &amp; = &amp; L(x,y,k\sigma)-L(x,y,\sigma).
 \end{eqnarray}\]</div>
@@ -694,14 +706,14 @@ r=\frac{\alpha}{\beta}
 <ul class="simple">
 <li><p>Calculate trace and determinant of <span class="math notranslate nohighlight">\(\mathbf{H}\)</span></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-e4ab95a0-c5aa-4a7a-91a6-51976259710d">
-<span class="eqno">(70)<a class="headerlink" href="#equation-e4ab95a0-c5aa-4a7a-91a6-51976259710d" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-16f62860-e46f-4f91-ad66-850f60a2acd1">
+<span class="eqno">(70)<a class="headerlink" href="#equation-16f62860-e46f-4f91-ad66-850f60a2acd1" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 Tr(\mathbf{H}) &amp; = D_{xx}+D_{yy} = \alpha + \beta \\
 Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 \end{eqnarray}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b35a2e02-0e0b-4cbc-888b-ee894727fd29">
-<span class="eqno">(71)<a class="headerlink" href="#equation-b35a2e02-0e0b-4cbc-888b-ee894727fd29" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8af42a6c-34af-40ba-951d-5657d92b0c0f">
+<span class="eqno">(71)<a class="headerlink" href="#equation-8af42a6c-34af-40ba-951d-5657d92b0c0f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{Tr(\mathbf{H})^2}{Det(\mathbf{H})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
 \end{equation}\]</div>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>

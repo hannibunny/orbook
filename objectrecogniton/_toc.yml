@@ -29,7 +29,7 @@
 
 - part: Object Recognition
   chapters:
-  - file: recognition/
+  - file: recognition/objectrecognition
 
 - part: References
   chapters:

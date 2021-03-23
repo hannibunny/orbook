@@ -411,5 +411,5 @@ The absolute distance values of different distance-measures can not be compared.
 
 As can be seen all distance measures, except EMD, calculate the same distance between $v1$ and $v2$ as between $v2$ and $v3$. This is because these distance measures perform a bin-by-bin comparison, and these bin-by-bin comparisons are identical for both vector-pairs. Moreover, all metrics except EMD, find that $v1$ is closer to $v3$ than to $v2$. This contradicts the subjective assessment, because subjectively one would say $v2$ is closer to $v1$, because $v2$ is just a one-step-right-shift of $v1$. 
 
-As will be demonstrated in the [next section](imageRetrievel.ipynb), the performance of, e.g. a CBIR system, strongly depends on the choice of the distance metric. The question on which metric will perform best in a given task and given data can not be determined in advance, it must be determined empirically.
+As will be demonstrated in the [next section](imageRetrieval.ipynb), the performance of, e.g. a CBIR system, strongly depends on the choice of the distance metric. The question on which metric will perform best in a given task and given data can not be determined in advance, it must be determined empirically.
 

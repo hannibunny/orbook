@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Recognition &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="HOG-based Pedestrian Detection" href="../features/HOGpedestrianDetection.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/recognition/objectrecognition.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bags-of-visual-words">
+   Bags of Visual Words
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-origin-bag-of-word-document-model-in-nlp">
+     The origin: Bag of Word Document Model in NLP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-bow-to-bag-of-visual-words">
+     From BoW to Bag of Visual Words
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#k-means-clustering-for-determining-the-visual-words">
+       k-means clustering for determining the visual words
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bag-of-visual-words-based-image-classification">
+     Bag-Of-Visual-Words based image classification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bag-of-visual-words-design-choices">
+     Bag-Of-Visual-Words Design Choices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-sample-local-descriptors-from-the-image">
+       How to sample local descriptors from the image?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-for-training-the-visual-vocabulary">
+       Data for Training the Visual Vocabulary?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#number-of-visual-words-and-how-to-count-words-in-the-matrix">
+       Number of Visual Words and how to count words in the matrix?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#algorithms-for-training-and-encoding">
+       Algorithms for Training and Encoding?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bag-of-visual-words-summary-of-pros-and-cons">
+     Bag of Visual Words: Summary of Pros and Cons
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spatial-pyramid-matching">
+   Spatial Pyramid Matching
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyramid-match-kernel">
+     Pyramid Match Kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-section-and-all-the-following-sections-are-under-construction">
+     !This section and all the following sections are under construction!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="object-recognition">
+<h1>Object Recognition<a class="headerlink" href="#object-recognition" title="Permalink to this headline">¶</a></h1>
+<p>In this subsection conventional methods for object recognition are described. What is <em>conventional</em>? And which type of <em>object recognition</em>? In the context of this section <em>conventional</em> means <em>no deeplearning</em> and <em>object recognition</em> refers to the task, where given an image, the category of the object, which is predominant in this image must be determined.
+Even though <em>deep learning</em> approaches are excluded in this section, the evolution path of conventional techniques, as described here, actually lead to the development of deep neural networks for object recognition. Hence, understanding the evolution of conventional techniques also helps to understand the ideas and concepts of deep learning. Deep neural networks for object recognition are subject of all of the following sections.</p>
+<div class="section" id="bags-of-visual-words">
+<h2>Bags of Visual Words<a class="headerlink" href="#bags-of-visual-words" title="Permalink to this headline">¶</a></h2>
+<p>The goal of <strong>feature engineering</strong> is to find for a given input an informative feature representation, which can be passed as a numeric vector to a machine learning algorithm, such that this algorithm is able to learn a good model, e.g. an accurate image-classifier. One important and popular approach for this essential question is the so called <strong>Bag of Visual Words</strong> feature representation. This approach is actually borrowed from the field of <em>Natural Language Processing</em>, where <em>Bag of Word</em>-representations are a standard representations for texts. In this subsection we first describe the <em>Bag of Word</em>-model as it is applied in NLP. Then this model is transformed to the concept <em>Bag of Visual Words</em> for Object Recognition.</p>
+<div class="section" id="the-origin-bag-of-word-document-model-in-nlp">
+<h3>The origin: Bag of Word Document Model in NLP<a class="headerlink" href="#the-origin-bag-of-word-document-model-in-nlp" title="Permalink to this headline">¶</a></h3>
+<p>In NLP documents are typically described as vectors, which count the occurence of each word in the document. These vectors are called <strong>Bag of Words (BoW)</strong>. The BoW-representations of all text in a given corpus constitute the Document-Word matrix. Each document belongs to a single row in the matrix and each word, which is present at least once in the entire corpus, belongs to a single column in the matrix. The set of all word in the corpus is called the <em>vocabulary</em>.</p>
+<p>For example, assume that there are only 2 documents in the corpus:</p>
+<ul class="simple">
+<li><p><strong>Document 1:</strong> <em>cars, trucks and motorcyles pollute air</em></p></li>
+<li><p><strong>Document 2:</strong> <em>clean air for free</em></p></li>
+</ul>
+<p>The corresponding document-word-matrix of this corpus is:</p>
+<div class="figure align-center" id="bow">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/BoW.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/BoW.png" src="https://maucher.home.hdm-stuttgart.de/Pics/BoW.png" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Bag-of-Word representation of 2 simple documents</span><a class="headerlink" href="#bow" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="from-bow-to-bag-of-visual-words">
+<h3>From BoW to Bag of Visual Words<a class="headerlink" href="#from-bow-to-bag-of-visual-words" title="Permalink to this headline">¶</a></h3>
+<p>In contrast to NLP in Object Recognition the input are not texts but images. Moreover, the <strong>input objects are not described by words but by local features</strong>, such as e.g. SIFT features. Hence the <em>Bag of Visual Words</em>-model of an image, contains for each local feature the frequency of the feature in the image. However, this idea must be adapted slightly because there is an important distinction between words in a textcorpus and visual words in a collection of images: <strong>In the text corpus there exists a finite number of different words, but the space of visual words in an image-collection is continuous with an infinite number of possible descriptors</strong> (note that the local descriptors are float-vectors). Hence, the problem is <em>how to quantize the continuous space of local descriptors into a finite discrete set of clusters?</em> The answer is: <em>By applying a clustering-algorithms!</em> Such an algorithm, e.g. k-means clustering, calculates for a given set of vectors and for a user-defined number of clusters <span class="math notranslate nohighlight">\(k\)</span>, a partition into <span class="math notranslate nohighlight">\(k\)</span> cells (=clusters), such that similar vectors are assigned to the same cluster.</p>
+<p>The centroids of the calculated <span class="math notranslate nohighlight">\(k\)</span> clusters constitute the set of visual words, also called the <strong>Visual Vocabulary:</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-e4ccd196-4d74-4092-883b-7f2193ae5b11">
+<span class="eqno">(72)<a class="headerlink" href="#equation-e4ccd196-4d74-4092-883b-7f2193ae5b11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+V=\lbrace v_t \rbrace_{t=1}^K
+\end{equation}\]</div>
+<p>In the Bag-Of-Visual Word matrix, each of the <span class="math notranslate nohighlight">\(k\)</span> columns corresponds to a visual word <span class="math notranslate nohighlight">\(v_t \in V\)</span> and each image in the set ov <span class="math notranslate nohighlight">\(N\)</span> images</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e9890fda-8c21-46d8-803a-6a52febdfd1e">
+<span class="eqno">(73)<a class="headerlink" href="#equation-e9890fda-8c21-46d8-803a-6a52febdfd1e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+I=\lbrace I_i \rbrace_{i=1}^N
+\end{equation}\]</div>
+<p>corresponds to a row. The entry <span class="math notranslate nohighlight">\(N(t,i)\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(t\)</span> of the matrix counts the number of times visual word <span class="math notranslate nohighlight">\(v_t\)</span> occurs in image <span class="math notranslate nohighlight">\(I_i\)</span>. Or more accurate: <span class="math notranslate nohighlight">\(N(t,i)\)</span> is the number of local descriptors in image <span class="math notranslate nohighlight">\(i\)</span>, which are assigned to the <span class="math notranslate nohighlight">\(t.th\)</span> cluster.</p>
+<div class="math notranslate nohighlight" id="equation-bovwmatrix">
+<span class="eqno">(74)<a class="headerlink" href="#equation-bovwmatrix" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\begin{array}{c|ccccc}
+ &amp;  v_1  &amp;  v_2  &amp;  v_3  &amp;  \cdots  &amp;  v_K  \\ 
+\hline 
+ I_1  &amp; 2 &amp; 0 &amp; 1 &amp;   \cdots   &amp; 0 \\ 
+ I_2  &amp; 0 &amp; 0 &amp; 3 &amp;  \cdots  &amp; 1 \\ 
+ \vdots  &amp;  \vdots  &amp;  \vdots  &amp;  \vdots  &amp;  \vdots  &amp;  \vdots  \\  
+ I_N  &amp; 2 &amp; 2 &amp; 0 &amp;  \cdots  &amp; 0 \\ 
+\end{array} 
+\end{split}\]</div>
+<p>Once images are described in this numeric matrix-form, any supervised or unsupervised machine learning algorithm can be applied, e.g. for content based image retrieval (CBIR) or object recognition. The main drawback of this representation is, that spatial information in the image is totally ignored. Bag-of-Visual-Word representation encode information about what type of structures (visual words) are contained in the image, but not where these structures appear.</p>
+<div class="figure align-center" id="visualwords1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsSchema1.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsSchema1.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsSchema1.PNG" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Calculation of visual words: First, from all images of the given collection, the local descriptors (e.g. SIFT) are extracted. These descriptors are points in the d-dimensional space (d=128 in the case of SIFT). The set of all descriptors is passed to a clustering algorithm, which partitions the d-dimensional space into a discrete set of k clusters. The center of a cluster (green points) is just the centroid of all descriptors, which belong to this cluster. Each cluster center constitutes a visual word. The set of all visual words is called visual vocabulary.</span><a class="headerlink" href="#visualwords1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="visualwords2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsSchema2.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsSchema2.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsSchema2.PNG" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Mapping of local descriptors to visual words: Once the visual words (cluster-centroids) are known, all local descriptors, can be mapped to their closest visual word. After this mapping for each visual word it’s frequency in the given image can be determined and the vector of all these frequencies is the feature vector of the image.</span><a class="headerlink" href="#visualwords2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The image below is from <a class="bibtex reference internal" href="../referenceSection.html#sivic03" id="id1">[SZ03]</a>.</p>
+<div class="figure align-center" id="visualwordpatches">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsPatches.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsPatches.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/visualwordsPatches.PNG" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">For 4 different visual words, local image-regions are displayed, which are assigned to the same visual word. As can be seen local descriptors, which belong to the same visual word, actually describe similar local regions.</span><a class="headerlink" href="#visualwordpatches" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="k-means-clustering-for-determining-the-visual-words">
+<h4>k-means clustering for determining the visual words<a class="headerlink" href="#k-means-clustering-for-determining-the-visual-words" title="Permalink to this headline">¶</a></h4>
+<p>K-means clustering is maybe the most popular algorithm of <strong>unsupervised machine-learning</strong>. Due to it’s simplicity and low complexity it can be found in many applications. One of it’s main application categories is <strong>quantization</strong>. E.g. statistical quantizations of analog signals such as audio. In the context of this section k-means is applied for quantizing the continuous space of d-dimensional local descriptors.</p>
+<p>The algorithm’s flow chart is depicted below:</p>
+<div class="figure align-center" id="kmeans">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/kmeansClustEnglish.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/kmeansClustEnglish.png" src="https://maucher.home.hdm-stuttgart.de/Pics/kmeansClustEnglish.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Flow chart of k-means clustering</span><a class="headerlink" href="#kmeans" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>k-means clustering:</strong></p>
+<ol>
+<li><p>First, the number of clusters <span class="math notranslate nohighlight">\(k\)</span> must be defined by the user</p></li>
+<li><p>Then <span class="math notranslate nohighlight">\(k\)</span> initial cluster centers <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> are randomly placed into the d-dimensional space</p></li>
+<li><p>Next, each of the given vectors <span class="math notranslate nohighlight">\(\mathbf{x}_p \in T\)</span> is assigned to it’s closest center-vector <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5c128bdd-3be4-41f4-ab29-7fdb22575794">
+<span class="eqno">(75)<a class="headerlink" href="#equation-5c128bdd-3be4-41f4-ab29-7fdb22575794" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+	\left\|\mathbf{x}_p-\mathbf{v}_i \right\| = \min\limits_{j \in 1 \ldots k } \left\|\mathbf{x}_p-\mathbf{v}_j \right\|,
+	\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\left\| \mathbf{x}-\mathbf{v} \right\|\)</span> is the distance between <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
+</li>
+<li><p>After this assignment for each cluster <span class="math notranslate nohighlight">\(C_i\)</span> the new cluster centroid <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is calculated as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d83368ff-c5c5-45ed-bc74-8070fcae0a7f">
+<span class="eqno">(76)<a class="headerlink" href="#equation-d83368ff-c5c5-45ed-bc74-8070fcae0a7f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+	\mathbf{v}_i = \frac{1}{n_i} \sum\limits_{\forall \mathbf{x}_p \in C_i} \mathbf{x}_p,
+	\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n_i\)</span> is the number of vectors that are assigned to <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
+</li>
+<li><p>Continue with step 3 until the cluster-centers remain at a stable position.</p></li>
+</ol>
+<p>This algorithm guarantees, that it’s result is a local minimum of the <strong>Reconstruction Error</strong>, which is defined by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ad36534a-0c16-4d48-9c9a-5d95fb01f915">
+<span class="eqno">(77)<a class="headerlink" href="#equation-ad36534a-0c16-4d48-9c9a-5d95fb01f915" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+E=\sum\limits_{i=1}^K \sum\limits_{\forall \mathbf{x}_p \in C_i} \left\|\mathbf{x}_p-\mathbf{v}_i \right\|
+\end{equation}\]</div>
+<p>A nice demonstration of the k-means clustering algorithm is given here <a class="reference external" href="https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html">k-means clustering demo</a>.</p>
+<p>Drawbacks of the algorithms are:</p>
+<ul class="simple">
+<li><p>the number of clusters <span class="math notranslate nohighlight">\(k\)</span> must be definied in advance by the user</p></li>
+<li><p>the algorithm terminates in a local minimum of the reconstruction error and different runs of the algorithms usually terminate in different local minimas, since the random placement of the initial cluster-centers differ.</p></li>
+<li><p>as usual in unsupervised learning the quality of the result can hardly be assesed. Quality can be assesed implicetly, if the cluster-result is applied in the context of a downstream supervised learning task, e.g. for image classification.</p></li>
+</ul>
+<p>Concerning these problems, the authors of <em>Visual categorization with bags of keypoints</em> (<a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id2">[CDF+04]</a>) propose:</p>
+<ol class="simple">
+<li><p>Iterate over a wide range of values for <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(k\)</span> restart k-means 10 times to obtain 10 different vocabularies</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(k\)</span> and each vocabulary train and test a multiclass classifier (e.g. Naive Bayes as will be described below)</p></li>
+<li><p>Select <span class="math notranslate nohighlight">\(k\)</span> and vocabulary, which yields lowest classification error rate.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="bag-of-visual-words-based-image-classification">
+<h3>Bag-Of-Visual-Words based image classification<a class="headerlink" href="#bag-of-visual-words-based-image-classification" title="Permalink to this headline">¶</a></h3>
+<p>As already mentioned, the Bag of Visual Words matrix, as given in equation <a class="reference internal" href="#equation-bovwmatrix">(74)</a>, can be passed as input to any machine learning algorithm. In the original work on visual words (<a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id3">[CDF+04]</a>), the authors applied a Naive Bayes Classifier. This approach and the results obtained in <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id4">[CDF+04]</a> are described in this subsection. Note, that the Naive Bayes classifier has already been described in <a class="reference internal" href="../features/naiveBayesHistogram.html"><span class="doc std std-doc">Histogram-based Naive Bayes Object Recognition</span></a>.</p>
+<p><strong>Inference:</strong></p>
+<p>Assume that a query image <span class="math notranslate nohighlight">\(I_q\)</span> shall be assigned to one of <span class="math notranslate nohighlight">\(L\)</span> object categories <span class="math notranslate nohighlight">\(C_1,C_2,\ldots,C_L\)</span>. For this a trained Naive Bayes Classifier calculates the <strong>a-posteriori probability</strong></p>
+<div class="math notranslate nohighlight" id="equation-eq-nbfull">
+<span class="eqno">(78)<a class="headerlink" href="#equation-eq-nbfull" title="Permalink to this equation">¶</a></span>\[
+P(C_j|I_q) = \frac{\prod_{t=1}^K P(v_t|C_j)^{N(t,q)} P(C_j)}{P(I_q)}
+\]</div>
+<p>for all classes <span class="math notranslate nohighlight">\(C_j\)</span>. The class which maximizes this expression is the most probable category.</p>
+<p>The class which maximizes <a class="reference internal" href="#equation-eq-nbfull">(78)</a> is the same as the class which maximizes</p>
+<div class="math notranslate nohighlight" id="equation-eq-nbred">
+<span class="eqno">(79)<a class="headerlink" href="#equation-eq-nbred" title="Permalink to this equation">¶</a></span>\[
+P^*(C_j|I_q) = \prod_{t=1}^K P(v_t|C_j)^{N(t,q)} P(C_j)
+\]</div>
+<p>because the denominator in <a class="reference internal" href="#equation-eq-nbfull">(78)</a> is independent of the class.</p>
+<p><strong>Training:</strong></p>
+<p>In order to calculate <a class="reference internal" href="#equation-eq-nbred">(79)</a> for all classes, the terms on the right hand side of this equation must be estimated for all classes and all visual words from a given set of <span class="math notranslate nohighlight">\(N\)</span> training samples (pairs of images and corresponding class-label).</p>
+<p>The <em>a-priori probabilities</em> of the classes are estimated by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cc0f2311-08ce-4952-b2fc-5a2b580e184f">
+<span class="eqno">(80)<a class="headerlink" href="#equation-cc0f2311-08ce-4952-b2fc-5a2b580e184f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(C_j)=\frac{|C_j|}{N},
+\end{equation}\]</div>
+<p>for all classes <span class="math notranslate nohighlight">\(C_1,C_2,\ldots,C_L\)</span>.</p>
+<p>For all visual words <span class="math notranslate nohighlight">\(v_t\)</span> and all classes <span class="math notranslate nohighlight">\(C_j\)</span> the <strong>likelihood</strong> is estimated by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-200716f4-2f96-435f-9965-d9c7ea57d0a7">
+<span class="eqno">(81)<a class="headerlink" href="#equation-200716f4-2f96-435f-9965-d9c7ea57d0a7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(v_t|C_j)=\frac{\sum\limits_{I_i \in C_j}N(t,i)}{\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
+\end{equation}\]</div>
+<p>In order to avoid likelihoods of value <span class="math notranslate nohighlight">\(0\)</span> <strong>Laplace Smoothing</strong> is applied instead of the equation above:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-281556f6-448c-4750-a93d-189df6dd11cf">
+<span class="eqno">(82)<a class="headerlink" href="#equation-281556f6-448c-4750-a93d-189df6dd11cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
+\end{equation}\]</div>
+<p>In <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id5">[CDF+04]</a> the authors applied a dataset of 1776 images of 7 different classes. 700 images thereof have been applied for test, the remaining for training. Below for each of the 7 classes a few examples are shown:</p>
+<div class="figure align-center" id="datasetczurka">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/csurkaDataset.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/csurkaDataset.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/csurkaDataset.PNG" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Some representatives for each of the 7 classes. As can be seen the intraclass-variance due to pose, view-point, scale, color, etc. is quite high. Moreover, there is a significant amount of background clutter</span><a class="headerlink" href="#datasetczurka" title="Permalink to this image">¶</a></p>
+</div>
+<p>The resolution of the images varies from 0.3 to 2.1 megapixels. Only the luminance channel (greyscale-image) of the color-images has been applied for the classification task.</p>
+<p>The confusion matrix and the the mean-rank<a class="footnote-reference brackets" href="#footnote1" id="id6">1</a> on the test-data is depicted in the image below:</p>
+<div class="figure align-center" id="confmat">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/csurkaNaiveBayesResult.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/csurkaNaiveBayesResult.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/csurkaNaiveBayesResult.PNG" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Confusion matrix and mean rank on test data for Naive Bayes classification. k=1000 visual words have been applied</span><a class="headerlink" href="#confmat" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="confmatsvm">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/csurkaSVMResult.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/csurkaSVMResult.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/csurkaSVMResult.PNG" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Confusion matrix and mean rank on test data for SVM classification. k=1000 visual words have been applied</span><a class="headerlink" href="#confmatsvm" title="Permalink to this image">¶</a></p>
+</div>
+<p>By applying a SVM the error rate dropped from <span class="math notranslate nohighlight">\(0.28\)</span> in the case of Naive Bayes to <span class="math notranslate nohighlight">\(0.15\)</span>.</p>
+<p>Concerning the question on <em>Which size of Visual Vocabulary <span class="math notranslate nohighlight">\(k\)</span> is the best?</em> the following chart shows the error-rate decrease with increasing <span class="math notranslate nohighlight">\(k\)</span> in the Naive Bayes classifier option (from <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id7">[CDF+04]</a>).</p>
+<div class="figure align-center" id="errorratevsk">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/bowBestK.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/bowBestK.png" src="https://maucher.home.hdm-stuttgart.de/Pics/bowBestK.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Reduction of error rate with increasing k in the Naive Bayes classification case</span><a class="headerlink" href="#errorratevsk" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="bag-of-visual-words-design-choices">
+<h3>Bag-Of-Visual-Words Design Choices<a class="headerlink" href="#bag-of-visual-words-design-choices" title="Permalink to this headline">¶</a></h3>
+<p>The work of Czurka et al (<a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id8">[CDF+04]</a>) introduced the idea of visual words and demonstrated it’s potential. Moreover, it motivated a wide range of research questions in it’s context. These questions are sketched in the following subsections:</p>
+<div class="section" id="how-to-sample-local-descriptors-from-the-image">
+<h4>How to sample local descriptors from the image?<a class="headerlink" href="#how-to-sample-local-descriptors-from-the-image" title="Permalink to this headline">¶</a></h4>
+<p>In <a class="reference internal" href="../features/localFeatures.html"><span class="doc std std-doc">Local Fetures</span></a> SIFT has been introduced. There, only the option that these descriptors are sampled at the image’s keypoint (sparse sampling) has been mentioned. However, keypoint detection on on hand and describing a local region on the other hand are decoupled. In fact, as the image below shows, local descriptors can also be extracted at all points of a regular grid (dense sampling) or even at randomly determined points (random sampling).</p>
+<div class="figure align-center" id="samplingoptions">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/localFeatureSampling.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/localFeatureSampling.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/localFeatureSampling.PNG" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Sparse sampling (left), dense sampling (center) and random sampling (right)</span><a class="headerlink" href="#samplingoptions" title="Permalink to this image">¶</a></p>
+</div>
+<p>Random sampling is frequently the option of choice for <em>scene-detection</em>. The advantage of dense, and random sampling is that no effort must be spent for finding the keypoints.</p>
+</div>
+<div class="section" id="data-for-training-the-visual-vocabulary">
+<h4>Data for Training the Visual Vocabulary?<a class="headerlink" href="#data-for-training-the-visual-vocabulary" title="Permalink to this headline">¶</a></h4>
+<p>Visual words must be learned, e.g. by applying the k-means algorithm. Which image-datasets shall be applied for training? The best results are obtained, if the same training data is applied as for the downstream task (e.g. image classification). However, it is also possible to learn a set of generally applicable visual words, which can then be applied for different downstream tasks with different training data. This approach may be helpful, if only few labeled data is available for the downstream task - too few to learn a good visual vocabulary.</p>
+</div>
+<div class="section" id="number-of-visual-words-and-how-to-count-words-in-the-matrix">
+<h4>Number of Visual Words and how to count words in the matrix?<a class="headerlink" href="#number-of-visual-words-and-how-to-count-words-in-the-matrix" title="Permalink to this headline">¶</a></h4>
+<p>Up to now, we pretended that the entries in the Bag of Visual Words matrix are the numbers of local descriptors in the image of the current row, which are assigned to the visual word of the current columnt. However, using the visual-word frequencies is only one option. In BoWs in NLP an alternative to word-frequencies is the so called <strong>tf-idf</strong> (term frequency -inverse document frequency), where</p>
+<ul>
+<li><p>term frequency <span class="math notranslate nohighlight">\(tf_{i,j}\)</span>] counts how often word <span class="math notranslate nohighlight">\(i\)</span> appears in document <span class="math notranslate nohighlight">\(j\)</span>, and</p></li>
+<li><p>inverse document frequency <span class="math notranslate nohighlight">\(idf_i\)</span> is the logarithm of inverse ratio of documents (images) that contain (visual) word <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	idf_i=\log\left(\frac{N}{n_i}\right).
+	\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(N\)</span> is the number of documents, and <span class="math notranslate nohighlight">\(n_i\)</span> is the number of documents, that contain word <span class="math notranslate nohighlight">\(i\)</span>.</p>
+</li>
+<li><p>term frequency -inverse document frequency is then defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+	tf\mbox{-}idf_{i,j}=tf_{i,j} \cdot idf_i
+	\]</div>
+</li>
+</ul>
+<p>The idea of tf-idf is that words, which occur in many documents, are less informative and are therefore weighted with a small value, whereas for rarely appearing words the weight <span class="math notranslate nohighlight">\(idf_i\)</span> is higher. For example in the <em>Video-Google</em>-work <a class="bibtex reference internal" href="../referenceSection.html#sivic03" id="id9">[SZ03]</a>, the three matrix-entry options</p>
+<ul class="simple">
+<li><p>binary count (1 if visual word appears at least once in the image, 0 otherwise)</p></li>
+<li><p>term-frequency count</p></li>
+<li><p>term frequency -inverse document frequency</p></li>
+</ul>
+<p>have been compared. The best results have been obtained by tf-idf, the worst by the binary count.</p>
+<p>The problem on the size of the visual vocabulary, i.e. the number of different clusters <span class="math notranslate nohighlight">\(k\)</span>, has already been mentioned above. As <a class="reference internal" href="#errorratevsk"><span class="std std-numref">Fig. 9</span></a> shows, in general the error-rate of the downstream task (classification) decreases, with an increasing number of visual words. However, the error-rate-decrease gets smaller in the range of large <span class="math notranslate nohighlight">\(k\)</span> - values. It also important to be aware, that this plot has been drawn for a specific task and a specific dataset. The question on the number of viusal words must be answered individually for each data set and each task.</p>
+</div>
+<div class="section" id="algorithms-for-training-and-encoding">
+<h4>Algorithms for Training and Encoding?<a class="headerlink" href="#algorithms-for-training-and-encoding" title="Permalink to this headline">¶</a></h4>
+<p>In the context of visual vocabularies the two stages <em>training</em> and <em>encoding</em> must be distinguished. <strong>Training</strong> of a visual vocabulary means to apply a clustering algorithm to the given training-data in order to determine the set of visual words. <strong>Encoding</strong> means to apply the knwon visual vocabulary in the sense, that for new local-descriptors, the corresponding visual word is determined. Actually, training and encoding are decoupled, i.e. the method, used to encode is independent of the method applied for training. One interesting alternative for training visual vocabularies has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#nister06" id="id10">[NS06]</a>. In contrast to the standard k-means algorithm, this approach applies a hierarchical k-means clustering, which generates not a flat set of visual words, but a <strong>vocabulary-tree.</strong> The advantage of such an hierarchically ordered vocabulary is, that encoding, i.e. the assignment of new vectors to visual words, is much faster in this structure. As sketched in <a class="reference internal" href="#hierclusttraining"><span class="std std-numref">Fig. 11</span></a> the algorithm first partitions the entire d-dimensional space into a small number (= branching factor <span class="math notranslate nohighlight">\(k\)</span>) different subregions. In the next iteration each subregion is again partitioned into <span class="math notranslate nohighlight">\(k\)</span> subregions and so on. This process is repeated until the maximum depth <span class="math notranslate nohighlight">\(L\)</span> of the tree is reached.</p>
+<p><strong>Training: Hierarchical k-means clustering:</strong></p>
+<ol class="simple">
+<li><p>Initialisation: Define branching-factor <span class="math notranslate nohighlight">\(k\)</span> and maximum depth <span class="math notranslate nohighlight">\(L\)</span>. Set current depth <span class="math notranslate nohighlight">\(l=1\)</span>.</p></li>
+<li><p>Apply k-means algorithm to training-set in order to determine k different clusters in depth <span class="math notranslate nohighlight">\(l=1\)</span>.</p></li>
+<li><p>Determine for each subregion in depth <span class="math notranslate nohighlight">\(l\)</span> the subsetset of training-data, which is assigned to this subregion.</p></li>
+<li><p>Apply k-means algorithm to each of the subregions in depth <span class="math notranslate nohighlight">\(l\)</span>, by applying the subregion-specific traning-subset. In this way new subregions for depth <span class="math notranslate nohighlight">\(l+1\)</span> are generated. The umber of subregions in depth <span class="math notranslate nohighlight">\(l+1\)</span> is <span class="math notranslate nohighlight">\(k\)</span> times the number of subregions in depth <span class="math notranslate nohighlight">\(l\)</span>.</p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(l := l+1\)</span> and continue with step 3 until <span class="math notranslate nohighlight">\(l=L\)</span></p></li>
+</ol>
+<div class="figure align-center" id="hierclusttraining">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/vocabTree1.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/vocabTree1.png" src="https://maucher.home.hdm-stuttgart.de/Pics/vocabTree1.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Training: Hierarchical application of <span class="math notranslate nohighlight">\(k\)</span>-means clustering, for branching factor <span class="math notranslate nohighlight">\(k=3\)</span>.</span><a class="headerlink" href="#hierclusttraining" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>Encoding:</strong>
+In the encoding phase a new vector <span class="math notranslate nohighlight">\(p\)</span> (point) must be assigned to it’s closest cluster-center (visual word). In the hierearchical tree of visual words, in the first iteration the distance between <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(k\)</span> cluster-enters must be determined and the closest is selected. In the next iteration again only <span class="math notranslate nohighlight">\(k\)</span> distances must be determined and compared- the distances between <span class="math notranslate nohighlight">\(p\)</span> and the <span class="math notranslate nohighlight">\(k\)</span> cluster centers of the subregion, which has been found in the previous iteration. In total, far fewer distances must calculated and compared, than in the encoding phase w.r.t. a flat set of visual words.</p>
+<div class="figure align-center" id="hierclustencoding">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG" style="width: 450px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Encoding: In the visual-word-tree new local descriptors must be evaluated in each iteration only w.r.t. <span class="math notranslate nohighlight">\(k\)</span> different cluster-centers.</span><a class="headerlink" href="#hierclustencoding" title="Permalink to this image">¶</a></p>
+</div>
+<p>The plot below (source <a class="bibtex reference internal" href="../referenceSection.html#nister06" id="id11">[NS06]</a>), depicts the performance increase with increasing number of visual words and increasing branching factor <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="figure align-center" id="hierclustperformance">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreePerformance.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreePerformance.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreePerformance.PNG" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Accuracy vs. number of Leaf Nodes and vs. branching factor</span><a class="headerlink" href="#hierclustperformance" title="Permalink to this image">¶</a></p>
+</div>
+<p>In <a class="bibtex reference internal" href="../referenceSection.html#nister06" id="id12">[NS06]</a> visual-vocabulary-trees have been applied for real-time recognition of CD-covers:</p>
+<div class="figure align-center" id="hierclusttest">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeTest.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeTest.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeTest.PNG" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Real-time recognition of CD-covers.</span><a class="headerlink" href="#hierclusttest" title="Permalink to this image">¶</a></p>
+</div>
+<p>There are much more options for implementing the training and encoding of visual words. For example instead of k-means or hierarchical k-means other unsupervised learning algorithms, such as e.g. <em>Restricted Boltzman Machines (RBM)</em> are applied. A comparison can be found e.g. in <a class="bibtex reference internal" href="../referenceSection.html#coates11" id="id13">[CN11]</a>. Further down in this section the concept of <em>sparse coding</em> as an alternative to the <em>nearest-cluster-center-encoding</em> will be introduced.</p>
+</div>
+</div>
+<div class="section" id="bag-of-visual-words-summary-of-pros-and-cons">
+<h3>Bag of Visual Words: Summary of Pros and Cons<a class="headerlink" href="#bag-of-visual-words-summary-of-pros-and-cons" title="Permalink to this headline">¶</a></h3>
+<p>The Bag-of-Visual-Words (BoVW) concept has proven to be a good feature representation for robust object recognition (w.r.t. scale, background clutter, partial occlusion, translation and rotation). However, it suffers from a major drawback: The lack of spatial information. BoVW describe <strong>what</strong> is in the image but not <strong>where</strong>. Depending on the application this may be a bad waste of important information. In the next subsection <em>Spatial Pyramid Matching</em>, the most important approach to integrate spatial information and the idea of BoVW, is described. For better understanding the adaptations and extensions, <a class="reference internal" href="#layersbow"><span class="std std-numref">Fig. 15</span></a> sketches the overall architecture of object recognition classifiers, that apply BoVW.</p>
+<div class="figure align-center" id="layersbow">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaBoW.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaBoW.png" src="https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaBoW.png" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Given an input image, represented by its pixels, first a set of low level local features are extracted, e.g. SIFT features. Low-level features are vectors in a d-dimensional space. This space is quantized by a clustering algorithm, e.g. k-means. More concrete: Given a training-set of d-dimensional low-level features, the clustering algorithm calculates a set of <span class="math notranslate nohighlight">\(k\)</span> cluster centers, which are the visual words. Once the visual words are known, any low-level feature vector can be assigned to a visual word and the visual words of all low-level features in the image constitute the BoVW-representation of the image. This BovW is also called the mid-level representation of the image. The mid-level representation of the image can be passed to any supervised learning algorithm for classification. This classifier is trained by many pairs of labeled input data.</span><a class="headerlink" href="#layersbow" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="spatial-pyramid-matching">
+<h2>Spatial Pyramid Matching<a class="headerlink" href="#spatial-pyramid-matching" title="Permalink to this headline">¶</a></h2>
+<p><strong>Spatial Pyramid Matching (SPM)</strong> has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id14">[LSP06]</a>. It can be considered as combination of <strong>Pyramid Match Kernels</strong> and <strong>BoVW</strong>. It’s main advantage is that it integrates spatial information into BoVW. The underlying idea is <strong>Subdivide and Disorder</strong>.</p>
+<div class="figure align-center" id="subdivide">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png" src="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">xxx</span><a class="headerlink" href="#subdivide" title="Permalink to this image">¶</a></p>
+</div>
+<p>In this subsection, first the concept of <em>Pyramid Match Kernels</em>, as introduced in <a class="bibtex reference internal" href="../referenceSection.html#grauman07" id="id15">[GD07]</a> will be described.</p>
+<div class="section" id="pyramid-match-kernel">
+<h3>Pyramid Match Kernel<a class="headerlink" href="#pyramid-match-kernel" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="id16">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">xxx</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="xxx2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">xxx</span><a class="headerlink" href="#xxx2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id17">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">xxx</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="this-section-and-all-the-following-sections-are-under-construction">
+<h3>!This section and all the following sections are under construction!<a class="headerlink" href="#this-section-and-all-the-following-sections-are-under-construction" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="footnote1"><span class="brackets"><a class="fn-backref" href="#id6">1</a></span></dt>
+<dd><p><strong>Mean Rank</strong> is the mean position of the correct label, when labels are sorted in decreasing order w.r.t. the classifier score, as calculated in equation <a class="reference internal" href="#equation-eq-nbred">(79)</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./recognition"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../features/HOGpedestrianDetection.html" title="previous page">HOG-based Pedestrian Detection</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

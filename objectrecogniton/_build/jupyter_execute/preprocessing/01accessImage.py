@@ -20,6 +20,8 @@ There are several libraries for image processing in python. The following librar
 * [SciPy](http://docs.scipy.org/doc/) is an open-source software for mathematics, science, and engineering. The SciPy library depends on Numpy, which provides convenient and fast N-dimensional array manipulation. Image processing functionality is encapsulated in the Scipy package ndimage.
 
 
+#!pip install opencv-python
+
 %matplotlib inline
 from PIL import Image
 from matplotlib import pyplot as plt
@@ -38,7 +40,7 @@ Read File from Directory, print image metadata and display the image with Matplo
 
 imgpath='../Data/mo.png'
 m_im=plt.imread(imgpath)
-m_im_new=m_im[:,:,[2,1,0]] #swap color channels
+#m_im_new=m_im[:,:,[2,1,0]] #swap color channels
 print(type(m_im))
 print("Shape of numpy array : \t", m_im.shape)
 plt.figure(figsize=(10,8))
@@ -98,10 +100,6 @@ plt.imshow(image)
 plt.show()
 
 image[:5,:5,0]
-
-m_im_new=m_im[:,:,[2,1,0]]
-
-m_im_new[:5,:5,0]
 
 ## Capture video from camera
 Using OpenCV videos can be captured, processed and displayed. Within a video sequence each frame is read and stored in a 2D Numpy array. In this representation frames of a video sequence can be processed in the same way as single images
