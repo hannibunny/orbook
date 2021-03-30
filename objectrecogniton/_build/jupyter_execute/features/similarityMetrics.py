@@ -14,6 +14,7 @@ Given the following 3 vectors `v1`, `v2` and `v3`, the question is:
 *Is `v1` or `v3` more similar to `v2`?* 
 
 import numpy as np
+np.set_printoptions(precision=3)
 v1=np.array([1,5,1,1,1,7,1,1])
 print("v1 = ",v1)
 v2=np.array([1,1,5,1,1,1,7,1])
@@ -330,11 +331,11 @@ Then the pairwise Wasserstein-distances between $v1$, $v2$ and $v3$ can be calcu
 from scipy.stats import wasserstein_distance
 
 dw12=wasserstein_distance(values,values,v1,v2)
-print("Wasserstein distance between v1 and v2 : ",dw12)
+print("Wasserstein distance between v1 and v2 : %2.3f"%dw12)
 dw13=wasserstein_distance(values,values,v1,v3)
-print("Wasserstein distance between v1 and v3 : ",dw13)
+print("Wasserstein distance between v1 and v3 : %2.3f"%dw13)
 dw23=wasserstein_distance(values,values,v2,v3)
-print("Wasserstein distance between v2 and v3 : ",dw23)
+print("Wasserstein distance between v2 and v3 : %2.3f"%dw23)
 
 Let's check the internal calculation by the example of $v1$ and $v2$:
 - As mentioned above, the scipy-method internally first normalizes the histograms:

@@ -70,9 +70,10 @@ plt.figure(figsize=(10,8))
 plt.imshow(np_im_grey,cmap='Greys_r')
 plt.show()
 
-Next, the 1-dimensional histogram is calculated:
+Next, the 1-dimensional histogram is calculated. In this first version the number of bins is equal to the number of different values 256:
 
-hist = cv2.calcHist([np_im_grey],[0],None,[256],[0,256])
+NUMBIN=256 
+hist = cv2.calcHist([np_im_grey],[0],None,[NUMBIN],[0,256])
 print("Length of histogram: ",len(hist))
 
 As can be seen the histogram is a 1-dimensional array of length 256. The $j.th$ element of this vector counts how often the pixel-intensity-value $j$ appears in the image. Below the frequency of the pixel intensities 0 to 9 is plotted: 
@@ -84,14 +85,18 @@ The histogram can be visualized as follows:
 
 plt.figure(figsize=(14,6))
 
-plt.bar(np.arange(0,256),hist[:,0],color="gray",align="edge",width=1.0)
+plt.bar(np.arange(0,NUMBIN),hist[:,0],color="gray",align="edge",width=1.0)
 plt.title("Histogram of Greyscale Image")
 plt.xlabel("Intensity Values")
 #plt.xticks(np.arange(0,256,16))
 plt.ylabel("Frequencies")
 
 
-hist,bins = np.histogram(np_im_grey.ravel(),16,[0,256])
+Now, we reduce the number of bins in the histogram. For this the `calcHist()` method could also be used. However, below we apply a numpy, just to demonstrate that the opencv-way is not the only option.
+
+NUMBIN=16 
+
+hist,bins = np.histogram(np_im_grey.ravel(),NUMBIN,[0,256])
 
 hist
 
@@ -105,7 +110,7 @@ Below, the entire value-range is subdivided in 16 bins, where each bin comprises
 
 16-Bin Histogram:
 
-hist16bin = cv2.calcHist([np_im_grey],[0],None,[16],[0,256])
+hist16bin = cv2.calcHist([np_im_grey],[0],None,[NUMBIN],[0,256])
 
 hist16bin.shape
 
@@ -131,12 +136,12 @@ plt.ylabel("Frequencies")
 
 
 
-#### 1-dimensional Histograms of Colour Images
+#### Histograms of Colour Images
 
 For multichannel images (colour images), there exist two different options to calculate histograms:
 
-1. Calculate ons 1-dimensional histogram for each channel. A global image descriptor can then be obtained by concatenating these three 1-d histograms
-2. Calulate a a multidimensional histogram. In multidimensional histograms the bins are not 1-dimensional but e.g. 3-dimensional for 3-channel images. In each Bin the occurence of tuples $(x,y,z)$ within the bin's range is counted.
+1. Calculate a 1-dimensional histogram for each channel. A global image descriptor can then be obtained by concatenating these three 1-d histograms
+2. Calulate a multidimensional histogram. In multidimensional histograms the bins are not 1-dimensional but e.g. 3-dimensional for 3-channel images. In each Bin the occurence of tuples $(x,y,z)$ within the bin's range is counted.
 
 We start with the first option. The second option, multidimensional histogram, is described in the next subsection.
 
@@ -152,32 +157,32 @@ plt.show()
 
 **Calculate a 1-dimensional histogram for each of the 3 channels:**
 
-hist16binRed = cv2.calcHist([np_im_col],[0],None,[16],[0,256])
-hist16binGreen = cv2.calcHist([np_im_col],[1],None,[16],[0,256])
-hist16binBlue = cv2.calcHist([np_im_col],[2],None,[16],[0,256])
+hist16binRed = cv2.calcHist([np_im_col],[0],None,[NUMBIN],[0,256])
+hist16binGreen = cv2.calcHist([np_im_col],[1],None,[NUMBIN],[0,256])
+hist16binBlue = cv2.calcHist([np_im_col],[2],None,[NUMBIN],[0,256])
 
 **Visualize the three 1-dimensional histograms:**
 
 plt.figure(figsize=(14,18))
 plt.subplot(3,1,1)
-plt.bar(np.arange(0,256,16),hist16binRed[:,0],color="red",align="edge",width=15)
-plt.title("16-Bin Histogram of Red-Channel")
+plt.bar(np.arange(0,256,int(256/NUMBIN)),hist16binRed[:,0],color="red",align="edge",width=15)
+plt.title(str(NUMBIN)+"-Bin Histogram of Red-Channel")
 plt.xlabel("Intensity Value Ranges")
-plt.xticks(np.arange(0,256,16))
+plt.xticks(np.arange(0,256,int(256/NUMBIN)))
 plt.ylabel("Frequencies")
 
 plt.subplot(3,1,2)
-plt.bar(np.arange(0,256,16),hist16binGreen[:,0],color="green",align="edge",width=15)
-plt.title("16-Bin Histogram of Green-Channel")
+plt.bar(np.arange(0,256,int(256/NUMBIN)),hist16binGreen[:,0],color="green",align="edge",width=15)
+plt.title(str(NUMBIN)+"-Bin Histogram of Green-Channel")
 plt.xlabel("Intensity Value Ranges")
-plt.xticks(np.arange(0,256,16))
+plt.xticks(np.arange(0,256,int(256/NUMBIN)))
 plt.ylabel("Frequencies")
 
 plt.subplot(3,1,3)
-plt.bar(np.arange(0,256,16),hist16binBlue[:,0],color="blue",align="edge",width=15)
-plt.title("16-Bin Histogram of Blue-Channel")
+plt.bar(np.arange(0,256,int(256/NUMBIN)),hist16binBlue[:,0],color="blue",align="edge",width=15)
+plt.title(str(NUMBIN)+"-Bin Histogram of Blue-Channel")
 plt.xlabel("Intensity Value Ranges")
-plt.xticks(np.arange(0,256,16))
+plt.xticks(np.arange(0,256,int(256/NUMBIN)))
 plt.ylabel("Frequencies")
 
 **Image Descriptor:**

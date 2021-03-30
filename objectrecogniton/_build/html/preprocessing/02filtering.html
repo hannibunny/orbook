@@ -130,11 +130,6 @@
    Gaussian and Difference of Gaussian Pyramid
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../referenceSection.html">
-   References
-  </a>
- </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
@@ -432,13 +427,13 @@
 <li><p><span class="math notranslate nohighlight">\(g(i)\)</span> is the <span class="math notranslate nohighlight">\(i.th\)</span> component of the 1-D diskret output signal</p></li>
 </ul>
 <p><strong>Correlation Filtering</strong> <span class="math notranslate nohighlight">\(g=h \circledast f\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1153b4a-15d4-40bb-81b5-a542ea1249e8">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c1153b4a-15d4-40bb-81b5-a542ea1249e8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c26d1928-c4ea-4ea1-87de-05e52d397d16">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c26d1928-c4ea-4ea1-87de-05e52d397d16" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
 \end{equation}\]</div>
 <p><strong>Convolution Filtering</strong> <span class="math notranslate nohighlight">\(g=h*f\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-73f4ff79-8b3a-45df-8d3c-3a3c2625c4da">
-<span class="eqno">(2)<a class="headerlink" href="#equation-73f4ff79-8b3a-45df-8d3c-3a3c2625c4da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b0c0eb5d-887a-4efa-bb42-647322aa6bc1">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b0c0eb5d-887a-4efa-bb42-647322aa6bc1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u) 
 \end{equation}\]</div>
 <p><strong>Correlation- and Convolutional Filtering of a 1-dimensional analog signal:</strong></p>
@@ -447,13 +442,13 @@ g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u)
 <h3>Example 1-dimensional discrete filtering:<a class="headerlink" href="#example-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p><strong>Without extension (padding) of the signal</strong></p>
 <p>The input signal:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e70589dd-d2d2-4dfd-979b-1d37ed9da46b">
-<span class="eqno">(3)<a class="headerlink" href="#equation-e70589dd-d2d2-4dfd-979b-1d37ed9da46b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e80541ab-e470-4727-942c-239c6fa34d67">
+<span class="eqno">(3)<a class="headerlink" href="#equation-e80541ab-e470-4727-942c-239c6fa34d67" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f= \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
 \end{equation}\]</div>
 <p>shall be convolved with the <strong>length-3 moving average filter:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-4897dbad-39a4-4eea-8097-508da886ee54">
-<span class="eqno">(4)<a class="headerlink" href="#equation-4897dbad-39a4-4eea-8097-508da886ee54" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-032fe4e6-6080-4b5c-a300-80ffb02ee074">
+<span class="eqno">(4)<a class="headerlink" href="#equation-032fe4e6-6080-4b5c-a300-80ffb02ee074" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 h=\left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right]
 \end{equation}\]</div>
 <p>The result <span class="math notranslate nohighlight">\(g\)</span> of convolutional filtering is:</p>
@@ -615,14 +610,14 @@ h=[1,0,-1].
 <li><p><span class="math notranslate nohighlight">\(G(i,j)\)</span> is the component in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the 2-dimensional diskret output signal</p></li>
 </ul>
 <p><strong>Correlation Filtering <span class="math notranslate nohighlight">\(G=H \circledast F\)</span></strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c2742c2-d1d2-487f-a171-0b6a508a65e1">
-<span class="eqno">(5)<a class="headerlink" href="#equation-3c2742c2-d1d2-487f-a171-0b6a508a65e1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b72aa867-738a-44c6-99c6-21daec54900b">
+<span class="eqno">(5)<a class="headerlink" href="#equation-b72aa867-738a-44c6-99c6-21daec54900b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v) 
 \label{eq:2dimFilter} 
 \end{equation}\]</div>
 <p><strong>Convolution Filtering <span class="math notranslate nohighlight">\(G=H*F\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e0903fb-bc4b-403f-95e9-7ed0139a09e0">
-<span class="eqno">(6)<a class="headerlink" href="#equation-3e0903fb-bc4b-403f-95e9-7ed0139a09e0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f795447-efc6-48fa-8b98-f7fd15e38561">
+<span class="eqno">(6)<a class="headerlink" href="#equation-2f795447-efc6-48fa-8b98-f7fd15e38561" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
 \end{equation}\]</div>
 <div class="section" id="example-2-dimensional-discrete-filtering">
@@ -744,48 +739,48 @@ G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
 <ul class="simple">
 <li><p>1-dimensional continuous function:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-270adfc4-3c2c-4b76-adbd-b52c318f59cf">
-<span class="eqno">(7)<a class="headerlink" href="#equation-270adfc4-3c2c-4b76-adbd-b52c318f59cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-508b1b04-f50c-4fb9-9ba7-73a8a24bc726">
+<span class="eqno">(7)<a class="headerlink" href="#equation-508b1b04-f50c-4fb9-9ba7-73a8a24bc726" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f'(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon} 
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>1-dimensional discrete function:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-27d807a8-f0b9-49c4-b9a6-30740211c75b">
-<span class="eqno">(8)<a class="headerlink" href="#equation-27d807a8-f0b9-49c4-b9a6-30740211c75b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3f3ae404-f3f8-4ab0-b137-39cbc71ae930">
+<span class="eqno">(8)<a class="headerlink" href="#equation-3f3ae404-f3f8-4ab0-b137-39cbc71ae930" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f'(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>2-dimensional continuous function:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-6761f9d0-51a5-417c-828f-2d851713ca70">
-<span class="eqno">(9)<a class="headerlink" href="#equation-6761f9d0-51a5-417c-828f-2d851713ca70" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-a475710c-303f-4aa7-b007-933a5486a1e4">
+<span class="eqno">(9)<a class="headerlink" href="#equation-a475710c-303f-4aa7-b007-933a5486a1e4" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \frac{\partial f(x,y)}{\partial x} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon} \\
 \frac{\partial f(x,y)}{\partial y} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
 \end{eqnarray}\]</div>
 <ul class="simple">
 <li><p>2-dimensional discrete function (<strong>Image</strong>):</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-cade6de5-8a4a-4ed9-8cfd-60f745172520">
-<span class="eqno">(10)<a class="headerlink" href="#equation-cade6de5-8a4a-4ed9-8cfd-60f745172520" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-e4905e2b-3056-4ba3-9e09-39aeddddf9e8">
+<span class="eqno">(10)<a class="headerlink" href="#equation-e4905e2b-3056-4ba3-9e09-39aeddddf9e8" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \frac{\partial f(x,y)}{\partial x} &amp; \approx &amp; \frac{f(x+1,y)-f(x,y)}{1} \\
 \frac{\partial f(x,y)}{\partial y} &amp; \approx &amp; \frac{f(x,y+1)-f(x,y)}{1}
 \end{eqnarray}\]</div>
 <div class="section" id="filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal">
 <h3>Filter for calculating 1st order derivative of discrete 1-dimensional signal<a class="headerlink" href="#filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal" title="Permalink to this headline">¶</a></h3>
 <p>For a discrete 1-dimensional function the derivative is just the <strong>difference between two successive values</strong>. Calculating the difference of successive values in signal <span class="math notranslate nohighlight">\(f\)</span> can be realized by convolving the signal with the filter</p>
-<div class="amsmath math notranslate nohighlight" id="equation-242f6290-f737-411d-99de-542ac81126e8">
-<span class="eqno">(11)<a class="headerlink" href="#equation-242f6290-f737-411d-99de-542ac81126e8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-50fb7a2c-7e5a-4c29-845b-db2562f34408">
+<span class="eqno">(11)<a class="headerlink" href="#equation-50fb7a2c-7e5a-4c29-845b-db2562f34408" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 h=(1,-1)
 \end{equation}\]</div>
 <p>or better (due to symmetry)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e491552-7ebe-4def-abd1-a9065fe20b34">
-<span class="eqno">(12)<a class="headerlink" href="#equation-7e491552-7ebe-4def-abd1-a9065fe20b34" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1649ad32-dfb6-427a-b175-7924cab5a758">
+<span class="eqno">(12)<a class="headerlink" href="#equation-1649ad32-dfb6-427a-b175-7924cab5a758" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 h=(1,0,-1)
 \end{equation}\]</div>
 <p>The discrete derivative of <span class="math notranslate nohighlight">\(f\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78f49aa1-f1e5-4317-9e05-0e0459315fdb">
-<span class="eqno">(13)<a class="headerlink" href="#equation-78f49aa1-f1e5-4317-9e05-0e0459315fdb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-11dd9caf-1a7f-457f-a92d-5b055e6bdb6b">
+<span class="eqno">(13)<a class="headerlink" href="#equation-11dd9caf-1a7f-457f-a92d-5b055e6bdb6b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial f}{\partial x}=h*f
 \end{equation}\]</div>
 <p>This filter operation for calculating the 1st order derivative of a 1-dimensional signal has already be implemented <a class="reference external" href="#1dimgrad">above</a></p>
@@ -793,13 +788,13 @@ h=(1,0,-1)
 <div class="section" id="filters-for-calculating-1st-order-derivative-in-images">
 <h3>Filters for calculating 1st order derivative in images<a class="headerlink" href="#filters-for-calculating-1st-order-derivative-in-images" title="Permalink to this headline">¶</a></h3>
 <p>Similar to the 1-dimensional case, for a 2-dimensional discrete signals <span class="math notranslate nohighlight">\(F\)</span> the <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(x\)</span></strong> is calculated as convolution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a4b3fcd-217c-4432-a6d8-9bb904cdeccf">
-<span class="eqno">(14)<a class="headerlink" href="#equation-4a4b3fcd-217c-4432-a6d8-9bb904cdeccf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8a3f43f-60a2-4dbb-8a47-1743d6d041ae">
+<span class="eqno">(14)<a class="headerlink" href="#equation-d8a3f43f-60a2-4dbb-8a47-1743d6d041ae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial F}{\partial x}=H_x * F
 \end{equation}\]</div>
 <p>with the derivative filter</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73765621-aef1-4955-96eb-288dea655efb">
-<span class="eqno">(15)<a class="headerlink" href="#equation-73765621-aef1-4955-96eb-288dea655efb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-37b8e73d-0cba-4346-a75a-f64c6ff7019f">
+<span class="eqno">(15)<a class="headerlink" href="#equation-37b8e73d-0cba-4346-a75a-f64c6ff7019f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_x = \left[ 
 \begin{array}{ccc}
 1 &amp; 0 &amp; -1 \\
@@ -809,13 +804,13 @@ H_x = \left[
 \right]
 \end{equation}\]</div>
 <p>The <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(y\)</span></strong> is calculated as convolution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f26e159f-8adb-4a9e-a523-d05907ac62f3">
-<span class="eqno">(16)<a class="headerlink" href="#equation-f26e159f-8adb-4a9e-a523-d05907ac62f3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-efdebf6a-80f8-4e6f-b278-36e7b8a232f8">
+<span class="eqno">(16)<a class="headerlink" href="#equation-efdebf6a-80f8-4e6f-b278-36e7b8a232f8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial F}{\partial y}=H_y * F
 \end{equation}\]</div>
 <p>with the derivative filter</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5da52503-d411-4c8d-924a-f8a3d4e07843">
-<span class="eqno">(17)<a class="headerlink" href="#equation-5da52503-d411-4c8d-924a-f8a3d4e07843" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43eb9456-3401-4a5b-b0e2-54286484adb8">
+<span class="eqno">(17)<a class="headerlink" href="#equation-43eb9456-3401-4a5b-b0e2-54286484adb8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_y = \left[ 
 \begin{array}{ccc}
 1 &amp; 1 &amp; 1 \\
@@ -826,8 +821,8 @@ H_y = \left[
 \end{equation}\]</div>
 <p>The filter pair <span class="math notranslate nohighlight">\(H_x\)</span> and <span class="math notranslate nohighlight">\(H_y\)</span> as defined above is called <strong>Prewitt Filter</strong>.</p>
 <p>Another frequently applied filter for edge-detection is the <strong>Sobel Filter</strong>, which is defined by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-616da6cf-32a5-411f-9038-ee376233748b">
-<span class="eqno">(18)<a class="headerlink" href="#equation-616da6cf-32a5-411f-9038-ee376233748b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f6f1b693-7271-48bb-ba04-d684c179ee89">
+<span class="eqno">(18)<a class="headerlink" href="#equation-f6f1b693-7271-48bb-ba04-d684c179ee89" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_x = \left[ 
 \begin{array}{ccc}
 1 &amp; 0 &amp; -1 \\
@@ -844,28 +839,28 @@ H_y = \left[ \begin{array}{ccc}
 \end{equation}\]</div>
 <p>There exists even more edge-detection filters, for example der derivatives of the Gaussian, which are introduced in the <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">next section</span></a>.</p>
 <p>For all of the edge detectors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60bf312f-ef95-4060-b8fa-a85f80965cd2">
-<span class="eqno">(19)<a class="headerlink" href="#equation-60bf312f-ef95-4060-b8fa-a85f80965cd2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05ccf496-e84d-4cfa-adfe-0ccd43767818">
+<span class="eqno">(19)<a class="headerlink" href="#equation-05ccf496-e84d-4cfa-adfe-0ccd43767818" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial F}{\partial x}= H_x * F
 \quad \mbox{ and } \quad
 \frac{\partial F}{\partial y}= H_y * F
 \end{equation}\]</div>
 <p>constitute the <strong>gradient of image <span class="math notranslate nohighlight">\(F\)</span></strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ead62f6b-e77b-432e-af74-34abaf465a8a">
-<span class="eqno">(20)<a class="headerlink" href="#equation-ead62f6b-e77b-432e-af74-34abaf465a8a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c0d0f404-9767-4b55-af14-734d048abb3e">
+<span class="eqno">(20)<a class="headerlink" href="#equation-c0d0f404-9767-4b55-af14-734d048abb3e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \nabla F = \left( \begin{array}{c}
 \frac{\partial F}{\partial x} \\
 \frac{\partial F}{\partial y}
 \end{array} \right)
 \end{equation}\]</div>
 <p>The magnitude of the gradient is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05b85183-da93-4d50-81ca-022848965706">
-<span class="eqno">(21)<a class="headerlink" href="#equation-05b85183-da93-4d50-81ca-022848965706" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-44d58c86-9582-4006-8e49-7f2e3362c00d">
+<span class="eqno">(21)<a class="headerlink" href="#equation-44d58c86-9582-4006-8e49-7f2e3362c00d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \Vert \nabla F \Vert = \sqrt{\left(\frac{\partial F}{\partial x}\right)^2 + \left(\frac{\partial F}{\partial y}\right)^2}
 \end{equation}\]</div>
 <p>and its direction is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8187939b-157e-4e66-b7d6-1b8333d43f32">
-<span class="eqno">(22)<a class="headerlink" href="#equation-8187939b-157e-4e66-b7d6-1b8333d43f32" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-67c0364f-3771-44c9-b571-2a7c2c848dd5">
+<span class="eqno">(22)<a class="headerlink" href="#equation-67c0364f-3771-44c9-b571-2a7c2c848dd5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \theta = \arctan\left( \frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x}}\right)
 \end{equation}\]</div>
 <p><strong>Edges</strong> are at the <strong>extremas</strong> of <span class="math notranslate nohighlight">\(\Vert \nabla F \Vert\)</span>.</p>
@@ -1144,14 +1139,14 @@ Filter Sobel-y:
 <li><p><strong>Linear Filter</strong>, A filter is a linear filter, if and only if it fulfills the following two properties:</p>
 <ul>
 <li><p>Superposition</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8479f592-cb35-4659-8bf5-16748526369c">
-<span class="eqno">(23)<a class="headerlink" href="#equation-8479f592-cb35-4659-8bf5-16748526369c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a8e281bc-ff06-42cf-9cb5-37755229f95f">
+<span class="eqno">(23)<a class="headerlink" href="#equation-a8e281bc-ff06-42cf-9cb5-37755229f95f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
         H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
         \end{equation}\]</div>
 </li>
 <li><p>Scaling</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06faa29f-abe2-41b3-b9b1-b9e359bb6ffb">
-<span class="eqno">(24)<a class="headerlink" href="#equation-06faa29f-abe2-41b3-b9b1-b9e359bb6ffb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-14c902d5-c113-40d0-a5f1-0ef115777621">
+<span class="eqno">(24)<a class="headerlink" href="#equation-14c902d5-c113-40d0-a5f1-0ef115777621" title="Permalink to this equation">¶</a></span>\[\begin{equation}
         H \odot (k F) = k(H \odot F)
         \end{equation}\]</div>
 </li>
@@ -1180,15 +1175,15 @@ H * \delta = H, \mbox{ where }  \delta \mbox{ is the unit impulse } \delta=\left
 <ul class="simple">
 <li><p>Differentiation:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-d5b31afd-2201-4b2b-9caa-251e5c0e719e">
-<span class="eqno">(25)<a class="headerlink" href="#equation-d5b31afd-2201-4b2b-9caa-251e5c0e719e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-184d9e82-5034-4902-9bb5-e60d4494c6db">
+<span class="eqno">(25)<a class="headerlink" href="#equation-184d9e82-5034-4902-9bb5-e60d4494c6db" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial}{\partial x}(H*G) = \frac{\partial H}{\partial x} *G
 \end{equation}\]</div>
 <ul class="simple">
 <li><p><strong>Fourier Transform:</strong></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-370a8279-3fae-451d-8ed4-1f5663e7d6ec">
-<span class="eqno">(26)<a class="headerlink" href="#equation-370a8279-3fae-451d-8ed4-1f5663e7d6ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa08013a-ac28-4846-9397-c1d299fdeeae">
+<span class="eqno">(26)<a class="headerlink" href="#equation-aa08013a-ac28-4846-9397-c1d299fdeeae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathcal{F}(H*G)=\mathcal{F}(H)\cdot \mathcal{F}(G)
 \end{equation}\]</div>
 <p><strong>Examples:</strong></p>

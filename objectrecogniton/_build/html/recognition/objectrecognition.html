@@ -56,6 +56,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="../referenceSection.html" />
     <link rel="prev" title="HOG-based Pedestrian Detection" href="../features/HOGpedestrianDetection.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -127,11 +128,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
    Gaussian and Difference of Gaussian Pyramid
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../referenceSection.html">
-   References
   </a>
  </li>
 </ul>
@@ -367,6 +363,55 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combine-pmk-and-bovw-to-spatial-pyramid-matching">
+     Combine PMK and BoVW to Spatial Pyramid Matching
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-spm-for-image-classification">
+     Applying SPM for Image Classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sampling-of-local-descriptors">
+       Sampling of local descriptors
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#histogram-normalization">
+       Histogram Normalization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apply-spm-as-kernel-in-svm-classifier">
+       Apply SPM as kernel in SVM classifier
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#obtained-results">
+       Obtained Results
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#intermediate-summary-on-spatial-pyramid-matching">
+       Intermediate Summary on Spatial Pyramid Matching
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparse-coding">
+     Sparse Coding
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#new-notation-for-describing-k-means">
+       New notation for describing k-means
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#this-section-and-all-the-following-sections-are-under-construction">
      !This section and all the following sections are under construction!
     </a>
@@ -409,13 +454,13 @@ Even though <em>deep learning</em> approaches are excluded in this section, the 
 <h3>From BoW to Bag of Visual Words<a class="headerlink" href="#from-bow-to-bag-of-visual-words" title="Permalink to this headline">¶</a></h3>
 <p>In contrast to NLP in Object Recognition the input are not texts but images. Moreover, the <strong>input objects are not described by words but by local features</strong>, such as e.g. SIFT features. Hence the <em>Bag of Visual Words</em>-model of an image, contains for each local feature the frequency of the feature in the image. However, this idea must be adapted slightly because there is an important distinction between words in a textcorpus and visual words in a collection of images: <strong>In the text corpus there exists a finite number of different words, but the space of visual words in an image-collection is continuous with an infinite number of possible descriptors</strong> (note that the local descriptors are float-vectors). Hence, the problem is <em>how to quantize the continuous space of local descriptors into a finite discrete set of clusters?</em> The answer is: <em>By applying a clustering-algorithms!</em> Such an algorithm, e.g. k-means clustering, calculates for a given set of vectors and for a user-defined number of clusters <span class="math notranslate nohighlight">\(k\)</span>, a partition into <span class="math notranslate nohighlight">\(k\)</span> cells (=clusters), such that similar vectors are assigned to the same cluster.</p>
 <p>The centroids of the calculated <span class="math notranslate nohighlight">\(k\)</span> clusters constitute the set of visual words, also called the <strong>Visual Vocabulary:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-d2be56d4-21f9-49cc-a9ea-8afa252c21d5">
-<span class="eqno">(73)<a class="headerlink" href="#equation-d2be56d4-21f9-49cc-a9ea-8afa252c21d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f705affe-dce1-46a9-ab9c-5ddf454bdcca">
+<span class="eqno">(73)<a class="headerlink" href="#equation-f705affe-dce1-46a9-ab9c-5ddf454bdcca" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 V=\lbrace v_t \rbrace_{t=1}^K
 \end{equation}\]</div>
 <p>In the Bag-Of-Visual Word matrix, each of the <span class="math notranslate nohighlight">\(k\)</span> columns corresponds to a visual word <span class="math notranslate nohighlight">\(v_t \in V\)</span> and each image in the set ov <span class="math notranslate nohighlight">\(N\)</span> images</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38c2eb66-489e-480d-9f43-e617f3972325">
-<span class="eqno">(74)<a class="headerlink" href="#equation-38c2eb66-489e-480d-9f43-e617f3972325" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7078c1c9-65ba-459f-bbcf-0c8cdd3ad9d1">
+<span class="eqno">(74)<a class="headerlink" href="#equation-7078c1c9-65ba-459f-bbcf-0c8cdd3ad9d1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 I=\lbrace I_i \rbrace_{i=1}^N
 \end{equation}\]</div>
 <p>corresponds to a row. The entry <span class="math notranslate nohighlight">\(N(t,i)\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(t\)</span> of the matrix counts the number of times visual word <span class="math notranslate nohighlight">\(v_t\)</span> occurs in image <span class="math notranslate nohighlight">\(I_i\)</span>. Or more accurate: <span class="math notranslate nohighlight">\(N(t,i)\)</span> is the number of local descriptors in image <span class="math notranslate nohighlight">\(i\)</span>, which are assigned to the <span class="math notranslate nohighlight">\(t.th\)</span> cluster.</p>
@@ -457,15 +502,15 @@ I=\lbrace I_i \rbrace_{i=1}^N
 <li><p>First, the number of clusters <span class="math notranslate nohighlight">\(k\)</span> must be defined by the user</p></li>
 <li><p>Then <span class="math notranslate nohighlight">\(k\)</span> initial cluster centers <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> are randomly placed into the d-dimensional space</p></li>
 <li><p>Next, each of the given vectors <span class="math notranslate nohighlight">\(\mathbf{x}_p \in T\)</span> is assigned to it’s closest center-vector <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84b496ce-aede-41f3-a143-523c92c07b0a">
-<span class="eqno">(76)<a class="headerlink" href="#equation-84b496ce-aede-41f3-a143-523c92c07b0a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-74946534-2d90-4431-aa06-cdc6c7428d5d">
+<span class="eqno">(76)<a class="headerlink" href="#equation-74946534-2d90-4431-aa06-cdc6c7428d5d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\left\|\mathbf{x}_p-\mathbf{v}_i \right\| = \min\limits_{j \in 1 \ldots k } \left\|\mathbf{x}_p-\mathbf{v}_j \right\|,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\left\| \mathbf{x}-\mathbf{v} \right\|\)</span> is the distance between <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 </li>
 <li><p>After this assignment for each cluster <span class="math notranslate nohighlight">\(C_i\)</span> the new cluster centroid <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fafdc9b8-3e51-4070-90bb-387efb7af071">
-<span class="eqno">(77)<a class="headerlink" href="#equation-fafdc9b8-3e51-4070-90bb-387efb7af071" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4cd08c9b-7cde-4422-aa73-5c7b05de1aef">
+<span class="eqno">(77)<a class="headerlink" href="#equation-4cd08c9b-7cde-4422-aa73-5c7b05de1aef" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\mathbf{v}_i = \frac{1}{n_i} \sum\limits_{\forall \mathbf{x}_p \in C_i} \mathbf{x}_p,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n_i\)</span> is the number of vectors that are assigned to <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
@@ -473,10 +518,10 @@ I=\lbrace I_i \rbrace_{i=1}^N
 <li><p>Continue with step 3 until the cluster-centers remain at a stable position.</p></li>
 </ol>
 <p>This algorithm guarantees, that it’s result is a local minimum of the <strong>Reconstruction Error</strong>, which is defined by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62bbba44-9025-49d2-8da4-92a0d4ab587b">
-<span class="eqno">(78)<a class="headerlink" href="#equation-62bbba44-9025-49d2-8da4-92a0d4ab587b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight" id="equation-recerror">
+<span class="eqno">(78)<a class="headerlink" href="#equation-recerror" title="Permalink to this equation">¶</a></span>\[
 E=\sum\limits_{i=1}^K \sum\limits_{\forall \mathbf{x}_p \in C_i} \left\|\mathbf{x}_p-\mathbf{v}_i \right\|
-\end{equation}\]</div>
+\]</div>
 <p>A nice demonstration of the k-means clustering algorithm is given here <a class="reference external" href="https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html">k-means clustering demo</a>.</p>
 <p>Drawbacks of the algorithms are:</p>
 <ul class="simple">
@@ -512,19 +557,19 @@ P^*(C_j|I_q) = \prod_{t=1}^K P(v_t|C_j)^{N(t,q)} P(C_j)
 <p><strong>Training:</strong></p>
 <p>In order to calculate <a class="reference internal" href="#equation-eq-nbred">(80)</a> for all classes, the terms on the right hand side of this equation must be estimated for all classes and all visual words from a given set of <span class="math notranslate nohighlight">\(N\)</span> training samples (pairs of images and corresponding class-label).</p>
 <p>The <em>a-priori probabilities</em> of the classes are estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e9c4a63-1f36-4ba7-84f1-a0bdae70b6e1">
-<span class="eqno">(81)<a class="headerlink" href="#equation-7e9c4a63-1f36-4ba7-84f1-a0bdae70b6e1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb77aa98-b5d1-4cee-a6aa-11b3f4d8b7da">
+<span class="eqno">(81)<a class="headerlink" href="#equation-cb77aa98-b5d1-4cee-a6aa-11b3f4d8b7da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(C_j)=\frac{|C_j|}{N},
 \end{equation}\]</div>
 <p>for all classes <span class="math notranslate nohighlight">\(C_1,C_2,\ldots,C_L\)</span>.</p>
 <p>For all visual words <span class="math notranslate nohighlight">\(v_t\)</span> and all classes <span class="math notranslate nohighlight">\(C_j\)</span> the <strong>likelihood</strong> is estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22703b55-dcd3-42ea-9920-54227e7e962f">
-<span class="eqno">(82)<a class="headerlink" href="#equation-22703b55-dcd3-42ea-9920-54227e7e962f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-81268582-c7d8-46fd-9191-741ef9b1e718">
+<span class="eqno">(82)<a class="headerlink" href="#equation-81268582-c7d8-46fd-9191-741ef9b1e718" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{\sum\limits_{I_i \in C_j}N(t,i)}{\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In order to avoid likelihoods of value <span class="math notranslate nohighlight">\(0\)</span> <strong>Laplace Smoothing</strong> is applied instead of the equation above:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b13ff659-13c5-46ae-bfa4-25b1205f367e">
-<span class="eqno">(83)<a class="headerlink" href="#equation-b13ff659-13c5-46ae-bfa4-25b1205f367e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0f2a77f0-686d-4d50-a114-9c7aaff04f69">
+<span class="eqno">(83)<a class="headerlink" href="#equation-0f2a77f0-686d-4d50-a114-9c7aaff04f69" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id5">[CDF+04]</a> the authors applied a dataset of 1776 images of 7 different classes. 700 images thereof have been applied for test, the remaining for training. Below for each of the 7 classes a few examples are shown:</p>
@@ -638,25 +683,229 @@ In the encoding phase a new vector <span class="math notranslate nohighlight">\(
 </div>
 <div class="section" id="spatial-pyramid-matching">
 <h2>Spatial Pyramid Matching<a class="headerlink" href="#spatial-pyramid-matching" title="Permalink to this headline">¶</a></h2>
-<p><strong>Spatial Pyramid Matching (SPM)</strong> has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id14">[LSP06]</a>. It can be considered as combination of <strong>Pyramid Match Kernels</strong> and <strong>BoVW</strong>. It’s main advantage is that it integrates spatial information into BoVW. The underlying idea is <strong>Subdivide and Disorder</strong>.</p>
+<p><strong>Spatial Pyramid Matching (SPM)</strong> has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id14">[LSP06]</a>. It can be considered as a combination of <strong>Pyramid Match Kernels</strong> and <strong>BoVW</strong>. It’s main advantage is that it integrates spatial information into BoVW. The underlying idea is <strong>Subdivide and Disorder</strong>. This concept is described in the image below:</p>
 <div class="figure align-center" id="subdivide">
-<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png" src="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">xxx</span><a class="headerlink" href="#subdivide" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png" src="https://maucher.home.hdm-stuttgart.de/Pics/localHist.png" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Subdivide and disorder: The image is subdivided into local regions. Within each region an orderless descriptor, e.g. a histogram of color, is obtained. All of these descriptors are concatenated in the order of the local regions to form a long descriptor of the entire image.</span><a class="headerlink" href="#subdivide" title="Permalink to this image">¶</a></p>
 </div>
-<p>In this subsection, first the concept of <em>Pyramid Match Kernels</em>, as introduced in <a class="bibtex reference internal" href="../referenceSection.html#grauman07" id="id15">[GD07]</a> will be described.</p>
+<p>In this subsection, first the concept of <em>Pyramid Match Kernels (PMK)</em>, as introduced in <a class="bibtex reference internal" href="../referenceSection.html#grauman07" id="id15">[GD07]</a> will be described. PMK alone does not integrate spatial information, but it’s integration in Spatial Pyramid Matching does.</p>
 <div class="section" id="pyramid-match-kernel">
 <h3>Pyramid Match Kernel<a class="headerlink" href="#pyramid-match-kernel" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-center" id="id16">
-<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">xxx</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+<p>Assume that you want to compare two images. <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are the sets of local descriptor vectors of the two images, respectively. The Pyramid Match Kernel measures the correspondence (similarity) of the two descriptor sets <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> as follows:</p>
+<ol class="simple">
+<li><p>place a sequence of increasingly coarser grids over the <strong>feature space</strong> (not the image space!)</p></li>
+<li><p>calculate a weighted sum of the number of matches within cells at each level of resolution.</p></li>
+</ol>
+<p>This process is sketched in the picture below. However, note that the grids are not applied in image- but in feature-space. The feature space typically consists of 128 dimensions. For the purpose of visualisation the picture below pretends a 2-dimensional feature space.</p>
+<div class="figure align-center" id="pmkex">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchConcept.png" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Example: Pyramid Match Kernel of 2 images: Placing a sequence of increasingly coarser grids over the feature space and calculating a weighted sum of matches within the cells. Blue markers indicate the set of local descriptors <span class="math notranslate nohighlight">\(X\)</span> from the first image, red markers belong to <span class="math notranslate nohighlight">\(Y\)</span>, the set of local descriptors in the second image.</span><a class="headerlink" href="#pmkex" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="xxx2">
-<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">xxx</span><a class="headerlink" href="#xxx2" title="Permalink to this image">¶</a></p>
+<ol>
+<li><p>Construct a sequence of <span class="math notranslate nohighlight">\(L+1\)</span> grids, such that the grid at level <span class="math notranslate nohighlight">\(\ell \in \lbrace 0,\ldots, L\rbrace\)</span> has <span class="math notranslate nohighlight">\(2^\ell\)</span> cells along each dimension and <span class="math notranslate nohighlight">\(D=2^{d\ell}\)</span> cells in total.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_X^\ell\)</span> and <span class="math notranslate nohighlight">\(H_Y^\ell\)</span> are the histograms of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> at this resolution, so that  <span class="math notranslate nohighlight">\(H_X^\ell(i)\)</span> and <span class="math notranslate nohighlight">\(H_Y^\ell(i)\)</span> are the numbers of points from <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> that fall into the <span class="math notranslate nohighlight">\(i.th\)</span> cell of the grid.</p></li>
+<li><p>Then the number of matches at level <span class="math notranslate nohighlight">\(\ell\)</span> is given by the histogram intersection function</p>
+<div class="math notranslate nohighlight">
+\[
+	\mathcal{I}^\ell=\mathcal{I}(H_X^\ell,H_Y^\ell)=\sum\limits_{i=1}^D \min(H_X^\ell(i),H_Y^\ell(i))
+	\]</div>
+</li>
+<li><p>The set of matches at level <span class="math notranslate nohighlight">\(\ell\)</span> includes the set of matches at level <span class="math notranslate nohighlight">\(\ell+1\)</span>. The number of new matches at level <span class="math notranslate nohighlight">\(\ell\)</span> is therefore</p>
+<div class="math notranslate nohighlight">
+\[
+	\mathcal{I}^\ell-\mathcal{I}^{\ell+1}.
+	\]</div>
+</li>
+<li><p>In order to calculate a total score of matches, the matches at finer resolution levels are weighted higher than matches at coarser resolutions.</p></li>
+<li><p>The weight associated with level <span class="math notranslate nohighlight">\(\ell\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+	\frac{1}{2^{L-\ell}}
+	\]</div>
+</li>
+<li><p>The <strong>Pyramid Match Kernel</strong> is then</p>
+<div class="math notranslate nohighlight" id="equation-eq-pmk">
+<span class="eqno">(84)<a class="headerlink" href="#equation-eq-pmk" title="Permalink to this equation">¶</a></span>\[\begin{split}
+	\kappa^L(X,Y) &amp; = &amp; \mathcal{I}^L+\sum\limits_{\ell=0}^{L-1} \frac{1}{2^{L-\ell}} (\mathcal{I}^\ell-\mathcal{I}^{\ell+1}) \nonumber \\
+              &amp; = &amp; \frac{1}{2^{L}} \mathcal{I}^0 +\sum\limits_{\ell=1}^{L} \frac{1}{2^{L-\ell+1}} \mathcal{I}^\ell
+	\end{split}\]</div>
+</li>
+</ol>
+<p><strong>Example:</strong></p>
+<p>For the descriptor sets <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, depicted in <a class="reference internal" href="#pmkex"><span class="std std-numref">Fig. 17</span></a> the</p>
+<div class="figure align-center" id="pmkcalc">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramidMatchExample.png" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Calculation of the Pyramid Match Kernel according to equation <a class="reference internal" href="#equation-eq-pmk">(84)</a> for the example in figure <a class="reference internal" href="#pmkex"><span class="std std-numref">Fig. 17</span></a>. The blue row contains the historgram-values <span class="math notranslate nohighlight">\(H_X^\ell(i)\)</span> of the first image and the red row contains the historgram-values <span class="math notranslate nohighlight">\(H_Y^\ell(i) \, \mbox{ for } \ell \in \{0,1,2\}\)</span> of the second image. The black row contains the number of matches in the three levels. The resulting PMK is <span class="math notranslate nohighlight">\(\kappa^L(X,Y)=4.75\)</span>.</span><a class="headerlink" href="#pmkcalc" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id17">
-<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">xxx</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="combine-pmk-and-bovw-to-spatial-pyramid-matching">
+<h3>Combine PMK and BoVW to Spatial Pyramid Matching<a class="headerlink" href="#combine-pmk-and-bovw-to-spatial-pyramid-matching" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Pyramid Match Kernel</strong>, as introduced in <a class="bibtex reference internal" href="../referenceSection.html#grauman07" id="id16">[GD07]</a> and described above, is a totally orderless representation, that discards all spatial information. However, in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id17">[LSP06]</a> Lazebnik et al introduced <strong>Spatial Pyramid Matchin (SPM)</strong>, which combines the concepts of PMK and BoVW to a feature-representation, which contains spatial information. The proposed approach performs <strong>2-dimensional pyramid match kernel in the image space</strong> and <strong>clustering (BoW) in feature space.</strong></p>
+<p>Clustering quantizes all features into <strong><span class="math notranslate nohighlight">\(M\)</span> different types</strong> (i.e. the number of clusters is now denoted by <span class="math notranslate nohighlight">\(M\)</span>). In the next step - PMK in image-space - only features of the same type can be matched.</p>
+<p>For each type <span class="math notranslate nohighlight">\(m \in \lbrace 1,\ldots, M \rbrace\)</span> two sets <span class="math notranslate nohighlight">\(X_m\)</span> and <span class="math notranslate nohighlight">\(Y_m\)</span>, of 2-dimensional vectors,  each representing the 2-dimensional image-coordinate of a feature of type <span class="math notranslate nohighlight">\(m\)</span>, exists (same as before <span class="math notranslate nohighlight">\(X\)</span> corresponds to one image and <span class="math notranslate nohighlight">\(Y\)</span> to the other image). The <strong>Spatial Pyramid Matching Kernel:</strong> is then calculated as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-kernel">
+<span class="eqno">(85)<a class="headerlink" href="#equation-eq-kernel" title="Permalink to this equation">¶</a></span>\[
+K^L(X,Y)=\sum\limits_{m=1}^M \kappa^L(X_m,Y_m)
+\]</div>
+<p>In this equation <span class="math notranslate nohighlight">\(\kappa^L(X_m,Y_m)\)</span> is calculated as defined in equation <a class="reference internal" href="#equation-eq-pmk">(84)</a> however, now the matching is performed in image-space, not in feature-space.</p>
+<p>For <span class="math notranslate nohighlight">\(L=0\)</span> this is the same as if the BoW representations of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are matched.</p>
+<p>Since the pyramid match kernel (equation <a class="reference internal" href="#equation-eq-pmk">(84)</a>) is a weighted sum of histogram-intersections and for positive numbers</p>
+<div class="math notranslate nohighlight">
+\[
+w \min(a,b) =  \min(w a,w b),
+\]</div>
+<p>the spatial pyramid matching <span class="math notranslate nohighlight">\(K^L\)</span> can be represented as a long vector of histogram intersections, formed by concatenating the appropriately weighted histograms of all types <span class="math notranslate nohighlight">\(m\)</span> at all resolutions <span class="math notranslate nohighlight">\(\ell\)</span>. For <span class="math notranslate nohighlight">\(L\)</span> levels and <span class="math notranslate nohighlight">\(M\)</span> types the resulting vector has</p>
+<div class="math notranslate nohighlight">
+\[
+M \sum\limits_{\ell=0}^L 4^{\ell}= \frac{M(4^{L+1}-1)}{3} 
+\]</div>
+<p>components. The vectors are extremely sparse. Computational complexity of the kernel is linear in the number of the features. Typical values for the parameters are <span class="math notranslate nohighlight">\(M=200\)</span> and <span class="math notranslate nohighlight">\(L=2\)</span>. This yields a vector of length <span class="math notranslate nohighlight">\(4200\)</span>.</p>
+<p>The image below sketches a spatial pyramid of a single image. For ease of visualisation, here only <span class="math notranslate nohighlight">\(M=3\)</span> different types of local descriptors are distinguished.</p>
+<div class="figure align-center" id="spmex">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/spatialPyramidsToyExample.PNG" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Toy example for constructing a three-level pyramid. The image has <span class="math notranslate nohighlight">\(M=3\)</span> feature types, indicated by circles, diamonds, and
+crosses. The image is subdivided at three different levels of resolution. For each level of resolution and each channel,
+the features that fall in each spatial bin are counted <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id18">[LSP06]</a>.</span><a class="headerlink" href="#spmex" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="applying-spm-for-image-classification">
+<h3>Applying SPM for Image Classification<a class="headerlink" href="#applying-spm-for-image-classification" title="Permalink to this headline">¶</a></h3>
+<p>This subsection describes how SPM has been applied for image classification in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id19">[LSP06]</a>.</p>
+<div class="section" id="sampling-of-local-descriptors">
+<h4>Sampling of local descriptors<a class="headerlink" href="#sampling-of-local-descriptors" title="Permalink to this headline">¶</a></h4>
+<p>In their experiments the authors of <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id20">[LSP06]</a> applied <strong>dense sampling of SIFT descriptors</strong>. I.e. one SIFT descriptor for patches of size (<span class="math notranslate nohighlight">\(16 \times 16\)</span>) pixels has been obtained at all points of a grid with a spacing of <span class="math notranslate nohighlight">\(8\)</span> pixels. This sampling method yields a large number of features per image. Therefore, a <strong>random subset</strong> of features from the original set has been sampled and applied as input for k-means clustering. As mentioned above, dense sampling is particularly recommended for <strong>scene classification</strong> (sparse sampling would not find any keypoints in large homogenous areas like sky or calm water).</p>
+</div>
+<div class="section" id="histogram-normalization">
+<h4>Histogram Normalization<a class="headerlink" href="#histogram-normalization" title="Permalink to this headline">¶</a></h4>
+<p>The number of local descriptors varies for different images. In order to obtain a robust match kernel, which is independent of the overall number of descriptors per image, the histograms are normalized by the total weight of all features in the image.</p>
+</div>
+<div class="section" id="apply-spm-as-kernel-in-svm-classifier">
+<h4>Apply SPM as kernel in SVM classifier<a class="headerlink" href="#apply-spm-as-kernel-in-svm-classifier" title="Permalink to this headline">¶</a></h4>
+<p><strong>SVM for binary classification in general:</strong></p>
+<p>In general a binary SVM classifier learns a decision function</p>
+<div class="math notranslate nohighlight" id="equation-svmbin">
+<span class="eqno">(86)<a class="headerlink" href="#equation-svmbin" title="Permalink to this equation">¶</a></span>\[
+f(\mathbf{z})=\sum\limits_{i=1}^N \alpha_i y_i \kappa(\mathbf{z},\mathbf{z}_i) +b,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lbrace(\mathbf{z}_i,y_i)\rbrace_{i=1}^N\)</span> is the set of <span class="math notranslate nohighlight">\(N\)</span> labeled training vectors. The label <span class="math notranslate nohighlight">\(y_i \in \lbrace -1,+1\rbrace\)</span> indicates the class of input <span class="math notranslate nohighlight">\(\mathbf{z}_i\)</span>. Moreover, <span class="math notranslate nohighlight">\(\kappa(\mathbf{z},\mathbf{z}_i)\)</span> is an arbitrary kernel-function. Common kernels are e.g. linear-, polynomial- or radial basis function - kernel. The coefficients <span class="math notranslate nohighlight">\(\alpha_i\)</span> and the bias <span class="math notranslate nohighlight">\(b\)</span> are learned in the training phase. In the inference phase for a new vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> the value <span class="math notranslate nohighlight">\(f(\mathbf{z})\)</span> is calculated according to <a class="reference internal" href="#equation-svmbin">(86)</a>. If this value is positive than <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> is assigned to the class labeled by <span class="math notranslate nohighlight">\(y=+1\)</span>. For <span class="math notranslate nohighlight">\(f(\mathbf{z})\leq 0\)</span> the other class is assigned.</p>
+<p><strong>SVM for multi-class classification in general:</strong></p>
+<p>Multi-class SVM is applied according to the <strong>one-versus-all-rule</strong>: For each class a single binary SVM-classifier is learned, which separates instances of the respective class (label <span class="math notranslate nohighlight">\(y=+1\)</span>) from the rest (label <span class="math notranslate nohighlight">\(y=-1)\)</span>.</p>
+<p><strong>SVM with SPM kernel:</strong></p>
+<p>In <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id21">[LSP06]</a> a multi-class SVM is applied for image classification. The novelity of their approach is, that they apply the Spatial Pyramid Match Kernel (SPM) as kernel-function. From the set of labeled training images for each class a discriminator-function</p>
+<div class="math notranslate nohighlight" id="equation-svmspm">
+<span class="eqno">(87)<a class="headerlink" href="#equation-svmspm" title="Permalink to this equation">¶</a></span>\[
+f(Z)=\sum\limits_{i=1}^N \alpha_i y_i \kappa(Z,Z_i) +b,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\kappa(Z,Z_i)=K^L(Z,Z_i)\)</span> is the <strong>Spatial Pyramid Matching Kernel</strong> as defined in equation <a class="reference internal" href="#equation-eq-kernel">(85)</a> and <span class="math notranslate nohighlight">\(Z\)</span> is the corresponding local-descriptor set of an image.</p>
+</div>
+<div class="section" id="obtained-results">
+<h4>Obtained Results<a class="headerlink" href="#obtained-results" title="Permalink to this headline">¶</a></h4>
+<p>The authors of <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id22">[LSP06]</a> applied and evaluated their approach on three different labeled image datasets:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://figshare.com/articles/dataset/15-Scene_Image_Dataset/7007177">Fifteen Scene Categories</a></p></li>
+<li><p><a class="reference external" href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/">Caltech 101</a></p></li>
+<li><p><a class="reference external" href="https://www-old.emt.tugraz.at/~pinz/data/GRAZ_02/">GRAZ-02</a></p></li>
+</ul>
+<p>Some samples from the <em>Fifteen Scene Categories</em> dataset are visualized below:</p>
+<div class="figure align-center" id="scene">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/sceneCategories.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/sceneCategories.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/sceneCategories.PNG" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Samples of the <em>Fifteen Scene Categories</em> dataset</span><a class="headerlink" href="#scene" title="Permalink to this image">¶</a></p>
+</div>
+<p>The achieved results are summarized in the figure below:</p>
+<div class="figure align-center" id="lazebnikresults1">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/sceneCategoriesResults.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/sceneCategoriesResults.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/sceneCategoriesResults.PNG" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">SPM+SVM classification results on the 15 Scene Categories Dataset. <em>Weak Features</em> means sparse sampling, <em>Strong Features</em> refers to dense sampling of SIFT descriptors. Note that the case <span class="math notranslate nohighlight">\(L=0\)</span> is identical with BoVW.</span><a class="headerlink" href="#lazebnikresults1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="lazebnikresults2">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/spaCaltech101Results.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/spaCaltech101Results.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/spaCaltech101Results.PNG" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Results on Caltech 101 Dataset.</span><a class="headerlink" href="#lazebnikresults2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="intermediate-summary-on-spatial-pyramid-matching">
+<h4>Intermediate Summary on Spatial Pyramid Matching<a class="headerlink" href="#intermediate-summary-on-spatial-pyramid-matching" title="Permalink to this headline">¶</a></h4>
+<p>As depicted below, Spatial Pyramid Matching integrates an additional layer to the previous BoVW, which provides spatial information.</p>
+<div class="figure align-center" id="spmlayers">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaSPM.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaSPM.png" src="https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaSPM.png" style="width: 450px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Overview: Spatial Pyramid Matching with SVM classification</span><a class="headerlink" href="#spmlayers" title="Permalink to this image">¶</a></p>
+</div>
+<p>As the results above prove, SPM+SVM yields a much better performance than BoW. Correspondingly, this technique has been widely applied and it also constitutes the base for a bunch of future improvements. The major drawbacks of the approach as implemented in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id23">[LSP06]</a></p>
+<ol class="simple">
+<li><p>The <strong>SVM Kernel</strong> applied in equation <a class="reference internal" href="#equation-svmspm">(87)</a>, is <strong>non-linear</strong>. For non-linear SVMs the complexity is</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{O}(N^3)\)</span> (for training computation)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span> (memory)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{O}(N)\)</span> (for testing computation)
+where N is the number of training images</p></li>
+</ul>
+</li>
+<li><p><strong>Hard Encoding:</strong> The implemented encoding (vector quantization) assign each local descriptor to exactly on visual word (the nearest cluster-center). However, it may be better if descriptors, which are located at the cluster-borders are assigned to all the nearby clusters.</p></li>
+</ol>
+<p>In <a class="bibtex reference internal" href="../referenceSection.html#yang09" id="id24">[YYGTHuang09]</a> an extension has been developed, that allows <strong>linear SVMs</strong>. This approach not only decreases complexity but increases classification accuracy. A key element of this approach is the use of <strong>sparse coding</strong> instead of vector quantisation. In the following subsections the integration of sparse coding and linear SVM classification into the SPM stack is described.</p>
+</div>
+</div>
+<div class="section" id="sparse-coding">
+<h3>Sparse Coding<a class="headerlink" href="#sparse-coding" title="Permalink to this headline">¶</a></h3>
+<p>Vector quantisation, as applied in the context of K-Means clustering, maps each vector in the d-dimensional space to the closest cluster-center. This implies that each vector is assigned to exactly one cluster. As depicted in the figure below, this type of encoding ignores the fact that some vectors may be close to one center and far away from all other centers, whereas other vectors may have nearly the same distance to 2 or more centers. In the latter case the hard assignment to one cluster may be disruptive. Sparse coding solves this problem by providing the possibility, that vectors at the cluster boundaries, can be assigned to more than one cluster. Moreover, for all the assigned clusters also weights are calculated, such that closer cluster-centers have a higher weight than cluster-centers, which are further away.</p>
+<div class="figure align-center" id="sparsecodingidea">
+<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/vq2sparseCoding.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/vq2sparseCoding.png" src="https://maucher.home.hdm-stuttgart.de/Pics/vq2sparseCoding.png" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">Vector Quantisation (left) and Sparse Coding (right)</span><a class="headerlink" href="#sparsecodingidea" title="Permalink to this image">¶</a></p>
+</div>
+<p>In the remainder of this subsection the training- and inference-phase of a standard sparse coding approach is described. In order to better understand this approach it makes sense to first describe k-means clustering in the <em>language</em>, which will be applied for describing sparse coding. In this way it should become obvious, how sparse coding modifies and extends k-means.</p>
+<div class="section" id="new-notation-for-describing-k-means">
+<h4>New notation for describing k-means<a class="headerlink" href="#new-notation-for-describing-k-means" title="Permalink to this headline">¶</a></h4>
+<p>In order to describe sparse coding, we apply the following notation:</p>
+<ul>
+<li><p>The <span class="math notranslate nohighlight">\(N\)</span> training samples are the rows of the matrix<a class="footnote-reference brackets" href="#footnote2" id="id25">2</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-notx">
+<span class="eqno">(88)<a class="headerlink" href="#equation-eq-notx" title="Permalink to this equation">¶</a></span>\[
+	X=\left[\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N \right]^T
+	\]</div>
+</li>
+<li><p>The <span class="math notranslate nohighlight">\(K\)</span> cluster centers are the rows of the matrix</p>
+<div class="math notranslate nohighlight">
+\[
+	V=\left[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_K \right]^T
+	\]</div>
+<p>Matrix <span class="math notranslate nohighlight">\(V\)</span> is also called codebook.</p>
+</li>
+<li><p>The rows of the <span class="math notranslate nohighlight">\(N \times K\)</span> matrix</p>
+<div class="math notranslate nohighlight" id="equation-eq-notu">
+<span class="eqno">(89)<a class="headerlink" href="#equation-eq-notu" title="Permalink to this equation">¶</a></span>\[
+	U=\left[\mathbf{u}_1,\mathbf{u}_2,\ldots,\mathbf{u}_N \right]^T
+	\]</div>
+<p>define the cluster membership of the training sampels, i.e. if the <span class="math notranslate nohighlight">\(i.th\)</span> training vector <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> belongs to cluster <span class="math notranslate nohighlight">\(j\)</span>, then the <span class="math notranslate nohighlight">\(j.th\)</span> component of <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> is <span class="math notranslate nohighlight">\(1\)</span> and all other components are <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</li>
+<li><p><strong>L2-Norm</strong> of vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	\Vert \mathbf{x} \Vert =  \sqrt{\sum\limits_{i=1}^d x_i^2}
+	\]</div>
+</li>
+<li><p><strong>L1-Norm</strong> of vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+	| \mathbf{x} | = \sum\limits_{i=1}^d |x_i|
+	\]</div>
+</li>
+</ul>
+<p>With this notation in mind, the <strong>K-means algorithm</strong> can also be described as follows:</p>
+<p>K-means clustering <strong>finds the codebook <span class="math notranslate nohighlight">\(V\)</span> such that the reconstruction error (equation <a class="reference internal" href="#equation-recerror">(78)</a>) is minimized</strong>, i.e. k-means solves the following optimisation problem</p>
+<div class="math notranslate nohighlight">
+\[
+\min\limits_V \sum\limits_{m=1}^N \min\limits_{k=1,\ldots,K} \Vert \mathbf{x}_m - \mathbf{v}_k \Vert ^2
+\]</div>
+<p>This optimisation problem can be re-formulated as the following matrix factorisation problem</p>
+<div class="math notranslate nohighlight" id="equation-kopt">
+<span class="eqno">(90)<a class="headerlink" href="#equation-kopt" title="Permalink to this equation">¶</a></span>\[
+\min\limits_{U,V} \sum\limits_{m=1}^N  \Vert \mathbf{x}_m - \mathbf{u}_m V \Vert ^2 \quad \mbox{ subject to } \quad Card(\mathbf{u}_m)=1, |\mathbf{u}_m|=1, \mathbf{u}_m \succeq 0 %\; \forall m ,
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( Card(\mathbf{u}_m)=1\)</span> means that only one element of <span class="math notranslate nohighlight">\(\mathbf{u}_m\)</span> is nonzero</p></li>
+<li><p><span class="math notranslate nohighlight">\(|\mathbf{u}_m|=1\)</span> means that the <span class="math notranslate nohighlight">\(L1\)</span>-norm is 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{u}_m \succeq 0\)</span> means that all elements in <span class="math notranslate nohighlight">\(\mathbf{u}_m\)</span> are nonnegative</p></li>
+</ul>
+<p>In the k-means <strong>training phase</strong> the optimisation problem of equation <a class="reference internal" href="#equation-kopt">(90)</a> is solved w.r.t. <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. In the <strong>encoding phase</strong>, the learned codebook <span class="math notranslate nohighlight">\(V\)</span> is fixed and equation <a class="reference internal" href="#equation-kopt">(90)</a> will be solved w.r.t. <span class="math notranslate nohighlight">\(U\)</span> for a new dataset <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </div>
 </div>
 <div class="section" id="this-section-and-all-the-following-sections-are-under-construction">
@@ -665,6 +914,9 @@ In the encoding phase a new vector <span class="math notranslate nohighlight">\(
 <dl class="footnote brackets">
 <dt class="label" id="footnote1"><span class="brackets"><a class="fn-backref" href="#id6">1</a></span></dt>
 <dd><p><strong>Mean Rank</strong> is the mean position of the correct label, when labels are sorted in decreasing order w.r.t. the classifier score, as calculated in equation <a class="reference internal" href="#equation-eq-nbred">(80)</a></p>
+</dd>
+<dt class="label" id="footnote2"><span class="brackets"><a class="fn-backref" href="#id25">2</a></span></dt>
+<dd><p>Keep in mind that the columns of matrix <span class="math notranslate nohighlight">\(X\)</span> are the rows of the transpose <span class="math notranslate nohighlight">\(X^T\)</span></p>
 </dd>
 </dl>
 </div>
@@ -700,6 +952,7 @@ In the encoding phase a new vector <span class="math notranslate nohighlight">\(
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../features/HOGpedestrianDetection.html" title="previous page">HOG-based Pedestrian Detection</a>
+    <a class='right-next' id="next-link" href="../referenceSection.html" title="next page">References</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

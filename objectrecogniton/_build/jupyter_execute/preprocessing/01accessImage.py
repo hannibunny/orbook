@@ -40,7 +40,7 @@ Read File from Directory, print image metadata and display the image with Matplo
 
 imgpath='../Data/mo.png'
 m_im=plt.imread(imgpath)
-#m_im_new=m_im[:,:,[2,1,0]] #swap color channels
+m_im_new=m_im[:,:,[2,1,0]] #swap color channels
 print(type(m_im))
 print("Shape of numpy array : \t", m_im.shape)
 plt.figure(figsize=(10,8))

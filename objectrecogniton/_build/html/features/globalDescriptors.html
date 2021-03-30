@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Similarity Measures" href="similarityMetrics.html" />
-    <link rel="prev" title="References" href="../referenceSection.html" />
+    <link rel="prev" title="Gaussian and Difference of Gaussian Pyramid" href="../preprocessing/05GaussianLowPassFilter.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -128,11 +128,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
    Gaussian and Difference of Gaussian Pyramid
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../referenceSection.html">
-   References
   </a>
  </li>
 </ul>
@@ -339,8 +334,8 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dimensional-histograms-of-colour-images">
-       1-dimensional Histograms of Colour Images
+      <a class="reference internal nav-link" href="#histograms-of-colour-images">
+       Histograms of Colour Images
       </a>
      </li>
     </ul>
@@ -416,8 +411,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
 <span class="n">imgpath</span><span class="o">=</span><span class="s1">&#39;../Data/mo.png&#39;</span>
 <span class="n">pil_im_grey</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imgpath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
 <span class="n">np_im_grey</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pil_im_grey</span><span class="p">)</span>
@@ -435,10 +430,11 @@
 <img alt="../_images/globalDescriptors_7_1.png" src="../_images/globalDescriptors_7_1.png" />
 </div>
 </div>
-<p>Next, the 1-dimensional histogram is calculated:</p>
+<p>Next, the 1-dimensional histogram is calculated. In this first version the number of bins is equal to the number of different values 256:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">256</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBIN</span><span class="o">=</span><span class="mi">256</span> 
+<span class="n">hist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="n">NUMBIN</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Length of histogram: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -477,7 +473,7 @@ Frequency of value  9 in the image is 469
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">),</span><span class="n">hist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">NUMBIN</span><span class="p">),</span><span class="n">hist</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Greyscale Image&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Values&quot;</span><span class="p">)</span>
 <span class="c1">#plt.xticks(np.arange(0,256,16))</span>
@@ -492,9 +488,17 @@ Frequency of value  9 in the image is 469
 <img alt="../_images/globalDescriptors_13_1.png" src="../_images/globalDescriptors_13_1.png" />
 </div>
 </div>
+<p>Now, we reduce the number of bins in the histogram. For this the <code class="docutils literal notranslate"><span class="pre">calcHist()</span></code> method could also be used. However, below we apply a numpy, just to demonstrate that the opencv-way is not the only option.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">np_im_grey</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="mi">16</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUMBIN</span><span class="o">=</span><span class="mi">16</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">np_im_grey</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">NUMBIN</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -531,7 +535,7 @@ Frequency of value  9 in the image is 469
 <p>16-Bin Histogram:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16bin</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16bin</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_grey</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="n">NUMBIN</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -600,16 +604,16 @@ Frequency of value  9 in the image is 469
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frequencies&#39;)
 </pre></div>
 </div>
-<img alt="../_images/globalDescriptors_22_1.png" src="../_images/globalDescriptors_22_1.png" />
+<img alt="../_images/globalDescriptors_24_1.png" src="../_images/globalDescriptors_24_1.png" />
 </div>
 </div>
 </div>
-<div class="section" id="dimensional-histograms-of-colour-images">
-<h4>1-dimensional Histograms of Colour Images<a class="headerlink" href="#dimensional-histograms-of-colour-images" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="histograms-of-colour-images">
+<h4>Histograms of Colour Images<a class="headerlink" href="#histograms-of-colour-images" title="Permalink to this headline">¶</a></h4>
 <p>For multichannel images (colour images), there exist two different options to calculate histograms:</p>
 <ol class="simple">
-<li><p>Calculate ons 1-dimensional histogram for each channel. A global image descriptor can then be obtained by concatenating these three 1-d histograms</p></li>
-<li><p>Calulate a a multidimensional histogram. In multidimensional histograms the bins are not 1-dimensional but e.g. 3-dimensional for 3-channel images. In each Bin the occurence of tuples <span class="math notranslate nohighlight">\((x,y,z)\)</span> within the bin’s range is counted.</p></li>
+<li><p>Calculate a 1-dimensional histogram for each channel. A global image descriptor can then be obtained by concatenating these three 1-d histograms</p></li>
+<li><p>Calulate a multidimensional histogram. In multidimensional histograms the bins are not 1-dimensional but e.g. 3-dimensional for 3-channel images. In each Bin the occurence of tuples <span class="math notranslate nohighlight">\((x,y,z)\)</span> within the bin’s range is counted.</p></li>
 </ol>
 <p>We start with the first option. The second option, multidimensional histogram, is described in the next subsection.</p>
 <p><strong>Read colour image:</strong></p>
@@ -629,15 +633,15 @@ Frequency of value  9 in the image is 469
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of numpy array : 	 (240, 320, 3)
 </pre></div>
 </div>
-<img alt="../_images/globalDescriptors_25_1.png" src="../_images/globalDescriptors_25_1.png" />
+<img alt="../_images/globalDescriptors_27_1.png" src="../_images/globalDescriptors_27_1.png" />
 </div>
 </div>
 <p><strong>Calculate a 1-dimensional histogram for each of the 3 channels:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16binRed</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
-<span class="n">hist16binGreen</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">1</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
-<span class="n">hist16binBlue</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">2</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">16</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist16binRed</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="n">NUMBIN</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="n">hist16binGreen</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">1</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="n">NUMBIN</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="n">hist16binBlue</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">np_im_col</span><span class="p">],[</span><span class="mi">2</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="n">NUMBIN</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -647,24 +651,24 @@ Frequency of value  9 in the image is 469
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16binRed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Red-Channel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">NUMBIN</span><span class="p">)),</span><span class="n">hist16binRed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">NUMBIN</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-Bin Histogram of Red-Channel&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">NUMBIN</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16binGreen</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Green-Channel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">NUMBIN</span><span class="p">)),</span><span class="n">hist16binGreen</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">NUMBIN</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-Bin Histogram of Green-Channel&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">NUMBIN</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">hist16binBlue</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;16-Bin Histogram of Blue-Channel&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">NUMBIN</span><span class="p">)),</span><span class="n">hist16binBlue</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">NUMBIN</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-Bin Histogram of Blue-Channel&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity Value Ranges&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="mi">256</span><span class="o">/</span><span class="n">NUMBIN</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -673,7 +677,7 @@ Frequency of value  9 in the image is 469
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Frequencies&#39;)
 </pre></div>
 </div>
-<img alt="../_images/globalDescriptors_29_1.png" src="../_images/globalDescriptors_29_1.png" />
+<img alt="../_images/globalDescriptors_31_1.png" src="../_images/globalDescriptors_31_1.png" />
 </div>
 </div>
 <p><strong>Image Descriptor:</strong>
@@ -882,7 +886,7 @@ The global image descriptors are just the serializations of the multidimensional
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/globalDescriptors_46_0.png" src="../_images/globalDescriptors_46_0.png" />
+<img alt="../_images/globalDescriptors_48_0.png" src="../_images/globalDescriptors_48_0.png" />
 </div>
 </div>
 <p><strong>Application:</strong></p>
@@ -919,7 +923,7 @@ The global image descriptors are just the serializations of the multidimensional
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../referenceSection.html" title="previous page">References</a>
+    <a class='left-prev' id="prev-link" href="../preprocessing/05GaussianLowPassFilter.html" title="previous page">Gaussian and Difference of Gaussian Pyramid</a>
     <a class='right-next' id="next-link" href="similarityMetrics.html" title="next page">Similarity Measures</a>
 
     </div>

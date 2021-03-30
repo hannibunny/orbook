@@ -17,13 +17,13 @@ A **Gaussian pyramide** is constructed as follows:
 
 *Image Source: {cite}`Szeliski10`*
 
-In the Gaussian pyramide in each level the input image is **low pass filtered**. Thus in each level finer structures (higher frequencies) are filtered out. At high levels $l$ only coarse structures (**low frequencies**) are represented in $G_l$. The Difference at level $l$ 
+In the Gaussian pyramid in each level the input image is **low pass filtered**. Thus in each level finer structures (higher frequencies) are filtered out. At high levels $l$ only coarse structures (**low frequencies**) are represented in $G_l$. The Difference at level $l$ 
 
 $$
 D_l=G_l-G_{l+1}^{\uparrow}
 $$
 
-represents the high frequencies which are filtered out in level $l$, where $G_{l+1}^{\uparrow}$ is the upsampled (interpolated) version of $G_{l+1}$. The pyramide of all $D_l$ constitute the **Laplacian Pyramide.**
+represents the high frequencies which are filtered out in level $l$, where $G_{l+1}^{\uparrow}$ is the upsampled (interpolated) version of $G_{l+1}$. The pyramide of all $D_l$ constitute the **Laplacian Pyramid.**
 
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" style="width:600px" align="center">
 
@@ -33,7 +33,7 @@ represents the high frequencies which are filtered out in level $l$, where $G_{l
 
 Below the spectrum of 
 
-- the 3 different 1-dimensional Gaussianfilters $G_{0}, G_{1}$ and $G_{2}$ 
+- the 3 different 1-dimensional Gaussian filters $G_{0}, G_{1}$ and $G_{2}$ 
 - the Difference of Gaussian (DoG) $D_1=G_1-G_{2}^{\uparrow}$ and $D_2=G_2-G_{3}^{\uparrow}$ 
 
 is plotted:
