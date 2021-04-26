@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Histogram-based Naive Bayes Recognition &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example: Naive Bayes Object Recognition" href="probRecognition.html" />
+    <link rel="prev" title="Multidimensional Receptive Field Histograms" href="multiReceptiveFields.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/features/naiveBayesHistogram.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-recognition-in-general">
+   Object Recognition in General
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes-histogram-based-objectrecognition">
+   Naive Bayes Histogram-based Objectrecognition
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="histogram-based-naive-bayes-recognition">
+<h1>Histogram-based Naive Bayes Recognition<a class="headerlink" href="#histogram-based-naive-bayes-recognition" title="Permalink to this headline">¶</a></h1>
+<p>In the previous sections 1-dimensional and multidimensional Color histograms and the generalisation towards multidimensional receptive field histograms, which count an kind of multidimensional features, have been introduced. Independent of the histogram-dimension and type of feature a simple probabilistic object recognition method, based on the <strong>Naive Bayes Classifier</strong>, has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#schielec00" id="id1">[SC00]</a>. This method will be described below.</p>
+<div class="section" id="object-recognition-in-general">
+<h2>Object Recognition in General<a class="headerlink" href="#object-recognition-in-general" title="Permalink to this headline">¶</a></h2>
+<p>In Object Recognition the task is to determine which object <span class="math notranslate nohighlight">\(o_n \in \mathcal{O}\)</span> is contained in a given input image <span class="math notranslate nohighlight">\(I\)</span>. Here, we assume the simple case, that only one object is prominent in each image. Before, the object recognition system is able to decide which object is contained in the image, the system must be trained. As in every other Machine Learning system, we must therefore distinguish</p>
+<ul class="simple">
+<li><p>Training phase</p></li>
+<li><p>Inference phase</p></li>
+</ul>
+<p>of an object recognition system. Training requires a set of labeled training data, i.e. a set of images, which are labeled with the object, which is contained in the image. If <span class="math notranslate nohighlight">\(\mathcal{O}\)</span> is the set of all objects, which appear in the training data, the training algorithm learns a model to distinguish objects from <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>. This model is then applied in the inference phase in order to determine the object <span class="math notranslate nohighlight">\(o_n \in \mathcal{O}\)</span> in a given input image.</p>
+</div>
+<div class="section" id="naive-bayes-histogram-based-objectrecognition">
+<h2>Naive Bayes Histogram-based Objectrecognition<a class="headerlink" href="#naive-bayes-histogram-based-objectrecognition" title="Permalink to this headline">¶</a></h2>
+<p>The probabilistic object recognition as defined in <a class="bibtex reference internal" href="../referenceSection.html#schielec00" id="id2">[SC00]</a>, calculates the a-posteriori <span class="math notranslate nohighlight">\(p(o_n|R)\)</span> by applying Bayes-rule:</p>
+<div class="math notranslate nohighlight" id="equation-bayesrule">
+<span class="eqno">(62)<a class="headerlink" href="#equation-bayesrule" title="Permalink to this equation">¶</a></span>\[
+p(o_n|R) = \frac{p(R|o_n) \cdot p(o_n)}{P(R)}
+\]</div>
+<p>In the most simple (and not practical) setting, <span class="math notranslate nohighlight">\(R\)</span> is just a measurement <span class="math notranslate nohighlight">\(m\)</span> of the relevant features at a single pixel within the image <span class="math notranslate nohighlight">\(I\)</span>, where feature can be anything for which a one- or multi-dimensional histogram can be obtained, e.g.</p>
+<ul class="simple">
+<li><p>single-channel pixel intensity</p></li>
+<li><p>multi-channel pixel intensity for color images</p></li>
+<li><p>arbitrary multidimensional receptive fields, such as gradient-magnitude, gradient-angle, etc. For the single measurement case equation <a class="reference internal" href="#equation-bayesrule">(62)</a> is</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-bayesrulesingle">
+<span class="eqno">(63)<a class="headerlink" href="#equation-bayesrulesingle" title="Permalink to this equation">¶</a></span>\[
+p(o_n|m) = \frac{p(m|o_n) \cdot p(o_n)}{P(m)} = \frac{p(m|o_n) \cdot p(o_n)}{\sum_i(p(m|o_i) \cdot p(o_i))},
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(o_i)\)</span> is the a-priori probability of object <span class="math notranslate nohighlight">\(o_i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p(m|o_i)\)</span> is the probability-density function of object <span class="math notranslate nohighlight">\(o_i\)</span>, which determines the probability, that measurement <span class="math notranslate nohighlight">\(m\)</span> is obtained in an image with object <span class="math notranslate nohighlight">\(o_i\)</span>.</p></li>
+</ul>
+<p>Applying equation <a class="reference internal" href="#equation-bayesrulesingle">(63)</a> to calculate <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> requires that the a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and the probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are known. Where do they come from? They are estimated in the training-phase from training data:</p>
+<ol>
+<li><p>The estimate for <span class="math notranslate nohighlight">\(p(o_i)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+    p(o_i)=\frac{N_i}{N},
+    \]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the total amount of labeled training images and <span class="math notranslate nohighlight">\(N_i\)</span> is the number of training-images, which contain object <span class="math notranslate nohighlight">\(o_i\)</span>.</p>
+</li>
+<li><p>The estimate for <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> is actually the normalized one- or multidimensional histogram, which counts the frequency of feature-value-ranges or the frequency of joint features-value-ranges (in the multidimensional case), in the training-images, which belong to object <span class="math notranslate nohighlight">\(o_i\)</span>.</p></li>
+</ol>
+<p>For example, assume that the we have only one feature (e.g. the pixel-intensities in a greyscale image) and all images, which belong to a certain object <span class="math notranslate nohighlight">\(o_n\)</span>, yield the following normalized histogram for this object.</p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/LikelihoodMeasureInObject.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/LikelihoodMeasureInObject.png" />
+<p>In this histogram only 8 different value-ranges (bins) are distinguished. From this histogram we can derive, for example</p>
+<ul>
+<li><p>the probability that in an image, which contains object <span class="math notranslate nohighlight">\(o_n\)</span>, a value in the range of bin 0 is measured is</p>
+<div class="math notranslate nohighlight">
+\[
+     p(m \in bin_0|o_n) = 0.3
+     \]</div>
+</li>
+<li><p>the probability that in an image, which contains object <span class="math notranslate nohighlight">\(o_n\)</span>, a value in the range of bin 4 is measured is</p>
+<div class="math notranslate nohighlight">
+\[ 
+     p(m \in bin_4|o_n) = 0.05.
+     \]</div>
+</li>
+</ul>
+<p>Hence, in the <strong>training-phase</strong> all a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and all probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are estimated from training-data. Then in the <strong>inference-phase</strong> equation <a class="reference internal" href="#equation-bayesrulesingle">(63)</a> is applied to determine the a-posteriori <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> for all objects <span class="math notranslate nohighlight">\(o_n\)</span>, and the object, which yields the largest <span class="math notranslate nohighlight">\(p(o_n|m)\)</span> is the classification decision.</p>
+<p>Now, we just have to go from the simple but unrealistic case, where only one measurement is taken in the image, to the practical case, where a set of <span class="math notranslate nohighlight">\(k\)</span> measurements</p>
+<div class="math notranslate nohighlight">
+\[
+(m_1,m_2, \ldots, m_k)
+\]</div>
+<p>are obtained from the image, which shall be classified. In this case the Bayes-Rule is</p>
+<div class="math notranslate nohighlight" id="equation-bayesrulemulti">
+<span class="eqno">(64)<a class="headerlink" href="#equation-bayesrulemulti" title="Permalink to this equation">¶</a></span>\[
+p(o_n|m_1,m_2, \ldots, m_k) = \frac{p(m_1,m_2, \ldots, m_k|o_n) \cdot p(o_n)}{P(m_1,m_2, \ldots, m_k)} = \frac{p(m_1,m_2, \ldots, m_k|o_n) \cdot p(o_n)}{\sum_i(p(m_1,m_2, \ldots, m_k|o_i) \cdot p(o_i))},
+\]</div>
+<p>With the <strong>naive assumption</strong> that the <span class="math notranslate nohighlight">\(k\)</span> measurements are independent of each other, the joint conditional probability in the equation above can be represented as a product of conditional probabilities:</p>
+<div class="math notranslate nohighlight" id="equation-naivebayes">
+<span class="eqno">(65)<a class="headerlink" href="#equation-naivebayes" title="Permalink to this equation">¶</a></span>\[
+p(o_n|m_1,m_2, \ldots, m_k) = \frac{ \prod_j p(m_j|o_n) \cdot p(o_n)}{\sum_i \prod_j p(m_j|o_i) \cdot p(o_i))}.
+\]</div>
+<p>This formula is calculated in the inference-phase in order to determine the most probable object <span class="math notranslate nohighlight">\(o_n\)</span>, given the set of <span class="math notranslate nohighlight">\(k\)</span> measurements. The required a-priori probabilities <span class="math notranslate nohighlight">\(p(o_i)\)</span> and probability-density functions <span class="math notranslate nohighlight">\(p(m|o_i)\)</span> are the same as in the simple single-measurement case, described above.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./features"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="multiReceptiveFields.html" title="previous page">Multidimensional Receptive Field Histograms</a>
+    <a class='right-next' id="next-link" href="probRecognition.html" title="next page">Example: Naive Bayes Object Recognition</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

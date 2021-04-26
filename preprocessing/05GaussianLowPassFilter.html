@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gaussian and Difference of Gaussian Pyramid &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Global Image Features" href="../features/globalDescriptors.html" />
+    <link rel="prev" title="Noise Suppression" href="06GaussianNoiseReduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/preprocessing/05GaussianLowPassFilter.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/preprocessing/05GaussianLowPassFilter.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
+   Spectrum of 1-dimensional Gaussian and Difference Of Gaussian Filter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-pyramide-and-laplacian-pyramide-of-images">
+   Gaussian Pyramide and Laplacian Pyramide of Images
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="gaussian-and-difference-of-gaussian-pyramid">
+<h1>Gaussian and Difference of Gaussian Pyramid<a class="headerlink" href="#gaussian-and-difference-of-gaussian-pyramid" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last Update: 28th January 2021</p></li>
+</ul>
+<p>In the previous sections two important applications of Gaussian filters, bluring and noise suppression, have been introduced. Another frequent application is to construct <strong>Gaussian and Laplacian pyramides</strong>. Pyramides are used to generate different sizes of an images. The levels in a pyramid differ in their scale. Different scales are required for example for implementing scale-invariant recognition. This will be elaborated in detail in the later section on <strong>SIFT features</strong>.</p>
+<p>A <strong>Gaussian pyramide</strong> is constructed as follows:</p>
+<ol class="simple">
+<li><p>Set level index <span class="math notranslate nohighlight">\(l=0\)</span>; Set <span class="math notranslate nohighlight">\(G_{l=0}\)</span> to be the original image</p></li>
+<li><p>Smooth <span class="math notranslate nohighlight">\(G_l\)</span> by applying a Gaussian filter</p></li>
+<li><p>Downsample the smoothed <span class="math notranslate nohighlight">\(G_l\)</span> by a factor of 2. The result is <span class="math notranslate nohighlight">\(G_{l+1}\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(l=l+1\)</span> and continue with step 2 until <span class="math notranslate nohighlight">\(G_l\)</span> contains only a single pixel</p></li>
+</ol>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" />
+<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id1">[Sze10]</a></em></p>
+<p>In the Gaussian pyramid in each level the input image is <strong>low pass filtered</strong>. Thus in each level finer structures (higher frequencies) are filtered out. At high levels <span class="math notranslate nohighlight">\(l\)</span> only coarse structures (<strong>low frequencies</strong>) are represented in <span class="math notranslate nohighlight">\(G_l\)</span>. The Difference at level <span class="math notranslate nohighlight">\(l\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+D_l=G_l-G_{l+1}^{\uparrow}
+\]</div>
+<p>represents the high frequencies which are filtered out in level <span class="math notranslate nohighlight">\(l\)</span>, where <span class="math notranslate nohighlight">\(G_{l+1}^{\uparrow}\)</span> is the upsampled (interpolated) version of <span class="math notranslate nohighlight">\(G_{l+1}\)</span>. The pyramide of all <span class="math notranslate nohighlight">\(D_l\)</span> constitute the <strong>Laplacian Pyramid.</strong></p>
+<img alt="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" />
+<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id2">[Sze10]</a></em></p>
+<div class="section" id="spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
+<h2>Spectrum of 1-dimensional Gaussian and Difference Of Gaussian Filter<a class="headerlink" href="#spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter" title="Permalink to this headline">¶</a></h2>
+<p>Below the spectrum of</p>
+<ul class="simple">
+<li><p>the 3 different 1-dimensional Gaussian filters <span class="math notranslate nohighlight">\(G_{0}, G_{1}\)</span> and <span class="math notranslate nohighlight">\(G_{2}\)</span></p></li>
+<li><p>the Difference of Gaussian (DoG) <span class="math notranslate nohighlight">\(D_1=G_1-G_{2}^{\uparrow}\)</span> and <span class="math notranslate nohighlight">\(D_2=G_2-G_{3}^{\uparrow}\)</span></p></li>
+</ul>
+<p>is plotted:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sci</span>
+<span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Function for calculating and plotting the spectral representation of a signal:</strong></p>
+<p>The function below calculates the single-sided amplitude spectrum of a 1-dimensional time domain signal <span class="math notranslate nohighlight">\(y\)</span>. The sampling frequency <span class="math notranslate nohighlight">\(Fs\)</span> is required for a correct scaling of the frequency-axis in the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotSpectrum</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">Fs</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+ <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> Plots a Single-Sided Amplitude Spectrum of y(t)</span>
+<span class="sd"> &quot;&quot;&quot;</span>
+ <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1"># length of the signal</span>
+ <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+ <span class="n">T</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">Fs</span>
+ <span class="n">frq</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="n">T</span> <span class="c1"># two sides frequency range</span>
+ <span class="n">frq</span> <span class="o">=</span> <span class="n">frq</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span> <span class="c1"># one side frequency range</span>
+
+ <span class="n">Y</span> <span class="o">=</span> <span class="n">sci</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1"># fft computing and normalization</span>
+ <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span>
+
+ <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">frq</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plotting the spectrum</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Freq (Hz)&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|Y(freq)|&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Define 1-dimensional Gaussian filter:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calcGaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">sig</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">tf</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="n">sig</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">sig</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot signal, filter and filtered signal in time- and frequency domain:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mf">200.0</span><span class="p">;</span>  <span class="c1"># sampling rate</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">Fs</span><span class="p">;</span> <span class="c1"># sampling interval</span>
+<span class="n">tf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="n">Ts</span><span class="p">)</span> <span class="c1"># time vector for filter</span>
+<span class="n">filtTitle</span><span class="o">=</span><span class="s2">&quot;Gaussian Filter&quot;</span>
+<span class="n">sig</span><span class="o">=</span><span class="mf">0.005</span>
+<span class="n">m</span><span class="o">=</span><span class="mf">0.0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">filt1</span><span class="o">=</span><span class="n">calcGaussian</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">filt1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">filtTitle</span> <span class="o">+</span> <span class="s2">&quot; G1, Sigma = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sig</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">ymargin</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span><span class="o">-</span><span class="n">ymargin</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="n">ymargin</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">filt2</span><span class="o">=</span><span class="n">calcGaussian</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">sig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">filt2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">filtTitle</span> <span class="o">+</span> <span class="s2">&quot; G2, Sigma = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sig</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">ymargin</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span><span class="o">-</span><span class="n">ymargin</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="n">ymargin</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">filt3</span><span class="o">=</span><span class="n">calcGaussian</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">sig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">filt3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">filtTitle</span> <span class="o">+</span> <span class="s2">&quot; G3, Sigma = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">sig</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">ymargin</span><span class="o">=</span><span class="mf">0.05</span>
+<span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span><span class="o">-</span><span class="n">ymargin</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="n">ymargin</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">filt1</span><span class="p">,</span><span class="n">Fs</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Spectrum of &quot;</span><span class="o">+</span><span class="n">filtTitle</span><span class="o">+</span> <span class="s2">&quot; G1 Sigma = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sig</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">filt2</span><span class="p">,</span><span class="n">Fs</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Spectrum of &quot;</span><span class="o">+</span><span class="n">filtTitle</span><span class="o">+</span> <span class="s2">&quot; G2 Sigma = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sig</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">filt3</span><span class="p">,</span><span class="n">Fs</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Spectrum of &quot;</span><span class="o">+</span><span class="n">filtTitle</span><span class="o">+</span> <span class="s2">&quot; G3 Sigma = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">sig</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">filt2</span><span class="o">-</span><span class="n">filt1</span><span class="p">,</span><span class="n">Fs</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Spectrum of DoG D1=G1-G2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">plotSpectrum</span><span class="p">(</span><span class="n">filt3</span><span class="o">-</span><span class="n">filt2</span><span class="p">,</span><span class="n">Fs</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Spectrum of DOG D2=G2-G3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05GaussianLowPassFilter_13_0.png" src="../_images/05GaussianLowPassFilter_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="gaussian-pyramide-and-laplacian-pyramide-of-images">
+<h2>Gaussian Pyramide and Laplacian Pyramide of Images<a class="headerlink" href="#gaussian-pyramide-and-laplacian-pyramide-of-images" title="Permalink to this headline">¶</a></h2>
+<p>Below the Gaussian- and the Laplacian Pyramide of a given image is calculated and visualized. For the calculations of the pyramids the functions <code class="docutils literal notranslate"><span class="pre">pyramid_gaussian()</span></code> and <code class="docutils literal notranslate"><span class="pre">pyramid_laplacian()</span></code> from <a class="reference external" href="https://scikit-image.org/docs/0.7.0/api/skimage.transform.pyramids.html#skimage.transform.pyramids.pyramid_laplacian">scikit-image</a> are applied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.transform.pyramids</span> <span class="k">import</span> <span class="n">pyramid_gaussian</span><span class="p">,</span> <span class="n">pyramid_laplacian</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../Data/lenaGrey.png&#39;</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+<span class="n">lenaGrey</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05GaussianLowPassFilter_16_0.png" src="../_images/05GaussianLowPassFilter_16_0.png" />
+</div>
+</div>
+<p>Calculate Gaussian- and Laplacian Pyramide:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAXlevel</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">gausspyramid</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">pyramid_gaussian</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">max_layer</span><span class="o">=</span><span class="n">MAXlevel</span><span class="p">,</span> <span class="n">downscale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">laplacianpyramid</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">pyramid_laplacian</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">max_layer</span><span class="o">=</span><span class="n">MAXlevel</span><span class="p">,</span> <span class="n">downscale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">,</span> <span class="n">cval</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualize the pyramids:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Original&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Diff between Original and Smoothed 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Smoothed 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Diff between Smoothed 1 and Smoothed 2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Smoothed 2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Diff between Smoothed 2 and Smoothed 3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Smoothed 3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Diff between Smoothed 3 and Smoothed 4&quot;</span><span class="p">,</span>
+       <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAXlevel</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">MAXlevel</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">idx</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gausspyramid</span><span class="p">[</span><span class="n">level</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">idx</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">MAXlevel</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">idx</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">laplacianpyramid</span><span class="p">[</span><span class="n">level</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">idx</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05GaussianLowPassFilter_21_0.png" src="../_images/05GaussianLowPassFilter_21_0.png" />
+</div>
+</div>
+<p>In the left column of the picture above the Gaussian pyramide, in the right column the Laplacian pyramide is shown (both upsidedown).</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./preprocessing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06GaussianNoiseReduction.html" title="previous page">Noise Suppression</a>
+    <a class='right-next' id="next-link" href="../features/globalDescriptors.html" title="next page">Global Image Features</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

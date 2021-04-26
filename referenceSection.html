@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>References &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Object Recognition" href="recognition/objectrecognition.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/referenceSection.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p><a class="bibtex reference internal" href="#szeliski10" id="id1">[Sze10]</a></p>
+<p id="bibtex-bibliography-referenceSection-0"><dl class="citation">
+<dt class="bibtex label" id="coates11"><span class="brackets">CN11</span></dt>
+<dd><p>A. Coates and A. Ng. The importance of encoding versus training with sparse coding and vector quantization. In Lise Getoor and Tobias Scheffer, editors, <em>Proceedings of the 28th International Conference on Machine Learning (ICML-11)</em>, ICML ‘11, 921–928. New York, NY, USA, June 2011. ACM.</p>
+</dd>
+<dt class="bibtex label" id="csurka04"><span class="brackets">CDF+04</span></dt>
+<dd><p>G. Csurka, C. R. Dance, L. Fan, J. Willamowski, and C. Bray. Visual categorization with bags of keypoints. In <em>In Workshop on Statistical Learning in Computer Vision, ECCV</em>, 1–22. 2004.</p>
+</dd>
+<dt class="bibtex label" id="felleman"><span class="brackets">FvE91</span></dt>
+<dd><p>D.J. Felleman and D.C. van Essen. Distributed hierarchical processing in the primate cerebral cortex. <em>Cereb Cortex</em>, pages 1–47, 1991.</p>
+</dd>
+<dt class="bibtex label" id="grauman07"><span class="brackets">GD07</span></dt>
+<dd><p>K. Grauman and T. Darrell. The pyramid match kernel: efficient learning with sets of features. <em>J. Mach. Learn. Res.</em>, 8:725–760, May 2007. URL: <a class="reference external" href="http://dl.acm.org/citation.cfm?id=1248659.1248685">http://dl.acm.org/citation.cfm?id=1248659.1248685</a>.</p>
+</dd>
+<dt class="bibtex label" id="graumanleibe"><span class="brackets">GL11</span></dt>
+<dd><p>K. Grauman and B. Leibe. <em>Visual Object Recognition</em>. Synthesis Lectures on Artificial Intelligence and Machine Learning. Morgan &amp; Claypool Publishers, 2011.</p>
+</dd>
+<dt class="bibtex label" id="harris88"><span class="brackets">HS88</span></dt>
+<dd><p>C. Harris and M. Stephens. A combined corner and edge detector. In <em>In Proc. of Fourth Alvey Vision Conference</em>, 147–151. 1988.</p>
+</dd>
+<dt class="bibtex label" id="lazebnik06"><span class="brackets">LSP06</span></dt>
+<dd><p>S. Lazebnik, C. Schmid, and J. Ponce. Beyond bags of features: spatial pyramid matching for recognizing natural scene categories. In <em>Proceedings of the 2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition - Volume 2</em>, CVPR ‘06, 2169–2178. Washington, DC, USA, 2006. IEEE Computer Society. URL: <a class="reference external" href="http://dx.doi.org/10.1109/CVPR.2006.68">http://dx.doi.org/10.1109/CVPR.2006.68</a>, <a class="reference external" href="https://doi.org/10.1109/CVPR.2006.68">doi:10.1109/CVPR.2006.68</a>.</p>
+</dd>
+<dt class="bibtex label" id="lowe04"><span class="brackets">Low04</span></dt>
+<dd><p>D. G. Lowe. Distinctive image features from scale-invariant keypoints. <em>International Journal of Computer Vision</em>, 60(2):91–110, 2004.</p>
+</dd>
+<dt class="bibtex label" id="nister06"><span class="brackets">NS06</span></dt>
+<dd><p>D. Nister and H. Stewenius. Scalable recognition with a vocabulary tree. In <em>CVPR</em>, 2161–2168. 2006.</p>
+</dd>
+<dt class="bibtex label" id="schielec00"><span class="brackets">SC00</span></dt>
+<dd><p>B. Schiele and J.L. Crowley. Recognition without correspondence using multidimensional receptive field histograms. <em>International Journal of Computer Vision</em>, 36(1):31–50, 2000.</p>
+</dd>
+<dt class="bibtex label" id="sivic03"><span class="brackets">SZ03</span></dt>
+<dd><p>J. Sivic and A. Zisserman. Video google: a text retrieval approach to object matching in videos. In <em>Proceedings of the Ninth IEEE International Conference on Computer Vision - Volume 2</em>, ICCV ‘03, 1470–. Washington, DC, USA, 2003. IEEE Computer Society. URL: <a class="reference external" href="http://dl.acm.org/citation.cfm?id=946247.946751">http://dl.acm.org/citation.cfm?id=946247.946751</a>.</p>
+</dd>
+<dt class="bibtex label" id="swainballard"><span class="brackets">SB91</span></dt>
+<dd><p>Michael J. Swain and Dana H. Ballard. Color indexing. <em>Int. J. Comput. Vision</em>, 7(1):11–32, 1991. URL: <a class="reference external" href="https://doi.org/10.1007/BF00130487">https://doi.org/10.1007/BF00130487</a>, <a class="reference external" href="https://doi.org/10.1007/BF00130487">doi:10.1007/BF00130487</a>.</p>
+</dd>
+<dt class="bibtex label" id="szeliski10"><span class="brackets"><a class="fn-backref" href="#id1">Sze10</a></span></dt>
+<dd><p>R. Szeliski. <em>Computer Vision: Algorithms and Applications</em>. Springer-Verlag New York, Inc., New York, NY, USA, 1st edition, 2010. ISBN 1848829345, 9781848829343.</p>
+</dd>
+<dt class="bibtex label" id="tuyte07"><span class="brackets">TM07</span></dt>
+<dd><p>T. Tuytelaars and K. Mikolajczyk. Local invariant feature detectors: a survey. <em>Foundations and Trends in Computer Graphics and Vision</em>, 3(3):177–280, 2007.</p>
+</dd>
+<dt class="bibtex label" id="yang09"><span class="brackets">YYGTHuang09</span></dt>
+<dd><p>J. Yang, K. Yu, Y. Gong, and T.Huang. Linear spatial pyramid matching using sparse coding for image classification. In <em>in IEEE Conference on Computer Vision and Pattern Recognition(CVPR</em>. 2009.</p>
+</dd>
+<dt class="bibtex label" id="rubner"><span class="brackets">RubnerTomasiGuibas98</span></dt>
+<dd><p>Y. Rubner, C. Tomasi, and L. J. Guibas. A metric for distributions with applications to image databases. In <em>Sixth International Conference on Computer Vision (IEEE Cat. No.98CH36271)</em>, volume, 59–66. 1998. <a class="reference external" href="https://doi.org/10.1109/ICCV.1998.710701">doi:10.1109/ICCV.1998.710701</a>.</p>
+</dd>
+</dl>
+</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="recognition/objectrecognition.html" title="previous page">Object Recognition</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
