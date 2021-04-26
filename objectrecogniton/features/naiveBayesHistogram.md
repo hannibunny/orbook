@@ -9,7 +9,7 @@ In Object Recognition the task is to determine which object $o_n \in \mathcal{O}
 - Training phase
 - Inference phase
 
-of an object recognition system. Training requires a set of labeled training data, i.e. a set of images, which are labeled with the object, which is contained in the image. If $\mathcal{O}$ is the set of all objects, which appear in the training data, the training algorithm learns a model to distinguish objects from $\mathcal{O}$ a model. This model is then applied in the inference phase in order to determine the object $o_n \in \mathcal{O}$ in a given input image.
+of an object recognition system. Training requires a set of labeled training data, i.e. a set of images, which are labeled with the object, which is contained in the image. If $\mathcal{O}$ is the set of all objects, which appear in the training data, the training algorithm learns a model to distinguish objects from $\mathcal{O}$. This model is then applied in the inference phase in order to determine the object $o_n \in \mathcal{O}$ in a given input image.
 
 
 

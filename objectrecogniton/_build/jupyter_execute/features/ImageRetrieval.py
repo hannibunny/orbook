@@ -69,7 +69,7 @@ methodName=["euclidean","correlation","canberra","braycurtis","intersection","bh
 
 Next, the number of bins per dimension B is defined. The 3-dimensional color histogram then consists of $B\cdot B\cdot B$ bins. The images are imported from the locally saved image database, which contains the 265 .jpeg images. For calculating the 3-dimensional color histograms of the images the Numpy method histogramdd is applied. The histograms are normalized and flattened (transformed into a 1-dimensional array)
 
-B=10
+B=5
 # create a list of images
 path = '../Data/66obj/images'
 imlist = [os.path.join(path,f) for f in os.listdir(path) if f.endswith(".JPG")]
@@ -91,7 +91,7 @@ import pandas as pd
 resultDF=pd.DataFrame(index=methodName,columns=["Correct", "Error"])
 resultDF
 
-The following outer loop iterates over all distance-metrics defined in list *methods*. For each metric first the distance for all pairs of images is calculated and stored in the variable 2-dimensional array *dist*. The entry in row i, column j of this matrix stores the distance between the histograms of the i.th and the j.th image. Applying numpy’s *argsort()* method on each row of the 2 dimensional array *dist* another 2-dimensional array *s* is calculated. The i.th row of this matrix contains the indicees of all images, sorted w.r.t. increasing distance to image *i*. I.e. in the first column of the i.th row of s is the index *i* and in the second column is the index of the image, which matches best with image *i*. In order to determine if the recognition is correct, one must just check if the index in the second column of *s* belongs to the same object as the index of the corresponding row. This can be done by a simple integer division, since the images are indexed such that indicees 0 to 4 belong to the same object, indicees 5 to 9 belong to the next object, and so on. The results are saved in the pandas dataframe.
+The following outer loop iterates over all distance-metrics defined in list *methods*. For each metric first the distance for all pairs of images is calculated and stored in the 2-dimensional array *dist*. The entry in row i, column j of this matrix stores the distance between the histograms of the i.th and the j.th image. Applying numpy’s *argsort()* method on each row of the 2 dimensional array *dist* another 2-dimensional array *s* is calculated. The i.th row of this matrix contains the indicees of all images, sorted w.r.t. increasing distance to image *i*. I.e. in the first column of the i.th row of s is the index *i* and in the second column is the index of the image, which matches best with image *i*. In order to determine if the recognition is correct, one must just check if the index in the second column of *s* belongs to the same object as the index of the corresponding row. This can be done by a simple integer division, since the images are indexed such that indicees 0 to 4 belong to the same object, indicees 5 to 9 belong to the next object, and so on. The results are saved in the pandas dataframe.
 
 values = np.arange(0,features.shape[1])
 
@@ -129,7 +129,7 @@ In the remainder of this notebook we apply different pretrained deep neural netw
 from tensorflow.keras.applications import vgg16, inception_v3, resnet50, mobilenet
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.applications.imagenet_utils import decode_predictions
+#from tensorflow.keras.applications.imagenet_utils import decode_predictions
 import matplotlib.pyplot as plt
 
 **Load pretrained CNNs without the classifier part, i.e. only the feature-extractor part:**

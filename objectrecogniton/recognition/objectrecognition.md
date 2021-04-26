@@ -696,6 +696,17 @@ where
 In the k-means **training phase** the optimisation problem of equation {eq}`kopt` is solved w.r.t. $U$ and $V$. In the **encoding phase**, the learned codebook $V$ is fixed and equation {eq}`kopt` will be solved w.r.t. $U$ for a new dataset $X$.   
 
 
+#### From k-means to sparse-coding
+
+The step from k-means to sparse coding can be done by relaxing the condition $Card(\mathbf{u_m})=1$ in equation {eq}`kopt`. I.e. instead of requiring, that each input is mapped to exactly one cluster, we allow inputs to be assigned to more but only a few clusters. The condition *one or only a few* can be realized by **L1-regularisation**, which is defined in this context as follows:
+
+$$
+\min\limits_{U,V} \sum\limits_{m=1}^N \Vert \mathbf{x}_m - \mathbf{u}_m V \Vert ^2 + \lambda|\mathbf{u}_m| \quad \mbox{ subject to } \Vert \mathbf{v}_k \Vert = 1 \; \forall k
+$$ (sparsecoding})
+
+The $L1$-norm regularization enforces $\mathbf{u}_m$ to have a small number of nonzero elements. Moreover, the constraint $\Vert \mathbf{v}_k \Vert = 1$ provides normalisation of the codebook. The sparse optimisation problem of equation {eq}`sparsecoding` can be solved e.g. by the [Coordinate Descent Algorithm](http://en.wikipedia.org/wiki/Coordinate\_descent).   
+
+
 ### !This section and all the following sections are under construction!
 
 [^footnote1]: **Mean Rank** is the mean position of the correct label, when labels are sorted in decreasing order w.r.t. the classifier score, as calculated in equation {eq}`eq:NBred`

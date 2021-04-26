@@ -298,7 +298,7 @@
 <p>Multidimensional receptive field histograms for object recognition have been introduced in <a class="bibtex reference internal" href="../referenceSection.html#schielec00" id="id1">[SC00]</a>. They can be understood as a <strong>generalisation of the previously described color-histograms</strong>. Recall that in color-histograms the frequency of pixel-values (or pixel-value-ranges) is determined. The corresponding distribution of pixel-intensity values is considered to constitute a relevant information, which is then passed to some object recognition algorithm (e.g. for CBIR). However, pixel-intensitiy is only one possible type of feature. There exist much more features, which can be relevant for a given task: For example, the gradient, it’s magnitude and angle,… at each pixel. And for all of these features the corresponding joint frequency-distribution (histogram) can be determined. <strong>Multidimensional Receptive Field Histograms</strong> are multidimensional histograms, which count the frequency of feature-tuples in the image.</p>
 <p>The practical procedure is as follows:</p>
 <ol>
-<li><p>Consider which features may be informative for your object recognition task, e.g. colour, gradients, low-requencies, high frequencies, etc.</p></li>
+<li><p>Consider which features may be informative for your object recognition task, e.g. colour, gradients, low-frequencies, high frequencies, etc.</p></li>
 <li><p>Apply filters to extract these features at each position <span class="math notranslate nohighlight">\((x,y)\)</span> in the image.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -328,7 +328,7 @@
 <li><p><strong>Gradient</strong> <span class="math notranslate nohighlight">\((D_x, D_y)\)</span>: Rotation variant; Can be applied to detect oriented structures, e.g. vertical lines.</p></li>
 <li><p><strong>Direction of Gradient</strong> <span class="math notranslate nohighlight">\(Dir = \arctan\frac{D_y}{Dx}\)</span>: Rotation variant; Can be applied to detect oriented structures, e.g. vertical lines.</p></li>
 <li><p><strong>Magnitude of Gradient</strong> <span class="math notranslate nohighlight">\(Mag = \sqrt{D_x^2+D_y^2}\)</span>: Rotation invariant.</p></li>
-<li><p><strong>Laplacian</strong> <span class="math notranslate nohighlight">\(Lap=D_{xx}+D_{yy}\)</span>: Rotation invariant.</p></li>
+<li><p><strong>Laplacian</strong> <span class="math notranslate nohighlight">\(Lap=D_{xx}+D_{yy}\)</span></p></li>
 </ul>
 <p>In order to provide scale-invariant detection/recognition the features are extracted in more than one scale.</p>
 </div>

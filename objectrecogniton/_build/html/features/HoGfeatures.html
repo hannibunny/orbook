@@ -871,11 +871,11 @@
 </div>
 <p>After this mapping into the range <span class="math notranslate nohighlight">\(\left[ 0,180 \right]\)</span>, each of the 64 gradient-angles in the region contributes to one or two bins of the histogram as follows:</p>
 <ul>
-<li><p>If the gradient-angle <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span> is equal to one of the 9 bin-centers, then position <span class="math notranslate nohighlight">\(i,j\)</span> adds the value <span class="math notranslate nohighlight">\(\Theta_{ij} \cdot |g_{ij}|\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span>, where <span class="math notranslate nohighlight">\(|g_{ij}|\)</span> is the gradient-magnitude at position <span class="math notranslate nohighlight">\(i,j\)</span>.</p></li>
+<li><p>If the gradient-angle <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span> is equal to one of the 9 bin-centers, then position <span class="math notranslate nohighlight">\(i,j\)</span> adds the value <span class="math notranslate nohighlight">\(|g_{ij}|\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span>, where <span class="math notranslate nohighlight">\(|g_{ij}|\)</span> is the gradient-magnitude at position <span class="math notranslate nohighlight">\(i,j\)</span>.</p></li>
 <li><p>If the gradient-angle <span class="math notranslate nohighlight">\(\Theta_{ij}\)</span> lies between two bin-centers, where <span class="math notranslate nohighlight">\(\Theta_L\)</span> is the next lower and <span class="math notranslate nohighlight">\(\Theta_R\)</span> ist the next higher bin-center, then position <span class="math notranslate nohighlight">\(i,j\)</span> adds</p>
 <ul class="simple">
-<li><p>the value <span class="math notranslate nohighlight">\(\Theta_{ij} \cdot |g_{ij}| \cdot r\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_R\)</span>, and</p></li>
-<li><p>the value <span class="math notranslate nohighlight">\(\Theta_{ij} \cdot |g_{ij}| \cdot (1-r)\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_L\)</span>,</p></li>
+<li><p>the value <span class="math notranslate nohighlight">\(|g_{ij}| \cdot r\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_R\)</span>, and</p></li>
+<li><p>the value <span class="math notranslate nohighlight">\(|g_{ij}| \cdot (1-r)\)</span> to the bin with center <span class="math notranslate nohighlight">\(\Theta_L\)</span>,</p></li>
 </ul>
 <p>where</p>
 <div class="math notranslate nohighlight">
@@ -1069,8 +1069,14 @@ Normalized Histogram of upper-left super-region:
 <p>The HoG-descriptor of the entire image-patch consists of all normalized-region histograms within the patch. Each normalized region histogram contains 36 elements and is calculated as shown in the subsection above. In the subsection above the normalized histogram is calculated for the upper-left <span class="math notranslate nohighlight">\(16 \times 16\)</span>-window in the patch (green rectangle in the patch-visualization). Next, the window is shifted by 8 pixels to the right and the next 36 elements of the HoG-descriptor are calculated (red rectangle). The vertical-stepsize is also 8 pixels.</p>
 <p>All in all for a patch of height <span class="math notranslate nohighlight">\(h\)</span> and width <span class="math notranslate nohighlight">\(w\)</span> the number of window positions, i.e. the number of 36-Bin normalized histograms is:</p>
 <div class="math notranslate nohighlight">
-\[\left( \frac{h-16}{8}+1 \right) \left( \frac{w-16}{8}+1 \right)\]</div>
-<p>In the example of this notebook, the patch-height is <span class="math notranslate nohighlight">\(h=128\)</span> and it’s width is <span class="math notranslate nohighlight">\(w=64\)</span>. The HoG-descriptor of the entire patch then contains $<span class="math notranslate nohighlight">\( 15 \cdot 7 \cdot 36 =  105 \cdot 36 = 3780 Bins.\)</span>$</p>
+\[
+\left( \frac{h-16}{8}+1 \right) \left( \frac{w-16}{8}+1 \right)
+\]</div>
+<p>In the example of this notebook, the patch-height is <span class="math notranslate nohighlight">\(h=128\)</span> and it’s width is <span class="math notranslate nohighlight">\(w=64\)</span>. The HoG-descriptor of the entire patch then contains</p>
+<div class="math notranslate nohighlight">
+\[ 
+15 \cdot 7 \cdot 36 =  105 \cdot 36 = 3780 Bins.
+\]</div>
 </div>
 <div class="section" id="further-references">
 <h2>Further References<a class="headerlink" href="#further-references" title="Permalink to this headline">¶</a></h2>

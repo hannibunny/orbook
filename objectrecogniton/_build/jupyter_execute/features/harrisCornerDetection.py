@@ -42,7 +42,7 @@ plt.show()
 
 Next, the value for $\kappa$ is increased, i.e. less corners are detected:
 
-M=10
+M=40
 K=0.08
 filtered_coords = corner_peaks(corner_harris(image,k=K),min_distance=M)
 
@@ -54,3 +54,4 @@ plt.plot(x, y, 'm.',ms=10)
 plt.axis('off')
 plt.title("Harris Corner, k=%1.3f, minDist=%2.1f"%(K,M))
 plt.show()
+

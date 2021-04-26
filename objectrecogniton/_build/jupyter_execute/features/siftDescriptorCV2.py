@@ -33,7 +33,7 @@ gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 Next, a SIFT object is created. The parameters of the corresponding method are:
 * `nfeature`:	The number of best features to retain (if it's value is >0)
-* `nOctaveLayers`:	The number of layers in each octave. 3 is the value used in {cite}[Lowe04]. The number of octaves is computed automatically from the image resolution.
+* `nOctaveLayers`:	The number of layers in each octave. 3 is the value used in {cite}`Lowe04`. The number of octaves is computed automatically from the image resolution.
 * `contrastThreshold`:	The contrast threshold used to filter out weak features. The larger the threshold, the less features are produced by the detector.
 * `edgeThreshold`:	The threshold used to filter out edge-like features. The larger the edgeThreshold, the less features are filtered out.
 * `sigma`:	The sigma of the Gaussian applied to the input image at the octave 0. 

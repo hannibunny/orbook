@@ -467,10 +467,12 @@ a compact image representation.</p></li>
     \right)
     \end{split}\end{aligned}\end{align} \]</div>
 </li>
-<li><p>Average matrices <span class="math notranslate nohighlight">\(M_I(\mathbf{x})\)</span> over a region by convolution with a Gaussian <span class="math notranslate nohighlight">\(G_{\sigma}\)</span>:
-$<span class="math notranslate nohighlight">\(
- C(\mathbf{x},\sigma)=G_{\sigma}(\mathbf{x}) * M_I(\mathbf{x})
- \)</span>$ (aver)</p></li>
+<li><p>Average matrices <span class="math notranslate nohighlight">\(M_I(\mathbf{x})\)</span> over a region by convolution with a Gaussian <span class="math notranslate nohighlight">\(G_{\sigma}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-aver">
+<span class="eqno">(67)<a class="headerlink" href="#equation-aver" title="Permalink to this equation">¶</a></span>\[
+    C(\mathbf{x},\sigma)=G_{\sigma}(\mathbf{x}) * M_I(\mathbf{x})
+    \]</div>
+</li>
 <li><p>Depending on the local image properties in the region defined by the width of <span class="math notranslate nohighlight">\(G_{\sigma}\)</span> the <strong>Eigenvalues <span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span></strong> of matrix <span class="math notranslate nohighlight">\(C(\mathbf{x},\sigma)\)</span> vary as follows:</p>
 <ul class="simple">
 <li><p>If both Eigenvalues are large, then there is a corner around <span class="math notranslate nohighlight">\(\mathbf{x}\)</span></p></li>
@@ -480,6 +482,11 @@ $<span class="math notranslate nohighlight">\(
 </li>
 </ol>
 <p>Note that <span class="math notranslate nohighlight">\(C(\mathbf{x},\sigma)\)</span> and it’s Eigenvalues must be calculated at each position <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and the calculation of Eigenvalues is costly. However, there is a <strong>trick to perform the differentiation, mentioned in item 4 above, without calculating the Eigenvalues.</strong> For this let <span class="math notranslate nohighlight">\(\alpha\)</span> be the Eigenvalue with the larger and <span class="math notranslate nohighlight">\(\beta\)</span> be the Eigenvalue with the smaller magnitude. Morevoer,</p>
+<div class="math notranslate nohighlight">
+\[
+r=\frac{\alpha}{\beta}
+\]</div>
+<p>is the ratio of these Eigenvalues.</p>
 <ul>
 <li><p>Calculate <a class="reference external" href="https://en.wikipedia.org/wiki/Trace_(linear_algebra)">trace</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant">determinant</a> of <span class="math notranslate nohighlight">\(C(\mathbf{x},\sigma)\)</span></p>
 <div class="math notranslate nohighlight">
@@ -493,24 +500,24 @@ $<span class="math notranslate nohighlight">\(
 </li>
 <li><p>Then</p>
 <div class="math notranslate nohighlight" id="equation-tracedet">
-<span class="eqno">(67)<a class="headerlink" href="#equation-tracedet" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(68)<a class="headerlink" href="#equation-tracedet" title="Permalink to this equation">¶</a></span>\[
     \frac{Tr(\mathbf{C(\mathbf{x},\sigma)})^2}{Det(\mathbf{C(\mathbf{x},\sigma)})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
     \]</div>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>
 </li>
 <li><p>Corners are at the points where this value is small.</p></li>
-<li><p>In order to check if the value in equation <a class="reference internal" href="#equation-tracedet">(67)</a> is small one can equivalently check if</p></li>
+<li><p>In order to check if the value in equation <a class="reference internal" href="#equation-tracedet">(68)</a> is small one can equivalently check if</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-cornertest">
-<span class="eqno">(68)<a class="headerlink" href="#equation-cornertest" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(69)<a class="headerlink" href="#equation-cornertest" title="Permalink to this equation">¶</a></span>\[
 Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 &gt; T.
 \]</div>
 <p>Concerning the parameters in in the described process:</p>
 <ul class="simple">
 <li><p><strong><span class="math notranslate nohighlight">\(\kappa\)</span></strong> is in the range <span class="math notranslate nohighlight">\([0.04,\ldots 0.15]\)</span>. Smaller <span class="math notranslate nohighlight">\(\kappa\)</span> yields more detected corners.</p></li>
-<li><p>If the standard deviation of the Gaussian filter, used to calculate the derivatives in equation <a class="reference internal" href="#equation-gradim">(66)</a> is <span class="math notranslate nohighlight">\(\sigma_d\)</span>, then the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of the Gaussian, used in equation {eq}(aver), should be <strong><span class="math notranslate nohighlight">\(\sigma \approx 2\sigma_d\)</span></strong>. Typical value: <span class="math notranslate nohighlight">\(\sigma=1.0\)</span> i.e. <span class="math notranslate nohighlight">\(\sigma_d \approx 0.5\)</span>.</p></li>
+<li><p>If the standard deviation of the Gaussian filter, used to calculate the derivatives in equation <a class="reference internal" href="#equation-gradim">(66)</a> is <span class="math notranslate nohighlight">\(\sigma_d\)</span>, then the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of the Gaussian, used in equation <a class="reference internal" href="#equation-aver">(67)</a>, should be <strong><span class="math notranslate nohighlight">\(\sigma \approx 2\sigma_d\)</span></strong>. Typical value: <span class="math notranslate nohighlight">\(\sigma=1.0\)</span> i.e. <span class="math notranslate nohighlight">\(\sigma_d \approx 0.5\)</span>.</p></li>
 </ul>
-<p>In implementations, e.g. <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.corner_harris">Scikits Image</a>, usually one function calculates for all pixels the value, given in the left hand side of unequation <a class="reference internal" href="#equation-cornertest">(68)</a> and a second function applies the <strong>threshold <span class="math notranslate nohighlight">\(T\)</span></strong> (default value 0) and a <strong>minimum distance <span class="math notranslate nohighlight">\(D_{min}\)</span></strong> to the result of the first function. Detected corners are then separated by at least <span class="math notranslate nohighlight">\(D_{min}\)</span> pixels. The influence of varying parameters <span class="math notranslate nohighlight">\(\kappa\)</span> and <span class="math notranslate nohighlight">\(D_{min}\)</span> is demonstrated in the picture below):</p>
+<p>In implementations, e.g. <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.corner_harris">Scikits Image</a>, usually one function calculates for all pixels the value, given in the left hand side of unequation <a class="reference internal" href="#equation-cornertest">(69)</a> and a second function applies the <strong>threshold <span class="math notranslate nohighlight">\(T\)</span></strong> (default value 0) and a <strong>minimum distance <span class="math notranslate nohighlight">\(D_{min}\)</span></strong> to the result of the first function. Detected corners are then separated by at least <span class="math notranslate nohighlight">\(D_{min}\)</span> pixels. The influence of varying parameters <span class="math notranslate nohighlight">\(\kappa\)</span> and <span class="math notranslate nohighlight">\(D_{min}\)</span> is demonstrated in the picture below):</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/harrisCornerAll.png" style="width:600px" align="center">
 </figure>
@@ -585,8 +592,8 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 </li>
 <li><p><strong>Difference of Gaussian (DoG)</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-aadffb62-9881-4030-9abe-282987fe41c6">
-<span class="eqno">(69)<a class="headerlink" href="#equation-aadffb62-9881-4030-9abe-282987fe41c6" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-102b820a-eedd-489d-bdb7-048f88539985">
+<span class="eqno">(70)<a class="headerlink" href="#equation-102b820a-eedd-489d-bdb7-048f88539985" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \\
               &amp; = &amp; L(x,y,k\sigma)-L(x,y,\sigma).
 \end{eqnarray}\]</div>
@@ -628,7 +635,7 @@ D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  
 <p>However, in SIFT Taylor-series expansion is applied for refining keypoint localization.</p>
 <p><strong>Taylor expansion</strong> of <span class="math notranslate nohighlight">\(D(x,y,\sigma)\)</span> up to quadratic forms around the sample point (keypoint candidate) is defined as follows:</p>
 <div class="math notranslate nohighlight" id="equation-taylor">
-<span class="eqno">(70)<a class="headerlink" href="#equation-taylor" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(71)<a class="headerlink" href="#equation-taylor" title="Permalink to this equation">¶</a></span>\[
 D(\mathbf{x})=D+\frac{\partial D^T}{\partial \mathbf{x}}\mathbf{x}+\frac{1}{2} \mathbf{x}^T \frac{\partial^2 D}{\partial \mathbf{x}^2}\mathbf{x}.
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(\mathbf{x}=(x,y,\sigma)^T\)</span> is the offset from the candidate keypoint and the first and second derivation are:</p>
@@ -652,7 +659,7 @@ D_{\sigma x} &amp; D_{\sigma y} &amp; D_{\sigma \sigma}\\
 \end{array} \right)
 \end{split}\]</div>
 <p>The derivatives of <span class="math notranslate nohighlight">\(D\)</span> are approximated by calculating differences in the <span class="math notranslate nohighlight">\((3x3)\)</span>-neighbourhood.
-The <strong>true location <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></strong> of the keypoint is determined by taking the derivative of <a class="reference internal" href="#equation-taylor">(70)</a> and setting it to zero:</p>
+The <strong>true location <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></strong> of the keypoint is determined by taking the derivative of <a class="reference internal" href="#equation-taylor">(71)</a> and setting it to zero:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\mathbf{x}}= - \frac{\partial^2 D}{\partial \mathbf{x}^2}^{-1} \frac{\partial D}{\partial \mathbf{x}}.
@@ -701,14 +708,14 @@ r=\frac{\alpha}{\beta}
 <ul class="simple">
 <li><p>Calculate trace and determinant of <span class="math notranslate nohighlight">\(\mathbf{H}\)</span></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-fc9d30de-2bb3-4129-aadf-a5b08e2a0cc8">
-<span class="eqno">(71)<a class="headerlink" href="#equation-fc9d30de-2bb3-4129-aadf-a5b08e2a0cc8" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-22670f10-fe65-45f0-b2c9-ad0c75f558e7">
+<span class="eqno">(72)<a class="headerlink" href="#equation-22670f10-fe65-45f0-b2c9-ad0c75f558e7" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 Tr(\mathbf{H}) &amp; = D_{xx}+D_{yy} = \alpha + \beta \\
 Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 \end{eqnarray}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e8ac154e-0a5c-4f00-99c1-75d316b3ccd4">
-<span class="eqno">(72)<a class="headerlink" href="#equation-e8ac154e-0a5c-4f00-99c1-75d316b3ccd4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7b69c509-2c89-4730-865c-c333a8ce3727">
+<span class="eqno">(73)<a class="headerlink" href="#equation-7b69c509-2c89-4730-865c-c333a8ce3727" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{Tr(\mathbf{H})^2}{Det(\mathbf{H})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
 \end{equation}\]</div>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>
@@ -731,7 +738,7 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 \[
     m(x,y)=\sqrt{(L(x+1,y)-L(x-1,y))^2+(L(x,y+1)-L(x,y-1))^2}
     \]</div>
-<p>and \alert{gradient orientation}</p>
+<p>and <strong>gradient orientation</strong></p>
 <div class="math notranslate nohighlight">
 \[
     \theta(x,y)=\tanh\frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}

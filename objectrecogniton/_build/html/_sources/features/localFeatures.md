@@ -135,6 +135,7 @@ According to {cite}`Harris88` the **change of gradients** in the neighborhood of
     $$
 
 3. Average matrices $M_I(\mathbf{x})$ over a region by convolution with a Gaussian $G_{\sigma}$: 
+
     $$
     C(\mathbf{x},\sigma)=G_{\sigma}(\mathbf{x}) * M_I(\mathbf{x})
     $$ (aver)
@@ -146,6 +147,12 @@ According to {cite}`Harris88` the **change of gradients** in the neighborhood of
     - If both Eigenvalues are $\approx 0$, then there is no variation in the region around $\mathbf{x}$.
     
 Note that $C(\mathbf{x},\sigma)$ and it's Eigenvalues must be calculated at each position $\mathbf{x}$ and the calculation of Eigenvalues is costly. However, there is a **trick to perform the differentiation, mentioned in item 4 above, without calculating the Eigenvalues.** For this let $\alpha$ be the Eigenvalue with the larger and $\beta$ be the Eigenvalue with the smaller magnitude. Morevoer,
+
+$$
+r=\frac{\alpha}{\beta}
+$$
+
+is the ratio of these Eigenvalues.
 
 - Calculate [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) and [determinant](https://en.wikipedia.org/wiki/Determinant) of $C(\mathbf{x},\sigma)$
 
@@ -176,7 +183,7 @@ $$ (cornertest)
 Concerning the parameters in in the described process:
 
 - **$\kappa$** is in the range $[0.04,\ldots 0.15]$. Smaller $\kappa$ yields more detected corners.
-- If the standard deviation of the Gaussian filter, used to calculate the derivatives in equation {eq}`gradIm` is $\sigma_d$, then the standard deviation $\sigma$ of the Gaussian, used in equation {eq}(aver), should be **$\sigma \approx 2\sigma_d$**. Typical value: $\sigma=1.0$ i.e. $\sigma_d \approx 0.5$. 
+- If the standard deviation of the Gaussian filter, used to calculate the derivatives in equation {eq}`gradIm` is $\sigma_d$, then the standard deviation $\sigma$ of the Gaussian, used in equation {eq}`aver`, should be **$\sigma \approx 2\sigma_d$**. Typical value: $\sigma=1.0$ i.e. $\sigma_d \approx 0.5$. 
 
 
 In implementations, e.g. [Scikits Image](https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.corner_harris), usually one function calculates for all pixels the value, given in the left hand side of unequation {eq}`cornertest` and a second function applies the **threshold $T$** (default value 0) and a **minimum distance $D_{min}$** to the result of the first function. Detected corners are then separated by at least $D_{min}$ pixels. The influence of varying parameters $\kappa$ and $D_{min}$ is demonstrated in the picture below):
@@ -409,7 +416,7 @@ This step is required in order to provide an image-descriptor, which is *invaria
     m(x,y)=\sqrt{(L(x+1,y)-L(x-1,y))^2+(L(x,y+1)-L(x,y-1))^2}
     $$
 
-    and \alert{gradient orientation}
+    and **gradient orientation**
     
     $$
     \theta(x,y)=\tanh\frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}

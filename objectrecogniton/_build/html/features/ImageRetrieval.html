@@ -429,7 +429,7 @@
 <p>Next, the number of bins per dimension B is defined. The 3-dimensional color histogram then consists of <span class="math notranslate nohighlight">\(B\cdot B\cdot B\)</span> bins. The images are imported from the locally saved image database, which contains the 265 .jpeg images. For calculating the 3-dimensional color histograms of the images the Numpy method histogramdd is applied. The histograms are normalized and flattened (transformed into a 1-dimensional array)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="o">=</span><span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="o">=</span><span class="mi">5</span>
 <span class="c1"># create a list of images</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../Data/66obj/images&#39;</span>
 <span class="n">imlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.JPG&quot;</span><span class="p">)]</span>
@@ -450,7 +450,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(265, 1000)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(265, 125)
 </pre></div>
 </div>
 </div>
@@ -531,7 +531,7 @@
 </table>
 </div></div></div>
 </div>
-<p>The following outer loop iterates over all distance-metrics defined in list <em>methods</em>. For each metric first the distance for all pairs of images is calculated and stored in the variable 2-dimensional array <em>dist</em>. The entry in row i, column j of this matrix stores the distance between the histograms of the i.th and the j.th image. Applying numpy’s <em>argsort()</em> method on each row of the 2 dimensional array <em>dist</em> another 2-dimensional array <em>s</em> is calculated. The i.th row of this matrix contains the indicees of all images, sorted w.r.t. increasing distance to image <em>i</em>. I.e. in the first column of the i.th row of s is the index <em>i</em> and in the second column is the index of the image, which matches best with image <em>i</em>. In order to determine if the recognition is correct, one must just check if the index in the second column of <em>s</em> belongs to the same object as the index of the corresponding row. This can be done by a simple integer division, since the images are indexed such that indicees 0 to 4 belong to the same object, indicees 5 to 9 belong to the next object, and so on. The results are saved in the pandas dataframe.</p>
+<p>The following outer loop iterates over all distance-metrics defined in list <em>methods</em>. For each metric first the distance for all pairs of images is calculated and stored in the 2-dimensional array <em>dist</em>. The entry in row i, column j of this matrix stores the distance between the histograms of the i.th and the j.th image. Applying numpy’s <em>argsort()</em> method on each row of the 2 dimensional array <em>dist</em> another 2-dimensional array <em>s</em> is calculated. The i.th row of this matrix contains the indicees of all images, sorted w.r.t. increasing distance to image <em>i</em>. I.e. in the first column of the i.th row of s is the index <em>i</em> and in the second column is the index of the image, which matches best with image <em>i</em>. In order to determine if the recognition is correct, one must just check if the index in the second column of <em>s</em> belongs to the same object as the index of the corresponding row. This can be done by a simple integer division, since the images are indexed such that indicees 0 to 4 belong to the same object, indicees 5 to 9 belong to the next object, and so on. The results are saved in the pandas dataframe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -591,43 +591,43 @@
   <tbody>
     <tr>
       <th>euclidean</th>
-      <td>151</td>
-      <td>114</td>
+      <td>181</td>
+      <td>84</td>
     </tr>
     <tr>
       <th>correlation</th>
-      <td>149</td>
-      <td>116</td>
+      <td>175</td>
+      <td>90</td>
     </tr>
     <tr>
       <th>canberra</th>
-      <td>255</td>
-      <td>10</td>
+      <td>257</td>
+      <td>8</td>
     </tr>
     <tr>
       <th>braycurtis</th>
-      <td>229</td>
-      <td>36</td>
+      <td>222</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>intersection</th>
-      <td>229</td>
-      <td>36</td>
+      <td>222</td>
+      <td>43</td>
     </tr>
     <tr>
       <th>bhattacharyya</th>
-      <td>246</td>
-      <td>19</td>
+      <td>243</td>
+      <td>22</td>
     </tr>
     <tr>
       <th>chi2</th>
-      <td>241</td>
-      <td>24</td>
+      <td>239</td>
+      <td>26</td>
     </tr>
     <tr>
       <th>emd</th>
-      <td>174</td>
-      <td>91</td>
+      <td>159</td>
+      <td>106</td>
     </tr>
   </tbody>
 </table>
@@ -648,7 +648,7 @@ In a well trained CNN, the feature-extractor part provides a good representation
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="k">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="k">import</span> <span class="n">load_img</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="k">import</span> <span class="n">img_to_array</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.imagenet_utils</span> <span class="k">import</span> <span class="n">decode_predictions</span>
+<span class="c1">#from tensorflow.keras.applications.imagenet_utils import decode_predictions</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>

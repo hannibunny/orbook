@@ -199,11 +199,11 @@ print(mappedAngles[Location[0]:Location[0]+W,Location[1]:Location[1]+W])
 
 After this mapping into the range $\left[ 0,180 \right]$, each of the 64 gradient-angles in the region contributes to one or two bins of the histogram as follows:
 
-* If the gradient-angle $\Theta_{ij}$ is equal to one of the 9 bin-centers, then position $i,j$ adds the value $\Theta_{ij} \cdot |g_{ij}|$ to the bin with center $\Theta_{ij}$, where $|g_{ij}|$ is the gradient-magnitude at position $i,j$.
+* If the gradient-angle $\Theta_{ij}$ is equal to one of the 9 bin-centers, then position $i,j$ adds the value $|g_{ij}|$ to the bin with center $\Theta_{ij}$, where $|g_{ij}|$ is the gradient-magnitude at position $i,j$.
 
 * If the gradient-angle $\Theta_{ij}$ lies between two bin-centers, where $\Theta_L$ is the next lower and $\Theta_R$ ist the next higher bin-center, then position $i,j$ adds 
-    * the value $\Theta_{ij} \cdot |g_{ij}| \cdot r$ to the bin with center $\Theta_R$, and
-    * the value $\Theta_{ij} \cdot |g_{ij}| \cdot (1-r)$ to the bin with center $\Theta_L$,
+    * the value $|g_{ij}| \cdot r$ to the bin with center $\Theta_R$, and
+    * the value $|g_{ij}| \cdot (1-r)$ to the bin with center $\Theta_L$,
 
     where 
 
@@ -322,9 +322,15 @@ The HoG-descriptor of the entire image-patch consists of all normalized-region h
 
 All in all for a patch of height $h$ and width $w$ the number of window positions, i.e. the number of 36-Bin normalized histograms is:
 
-$$\left( \frac{h-16}{8}+1 \right) \left( \frac{w-16}{8}+1 \right)$$
+$$
+\left( \frac{h-16}{8}+1 \right) \left( \frac{w-16}{8}+1 \right)
+$$
 
-In the example of this notebook, the patch-height is $h=128$ and it's width is $w=64$. The HoG-descriptor of the entire patch then contains $$ 15 \cdot 7 \cdot 36 =  105 \cdot 36 = 3780 Bins.$$
+In the example of this notebook, the patch-height is $h=128$ and it's width is $w=64$. The HoG-descriptor of the entire patch then contains 
+
+$$ 
+15 \cdot 7 \cdot 36 =  105 \cdot 36 = 3780 Bins.
+$$
 
 ## Further References
 * [HOG in scikit image](http://scikit-image.org/docs/dev/auto_examples/features_detection/plot_hog.html)

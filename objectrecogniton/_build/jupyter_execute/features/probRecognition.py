@@ -26,7 +26,7 @@ for i in range(3):
     plt.xlim((-1,8))
     plt.ylim((0,0.5))
     plt.grid(True)
-    plt.title('Measurement Histogram for Object '+str(i+1))
+    plt.title('Measurement Histogram for Category '+str(i+1))
 
 For a query picture it shall be determined, which of the 3 known objects is most probably contained in the picutre. For this 4 measurements are performed in the picture. The measurements $m_i$ fall into bins $m_1=2,m_2=5,m_3=6$ and $m_4=2$.
 

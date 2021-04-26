@@ -4,7 +4,7 @@ Multidimensional receptive field histograms for object recognition have been int
 
 The practical procedure is as follows:
 
-1. Consider which features may be informative for your object recognition task, e.g. colour, gradients, low-requencies, high frequencies, etc.
+1. Consider which features may be informative for your object recognition task, e.g. colour, gradients, low-frequencies, high frequencies, etc.
 
 2. Apply filters to extract these features at each position $(x,y)$ in the image. 
 
@@ -42,7 +42,7 @@ Some commonly applied features and their properties are:
 - **Gradient** $(D_x, D_y)$: Rotation variant; Can be applied to detect oriented structures, e.g. vertical lines.
 - **Direction of Gradient** $Dir = \arctan\frac{D_y}{Dx}$: Rotation variant; Can be applied to detect oriented structures, e.g. vertical lines.
 - **Magnitude of Gradient** $Mag = \sqrt{D_x^2+D_y^2}$: Rotation invariant.
-- **Laplacian** $Lap=D_{xx}+D_{yy}$: Rotation invariant.
+- **Laplacian** $Lap=D_{xx}+D_{yy}$
 
 In order to provide scale-invariant detection/recognition the features are extracted in more than one scale.
 
