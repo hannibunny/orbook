@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Detection &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Face Recognition using FaceNet" href="faceRecognition.html" />
+    <link rel="prev" title="Object Recognition" href="../recognition/objectrecognition.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Face Detection and Recognition
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Face Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="faceRecognition.html">
+   Face Recognition using FaceNet
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/face/faceDetection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/face/faceDetection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apply-viola-jones-face-detection">
+   Apply Viola-Jones Face Detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-and-display-image">
+     Load and display image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-pretrained-algorithm-to-find-faces">
+     Apply pretrained algorithm to find faces
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning-based-face-detection">
+   Deep Learning based Face Detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overall-approach">
+     Overall approach
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture-of-3-cnns">
+     Architecture of 3 CNNs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sketches-for-training-and-inference">
+     Sketches for Training and Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-pretrained-mtcnn-for-face-detection-and-facial-landmark-detection">
+     Apply pretrained MTCNN for face detection and facial landmark detection
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="face-detection">
+<h1>Face Detection<a class="headerlink" href="#face-detection" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last update: 04.06.2020</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install opencv-python</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-viola-jones-face-detection">
+<h2>Apply Viola-Jones Face Detection<a class="headerlink" href="#apply-viola-jones-face-detection" title="Permalink to this headline">¶</a></h2>
+<p>Viola-Jones algorithm is a machine learning based approach for detecting and localising faces in images. For a detailed description of the algorithm see for example <a class="reference external" href="https://gitlab.mi.hdm-stuttgart.de/maucher/or/-/blob/master/Slides/V06DetectionWindowBased.pdf">J. Maucher: Object Recognition Lecture</a>.
+OpenCV provides an already trained Viola-Jones algorithm for face detection. The pre-trained model is available as a .xml - file, which must be downloaded from here: <a class="reference external" href="https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml">haarcascade_frontalface_default.xml</a>
+If you saved this file to your current directory, the trained classifier-object can be created as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s1">&#39;haarcascade_frontalface_default.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="load-and-display-image">
+<h3>Load and display image<a class="headerlink" href="#load-and-display-image" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;hicham.jpg&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#inputimage = cv2.imread(&#39;Gruender.jpg&#39;)</span>
+<span class="n">inputimage</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;hicham.jpg&#39;</span><span class="p">)</span>
+<span class="n">inputimage</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">inputimage</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputimage</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(488, 894, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img</span><span class="o">=</span><span class="n">inputimage</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-pretrained-algorithm-to-find-faces">
+<h3>Apply pretrained algorithm to find faces<a class="headerlink" href="#apply-pretrained-algorithm-to-find-faces" title="Permalink to this headline">¶</a></h3>
+<p>The classifier-object created above provides the <code class="docutils literal notranslate"><span class="pre">detectMultiScale2(image,scaleFactor,minNeighbors)</span></code>-method. This method localises the faces in <code class="docutils literal notranslate"><span class="pre">image</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code>-argument controls how the input image is scaled prior to detection, e.g. is it scaled up or down, which can help to better find the faces in the image. The default value is 1.1 (10% increase).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">minNeighbors</span></code>-argument determines how robust each detection must be in order to be reported, e.g. the number of candidate rectangles that found the face. The default is 3, but this can be lowered to 1 to detect a lot more faces and will likely increase the false positives.</p>
+<p>The method returns for each of the detected faces the x- and y- coordinate and the width and height of the face’s bounding box.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bboxes</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">detectMultiScale2</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">scaleFactor</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span><span class="n">minNeighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, the detected bounding boxes are drawn into the image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">bboxes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">box</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">height</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pt1</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">pt2</span><span class="o">=</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/faceDetection_13_0.png" src="../_images/faceDetection_13_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deep-learning-based-face-detection">
+<h2>Deep Learning based Face Detection<a class="headerlink" href="#deep-learning-based-face-detection" title="Permalink to this headline">¶</a></h2>
+<p>There exist different deep learning architectures for face detection, e.g. the <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a>.</p>
+<p>A MTCNN package, based on Tensorflow and opencv, which already contains a pretrained model can be installed as follows:</p>
+<div class="section" id="overall-approach">
+<h3>Overall approach<a class="headerlink" href="#overall-approach" title="Permalink to this headline">¶</a></h3>
+<p>The approach, proposed in <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> consists of 4 stages, which are sketched in the picture below:</p>
+<ol class="simple">
+<li><p><strong>Stage 1:</strong> In order to achieve scale-invariance, a pyramid of the test-image is generated. This pyramid of images is the input of the following stages.</p></li>
+<li><p><strong>Stage 2:</strong> In this stage a fully convolutional network, called Proposal Network (P-Net), is applied to calculate the candidate windows and their bounding box regression vectors. The estimated bounding box regression vectors are then applied to calibrate the candidates. Finally, non-maximum suppression (NMS) is applied to merge highly overlapping candidates. P-Net is fast, but produces a lot false-positives.</p></li>
+<li><p><strong>Stage 3:</strong> All candidates (i.e. positives and false positives) are fed to another CNN, called Refine Network (R-Net), which further rejects a large number of false candidates, performs calibration with bounding box regression, and NMS candidate merge</p></li>
+<li><p><strong>Stage 4:</strong> This stage is similar to the second stage, but in this stage the goal is to describe the face in more details. In particular, the network will output five facial landmarks’ positions</p></li>
+</ol>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnStages.png" />
+<p>Source: <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a></p>
+</div>
+<div class="section" id="architecture-of-3-cnns">
+<h3>Architecture of 3 CNNs<a class="headerlink" href="#architecture-of-3-cnns" title="Permalink to this headline">¶</a></h3>
+<p><strong>P-Net interpretation as fully convolutional net:</strong> Densely scanning an image of size <span class="math notranslate nohighlight">\(W × H\)</span> for <span class="math notranslate nohighlight">\(12 × 12\)</span> detection windows with a stepsize of 4 is equivalent to apply the entire net to the whole image to obtain a <span class="math notranslate nohighlight">\((⌊(W − 12)/4⌋ + 1) × (⌊(H − 12)/4⌋ + 1)\)</span> map of confidence scores. Each point on the confidence map refers to a <span class="math notranslate nohighlight">\(12 × 12\)</span> detection window on the testing image.</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnArchitecture.png" />
+<p>Source: <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a></p>
+</div>
+<div class="section" id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
+<p>Since <strong>face detection</strong> and <strong>alignment</strong> is performed jointly, different annotation types for training-data is required:</p>
+<ul class="simple">
+<li><p><strong>Negatives:</strong> Regions with an Intersection-over-Union (IoU) ratio less than 0.3 to any ground-truth face,</p></li>
+<li><p><strong>Positives:</strong> IoU above 0.65 to a ground truth face;</p></li>
+<li><p><strong>Part faces:</strong> IoU between 0.4 and 0.65 to a ground truth face;</p></li>
+<li><p><strong>Landmark faces:</strong> faces labeled 5 landmarks’ positions.</p></li>
+</ul>
+<p>Negatives and positives are used for the <strong>face classification task</strong>. Positives and part faces are used for <strong>bounding box regression</strong>. Landmark faces are used for <strong>facial landmark localization</strong>.</p>
+<p>The picture below depicts the determination of <strong>Positives</strong> from labeled training data. In the original size of the image only one of the <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows is annotated as positive, since it’s IoU with a ground-truth bounding box exceeds a defined threshold <span class="math notranslate nohighlight">\(T\)</span>. In the next smaller image-version two <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows are annotated as positive and in the smallest version another positive candidate is found. Note that to each of the found Positives and Part faces, the corresponding ground-truth bounding-box is assigned.</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/IoUpositives.png" />
+<p>The authors of <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> applied the <a class="reference external" href="http://shuoyang1213.me/WIDERFACE/">WIDER FACE benchmark</a> to annotate Positives, Negatives and Part faces. For landmark annotations the <a class="reference external" href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA benchmark</a> has been applied.</p>
+<p>For the <strong>face classification task training</strong> the binary cross-entropy is minimized. Each sample <span class="math notranslate nohighlight">\(x_i\)</span> (detection window) contributes by
+$<span class="math notranslate nohighlight">\(
+L_i^{det}= - (y_i^{det} \log(p_i) + (1-y_i^{det}) \log(1-p_i)),
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>p_i<span class="math notranslate nohighlight">\( is the probability produced by the network that indicates that \)</span>x_i<span class="math notranslate nohighlight">\( is a Positive. The notation \)</span>y_i^{det}<span class="math notranslate nohighlight">\( denotes the ground-truth label of \)</span>x_i$.</p>
+<p>For the <strong>bounding box regression training</strong> the mean-squared-error (MSE) between the 4-coordinates <span class="math notranslate nohighlight">\((x,y,w,h)\)</span> of the true and the estimated bounding-box is minimized. Each candidate window contributes by
+$<span class="math notranslate nohighlight">\(
+L_i^{box}=|| \hat{y}_i^{box} - y_i^{box} ||_2 ,
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\hat{y}_i^{box}<span class="math notranslate nohighlight">\( is the bounding box, estimated by the network and \)</span>y_i{box}<span class="math notranslate nohighlight">\( is the corresponding ground-truth box. \)</span>|| x ||_2<span class="math notranslate nohighlight">\( is the \)</span>L_2<span class="math notranslate nohighlight">\(-norm of \)</span>x$.</p>
+<p>For the <strong>facial landmark training</strong> also the mean-squared-error (MSE) between the 10-coordinates (<span class="math notranslate nohighlight">\((x,y)\)</span> of 5 facial landmarks) of the true and the estimated landmarks is minimized. Each candidate contributes by
+$<span class="math notranslate nohighlight">\(
+L_i^{landmark}=|| \hat{y}_i^{landmark} - y_i^{landmark} ||_2 ,
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\hat{y}_i^{landmark}<span class="math notranslate nohighlight">\( is the 10-dimensional landmark vector, estimated by the network and \)</span>y_i^{landmark}$ is the vector describing the true positions of the 5 landmarks.</p>
+<p>The <strong>overall loss-function</strong> is then
+$<span class="math notranslate nohighlight">\(
+L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_i^j L_i^j,
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span> \beta_i^j \in {0,1}<span class="math notranslate nohighlight">\( is the sample-type indicator (1 if i.th sample belongs to training set of task j, else 0). In the paper \)</span>\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=0.5<span class="math notranslate nohighlight">\( have been applied to train P- and R-Net, and \)</span>\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=1$ for O-Net. The overall loss-function has been minimized by Stochastic-Gradient-Descent.</p>
+</div>
+<div class="section" id="sketches-for-training-and-inference">
+<h3>Sketches for Training and Inference<a class="headerlink" href="#sketches-for-training-and-inference" title="Permalink to this headline">¶</a></h3>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnTraining.png" />
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnInference.png" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install mtcnn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-pretrained-mtcnn-for-face-detection-and-facial-landmark-detection">
+<h3>Apply pretrained MTCNN for face detection and facial landmark detection<a class="headerlink" href="#apply-pretrained-mtcnn-for-face-detection-and-facial-landmark-detection" title="Permalink to this headline">¶</a></h3>
+<p>In the following code-cell first a MTCNN-object is created. Then this object’s <code class="docutils literal notranslate"><span class="pre">detect_faces()</span></code>-method is invoked in order to detect the faces and the facial landmarks</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">img2</span><span class="o">=</span><span class="n">inputimage</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mtcnn.mtcnn</span> <span class="k">import</span> <span class="n">MTCNN</span>
+
+<span class="n">detector</span> <span class="o">=</span> <span class="n">MTCNN</span><span class="p">()</span>
+<span class="n">faces</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect_faces</span><span class="p">(</span><span class="n">img2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen in the following output, for each face the bounding-box coordinates, the confidence and the positions of the facial landmarks are specified:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;box&#39;: [133, 83, 62, 89], &#39;confidence&#39;: 0.9999963045120239, &#39;keypoints&#39;: {&#39;left_eye&#39;: (155, 114), &#39;right_eye&#39;: (183, 119), &#39;nose&#39;: (168, 128), &#39;mouth_left&#39;: (152, 145), &#39;mouth_right&#39;: (176, 149)}}
+{&#39;box&#39;: [212, 38, 59, 85], &#39;confidence&#39;: 0.999977707862854, &#39;keypoints&#39;: {&#39;left_eye&#39;: (230, 71), &#39;right_eye&#39;: (255, 74), &#39;nose&#39;: (241, 88), &#39;mouth_left&#39;: (228, 101), &#39;mouth_right&#39;: (249, 104)}}
+{&#39;box&#39;: [405, 38, 62, 82], &#39;confidence&#39;: 0.9999536275863647, &#39;keypoints&#39;: {&#39;left_eye&#39;: (424, 69), &#39;right_eye&#39;: (452, 71), &#39;nose&#39;: (436, 87), &#39;mouth_left&#39;: (423, 101), &#39;mouth_right&#39;: (446, 103)}}
+{&#39;box&#39;: [771, 95, 56, 75], &#39;confidence&#39;: 0.9999328851699829, &#39;keypoints&#39;: {&#39;left_eye&#39;: (788, 123), &#39;right_eye&#39;: (814, 125), &#39;nose&#39;: (801, 137), &#39;mouth_left&#39;: (788, 154), &#39;mouth_right&#39;: (809, 155)}}
+{&#39;box&#39;: [490, 96, 53, 69], &#39;confidence&#39;: 0.9998329877853394, &#39;keypoints&#39;: {&#39;left_eye&#39;: (506, 123), &#39;right_eye&#39;: (531, 121), &#39;nose&#39;: (519, 136), &#39;mouth_left&#39;: (509, 150), &#39;mouth_right&#39;: (529, 149)}}
+{&#39;box&#39;: [691, 67, 51, 69], &#39;confidence&#39;: 0.9998252987861633, &#39;keypoints&#39;: {&#39;left_eye&#39;: (707, 93), &#39;right_eye&#39;: (730, 96), &#39;nose&#39;: (716, 107), &#39;mouth_left&#39;: (705, 119), &#39;mouth_right&#39;: (724, 122)}}
+{&#39;box&#39;: [347, 73, 60, 79], &#39;confidence&#39;: 0.9991899132728577, &#39;keypoints&#39;: {&#39;left_eye&#39;: (363, 105), &#39;right_eye&#39;: (390, 106), &#39;nose&#39;: (376, 123), &#39;mouth_left&#39;: (364, 135), &#39;mouth_right&#39;: (386, 135)}}
+{&#39;box&#39;: [589, 18, 59, 86], &#39;confidence&#39;: 0.9907700419425964, &#39;keypoints&#39;: {&#39;left_eye&#39;: (604, 52), &#39;right_eye&#39;: (632, 54), &#39;nose&#39;: (615, 68), &#39;mouth_left&#39;: (603, 85), &#39;mouth_right&#39;: (626, 87)}}
+{&#39;box&#39;: [629, 282, 35, 48], &#39;confidence&#39;: 0.8495351076126099, &#39;keypoints&#39;: {&#39;left_eye&#39;: (637, 300), &#39;right_eye&#39;: (651, 299), &#39;nose&#39;: (640, 309), &#39;mouth_left&#39;: (639, 320), &#39;mouth_right&#39;: (650, 318)}}
+{&#39;box&#39;: [459, 118, 24, 31], &#39;confidence&#39;: 0.7795918583869934, &#39;keypoints&#39;: {&#39;left_eye&#39;: (470, 130), &#39;right_eye&#39;: (480, 132), &#39;nose&#39;: (476, 138), &#39;mouth_left&#39;: (468, 142), &#39;mouth_right&#39;: (476, 143)}}
+{&#39;box&#39;: [758, 68, 50, 63], &#39;confidence&#39;: 0.7585497498512268, &#39;keypoints&#39;: {&#39;left_eye&#39;: (772, 93), &#39;right_eye&#39;: (793, 91), &#39;nose&#39;: (780, 108), &#39;mouth_left&#39;: (775, 120), &#39;mouth_right&#39;: (793, 119)}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, the detected bounding-boxes are plotted into the image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw an image with detected objects</span>
+<span class="k">def</span> <span class="nf">draw_image_with_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">result_list</span><span class="p">):</span>
+    <span class="c1"># load the image</span>
+    <span class="c1">#data = plt.imread(filename)</span>
+    <span class="c1"># plot the image</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="c1"># get the context for drawing boxes</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="c1"># plot each box</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">result_list</span><span class="p">:</span>
+        <span class="c1"># get coordinates</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span>
+        <span class="c1"># create the shape</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="c1"># draw the box</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+        <span class="c1"># draw the dots</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;keypoints&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># create and draw dot</span>
+            <span class="n">dot</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+    <span class="c1"># show the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="k">import</span> <span class="n">Rectangle</span><span class="p">,</span><span class="n">Circle</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">detector</span> <span class="o">=</span> <span class="n">MTCNN</span><span class="p">()</span>
+<span class="n">faces</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect_faces</span><span class="p">(</span><span class="n">img2</span><span class="p">)</span>
+<span class="n">draw_image_with_boxes</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7fb3c6a67550&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+</pre></div>
+</div>
+<img alt="../_images/faceDetection_31_1.png" src="../_images/faceDetection_31_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw each face separately</span>
+<span class="k">def</span> <span class="nf">draw_faces</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">result_list</span><span class="p">):</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result_list</span><span class="p">)):</span>
+        <span class="c1"># get coordinates</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">result_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;box&#39;</span><span class="p">]</span>
+        <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">height</span>
+        <span class="c1"># define subplot</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_list</span><span class="p">),</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="c1"># plot face</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">y1</span><span class="p">:</span><span class="n">y2</span><span class="p">,</span> <span class="n">x1</span><span class="p">:</span><span class="n">x2</span><span class="p">])</span>
+    <span class="c1"># show the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_faces</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/faceDetection_33_0.png" src="../_images/faceDetection_33_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./face"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../recognition/objectrecognition.html" title="previous page">Object Recognition</a>
+    <a class='right-next' id="next-link" href="faceRecognition.html" title="next page">Face Recognition using FaceNet</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

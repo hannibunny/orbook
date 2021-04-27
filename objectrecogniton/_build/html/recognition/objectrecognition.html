@@ -56,7 +56,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="References" href="../referenceSection.html" />
+    <link rel="next" title="Face Detection" href="../face/faceDetection.html" />
     <link rel="prev" title="HOG-based Pedestrian Detection" href="../features/HOGpedestrianDetection.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -207,6 +207,23 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Face Detection and Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../face/faceDetection.html">
+   Face Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../face/faceRecognition.html">
+   Face Recognition using FaceNet
   </a>
  </li>
 </ul>
@@ -409,6 +426,11 @@
        New notation for describing k-means
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#from-k-means-to-sparse-coding">
+       From k-means to sparse-coding
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -454,13 +476,13 @@ Even though <em>deep learning</em> approaches are excluded in this section, the 
 <h3>From BoW to Bag of Visual Words<a class="headerlink" href="#from-bow-to-bag-of-visual-words" title="Permalink to this headline">¶</a></h3>
 <p>In contrast to NLP in Object Recognition the input are not texts but images. Moreover, the <strong>input objects are not described by words but by local features</strong>, such as e.g. SIFT features. Hence the <em>Bag of Visual Words</em>-model of an image, contains for each local feature the frequency of the feature in the image. However, this idea must be adapted slightly because there is an important distinction between words in a textcorpus and visual words in a collection of images: <strong>In the text corpus there exists a finite number of different words, but the space of visual words in an image-collection is continuous with an infinite number of possible descriptors</strong> (note that the local descriptors are float-vectors). Hence, the problem is <em>how to quantize the continuous space of local descriptors into a finite discrete set of clusters?</em> The answer is: <em>By applying a clustering-algorithms!</em> Such an algorithm, e.g. k-means clustering, calculates for a given set of vectors and for a user-defined number of clusters <span class="math notranslate nohighlight">\(k\)</span>, a partition into <span class="math notranslate nohighlight">\(k\)</span> cells (=clusters), such that similar vectors are assigned to the same cluster.</p>
 <p>The centroids of the calculated <span class="math notranslate nohighlight">\(k\)</span> clusters constitute the set of visual words, also called the <strong>Visual Vocabulary:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8a57943-a6b4-4be3-93d5-48894104f426">
-<span class="eqno">(74)<a class="headerlink" href="#equation-f8a57943-a6b4-4be3-93d5-48894104f426" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-229136a3-e25f-492f-8bf7-c402563fd1fd">
+<span class="eqno">(74)<a class="headerlink" href="#equation-229136a3-e25f-492f-8bf7-c402563fd1fd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 V=\lbrace v_t \rbrace_{t=1}^K
 \end{equation}\]</div>
 <p>In the Bag-Of-Visual Word matrix, each of the <span class="math notranslate nohighlight">\(k\)</span> columns corresponds to a visual word <span class="math notranslate nohighlight">\(v_t \in V\)</span> and each image in the set ov <span class="math notranslate nohighlight">\(N\)</span> images</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bb4a7fa-a166-49a0-a3b6-099248186402">
-<span class="eqno">(75)<a class="headerlink" href="#equation-5bb4a7fa-a166-49a0-a3b6-099248186402" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed889e4e-34fa-4157-a48c-b696e06da29e">
+<span class="eqno">(75)<a class="headerlink" href="#equation-ed889e4e-34fa-4157-a48c-b696e06da29e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 I=\lbrace I_i \rbrace_{i=1}^N
 \end{equation}\]</div>
 <p>corresponds to a row. The entry <span class="math notranslate nohighlight">\(N(t,i)\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(t\)</span> of the matrix counts the number of times visual word <span class="math notranslate nohighlight">\(v_t\)</span> occurs in image <span class="math notranslate nohighlight">\(I_i\)</span>. Or more accurate: <span class="math notranslate nohighlight">\(N(t,i)\)</span> is the number of local descriptors in image <span class="math notranslate nohighlight">\(i\)</span>, which are assigned to the <span class="math notranslate nohighlight">\(t.th\)</span> cluster.</p>
@@ -502,15 +524,15 @@ I=\lbrace I_i \rbrace_{i=1}^N
 <li><p>First, the number of clusters <span class="math notranslate nohighlight">\(k\)</span> must be defined by the user</p></li>
 <li><p>Then <span class="math notranslate nohighlight">\(k\)</span> initial cluster centers <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> are randomly placed into the d-dimensional space</p></li>
 <li><p>Next, each of the given vectors <span class="math notranslate nohighlight">\(\mathbf{x}_p \in T\)</span> is assigned to it’s closest center-vector <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a458b5e2-e257-4d9a-b559-0dbc360a3113">
-<span class="eqno">(77)<a class="headerlink" href="#equation-a458b5e2-e257-4d9a-b559-0dbc360a3113" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d1cbd7c-0b73-4845-bd95-4f5cb9c501f2">
+<span class="eqno">(77)<a class="headerlink" href="#equation-9d1cbd7c-0b73-4845-bd95-4f5cb9c501f2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\left\|\mathbf{x}_p-\mathbf{v}_i \right\| = \min\limits_{j \in 1 \ldots k } \left\|\mathbf{x}_p-\mathbf{v}_j \right\|,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\left\| \mathbf{x}-\mathbf{v} \right\|\)</span> is the distance between <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 </li>
 <li><p>After this assignment for each cluster <span class="math notranslate nohighlight">\(C_i\)</span> the new cluster centroid <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12a0e57c-e6fb-42ed-bb16-f55d2393c13a">
-<span class="eqno">(78)<a class="headerlink" href="#equation-12a0e57c-e6fb-42ed-bb16-f55d2393c13a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b105f39a-5dca-4c30-9825-f068d00edbbb">
+<span class="eqno">(78)<a class="headerlink" href="#equation-b105f39a-5dca-4c30-9825-f068d00edbbb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\mathbf{v}_i = \frac{1}{n_i} \sum\limits_{\forall \mathbf{x}_p \in C_i} \mathbf{x}_p,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n_i\)</span> is the number of vectors that are assigned to <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
@@ -557,19 +579,19 @@ P^*(C_j|I_q) = \prod_{t=1}^K P(v_t|C_j)^{N(t,q)} P(C_j)
 <p><strong>Training:</strong></p>
 <p>In order to calculate <a class="reference internal" href="#equation-eq-nbred">(81)</a> for all classes, the terms on the right hand side of this equation must be estimated for all classes and all visual words from a given set of <span class="math notranslate nohighlight">\(N\)</span> training samples (pairs of images and corresponding class-label).</p>
 <p>The <em>a-priori probabilities</em> of the classes are estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a9400db9-40fc-4459-8f85-5f71c94e3d96">
-<span class="eqno">(82)<a class="headerlink" href="#equation-a9400db9-40fc-4459-8f85-5f71c94e3d96" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ac754b3-eb3c-428f-9351-1acbafe7947c">
+<span class="eqno">(82)<a class="headerlink" href="#equation-2ac754b3-eb3c-428f-9351-1acbafe7947c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(C_j)=\frac{|C_j|}{N},
 \end{equation}\]</div>
 <p>for all classes <span class="math notranslate nohighlight">\(C_1,C_2,\ldots,C_L\)</span>.</p>
 <p>For all visual words <span class="math notranslate nohighlight">\(v_t\)</span> and all classes <span class="math notranslate nohighlight">\(C_j\)</span> the <strong>likelihood</strong> is estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a090e7ea-8df2-4cf8-8b8e-5c815e0df174">
-<span class="eqno">(83)<a class="headerlink" href="#equation-a090e7ea-8df2-4cf8-8b8e-5c815e0df174" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4198906a-b208-4814-b403-3cb2848f3433">
+<span class="eqno">(83)<a class="headerlink" href="#equation-4198906a-b208-4814-b403-3cb2848f3433" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{\sum\limits_{I_i \in C_j}N(t,i)}{\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In order to avoid likelihoods of value <span class="math notranslate nohighlight">\(0\)</span> <strong>Laplace Smoothing</strong> is applied instead of the equation above:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cac2ff4d-37d7-40d1-b033-3318cfe7fed0">
-<span class="eqno">(84)<a class="headerlink" href="#equation-cac2ff4d-37d7-40d1-b033-3318cfe7fed0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-07a023c2-d672-420a-ab27-da170d60eb22">
+<span class="eqno">(84)<a class="headerlink" href="#equation-07a023c2-d672-420a-ab27-da170d60eb22" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id5">[CDF+04]</a> the authors applied a dataset of 1776 images of 7 different classes. 700 images thereof have been applied for test, the remaining for training. Below for each of the 7 classes a few examples are shown:</p>
@@ -907,6 +929,15 @@ where N is the number of training images</p></li>
 </ul>
 <p>In the k-means <strong>training phase</strong> the optimisation problem of equation <a class="reference internal" href="#equation-kopt">(91)</a> is solved w.r.t. <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. In the <strong>encoding phase</strong>, the learned codebook <span class="math notranslate nohighlight">\(V\)</span> is fixed and equation <a class="reference internal" href="#equation-kopt">(91)</a> will be solved w.r.t. <span class="math notranslate nohighlight">\(U\)</span> for a new dataset <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </div>
+<div class="section" id="from-k-means-to-sparse-coding">
+<h4>From k-means to sparse-coding<a class="headerlink" href="#from-k-means-to-sparse-coding" title="Permalink to this headline">¶</a></h4>
+<p>The step from k-means to sparse coding can be done by relaxing the condition <span class="math notranslate nohighlight">\(Card(\mathbf{u_m})=1\)</span> in equation <a class="reference internal" href="#equation-kopt">(91)</a>. I.e. instead of requiring, that each input is mapped to exactly one cluster, we allow inputs to be assigned to more but only a few clusters. The condition <em>one or only a few</em> can be realized by <strong>L1-regularisation</strong>, which is defined in this context as follows:</p>
+<div class="math notranslate nohighlight" id="equation-sparsecoding">
+<span class="eqno">(92)<a class="headerlink" href="#equation-sparsecoding" title="Permalink to this equation">¶</a></span>\[
+\min\limits_{U,V} \sum\limits_{m=1}^N \Vert \mathbf{x}_m - \mathbf{u}_m V \Vert ^2 + \lambda|\mathbf{u}_m| \quad \mbox{ subject to } \Vert \mathbf{v}_k \Vert = 1 \; \forall k
+\]</div>
+<p>The <span class="math notranslate nohighlight">\(L1\)</span>-norm regularization enforces <span class="math notranslate nohighlight">\(\mathbf{u}_m\)</span> to have a small number of nonzero elements. Moreover, the constraint <span class="math notranslate nohighlight">\(\Vert \mathbf{v}_k \Vert = 1\)</span> provides normalisation of the codebook. The sparse optimisation problem of equation <code class="xref eq docutils literal notranslate"><span class="pre">sparsecoding</span></code> can be solved e.g. by the <a class="reference external" href="http://en.wikipedia.org/wiki/Coordinate_descent">Coordinate Descent Algorithm</a>.</p>
+</div>
 </div>
 <div class="section" id="this-section-and-all-the-following-sections-are-under-construction">
 <h3>!This section and all the following sections are under construction!<a class="headerlink" href="#this-section-and-all-the-following-sections-are-under-construction" title="Permalink to this headline">¶</a></h3>
@@ -952,7 +983,7 @@ where N is the number of training images</p></li>
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../features/HOGpedestrianDetection.html" title="previous page">HOG-based Pedestrian Detection</a>
-    <a class='right-next' id="next-link" href="../referenceSection.html" title="next page">References</a>
+    <a class='right-next' id="next-link" href="../face/faceDetection.html" title="next page">Face Detection</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

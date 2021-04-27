@@ -1,0 +1,1915 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Recognition using FaceNet &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="../referenceSection.html" />
+    <link rel="prev" title="Face Detection" href="faceDetection.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Face Detection and Recognition
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="faceDetection.html">
+   Face Detection
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Face Recognition using FaceNet
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/face/faceRecognition.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/face/faceRecognition.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-fundamentals-on-facenet">
+   Some fundamentals on FaceNET
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture">
+     Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#triplet-loss">
+     Triplet loss
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apply-pretrained-facenet-for-calculating-face-embeddings">
+   Apply pretrained FaceNet for calculating face embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detect-faces-in-the-training-validation-and-test-images">
+   Detect faces in the training-, validation- and test-images
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-facenet-embeddings">
+   Calculate FaceNet-embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apply-facenet-embeddings-to-train-a-svm-classifier">
+   Apply FaceNet Embeddings to train a SVM classifier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     Preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#validation">
+     Validation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="face-recognition-using-facenet">
+<h1>Face Recognition using FaceNet<a class="headerlink" href="#face-recognition-using-facenet" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Author: Johannes Maucher</p></li>
+<li><p>Last update: 04.06.2020</p></li>
+</ul>
+<p>Conventional methods for face recognition (before the rise of deep learning), are e.g. the Eigenface approach by <a class="reference external" href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Turk and Pentland: Face Recognition using Eigenfaces</a> or the <a class="reference external" href="https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf">Fisherfaces approach by Belhumeur et al</a>. Both of these approaches calculate a low-dimensional subspace from the high dimensonal image space. Once this subspace is determined, by PCA or FLDA, respectively, all images are transformed into this subspace and recognition, e.g. simple nearest-neighbour recognition, is performed there. See <a class="reference external" href="https://gitlab.mi.hdm-stuttgart.de/maucher/or/-/blob/master/Slides/V04SubspaceFeatures.pdf">J. Maucher: Lecture Object Recognition</a> for details on these approaches.</p>
+<p>FaceNet is a CNN-based face recognition system that was introduced in <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet: A Unified Embedding for Face Recognition and Clustering</a>. For a given image of a face, FaceNet calculates a vector of length 128, the so called <strong>face embedding</strong>. That is, similar as the conventional approaches, Eigenface and Fisherface, also FaceNet transforms the high-dimensional image space into a low-dimensional subspace. This low-dimensional embedding can be used as input for any supervised machine learning algorithm, e.g. a Support Vector Machine (SVM).</p>
+<p>The overall process, implemented in this notebook, is summarized in this picture:</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/faceRecognitionOverall.png" />
+<div class="section" id="some-fundamentals-on-facenet">
+<h2>Some fundamentals on FaceNET<a class="headerlink" href="#some-fundamentals-on-facenet" title="Permalink to this headline">¶</a></h2>
+<p>FaceNet is a deep Convolutional Neural Network (CNN), which calculates from face-images at it’s input so called face-embeddings (vectors of length 128) at it’s output. FaceNet is trained such that the face-embedding vectors of images, which contain the same person, are close to each other and the vectors from images of different persons have a large euclidean distance in between.</p>
+<div class="section" id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
+<p>The authors of the <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet paper</a> propose two different CNN architectures that can be applied. The first and less complex one is a CNN as introduced in <a class="reference external" href="https://arxiv.org/abs/1311.2901">Zeiler &amp; Fergus: Visualizing and Understanding CNNs</a>. The second one is an Inception-Net like introduced in <a class="reference external" href="https://arxiv.org/abs/1409.4842">Szegedy et al: Going deeper with convolutions (GoogLeNet)</a>. The pretrained-FaceNet CNN applied in this notebook is even more complex - the Inception-ResNet as introduced in <a class="reference external" href="https://arxiv.org/abs/1602.07261">Szegedy et al: Inception-v4, Inception-ResNet and the Impact of Residual Connections on Learning</a>. Independent of the concrete CNN, the abstract architecture is as depicted below:</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/faceNetGeneralArchitecture.png" />
+<p>Source: <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet paper</a></p>
+</div>
+<div class="section" id="triplet-loss">
+<h3>Triplet loss<a class="headerlink" href="#triplet-loss" title="Permalink to this headline">¶</a></h3>
+<p>The triplet loss is the most important part of the FaceNet approach. The authors put it as follows:</p>
+<blockquote>
+<div><p><em>The triplet loss … directly reflects what we want to achieve in face verification, recognition and clustering. Namely, we strive for an embedding <span class="math notranslate nohighlight">\(f(x)\)</span>, from an image <span class="math notranslate nohighlight">\(x\)</span> into a feature space <span class="math notranslate nohighlight">\(\cal{R}^d\)</span>, such that the squared distance between all faces, independent of imaging conditions, of the same identity is small, whereas the squared distance beetween a pair of face images from different identities is large.</em></p>
+</div></blockquote>
+<p>The goal of the triplet loss is to ensure that an image <span class="math notranslate nohighlight">\(x_i^a\)</span> (anchor) of a specific person is closer to all other images <span class="math notranslate nohighlight">\(x_i^p\)</span> (positive) of the same person than it is to any image <span class="math notranslate nohighlight">\(x_i^n\)</span> (negative) of any other person. This is visualized in the figure below:</p>
+<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/faceNetLoss.png" />
+<p>Source: <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet paper</a></p>
+<p>More formally, the following relation shall be fulfilled:
+$<span class="math notranslate nohighlight">\(
+|| f(x_i^a) - f(x_i^p) ||_2^2 + \alpha &lt; || f(x_i^a) - f(x_i^n) ||_2^2, \quad \forall (f(x_i^a), f(x_i^p), f(x_i^n) \in \cal{T},
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\alpha<span class="math notranslate nohighlight">\( is a margin that is enforced between positive and negative pairs. This implies that the following loss function must be minimized:
+\)</span><span class="math notranslate nohighlight">\(
+L=\sum\limits_{i=1}^N \left[ || f(x_i^a) - f(x_i^p) ||_2^2 -  || f(x_i^a) - f(x_i^n) ||_2^2 + \alpha  \right].
+\)</span>$</p>
+<p>If just all possible triplets <span class="math notranslate nohighlight">\(\cal{T}\)</span> are applied, training would converge slowly, because many triplets already fulfill the inequality-relation formulated above and won’t yield weight-adaptations. Therefore, the authors of the FaceNet paper suggest a specific <strong>triplet selection process</strong> such that for a given anchor <span class="math notranslate nohighlight">\(x_i^a\)</span> only those positives are selected, for which <span class="math notranslate nohighlight">\(|| f(x_i^a) - f(x_i^p) ||_2^2\)</span> is maximal and only those negatives are selected, for which <span class="math notranslate nohighlight">\(|| f(x_i^a) - f(x_i^n) ||_2^2\)</span> is minimal. For details please refer to <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet paper</a>.</p>
+</div>
+</div>
+<div class="section" id="apply-pretrained-facenet-for-calculating-face-embeddings">
+<h2>Apply pretrained FaceNet for calculating face embeddings<a class="headerlink" href="#apply-pretrained-facenet-for-calculating-face-embeddings" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook a pre-trained Keras FaceNet model from this project <a class="reference external" href="https://github.com/nyoki-mtl/keras-facenet">https://github.com/nyoki-mtl/keras-facenet</a> will be applied. The model itself must be downloaded from <a class="reference external" href="https://drive.google.com/open?id=1pwQ3H4aJ8a6yyJHZkTwtjcL4wYWQb7bn">facenet_keras.h5</a>. It was trained on <a class="reference external" href="https://www.microsoft.com/en-us/research/project/ms-celeb-1m-challenge-recognizing-one-million-celebrities-real-world/">MS-Celeb-1M dataset</a>. The pre-trained model expects input images to</p>
+<ul class="simple">
+<li><p>be color,</p></li>
+<li><p>have their pixel values whitened (standardized across all three channels),</p></li>
+<li><p>have a square shape of 160×160 pixels.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">architecture</span> <span class="k">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">warnings</span> <span class="k">import</span> <span class="n">filterwarnings</span>
+<span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">InceptionResNetV2</span><span class="p">()</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;weights/facenet_keras_weights.h5&quot;</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;KerasTensor: shape=(None, 160, 160, 3) dtype=float32 (created by layer &#39;input_1&#39;)&gt;]
+[&lt;KerasTensor: shape=(None, 128) dtype=float32 (created by layer &#39;Bottleneck_BatchNorm&#39;)&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of the previous code-cell tells that the input to FaceNet must be of shape <span class="math notranslate nohighlight">\((160,160,3)\)</span> and it’s output is a vector of length <span class="math notranslate nohighlight">\(128\)</span>. The entire FaceNet architecture is summarized below. As can be seen FaceNet is a combination of inception-net and resnet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;inception_resnet_v1&quot;
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            [(None, 160, 160, 3) 0                                            
+__________________________________________________________________________________________________
+Conv2d_1a_3x3 (Conv2D)          (None, 79, 79, 32)   864         input_1[0][0]                    
+__________________________________________________________________________________________________
+Conv2d_1a_3x3_BatchNorm (BatchN (None, 79, 79, 32)   96          Conv2d_1a_3x3[0][0]              
+__________________________________________________________________________________________________
+Conv2d_1a_3x3_Activation (Activ (None, 79, 79, 32)   0           Conv2d_1a_3x3_BatchNorm[0][0]    
+__________________________________________________________________________________________________
+Conv2d_2a_3x3 (Conv2D)          (None, 77, 77, 32)   9216        Conv2d_1a_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Conv2d_2a_3x3_BatchNorm (BatchN (None, 77, 77, 32)   96          Conv2d_2a_3x3[0][0]              
+__________________________________________________________________________________________________
+Conv2d_2a_3x3_Activation (Activ (None, 77, 77, 32)   0           Conv2d_2a_3x3_BatchNorm[0][0]    
+__________________________________________________________________________________________________
+Conv2d_2b_3x3 (Conv2D)          (None, 77, 77, 64)   18432       Conv2d_2a_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Conv2d_2b_3x3_BatchNorm (BatchN (None, 77, 77, 64)   192         Conv2d_2b_3x3[0][0]              
+__________________________________________________________________________________________________
+Conv2d_2b_3x3_Activation (Activ (None, 77, 77, 64)   0           Conv2d_2b_3x3_BatchNorm[0][0]    
+__________________________________________________________________________________________________
+MaxPool_3a_3x3 (MaxPooling2D)   (None, 38, 38, 64)   0           Conv2d_2b_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Conv2d_3b_1x1 (Conv2D)          (None, 38, 38, 80)   5120        MaxPool_3a_3x3[0][0]             
+__________________________________________________________________________________________________
+Conv2d_3b_1x1_BatchNorm (BatchN (None, 38, 38, 80)   240         Conv2d_3b_1x1[0][0]              
+__________________________________________________________________________________________________
+Conv2d_3b_1x1_Activation (Activ (None, 38, 38, 80)   0           Conv2d_3b_1x1_BatchNorm[0][0]    
+__________________________________________________________________________________________________
+Conv2d_4a_3x3 (Conv2D)          (None, 36, 36, 192)  138240      Conv2d_3b_1x1_Activation[0][0]   
+__________________________________________________________________________________________________
+Conv2d_4a_3x3_BatchNorm (BatchN (None, 36, 36, 192)  576         Conv2d_4a_3x3[0][0]              
+__________________________________________________________________________________________________
+Conv2d_4a_3x3_Activation (Activ (None, 36, 36, 192)  0           Conv2d_4a_3x3_BatchNorm[0][0]    
+__________________________________________________________________________________________________
+Conv2d_4b_3x3 (Conv2D)          (None, 17, 17, 256)  442368      Conv2d_4a_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Conv2d_4b_3x3_BatchNorm (BatchN (None, 17, 17, 256)  768         Conv2d_4b_3x3[0][0]              
+__________________________________________________________________________________________________
+Conv2d_4b_3x3_Activation (Activ (None, 17, 17, 256)  0           Conv2d_4b_3x3_BatchNorm[0][0]    
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   8192        Conv2d_4b_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_1_Branch_2_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_1_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_1_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   8192        Conv2d_4b_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_1_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_1_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_1_Branch_1_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_1_Branch_2_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_1_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_1_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_1_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_1_Branch_0_Conv2d_1x1 ( (None, 17, 17, 32)   8192        Conv2d_4b_3x3_Activation[0][0]   
+__________________________________________________________________________________________________
+Block35_1_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_1_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   9216        Block35_1_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_1_Branch_0_Conv2d_1x1_B (None, 17, 17, 32)   96          Block35_1_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block35_1_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_1_Branch_1_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   96          Block35_1_Branch_2_Conv2d_0c_3x3[
+__________________________________________________________________________________________________
+Block35_1_Branch_0_Conv2d_1x1_A (None, 17, 17, 32)   0           Block35_1_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block35_1_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_1_Branch_1_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_1_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   0           Block35_1_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_1_Concatenate (Concaten (None, 17, 17, 96)   0           Block35_1_Branch_0_Conv2d_1x1_Act
+                                                                 Block35_1_Branch_1_Conv2d_0b_3x3_
+                                                                 Block35_1_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_1_Conv2d_1x1 (Conv2D)   (None, 17, 17, 256)  24832       Block35_1_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda (Lambda)                 (None, 17, 17, 256)  0           Block35_1_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add (Add)                       (None, 17, 17, 256)  0           Conv2d_4b_3x3_Activation[0][0]   
+                                                                 lambda[0][0]                     
+__________________________________________________________________________________________________
+Block35_1_Activation (Activatio (None, 17, 17, 256)  0           add[0][0]                        
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_1_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_2_Branch_2_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_2_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_2_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_1_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_2_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_2_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_2_Branch_1_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_2_Branch_2_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_2_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_2_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_2_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_2_Branch_0_Conv2d_1x1 ( (None, 17, 17, 32)   8192        Block35_1_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_2_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_2_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   9216        Block35_2_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_2_Branch_0_Conv2d_1x1_B (None, 17, 17, 32)   96          Block35_2_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block35_2_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_2_Branch_1_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   96          Block35_2_Branch_2_Conv2d_0c_3x3[
+__________________________________________________________________________________________________
+Block35_2_Branch_0_Conv2d_1x1_A (None, 17, 17, 32)   0           Block35_2_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block35_2_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_2_Branch_1_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_2_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   0           Block35_2_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_2_Concatenate (Concaten (None, 17, 17, 96)   0           Block35_2_Branch_0_Conv2d_1x1_Act
+                                                                 Block35_2_Branch_1_Conv2d_0b_3x3_
+                                                                 Block35_2_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_2_Conv2d_1x1 (Conv2D)   (None, 17, 17, 256)  24832       Block35_2_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 17, 17, 256)  0           Block35_2_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 17, 17, 256)  0           Block35_1_Activation[0][0]       
+                                                                 lambda_1[0][0]                   
+__________________________________________________________________________________________________
+Block35_2_Activation (Activatio (None, 17, 17, 256)  0           add_1[0][0]                      
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_2_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_3_Branch_2_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_3_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_3_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_2_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_3_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_3_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_3_Branch_1_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_3_Branch_2_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_3_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_3_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_3_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_3_Branch_0_Conv2d_1x1 ( (None, 17, 17, 32)   8192        Block35_2_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_3_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_3_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   9216        Block35_3_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_3_Branch_0_Conv2d_1x1_B (None, 17, 17, 32)   96          Block35_3_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block35_3_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_3_Branch_1_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   96          Block35_3_Branch_2_Conv2d_0c_3x3[
+__________________________________________________________________________________________________
+Block35_3_Branch_0_Conv2d_1x1_A (None, 17, 17, 32)   0           Block35_3_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block35_3_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_3_Branch_1_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_3_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   0           Block35_3_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_3_Concatenate (Concaten (None, 17, 17, 96)   0           Block35_3_Branch_0_Conv2d_1x1_Act
+                                                                 Block35_3_Branch_1_Conv2d_0b_3x3_
+                                                                 Block35_3_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_3_Conv2d_1x1 (Conv2D)   (None, 17, 17, 256)  24832       Block35_3_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 17, 17, 256)  0           Block35_3_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_2 (Add)                     (None, 17, 17, 256)  0           Block35_2_Activation[0][0]       
+                                                                 lambda_2[0][0]                   
+__________________________________________________________________________________________________
+Block35_3_Activation (Activatio (None, 17, 17, 256)  0           add_2[0][0]                      
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_3_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_4_Branch_2_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_4_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_4_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_3_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_4_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_4_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_4_Branch_1_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_4_Branch_2_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_4_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_4_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_4_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_4_Branch_0_Conv2d_1x1 ( (None, 17, 17, 32)   8192        Block35_3_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_4_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_4_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   9216        Block35_4_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_4_Branch_0_Conv2d_1x1_B (None, 17, 17, 32)   96          Block35_4_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block35_4_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_4_Branch_1_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   96          Block35_4_Branch_2_Conv2d_0c_3x3[
+__________________________________________________________________________________________________
+Block35_4_Branch_0_Conv2d_1x1_A (None, 17, 17, 32)   0           Block35_4_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block35_4_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_4_Branch_1_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_4_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   0           Block35_4_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_4_Concatenate (Concaten (None, 17, 17, 96)   0           Block35_4_Branch_0_Conv2d_1x1_Act
+                                                                 Block35_4_Branch_1_Conv2d_0b_3x3_
+                                                                 Block35_4_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_4_Conv2d_1x1 (Conv2D)   (None, 17, 17, 256)  24832       Block35_4_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_3 (Lambda)               (None, 17, 17, 256)  0           Block35_4_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_3 (Add)                     (None, 17, 17, 256)  0           Block35_3_Activation[0][0]       
+                                                                 lambda_3[0][0]                   
+__________________________________________________________________________________________________
+Block35_4_Activation (Activatio (None, 17, 17, 256)  0           add_3[0][0]                      
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_4_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_5_Branch_2_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_5_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_5_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   8192        Block35_4_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_5_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_5_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   96          Block35_5_Branch_1_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_5_Branch_2_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_5_Branch_1_Conv2d_0a_1x (None, 17, 17, 32)   0           Block35_5_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_5_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_5_Branch_0_Conv2d_1x1 ( (None, 17, 17, 32)   8192        Block35_4_Activation[0][0]       
+__________________________________________________________________________________________________
+Block35_5_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   9216        Block35_5_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   9216        Block35_5_Branch_2_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_5_Branch_0_Conv2d_1x1_B (None, 17, 17, 32)   96          Block35_5_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block35_5_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   96          Block35_5_Branch_1_Conv2d_0b_3x3[
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   96          Block35_5_Branch_2_Conv2d_0c_3x3[
+__________________________________________________________________________________________________
+Block35_5_Branch_0_Conv2d_1x1_A (None, 17, 17, 32)   0           Block35_5_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block35_5_Branch_1_Conv2d_0b_3x (None, 17, 17, 32)   0           Block35_5_Branch_1_Conv2d_0b_3x3_
+__________________________________________________________________________________________________
+Block35_5_Branch_2_Conv2d_0c_3x (None, 17, 17, 32)   0           Block35_5_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_5_Concatenate (Concaten (None, 17, 17, 96)   0           Block35_5_Branch_0_Conv2d_1x1_Act
+                                                                 Block35_5_Branch_1_Conv2d_0b_3x3_
+                                                                 Block35_5_Branch_2_Conv2d_0c_3x3_
+__________________________________________________________________________________________________
+Block35_5_Conv2d_1x1 (Conv2D)   (None, 17, 17, 256)  24832       Block35_5_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_4 (Lambda)               (None, 17, 17, 256)  0           Block35_5_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_4 (Add)                     (None, 17, 17, 256)  0           Block35_4_Activation[0][0]       
+                                                                 lambda_4[0][0]                   
+__________________________________________________________________________________________________
+Block35_5_Activation (Activatio (None, 17, 17, 256)  0           add_4[0][0]                      
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_0a_1x1 (None, 17, 17, 192)  49152       Block35_5_Activation[0][0]       
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_0a_1x1 (None, 17, 17, 192)  576         Mixed_6a_Branch_1_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_0a_1x1 (None, 17, 17, 192)  0           Mixed_6a_Branch_1_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_0b_3x3 (None, 17, 17, 192)  331776      Mixed_6a_Branch_1_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_0b_3x3 (None, 17, 17, 192)  576         Mixed_6a_Branch_1_Conv2d_0b_3x3[0
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_0b_3x3 (None, 17, 17, 192)  0           Mixed_6a_Branch_1_Conv2d_0b_3x3_B
+__________________________________________________________________________________________________
+Mixed_6a_Branch_0_Conv2d_1a_3x3 (None, 8, 8, 384)    884736      Block35_5_Activation[0][0]       
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_1a_3x3 (None, 8, 8, 256)    442368      Mixed_6a_Branch_1_Conv2d_0b_3x3_A
+__________________________________________________________________________________________________
+Mixed_6a_Branch_0_Conv2d_1a_3x3 (None, 8, 8, 384)    1152        Mixed_6a_Branch_0_Conv2d_1a_3x3[0
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_1a_3x3 (None, 8, 8, 256)    768         Mixed_6a_Branch_1_Conv2d_1a_3x3[0
+__________________________________________________________________________________________________
+Mixed_6a_Branch_0_Conv2d_1a_3x3 (None, 8, 8, 384)    0           Mixed_6a_Branch_0_Conv2d_1a_3x3_B
+__________________________________________________________________________________________________
+Mixed_6a_Branch_1_Conv2d_1a_3x3 (None, 8, 8, 256)    0           Mixed_6a_Branch_1_Conv2d_1a_3x3_B
+__________________________________________________________________________________________________
+Mixed_6a_Branch_2_MaxPool_1a_3x (None, 8, 8, 256)    0           Block35_5_Activation[0][0]       
+__________________________________________________________________________________________________
+Mixed_6a (Concatenate)          (None, 8, 8, 896)    0           Mixed_6a_Branch_0_Conv2d_1a_3x3_A
+                                                                 Mixed_6a_Branch_1_Conv2d_1a_3x3_A
+                                                                 Mixed_6a_Branch_2_MaxPool_1a_3x3[
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0a_1x (None, 8, 8, 128)    114688      Mixed_6a[0][0]                   
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_1_Branch_1_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_1_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_1_Branch_1_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_1_Branch_1_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_1_Branch_1_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_1_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Mixed_6a[0][0]                   
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_1_Branch_1_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_1_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_1_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_1_Branch_1_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_1_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_1_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_1_Branch_1_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_1_Branch_1_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_1_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_1_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_1_Branch_1_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_1_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_1_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_5 (Lambda)               (None, 8, 8, 896)    0           Block17_1_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_5 (Add)                     (None, 8, 8, 896)    0           Mixed_6a[0][0]                   
+                                                                 lambda_5[0][0]                   
+__________________________________________________________________________________________________
+Block17_1_Activation (Activatio (None, 8, 8, 896)    0           add_5[0][0]                      
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_1_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_2_Branch_2_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_2_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_2_Branch_2_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_2_Branch_2_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_2_Branch_2_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_2_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_1_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_2_Branch_2_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_2_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_2_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_2_Branch_2_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_2_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_2_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_2_Branch_2_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_2_Branch_2_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_2_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_2_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_2_Branch_2_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_2_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_2_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_6 (Lambda)               (None, 8, 8, 896)    0           Block17_2_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_6 (Add)                     (None, 8, 8, 896)    0           Block17_1_Activation[0][0]       
+                                                                 lambda_6[0][0]                   
+__________________________________________________________________________________________________
+Block17_2_Activation (Activatio (None, 8, 8, 896)    0           add_6[0][0]                      
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_2_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_3_Branch_3_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_3_Branch_3_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_3_Branch_3_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_3_Branch_3_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_3_Branch_3_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_3_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_2_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_3_Branch_3_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_3_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_3_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_3_Branch_3_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_3_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_3_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_3_Branch_3_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_3_Branch_3_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_3_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_3_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_3_Branch_3_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_3_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_3_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_7 (Lambda)               (None, 8, 8, 896)    0           Block17_3_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_7 (Add)                     (None, 8, 8, 896)    0           Block17_2_Activation[0][0]       
+                                                                 lambda_7[0][0]                   
+__________________________________________________________________________________________________
+Block17_3_Activation (Activatio (None, 8, 8, 896)    0           add_7[0][0]                      
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_3_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_4_Branch_4_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_4_Branch_4_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_4_Branch_4_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_4_Branch_4_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_4_Branch_4_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_4_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_3_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_4_Branch_4_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_4_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_4_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_4_Branch_4_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_4_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_4_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_4_Branch_4_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_4_Branch_4_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_4_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_4_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_4_Branch_4_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_4_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_4_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_8 (Lambda)               (None, 8, 8, 896)    0           Block17_4_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_8 (Add)                     (None, 8, 8, 896)    0           Block17_3_Activation[0][0]       
+                                                                 lambda_8[0][0]                   
+__________________________________________________________________________________________________
+Block17_4_Activation (Activatio (None, 8, 8, 896)    0           add_8[0][0]                      
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_4_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_5_Branch_5_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_5_Branch_5_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_5_Branch_5_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_5_Branch_5_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_5_Branch_5_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_5_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_4_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_5_Branch_5_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_5_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_5_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_5_Branch_5_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_5_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_5_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_5_Branch_5_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_5_Branch_5_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_5_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_5_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_5_Branch_5_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_5_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_5_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_9 (Lambda)               (None, 8, 8, 896)    0           Block17_5_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_9 (Add)                     (None, 8, 8, 896)    0           Block17_4_Activation[0][0]       
+                                                                 lambda_9[0][0]                   
+__________________________________________________________________________________________________
+Block17_5_Activation (Activatio (None, 8, 8, 896)    0           add_9[0][0]                      
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_5_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_6_Branch_6_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_6_Branch_6_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_6_Branch_6_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_6_Branch_6_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_6_Branch_6_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_6_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_5_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_6_Branch_6_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_6_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_6_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_6_Branch_6_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_6_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_6_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_6_Branch_6_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_6_Branch_6_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_6_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_6_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_6_Branch_6_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_6_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_6_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_10 (Lambda)              (None, 8, 8, 896)    0           Block17_6_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_10 (Add)                    (None, 8, 8, 896)    0           Block17_5_Activation[0][0]       
+                                                                 lambda_10[0][0]                  
+__________________________________________________________________________________________________
+Block17_6_Activation (Activatio (None, 8, 8, 896)    0           add_10[0][0]                     
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_6_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_7_Branch_7_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_7_Branch_7_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_7_Branch_7_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_7_Branch_7_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_7_Branch_7_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_7_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_6_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_7_Branch_7_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_7_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_7_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_7_Branch_7_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_7_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_7_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_7_Branch_7_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_7_Branch_7_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_7_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_7_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_7_Branch_7_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_7_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_7_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_11 (Lambda)              (None, 8, 8, 896)    0           Block17_7_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_11 (Add)                    (None, 8, 8, 896)    0           Block17_6_Activation[0][0]       
+                                                                 lambda_11[0][0]                  
+__________________________________________________________________________________________________
+Block17_7_Activation (Activatio (None, 8, 8, 896)    0           add_11[0][0]                     
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_7_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_8_Branch_8_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_8_Branch_8_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_8_Branch_8_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_8_Branch_8_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_8_Branch_8_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_8_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_7_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_8_Branch_8_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_8_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_8_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_8_Branch_8_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_8_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_8_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_8_Branch_8_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_8_Branch_8_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_8_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_8_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_8_Branch_8_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_8_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_8_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_12 (Lambda)              (None, 8, 8, 896)    0           Block17_8_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_12 (Add)                    (None, 8, 8, 896)    0           Block17_7_Activation[0][0]       
+                                                                 lambda_12[0][0]                  
+__________________________________________________________________________________________________
+Block17_8_Activation (Activatio (None, 8, 8, 896)    0           add_12[0][0]                     
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0a_1x (None, 8, 8, 128)    114688      Block17_8_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0a_1x (None, 8, 8, 128)    384         Block17_9_Branch_9_Conv2d_0a_1x1[
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0a_1x (None, 8, 8, 128)    0           Block17_9_Branch_9_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0b_1x (None, 8, 8, 128)    114688      Block17_9_Branch_9_Conv2d_0a_1x1_
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0b_1x (None, 8, 8, 128)    384         Block17_9_Branch_9_Conv2d_0b_1x7[
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0b_1x (None, 8, 8, 128)    0           Block17_9_Branch_9_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_9_Branch_0_Conv2d_1x1 ( (None, 8, 8, 128)    114688      Block17_8_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0c_7x (None, 8, 8, 128)    114688      Block17_9_Branch_9_Conv2d_0b_1x7_
+__________________________________________________________________________________________________
+Block17_9_Branch_0_Conv2d_1x1_B (None, 8, 8, 128)    384         Block17_9_Branch_0_Conv2d_1x1[0][
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0c_7x (None, 8, 8, 128)    384         Block17_9_Branch_9_Conv2d_0c_7x1[
+__________________________________________________________________________________________________
+Block17_9_Branch_0_Conv2d_1x1_A (None, 8, 8, 128)    0           Block17_9_Branch_0_Conv2d_1x1_Bat
+__________________________________________________________________________________________________
+Block17_9_Branch_9_Conv2d_0c_7x (None, 8, 8, 128)    0           Block17_9_Branch_9_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_9_Concatenate (Concaten (None, 8, 8, 256)    0           Block17_9_Branch_0_Conv2d_1x1_Act
+                                                                 Block17_9_Branch_9_Conv2d_0c_7x1_
+__________________________________________________________________________________________________
+Block17_9_Conv2d_1x1 (Conv2D)   (None, 8, 8, 896)    230272      Block17_9_Concatenate[0][0]      
+__________________________________________________________________________________________________
+lambda_13 (Lambda)              (None, 8, 8, 896)    0           Block17_9_Conv2d_1x1[0][0]       
+__________________________________________________________________________________________________
+add_13 (Add)                    (None, 8, 8, 896)    0           Block17_8_Activation[0][0]       
+                                                                 lambda_13[0][0]                  
+__________________________________________________________________________________________________
+Block17_9_Activation (Activatio (None, 8, 8, 896)    0           add_13[0][0]                     
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0a_ (None, 8, 8, 128)    114688      Block17_9_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0a_ (None, 8, 8, 128)    384         Block17_10_Branch_10_Conv2d_0a_1x
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0a_ (None, 8, 8, 128)    0           Block17_10_Branch_10_Conv2d_0a_1x
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0b_ (None, 8, 8, 128)    114688      Block17_10_Branch_10_Conv2d_0a_1x
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0b_ (None, 8, 8, 128)    384         Block17_10_Branch_10_Conv2d_0b_1x
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0b_ (None, 8, 8, 128)    0           Block17_10_Branch_10_Conv2d_0b_1x
+__________________________________________________________________________________________________
+Block17_10_Branch_0_Conv2d_1x1  (None, 8, 8, 128)    114688      Block17_9_Activation[0][0]       
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0c_ (None, 8, 8, 128)    114688      Block17_10_Branch_10_Conv2d_0b_1x
+__________________________________________________________________________________________________
+Block17_10_Branch_0_Conv2d_1x1_ (None, 8, 8, 128)    384         Block17_10_Branch_0_Conv2d_1x1[0]
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0c_ (None, 8, 8, 128)    384         Block17_10_Branch_10_Conv2d_0c_7x
+__________________________________________________________________________________________________
+Block17_10_Branch_0_Conv2d_1x1_ (None, 8, 8, 128)    0           Block17_10_Branch_0_Conv2d_1x1_Ba
+__________________________________________________________________________________________________
+Block17_10_Branch_10_Conv2d_0c_ (None, 8, 8, 128)    0           Block17_10_Branch_10_Conv2d_0c_7x
+__________________________________________________________________________________________________
+Block17_10_Concatenate (Concate (None, 8, 8, 256)    0           Block17_10_Branch_0_Conv2d_1x1_Ac
+                                                                 Block17_10_Branch_10_Conv2d_0c_7x
+__________________________________________________________________________________________________
+Block17_10_Conv2d_1x1 (Conv2D)  (None, 8, 8, 896)    230272      Block17_10_Concatenate[0][0]     
+__________________________________________________________________________________________________
+lambda_14 (Lambda)              (None, 8, 8, 896)    0           Block17_10_Conv2d_1x1[0][0]      
+__________________________________________________________________________________________________
+add_14 (Add)                    (None, 8, 8, 896)    0           Block17_9_Activation[0][0]       
+                                                                 lambda_14[0][0]                  
+__________________________________________________________________________________________________
+Block17_10_Activation (Activati (None, 8, 8, 896)    0           add_14[0][0]                     
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_0a_1x1 (None, 8, 8, 256)    229376      Block17_10_Activation[0][0]      
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_0a_1x1 (None, 8, 8, 256)    768         Mixed_7a_Branch_2_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_0a_1x1 (None, 8, 8, 256)    0           Mixed_7a_Branch_2_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_0_Conv2d_0a_1x1 (None, 8, 8, 256)    229376      Block17_10_Activation[0][0]      
+__________________________________________________________________________________________________
+Mixed_7a_Branch_1_Conv2d_0a_1x1 (None, 8, 8, 256)    229376      Block17_10_Activation[0][0]      
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_0b_3x3 (None, 8, 8, 256)    589824      Mixed_7a_Branch_2_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Mixed_7a_Branch_0_Conv2d_0a_1x1 (None, 8, 8, 256)    768         Mixed_7a_Branch_0_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_1_Conv2d_0a_1x1 (None, 8, 8, 256)    768         Mixed_7a_Branch_1_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_0b_3x3 (None, 8, 8, 256)    768         Mixed_7a_Branch_2_Conv2d_0b_3x3[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_0_Conv2d_0a_1x1 (None, 8, 8, 256)    0           Mixed_7a_Branch_0_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_1_Conv2d_0a_1x1 (None, 8, 8, 256)    0           Mixed_7a_Branch_1_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_0b_3x3 (None, 8, 8, 256)    0           Mixed_7a_Branch_2_Conv2d_0b_3x3_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_0_Conv2d_1a_3x3 (None, 3, 3, 384)    884736      Mixed_7a_Branch_0_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Mixed_7a_Branch_1_Conv2d_1a_3x3 (None, 3, 3, 256)    589824      Mixed_7a_Branch_1_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_1a_3x3 (None, 3, 3, 256)    589824      Mixed_7a_Branch_2_Conv2d_0b_3x3_A
+__________________________________________________________________________________________________
+Mixed_7a_Branch_0_Conv2d_1a_3x3 (None, 3, 3, 384)    1152        Mixed_7a_Branch_0_Conv2d_1a_3x3[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_1_Conv2d_1a_3x3 (None, 3, 3, 256)    768         Mixed_7a_Branch_1_Conv2d_1a_3x3[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_1a_3x3 (None, 3, 3, 256)    768         Mixed_7a_Branch_2_Conv2d_1a_3x3[0
+__________________________________________________________________________________________________
+Mixed_7a_Branch_0_Conv2d_1a_3x3 (None, 3, 3, 384)    0           Mixed_7a_Branch_0_Conv2d_1a_3x3_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_1_Conv2d_1a_3x3 (None, 3, 3, 256)    0           Mixed_7a_Branch_1_Conv2d_1a_3x3_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_2_Conv2d_1a_3x3 (None, 3, 3, 256)    0           Mixed_7a_Branch_2_Conv2d_1a_3x3_B
+__________________________________________________________________________________________________
+Mixed_7a_Branch_3_MaxPool_1a_3x (None, 3, 3, 896)    0           Block17_10_Activation[0][0]      
+__________________________________________________________________________________________________
+Mixed_7a (Concatenate)          (None, 3, 3, 1792)   0           Mixed_7a_Branch_0_Conv2d_1a_3x3_A
+                                                                 Mixed_7a_Branch_1_Conv2d_1a_3x3_A
+                                                                 Mixed_7a_Branch_2_Conv2d_1a_3x3_A
+                                                                 Mixed_7a_Branch_3_MaxPool_1a_3x3[
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0a_1x1 (None, 3, 3, 192)    344064      Mixed_7a[0][0]                   
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0a_1x1 (None, 3, 3, 192)    576         Block8_1_Branch_1_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0a_1x1 (None, 3, 3, 192)    0           Block8_1_Branch_1_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0b_1x3 (None, 3, 3, 192)    110592      Block8_1_Branch_1_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0b_1x3 (None, 3, 3, 192)    576         Block8_1_Branch_1_Conv2d_0b_1x3[0
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0b_1x3 (None, 3, 3, 192)    0           Block8_1_Branch_1_Conv2d_0b_1x3_B
+__________________________________________________________________________________________________
+Block8_1_Branch_0_Conv2d_1x1 (C (None, 3, 3, 192)    344064      Mixed_7a[0][0]                   
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0c_3x1 (None, 3, 3, 192)    110592      Block8_1_Branch_1_Conv2d_0b_1x3_A
+__________________________________________________________________________________________________
+Block8_1_Branch_0_Conv2d_1x1_Ba (None, 3, 3, 192)    576         Block8_1_Branch_0_Conv2d_1x1[0][0
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0c_3x1 (None, 3, 3, 192)    576         Block8_1_Branch_1_Conv2d_0c_3x1[0
+__________________________________________________________________________________________________
+Block8_1_Branch_0_Conv2d_1x1_Ac (None, 3, 3, 192)    0           Block8_1_Branch_0_Conv2d_1x1_Batc
+__________________________________________________________________________________________________
+Block8_1_Branch_1_Conv2d_0c_3x1 (None, 3, 3, 192)    0           Block8_1_Branch_1_Conv2d_0c_3x1_B
+__________________________________________________________________________________________________
+Block8_1_Concatenate (Concatena (None, 3, 3, 384)    0           Block8_1_Branch_0_Conv2d_1x1_Acti
+                                                                 Block8_1_Branch_1_Conv2d_0c_3x1_A
+__________________________________________________________________________________________________
+Block8_1_Conv2d_1x1 (Conv2D)    (None, 3, 3, 1792)   689920      Block8_1_Concatenate[0][0]       
+__________________________________________________________________________________________________
+lambda_15 (Lambda)              (None, 3, 3, 1792)   0           Block8_1_Conv2d_1x1[0][0]        
+__________________________________________________________________________________________________
+add_15 (Add)                    (None, 3, 3, 1792)   0           Mixed_7a[0][0]                   
+                                                                 lambda_15[0][0]                  
+__________________________________________________________________________________________________
+Block8_1_Activation (Activation (None, 3, 3, 1792)   0           add_15[0][0]                     
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0a_1x1 (None, 3, 3, 192)    344064      Block8_1_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0a_1x1 (None, 3, 3, 192)    576         Block8_2_Branch_2_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0a_1x1 (None, 3, 3, 192)    0           Block8_2_Branch_2_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0b_1x3 (None, 3, 3, 192)    110592      Block8_2_Branch_2_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0b_1x3 (None, 3, 3, 192)    576         Block8_2_Branch_2_Conv2d_0b_1x3[0
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0b_1x3 (None, 3, 3, 192)    0           Block8_2_Branch_2_Conv2d_0b_1x3_B
+__________________________________________________________________________________________________
+Block8_2_Branch_0_Conv2d_1x1 (C (None, 3, 3, 192)    344064      Block8_1_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0c_3x1 (None, 3, 3, 192)    110592      Block8_2_Branch_2_Conv2d_0b_1x3_A
+__________________________________________________________________________________________________
+Block8_2_Branch_0_Conv2d_1x1_Ba (None, 3, 3, 192)    576         Block8_2_Branch_0_Conv2d_1x1[0][0
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0c_3x1 (None, 3, 3, 192)    576         Block8_2_Branch_2_Conv2d_0c_3x1[0
+__________________________________________________________________________________________________
+Block8_2_Branch_0_Conv2d_1x1_Ac (None, 3, 3, 192)    0           Block8_2_Branch_0_Conv2d_1x1_Batc
+__________________________________________________________________________________________________
+Block8_2_Branch_2_Conv2d_0c_3x1 (None, 3, 3, 192)    0           Block8_2_Branch_2_Conv2d_0c_3x1_B
+__________________________________________________________________________________________________
+Block8_2_Concatenate (Concatena (None, 3, 3, 384)    0           Block8_2_Branch_0_Conv2d_1x1_Acti
+                                                                 Block8_2_Branch_2_Conv2d_0c_3x1_A
+__________________________________________________________________________________________________
+Block8_2_Conv2d_1x1 (Conv2D)    (None, 3, 3, 1792)   689920      Block8_2_Concatenate[0][0]       
+__________________________________________________________________________________________________
+lambda_16 (Lambda)              (None, 3, 3, 1792)   0           Block8_2_Conv2d_1x1[0][0]        
+__________________________________________________________________________________________________
+add_16 (Add)                    (None, 3, 3, 1792)   0           Block8_1_Activation[0][0]        
+                                                                 lambda_16[0][0]                  
+__________________________________________________________________________________________________
+Block8_2_Activation (Activation (None, 3, 3, 1792)   0           add_16[0][0]                     
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0a_1x1 (None, 3, 3, 192)    344064      Block8_2_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0a_1x1 (None, 3, 3, 192)    576         Block8_3_Branch_3_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0a_1x1 (None, 3, 3, 192)    0           Block8_3_Branch_3_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0b_1x3 (None, 3, 3, 192)    110592      Block8_3_Branch_3_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0b_1x3 (None, 3, 3, 192)    576         Block8_3_Branch_3_Conv2d_0b_1x3[0
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0b_1x3 (None, 3, 3, 192)    0           Block8_3_Branch_3_Conv2d_0b_1x3_B
+__________________________________________________________________________________________________
+Block8_3_Branch_0_Conv2d_1x1 (C (None, 3, 3, 192)    344064      Block8_2_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0c_3x1 (None, 3, 3, 192)    110592      Block8_3_Branch_3_Conv2d_0b_1x3_A
+__________________________________________________________________________________________________
+Block8_3_Branch_0_Conv2d_1x1_Ba (None, 3, 3, 192)    576         Block8_3_Branch_0_Conv2d_1x1[0][0
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0c_3x1 (None, 3, 3, 192)    576         Block8_3_Branch_3_Conv2d_0c_3x1[0
+__________________________________________________________________________________________________
+Block8_3_Branch_0_Conv2d_1x1_Ac (None, 3, 3, 192)    0           Block8_3_Branch_0_Conv2d_1x1_Batc
+__________________________________________________________________________________________________
+Block8_3_Branch_3_Conv2d_0c_3x1 (None, 3, 3, 192)    0           Block8_3_Branch_3_Conv2d_0c_3x1_B
+__________________________________________________________________________________________________
+Block8_3_Concatenate (Concatena (None, 3, 3, 384)    0           Block8_3_Branch_0_Conv2d_1x1_Acti
+                                                                 Block8_3_Branch_3_Conv2d_0c_3x1_A
+__________________________________________________________________________________________________
+Block8_3_Conv2d_1x1 (Conv2D)    (None, 3, 3, 1792)   689920      Block8_3_Concatenate[0][0]       
+__________________________________________________________________________________________________
+lambda_17 (Lambda)              (None, 3, 3, 1792)   0           Block8_3_Conv2d_1x1[0][0]        
+__________________________________________________________________________________________________
+add_17 (Add)                    (None, 3, 3, 1792)   0           Block8_2_Activation[0][0]        
+                                                                 lambda_17[0][0]                  
+__________________________________________________________________________________________________
+Block8_3_Activation (Activation (None, 3, 3, 1792)   0           add_17[0][0]                     
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0a_1x1 (None, 3, 3, 192)    344064      Block8_3_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0a_1x1 (None, 3, 3, 192)    576         Block8_4_Branch_4_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0a_1x1 (None, 3, 3, 192)    0           Block8_4_Branch_4_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0b_1x3 (None, 3, 3, 192)    110592      Block8_4_Branch_4_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0b_1x3 (None, 3, 3, 192)    576         Block8_4_Branch_4_Conv2d_0b_1x3[0
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0b_1x3 (None, 3, 3, 192)    0           Block8_4_Branch_4_Conv2d_0b_1x3_B
+__________________________________________________________________________________________________
+Block8_4_Branch_0_Conv2d_1x1 (C (None, 3, 3, 192)    344064      Block8_3_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0c_3x1 (None, 3, 3, 192)    110592      Block8_4_Branch_4_Conv2d_0b_1x3_A
+__________________________________________________________________________________________________
+Block8_4_Branch_0_Conv2d_1x1_Ba (None, 3, 3, 192)    576         Block8_4_Branch_0_Conv2d_1x1[0][0
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0c_3x1 (None, 3, 3, 192)    576         Block8_4_Branch_4_Conv2d_0c_3x1[0
+__________________________________________________________________________________________________
+Block8_4_Branch_0_Conv2d_1x1_Ac (None, 3, 3, 192)    0           Block8_4_Branch_0_Conv2d_1x1_Batc
+__________________________________________________________________________________________________
+Block8_4_Branch_4_Conv2d_0c_3x1 (None, 3, 3, 192)    0           Block8_4_Branch_4_Conv2d_0c_3x1_B
+__________________________________________________________________________________________________
+Block8_4_Concatenate (Concatena (None, 3, 3, 384)    0           Block8_4_Branch_0_Conv2d_1x1_Acti
+                                                                 Block8_4_Branch_4_Conv2d_0c_3x1_A
+__________________________________________________________________________________________________
+Block8_4_Conv2d_1x1 (Conv2D)    (None, 3, 3, 1792)   689920      Block8_4_Concatenate[0][0]       
+__________________________________________________________________________________________________
+lambda_18 (Lambda)              (None, 3, 3, 1792)   0           Block8_4_Conv2d_1x1[0][0]        
+__________________________________________________________________________________________________
+add_18 (Add)                    (None, 3, 3, 1792)   0           Block8_3_Activation[0][0]        
+                                                                 lambda_18[0][0]                  
+__________________________________________________________________________________________________
+Block8_4_Activation (Activation (None, 3, 3, 1792)   0           add_18[0][0]                     
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0a_1x1 (None, 3, 3, 192)    344064      Block8_4_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0a_1x1 (None, 3, 3, 192)    576         Block8_5_Branch_5_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0a_1x1 (None, 3, 3, 192)    0           Block8_5_Branch_5_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0b_1x3 (None, 3, 3, 192)    110592      Block8_5_Branch_5_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0b_1x3 (None, 3, 3, 192)    576         Block8_5_Branch_5_Conv2d_0b_1x3[0
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0b_1x3 (None, 3, 3, 192)    0           Block8_5_Branch_5_Conv2d_0b_1x3_B
+__________________________________________________________________________________________________
+Block8_5_Branch_0_Conv2d_1x1 (C (None, 3, 3, 192)    344064      Block8_4_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0c_3x1 (None, 3, 3, 192)    110592      Block8_5_Branch_5_Conv2d_0b_1x3_A
+__________________________________________________________________________________________________
+Block8_5_Branch_0_Conv2d_1x1_Ba (None, 3, 3, 192)    576         Block8_5_Branch_0_Conv2d_1x1[0][0
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0c_3x1 (None, 3, 3, 192)    576         Block8_5_Branch_5_Conv2d_0c_3x1[0
+__________________________________________________________________________________________________
+Block8_5_Branch_0_Conv2d_1x1_Ac (None, 3, 3, 192)    0           Block8_5_Branch_0_Conv2d_1x1_Batc
+__________________________________________________________________________________________________
+Block8_5_Branch_5_Conv2d_0c_3x1 (None, 3, 3, 192)    0           Block8_5_Branch_5_Conv2d_0c_3x1_B
+__________________________________________________________________________________________________
+Block8_5_Concatenate (Concatena (None, 3, 3, 384)    0           Block8_5_Branch_0_Conv2d_1x1_Acti
+                                                                 Block8_5_Branch_5_Conv2d_0c_3x1_A
+__________________________________________________________________________________________________
+Block8_5_Conv2d_1x1 (Conv2D)    (None, 3, 3, 1792)   689920      Block8_5_Concatenate[0][0]       
+__________________________________________________________________________________________________
+lambda_19 (Lambda)              (None, 3, 3, 1792)   0           Block8_5_Conv2d_1x1[0][0]        
+__________________________________________________________________________________________________
+add_19 (Add)                    (None, 3, 3, 1792)   0           Block8_4_Activation[0][0]        
+                                                                 lambda_19[0][0]                  
+__________________________________________________________________________________________________
+Block8_5_Activation (Activation (None, 3, 3, 1792)   0           add_19[0][0]                     
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0a_1x1 (None, 3, 3, 192)    344064      Block8_5_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0a_1x1 (None, 3, 3, 192)    576         Block8_6_Branch_1_Conv2d_0a_1x1[0
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0a_1x1 (None, 3, 3, 192)    0           Block8_6_Branch_1_Conv2d_0a_1x1_B
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0b_1x3 (None, 3, 3, 192)    110592      Block8_6_Branch_1_Conv2d_0a_1x1_A
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0b_1x3 (None, 3, 3, 192)    576         Block8_6_Branch_1_Conv2d_0b_1x3[0
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0b_1x3 (None, 3, 3, 192)    0           Block8_6_Branch_1_Conv2d_0b_1x3_B
+__________________________________________________________________________________________________
+Block8_6_Branch_0_Conv2d_1x1 (C (None, 3, 3, 192)    344064      Block8_5_Activation[0][0]        
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0c_3x1 (None, 3, 3, 192)    110592      Block8_6_Branch_1_Conv2d_0b_1x3_A
+__________________________________________________________________________________________________
+Block8_6_Branch_0_Conv2d_1x1_Ba (None, 3, 3, 192)    576         Block8_6_Branch_0_Conv2d_1x1[0][0
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0c_3x1 (None, 3, 3, 192)    576         Block8_6_Branch_1_Conv2d_0c_3x1[0
+__________________________________________________________________________________________________
+Block8_6_Branch_0_Conv2d_1x1_Ac (None, 3, 3, 192)    0           Block8_6_Branch_0_Conv2d_1x1_Batc
+__________________________________________________________________________________________________
+Block8_6_Branch_1_Conv2d_0c_3x1 (None, 3, 3, 192)    0           Block8_6_Branch_1_Conv2d_0c_3x1_B
+__________________________________________________________________________________________________
+Block8_6_Concatenate (Concatena (None, 3, 3, 384)    0           Block8_6_Branch_0_Conv2d_1x1_Acti
+                                                                 Block8_6_Branch_1_Conv2d_0c_3x1_A
+__________________________________________________________________________________________________
+Block8_6_Conv2d_1x1 (Conv2D)    (None, 3, 3, 1792)   689920      Block8_6_Concatenate[0][0]       
+__________________________________________________________________________________________________
+lambda_20 (Lambda)              (None, 3, 3, 1792)   0           Block8_6_Conv2d_1x1[0][0]        
+__________________________________________________________________________________________________
+add_20 (Add)                    (None, 3, 3, 1792)   0           Block8_5_Activation[0][0]        
+                                                                 lambda_20[0][0]                  
+__________________________________________________________________________________________________
+AvgPool (GlobalAveragePooling2D (None, 1792)         0           add_20[0][0]                     
+__________________________________________________________________________________________________
+Dropout (Dropout)               (None, 1792)         0           AvgPool[0][0]                    
+__________________________________________________________________________________________________
+Bottleneck (Dense)              (None, 128)          229376      Dropout[0][0]                    
+__________________________________________________________________________________________________
+Bottleneck_BatchNorm (BatchNorm (None, 128)          384         Bottleneck[0][0]                 
+==================================================================================================
+Total params: 22,808,144
+Trainable params: 22,779,312
+Non-trainable params: 28,832
+__________________________________________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="detect-faces-in-the-training-validation-and-test-images">
+<h2>Detect faces in the training-, validation- and test-images<a class="headerlink" href="#detect-faces-in-the-training-validation-and-test-images" title="Permalink to this headline">¶</a></h2>
+<p>For training and test the <a class="reference external" href="https://www.kaggle.com/dansbecker/5-celebrity-faces-dataset">5 Celebrities Dataset</a> is applied. Download this dataset from Kaggle. The dataset contains images of 5 celebrities, subdivided into a training-, validation and test-partition. If you inspect the images you will realize, that the images do not only contain the face of the persons. Therefore, we first have to crop the faces from the entire images as described in notebook <a class="reference internal" href="faceDetection.html"><span class="doc std std-doc">faceDetection.ipynb</span></a>. We reimplement the corresponding method <code class="docutils literal notranslate"><span class="pre">extract_face()</span></code> from there.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install mtcnn</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>  <span class="c1"># FATAL</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;tensorflow&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">listdir</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">isdir</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">asarray</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">savez_compressed</span><span class="p">,</span><span class="n">load</span><span class="p">,</span> <span class="n">expand_dims</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">mtcnn.mtcnn</span> <span class="k">import</span> <span class="n">MTCNN</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract a single face from a given photograph</span>
+<span class="k">def</span> <span class="nf">extract_face</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">required_size</span><span class="o">=</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">)):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="c1"># convert to RGB, if needed</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="c1"># convert to array</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="c1"># create the detector, using default weights</span>
+    <span class="n">detector</span> <span class="o">=</span> <span class="n">MTCNN</span><span class="p">()</span>
+    <span class="c1"># detect faces in the image</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect_faces</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+    <span class="c1"># extract the bounding box from the first face</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;box&#39;</span><span class="p">]</span>
+    <span class="c1"># bug fix</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x1</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">height</span>
+    <span class="c1"># extract the face</span>
+    <span class="n">face</span> <span class="o">=</span> <span class="n">pixels</span><span class="p">[</span><span class="n">y1</span><span class="p">:</span><span class="n">y2</span><span class="p">,</span> <span class="n">x1</span><span class="p">:</span><span class="n">x2</span><span class="p">]</span>
+    <span class="c1"># resize pixels to the model size</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">required_size</span><span class="p">)</span>
+    <span class="n">face_array</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">face_array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify folder to plot</span>
+<span class="c1">#datafolder=&#39;/Users/maucher/gitprojects/or/nb/Data/5celebritiesDataset&#39;</span>
+<span class="n">datafolder</span><span class="o">=</span><span class="s1">&#39;/Users/johannes/gitprojects/or/nb/Data/5celebritiesDataset&#39;</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">datafolder</span><span class="o">+</span><span class="s1">&#39;/train/ben_afflek/&#39;</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># enumerate files</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+    <span class="c1"># path</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">+</span> <span class="n">filename</span>
+    <span class="c1"># get face</span>
+    <span class="n">face</span> <span class="o">=</span> <span class="n">extract_face</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">face</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># plot</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13 (160, 160, 3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 (160, 160, 3)
+</pre></div>
+</div>
+<img alt="../_images/faceRecognition_14_14.png" src="../_images/faceRecognition_14_14.png" />
+</div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">load_faces(directory)</span></code> applies the <code class="docutils literal notranslate"><span class="pre">extract_face()</span></code>-method to all images in <code class="docutils literal notranslate"><span class="pre">directory</span></code> and returns a list of cropped faces.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_faces</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+    <span class="n">faces</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="c1"># enumerate files</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+        <span class="c1"># path</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">filename</span>
+        <span class="c1"># get face</span>
+        <span class="n">face</span> <span class="o">=</span> <span class="n">extract_face</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="c1"># store</span>
+        <span class="n">faces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">faces</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">load_dataset(directory)</span></code> scans all subdirectories of <code class="docutils literal notranslate"><span class="pre">directory</span></code>. For each subdirectory it invokes the <code class="docutils literal notranslate"><span class="pre">load_faces()</span></code>-function which returns a list of all cropped faces of the person whose images are saved in the subdirectory.  As can be seen below the call of <code class="docutils literal notranslate"><span class="pre">load_dataset(&quot;train&quot;)</span></code> returns all faces and their corresponding labels used for training and <code class="docutils literal notranslate"><span class="pre">load_dataset(&quot;val&quot;)</span></code> returns all faces and their corresponding labels used for validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_dataset</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(),</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="c1"># enumerate folders, on per class</span>
+    <span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+        <span class="c1"># path</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">subdir</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+        <span class="c1"># skip any files that might be in the dir</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="c1"># load all faces in the subdirectory</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="n">load_faces</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="c1"># create labels</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">subdir</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">faces</span><span class="p">))]</span>
+        <span class="c1"># summarize progress</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&gt;loaded </span><span class="si">%d</span><span class="s1"> examples for class: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">faces</span><span class="p">),</span> <span class="n">subdir</span><span class="p">))</span>
+        <span class="c1"># store</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">faces</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">datafolder</span><span class="o">+</span><span class="s1">&#39;/train/&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trainX</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">trainy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># load test dataset</span>
+<span class="n">testX</span><span class="p">,</span> <span class="n">testy</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">datafolder</span><span class="o">+</span><span class="s1">&#39;/val/&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">testX</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">testy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># save arrays to one file in compressed format</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;loaded 14 examples for class: ben_afflek
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&gt;loaded 19 examples for class: madonna
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savez_compressed</span><span class="p">(</span><span class="s1">&#39;5celebritiesDataset.npz&#39;</span><span class="p">,</span> <span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">testX</span><span class="p">,</span> <span class="n">testy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculate-facenet-embeddings">
+<h2>Calculate FaceNet-embeddings<a class="headerlink" href="#calculate-facenet-embeddings" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;5celebritiesDataset.npz&#39;</span><span class="p">)</span>
+<span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">testX</span><span class="p">,</span> <span class="n">testy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_0&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_1&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_2&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_3&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loaded: &#39;</span><span class="p">,</span> <span class="n">trainX</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">trainy</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">testX</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">testy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded:  (93, 160, 160, 3) (93,) (25, 160, 160, 3) (25,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Within the following function <code class="docutils literal notranslate"><span class="pre">get_embedding(model,face_pixels)</span></code> the pretrained FaceNet model is applied to calculate for the passed face the corresponding face-embedding, which is a vector of length 128. Before passing the face image to the model it must be standardized.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_embedding</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">face_pixels</span><span class="p">):</span>
+    <span class="c1"># scale pixel values</span>
+    <span class="n">face_pixels</span> <span class="o">=</span> <span class="n">face_pixels</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+    <span class="c1"># standardize pixel values across channels (global)</span>
+    <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">face_pixels</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">face_pixels</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="n">face_pixels</span> <span class="o">=</span> <span class="p">(</span><span class="n">face_pixels</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+    <span class="c1"># transform face into one sample</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">expand_dims</span><span class="p">(</span><span class="n">face_pixels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># make prediction to get embedding</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">yhat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the face dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">&quot;5celebritiesDataset.npz&quot;</span><span class="p">)</span>
+<span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">testX</span><span class="p">,</span> <span class="n">testy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_0&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_1&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_2&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_3&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loaded: &#39;</span><span class="p">,</span> <span class="n">trainX</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">trainy</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">testX</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">testy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded:  (93, 160, 160, 3) (93,) (25, 160, 160, 3) (25,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the next code-cell each face in the training-set is converted to its face-embedding:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newTrainX</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">face_pixels</span> <span class="ow">in</span> <span class="n">trainX</span><span class="p">:</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">get_embedding</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">face_pixels</span><span class="p">)</span>
+    <span class="n">newTrainX</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+<span class="n">newTrainX</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">newTrainX</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newTrainX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(93, 128)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, also for the face-images in the validation dataset the corresponding face-embeddings are calculated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newTestX</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">face_pixels</span> <span class="ow">in</span> <span class="n">testX</span><span class="p">:</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">get_embedding</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">face_pixels</span><span class="p">)</span>
+    <span class="n">newTestX</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+<span class="n">newTestX</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">newTestX</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newTestX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25, 128)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, the train- and test-embeddings an the corresponding labels are saved persistently:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">savez_compressed</span><span class="p">(</span><span class="s1">&#39;5celebritiesEmbeddings.npz&#39;</span><span class="p">,</span> <span class="n">newTrainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">newTestX</span><span class="p">,</span> <span class="n">testy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="apply-facenet-embeddings-to-train-a-svm-classifier">
+<h2>Apply FaceNet Embeddings to train a SVM classifier<a class="headerlink" href="#apply-facenet-embeddings-to-train-a-svm-classifier" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">Normalizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="k">import</span> <span class="n">choice</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;5celebritiesDataset.npz&#39;</span><span class="p">)</span>
+<span class="n">testX_faces</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_2&#39;</span><span class="p">]</span>
+<span class="c1"># load face embeddings</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;5celebritiesEmbeddings.npz&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">,</span> <span class="n">testX</span><span class="p">,</span> <span class="n">testy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_0&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_1&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_2&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;arr_3&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dataset: train=</span><span class="si">%d</span><span class="s1">, test=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trainX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">testX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1"># normalize input vectors</span>
+<span class="n">in_encoder</span> <span class="o">=</span> <span class="n">Normalizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">trainX</span> <span class="o">=</span> <span class="n">in_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">trainX</span><span class="p">)</span>
+<span class="n">testX</span> <span class="o">=</span> <span class="n">in_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">testX</span><span class="p">)</span>
+<span class="c1"># label encode targets</span>
+<span class="n">out_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">out_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainy</span><span class="p">)</span>
+<span class="n">trainy</span> <span class="o">=</span> <span class="n">out_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">trainy</span><span class="p">)</span>
+<span class="n">testy</span> <span class="o">=</span> <span class="n">out_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">testy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset: train=93, test=25
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainX</span><span class="p">,</span> <span class="n">trainy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVC(kernel=&#39;linear&#39;, probability=True)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="validation">
+<h3>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict</span>
+<span class="n">yhat_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">trainX</span><span class="p">)</span>
+<span class="n">yhat_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">testX</span><span class="p">)</span>
+<span class="c1"># score</span>
+<span class="n">score_train</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">trainy</span><span class="p">,</span> <span class="n">yhat_train</span><span class="p">)</span>
+<span class="n">score_test</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">testy</span><span class="p">,</span> <span class="n">yhat_test</span><span class="p">)</span>
+<span class="c1"># summarize</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy: train=</span><span class="si">%.3f</span><span class="s1">, test=</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">score_train</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">score_test</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: train=100.000, test=100.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test model on a random example from the test dataset</span>
+<span class="n">selection</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">testX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+<span class="n">random_face_pixels</span> <span class="o">=</span> <span class="n">testX_faces</span><span class="p">[</span><span class="n">selection</span><span class="p">]</span>
+<span class="n">random_face_emb</span> <span class="o">=</span> <span class="n">testX</span><span class="p">[</span><span class="n">selection</span><span class="p">]</span>
+<span class="n">random_face_class</span> <span class="o">=</span> <span class="n">testy</span><span class="p">[</span><span class="n">selection</span><span class="p">]</span>
+<span class="n">random_face_name</span> <span class="o">=</span> <span class="n">out_encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">([</span><span class="n">random_face_class</span><span class="p">])</span>
+<span class="c1"># prediction for the face</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">expand_dims</span><span class="p">(</span><span class="n">random_face_emb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">yhat_class</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">yhat_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<span class="c1"># get name</span>
+<span class="n">class_index</span> <span class="o">=</span> <span class="n">yhat_class</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">class_probability</span> <span class="o">=</span> <span class="n">yhat_prob</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">class_index</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">predict_names</span> <span class="o">=</span> <span class="n">out_encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">yhat_class</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicted: </span><span class="si">%s</span><span class="s1"> (</span><span class="si">%.3f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">predict_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">class_probability</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Expected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">random_face_name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># plot for fun</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">random_face_pixels</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%.3f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">predict_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">class_probability</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted: jerry_seinfeld (87.051)
+Expected: jerry_seinfeld
+</pre></div>
+</div>
+<img alt="../_images/faceRecognition_41_1.png" src="../_images/faceRecognition_41_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./face"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="faceDetection.html" title="previous page">Face Detection</a>
+    <a class='right-next' id="next-link" href="../referenceSection.html" title="next page">References</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

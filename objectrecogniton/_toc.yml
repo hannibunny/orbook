@@ -30,6 +30,12 @@
   chapters:
   - file: recognition/objectrecognition
 
+- part: Face Detection and Recognition
+  chapters:
+  - file: face/faceDetection
+  - file: face/faceRecognition
+
+
 - part: References
   chapters:
   - file: referenceSection 
