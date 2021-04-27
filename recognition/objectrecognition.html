@@ -488,13 +488,13 @@ Even though <em>deep learning</em> approaches are excluded in this section, the 
 <h3>From BoW to Bag of Visual Words<a class="headerlink" href="#from-bow-to-bag-of-visual-words" title="Permalink to this headline">¶</a></h3>
 <p>In contrast to NLP in Object Recognition the input are not texts but images. Moreover, the <strong>input objects are not described by words but by local features</strong>, such as e.g. SIFT features. Hence the <em>Bag of Visual Words</em>-model of an image, contains for each local feature the frequency of the feature in the image. However, this idea must be adapted slightly because there is an important distinction between words in a textcorpus and visual words in a collection of images: <strong>In the text corpus there exists a finite number of different words, but the space of visual words in an image-collection is continuous with an infinite number of possible descriptors</strong> (note that the local descriptors are float-vectors). Hence, the problem is <em>how to quantize the continuous space of local descriptors into a finite discrete set of clusters?</em> The answer is: <em>By applying a clustering-algorithms!</em> Such an algorithm, e.g. k-means clustering, calculates for a given set of vectors and for a user-defined number of clusters <span class="math notranslate nohighlight">\(k\)</span>, a partition into <span class="math notranslate nohighlight">\(k\)</span> cells (=clusters), such that similar vectors are assigned to the same cluster.</p>
 <p>The centroids of the calculated <span class="math notranslate nohighlight">\(k\)</span> clusters constitute the set of visual words, also called the <strong>Visual Vocabulary:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-2cab105d-c6f6-460f-95f6-049f7b96baf1">
-<span class="eqno">(74)<a class="headerlink" href="#equation-2cab105d-c6f6-460f-95f6-049f7b96baf1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-10c01e53-5a89-45e4-aed7-aa434859fdfb">
+<span class="eqno">(74)<a class="headerlink" href="#equation-10c01e53-5a89-45e4-aed7-aa434859fdfb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 V=\lbrace v_t \rbrace_{t=1}^K
 \end{equation}\]</div>
 <p>In the Bag-Of-Visual Word matrix, each of the <span class="math notranslate nohighlight">\(k\)</span> columns corresponds to a visual word <span class="math notranslate nohighlight">\(v_t \in V\)</span> and each image in the set ov <span class="math notranslate nohighlight">\(N\)</span> images</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ff3e58b-f0c8-454b-8745-edb57bbf4f8e">
-<span class="eqno">(75)<a class="headerlink" href="#equation-3ff3e58b-f0c8-454b-8745-edb57bbf4f8e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6911b6a7-845b-4e71-a499-442d3aa5576e">
+<span class="eqno">(75)<a class="headerlink" href="#equation-6911b6a7-845b-4e71-a499-442d3aa5576e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 I=\lbrace I_i \rbrace_{i=1}^N
 \end{equation}\]</div>
 <p>corresponds to a row. The entry <span class="math notranslate nohighlight">\(N(t,i)\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(t\)</span> of the matrix counts the number of times visual word <span class="math notranslate nohighlight">\(v_t\)</span> occurs in image <span class="math notranslate nohighlight">\(I_i\)</span>. Or more accurate: <span class="math notranslate nohighlight">\(N(t,i)\)</span> is the number of local descriptors in image <span class="math notranslate nohighlight">\(i\)</span>, which are assigned to the <span class="math notranslate nohighlight">\(t.th\)</span> cluster.</p>
@@ -536,15 +536,15 @@ I=\lbrace I_i \rbrace_{i=1}^N
 <li><p>First, the number of clusters <span class="math notranslate nohighlight">\(k\)</span> must be defined by the user</p></li>
 <li><p>Then <span class="math notranslate nohighlight">\(k\)</span> initial cluster centers <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> are randomly placed into the d-dimensional space</p></li>
 <li><p>Next, each of the given vectors <span class="math notranslate nohighlight">\(\mathbf{x}_p \in T\)</span> is assigned to it’s closest center-vector <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5be2c989-66f8-4558-aa9b-85c688915622">
-<span class="eqno">(77)<a class="headerlink" href="#equation-5be2c989-66f8-4558-aa9b-85c688915622" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2acd6d5-4a3e-4d85-b587-4ea89ace8117">
+<span class="eqno">(77)<a class="headerlink" href="#equation-d2acd6d5-4a3e-4d85-b587-4ea89ace8117" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\left\|\mathbf{x}_p-\mathbf{v}_i \right\| = \min\limits_{j \in 1 \ldots k } \left\|\mathbf{x}_p-\mathbf{v}_j \right\|,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\left\| \mathbf{x}-\mathbf{v} \right\|\)</span> is the distance between <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 </li>
 <li><p>After this assignment for each cluster <span class="math notranslate nohighlight">\(C_i\)</span> the new cluster centroid <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6a07ed47-6fa7-452c-8efd-fdcd80f6beae">
-<span class="eqno">(78)<a class="headerlink" href="#equation-6a07ed47-6fa7-452c-8efd-fdcd80f6beae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-496617fe-4859-4803-892c-d5bdf544c5c7">
+<span class="eqno">(78)<a class="headerlink" href="#equation-496617fe-4859-4803-892c-d5bdf544c5c7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\mathbf{v}_i = \frac{1}{n_i} \sum\limits_{\forall \mathbf{x}_p \in C_i} \mathbf{x}_p,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n_i\)</span> is the number of vectors that are assigned to <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
@@ -591,19 +591,19 @@ P^*(C_j|I_q) = \prod_{t=1}^K P(v_t|C_j)^{N(t,q)} P(C_j)
 <p><strong>Training:</strong></p>
 <p>In order to calculate <a class="reference internal" href="#equation-eq-nbred">(81)</a> for all classes, the terms on the right hand side of this equation must be estimated for all classes and all visual words from a given set of <span class="math notranslate nohighlight">\(N\)</span> training samples (pairs of images and corresponding class-label).</p>
 <p>The <em>a-priori probabilities</em> of the classes are estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46633561-4eae-4ee2-bc25-96d4bba682c1">
-<span class="eqno">(82)<a class="headerlink" href="#equation-46633561-4eae-4ee2-bc25-96d4bba682c1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d66c52e-6414-4b42-bc2e-935f8b508311">
+<span class="eqno">(82)<a class="headerlink" href="#equation-8d66c52e-6414-4b42-bc2e-935f8b508311" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(C_j)=\frac{|C_j|}{N},
 \end{equation}\]</div>
 <p>for all classes <span class="math notranslate nohighlight">\(C_1,C_2,\ldots,C_L\)</span>.</p>
 <p>For all visual words <span class="math notranslate nohighlight">\(v_t\)</span> and all classes <span class="math notranslate nohighlight">\(C_j\)</span> the <strong>likelihood</strong> is estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-640920a2-fb75-447b-9ed0-d978a9a6d878">
-<span class="eqno">(83)<a class="headerlink" href="#equation-640920a2-fb75-447b-9ed0-d978a9a6d878" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8e6022fe-ec97-4c03-990e-f8604dc200bb">
+<span class="eqno">(83)<a class="headerlink" href="#equation-8e6022fe-ec97-4c03-990e-f8604dc200bb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{\sum\limits_{I_i \in C_j}N(t,i)}{\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In order to avoid likelihoods of value <span class="math notranslate nohighlight">\(0\)</span> <strong>Laplace Smoothing</strong> is applied instead of the equation above:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-943815bc-d887-40ef-bd99-cdba6428579d">
-<span class="eqno">(84)<a class="headerlink" href="#equation-943815bc-d887-40ef-bd99-cdba6428579d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f047f3da-8433-4856-a321-b867f1483915">
+<span class="eqno">(84)<a class="headerlink" href="#equation-f047f3da-8433-4856-a321-b867f1483915" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id5">[CDF+04]</a> the authors applied a dataset of 1776 images of 7 different classes. 700 images thereof have been applied for test, the remaining for training. Below for each of the 7 classes a few examples are shown:</p>
@@ -633,7 +633,7 @@ P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\l
 <p>The work of Czurka et al (<a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id8">[CDF+04]</a>) introduced the idea of visual words and demonstrated it’s potential. Moreover, it motivated a wide range of research questions in it’s context. These questions are sketched in the following subsections:</p>
 <div class="section" id="how-to-sample-local-descriptors-from-the-image">
 <h4>How to sample local descriptors from the image?<a class="headerlink" href="#how-to-sample-local-descriptors-from-the-image" title="Permalink to this headline">¶</a></h4>
-<p>In <a class="reference internal" href="../features/localFeatures.html"><span class="doc std std-doc">Local Fetures</span></a> SIFT has been introduced. There, only the option that these descriptors are sampled at the image’s keypoint (sparse sampling) has been mentioned. However, keypoint detection on on hand and describing a local region on the other hand are decoupled. In fact, as the image below shows, local descriptors can also be extracted at all points of a regular grid (dense sampling) or even at randomly determined points (random sampling).</p>
+<p>In <a class="reference internal" href="../features/localFeatures.html"><span class="doc std std-doc">Local Fetures</span></a> SIFT has been introduced. There, only the option that these descriptors are sampled at the image’s keypoint (sparse sampling) has been mentioned. However, keypoint detection on one hand and describing a local region on the other hand are decoupled. In fact, as the image below shows, local descriptors can also be extracted at all points of a regular grid (dense sampling) or even at randomly determined points (random sampling).</p>
 <div class="figure align-center" id="samplingoptions">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/localFeatureSampling.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/localFeatureSampling.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/localFeatureSampling.PNG" style="width: 550px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Sparse sampling (left), dense sampling (center) and random sampling (right)</span><a class="headerlink" href="#samplingoptions" title="Permalink to this image">¶</a></p>
@@ -646,9 +646,9 @@ P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\l
 </div>
 <div class="section" id="number-of-visual-words-and-how-to-count-words-in-the-matrix">
 <h4>Number of Visual Words and how to count words in the matrix?<a class="headerlink" href="#number-of-visual-words-and-how-to-count-words-in-the-matrix" title="Permalink to this headline">¶</a></h4>
-<p>Up to now, we pretended that the entries in the Bag of Visual Words matrix are the numbers of local descriptors in the image of the current row, which are assigned to the visual word of the current columnt. However, using the visual-word frequencies is only one option. In BoWs in NLP an alternative to word-frequencies is the so called <strong>tf-idf</strong> (term frequency -inverse document frequency), where</p>
+<p>Up to now, we pretended that the entries in the Bag of Visual Words matrix are the numbers of local descriptors in the image of the current row, which are assigned to the visual word of the current column. However, using the visual-word frequencies is only one option. In BoWs in NLP an alternative to word-frequencies is the so called <strong>tf-idf</strong> (term frequency -inverse document frequency), where</p>
 <ul>
-<li><p>term frequency <span class="math notranslate nohighlight">\(tf_{i,j}\)</span>] counts how often word <span class="math notranslate nohighlight">\(i\)</span> appears in document <span class="math notranslate nohighlight">\(j\)</span>, and</p></li>
+<li><p>term frequency <span class="math notranslate nohighlight">\(tf_{i,j}\)</span> counts how often word <span class="math notranslate nohighlight">\(i\)</span> appears in document <span class="math notranslate nohighlight">\(j\)</span>, and</p></li>
 <li><p>inverse document frequency <span class="math notranslate nohighlight">\(idf_i\)</span> is the logarithm of inverse ratio of documents (images) that contain (visual) word <span class="math notranslate nohighlight">\(i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -670,7 +670,7 @@ P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\l
 <li><p>term frequency -inverse document frequency</p></li>
 </ul>
 <p>have been compared. The best results have been obtained by tf-idf, the worst by the binary count.</p>
-<p>The problem on the size of the visual vocabulary, i.e. the number of different clusters <span class="math notranslate nohighlight">\(k\)</span>, has already been mentioned above. As <a class="reference internal" href="#errorratevsk"><span class="std std-numref">Fig. 9</span></a> shows, in general the error-rate of the downstream task (classification) decreases, with an increasing number of visual words. However, the error-rate-decrease gets smaller in the range of large <span class="math notranslate nohighlight">\(k\)</span> - values. It also important to be aware, that this plot has been drawn for a specific task and a specific dataset. The question on the number of viusal words must be answered individually for each data set and each task.</p>
+<p>The problem on the size of the visual vocabulary, i.e. the number of different clusters <span class="math notranslate nohighlight">\(k\)</span>, has already been mentioned above. As <a class="reference internal" href="#errorratevsk"><span class="std std-numref">Fig. 9</span></a> shows, in general the error-rate of the downstream task (classification) decreases, with an increasing number of visual words. However, the error-rate-decrease gets smaller in the range of large <span class="math notranslate nohighlight">\(k\)</span> - values. It is also important to be aware, that this plot has been drawn for a specific task and a specific dataset. The question on the number of viusal words must be answered individually for each data set and each task.</p>
 </div>
 <div class="section" id="algorithms-for-training-and-encoding">
 <h4>Algorithms for Training and Encoding?<a class="headerlink" href="#algorithms-for-training-and-encoding" title="Permalink to this headline">¶</a></h4>
@@ -680,7 +680,7 @@ P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\l
 <li><p>Initialisation: Define branching-factor <span class="math notranslate nohighlight">\(k\)</span> and maximum depth <span class="math notranslate nohighlight">\(L\)</span>. Set current depth <span class="math notranslate nohighlight">\(l=1\)</span>.</p></li>
 <li><p>Apply k-means algorithm to training-set in order to determine k different clusters in depth <span class="math notranslate nohighlight">\(l=1\)</span>.</p></li>
 <li><p>Determine for each subregion in depth <span class="math notranslate nohighlight">\(l\)</span> the subsetset of training-data, which is assigned to this subregion.</p></li>
-<li><p>Apply k-means algorithm to each of the subregions in depth <span class="math notranslate nohighlight">\(l\)</span>, by applying the subregion-specific traning-subset. In this way new subregions for depth <span class="math notranslate nohighlight">\(l+1\)</span> are generated. The umber of subregions in depth <span class="math notranslate nohighlight">\(l+1\)</span> is <span class="math notranslate nohighlight">\(k\)</span> times the number of subregions in depth <span class="math notranslate nohighlight">\(l\)</span>.</p></li>
+<li><p>Apply k-means algorithm to each of the subregions in depth <span class="math notranslate nohighlight">\(l\)</span>, by applying the subregion-specific training-subset. In this way new subregions for depth <span class="math notranslate nohighlight">\(l+1\)</span> are generated. The number of subregions in depth <span class="math notranslate nohighlight">\(l+1\)</span> is <span class="math notranslate nohighlight">\(k\)</span> times the number of subregions in depth <span class="math notranslate nohighlight">\(l\)</span>.</p></li>
 <li><p>Set <span class="math notranslate nohighlight">\(l := l+1\)</span> and continue with step 3 until <span class="math notranslate nohighlight">\(l=L\)</span></p></li>
 </ol>
 <div class="figure align-center" id="hierclusttraining">
@@ -688,7 +688,7 @@ P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\l
 <p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Training: Hierarchical application of <span class="math notranslate nohighlight">\(k\)</span>-means clustering, for branching factor <span class="math notranslate nohighlight">\(k=3\)</span>.</span><a class="headerlink" href="#hierclusttraining" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Encoding:</strong>
-In the encoding phase a new vector <span class="math notranslate nohighlight">\(p\)</span> (point) must be assigned to it’s closest cluster-center (visual word). In the hierearchical tree of visual words, in the first iteration the distance between <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(k\)</span> cluster-enters must be determined and the closest is selected. In the next iteration again only <span class="math notranslate nohighlight">\(k\)</span> distances must be determined and compared- the distances between <span class="math notranslate nohighlight">\(p\)</span> and the <span class="math notranslate nohighlight">\(k\)</span> cluster centers of the subregion, which has been found in the previous iteration. In total, far fewer distances must calculated and compared, than in the encoding phase w.r.t. a flat set of visual words.</p>
+In the encoding phase a new vector <span class="math notranslate nohighlight">\(p\)</span> (point) must be assigned to it’s closest cluster-center (visual word). In the hierearchical tree of visual words, in the first iteration the distance between <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(k\)</span> cluster-centers must be determined and the closest is selected. In the next iteration again only <span class="math notranslate nohighlight">\(k\)</span> distances must be determined and compared- the distances between <span class="math notranslate nohighlight">\(p\)</span> and the <span class="math notranslate nohighlight">\(k\)</span> cluster centers of the subregion, which has been found in the previous iteration. In total, far fewer distances must be calculated and compared, than in the encoding phase w.r.t. a flat set of visual words.</p>
 <div class="figure align-center" id="hierclustencoding">
 <a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG" src="https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG" style="width: 450px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Encoding: In the visual-word-tree new local descriptors must be evaluated in each iteration only w.r.t. <span class="math notranslate nohighlight">\(k\)</span> different cluster-centers.</span><a class="headerlink" href="#hierclustencoding" title="Permalink to this image">¶</a></p>

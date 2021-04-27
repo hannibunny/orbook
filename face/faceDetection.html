@@ -535,26 +535,30 @@ If you saved this file to your current directory, the trained classifier-object 
 <p>The picture below depicts the determination of <strong>Positives</strong> from labeled training data. In the original size of the image only one of the <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows is annotated as positive, since it’s IoU with a ground-truth bounding box exceeds a defined threshold <span class="math notranslate nohighlight">\(T\)</span>. In the next smaller image-version two <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows are annotated as positive and in the smallest version another positive candidate is found. Note that to each of the found Positives and Part faces, the corresponding ground-truth bounding-box is assigned.</p>
 <img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/IoUpositives.png" />
 <p>The authors of <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> applied the <a class="reference external" href="http://shuoyang1213.me/WIDERFACE/">WIDER FACE benchmark</a> to annotate Positives, Negatives and Part faces. For landmark annotations the <a class="reference external" href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA benchmark</a> has been applied.</p>
-<p>For the <strong>face classification task training</strong> the binary cross-entropy is minimized. Each sample <span class="math notranslate nohighlight">\(x_i\)</span> (detection window) contributes by
-$<span class="math notranslate nohighlight">\(
+<p>For the <strong>face classification task training</strong> the binary cross-entropy is minimized. Each sample <span class="math notranslate nohighlight">\(x_i\)</span> (detection window) contributes by</p>
+<div class="math notranslate nohighlight">
+\[
 L_i^{det}= - (y_i^{det} \log(p_i) + (1-y_i^{det}) \log(1-p_i)),
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>p_i<span class="math notranslate nohighlight">\( is the probability produced by the network that indicates that \)</span>x_i<span class="math notranslate nohighlight">\( is a Positive. The notation \)</span>y_i^{det}<span class="math notranslate nohighlight">\( denotes the ground-truth label of \)</span>x_i$.</p>
-<p>For the <strong>bounding box regression training</strong> the mean-squared-error (MSE) between the 4-coordinates <span class="math notranslate nohighlight">\((x,y,w,h)\)</span> of the true and the estimated bounding-box is minimized. Each candidate window contributes by
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_i\)</span> is the probability produced by the network that indicates that <span class="math notranslate nohighlight">\(x_i\)</span> is a Positive. The notation <span class="math notranslate nohighlight">\(y_i^{det}\)</span> denotes the ground-truth label of <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+<p>For the <strong>bounding box regression training</strong> the mean-squared-error (MSE) between the 4-coordinates <span class="math notranslate nohighlight">\((x,y,w,h)\)</span> of the true and the estimated bounding-box is minimized. Each candidate window contributes by</p>
+<div class="math notranslate nohighlight">
+\[
 L_i^{box}=|| \hat{y}_i^{box} - y_i^{box} ||_2 ,
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\hat{y}_i^{box}<span class="math notranslate nohighlight">\( is the bounding box, estimated by the network and \)</span>y_i{box}<span class="math notranslate nohighlight">\( is the corresponding ground-truth box. \)</span>|| x ||_2<span class="math notranslate nohighlight">\( is the \)</span>L_2<span class="math notranslate nohighlight">\(-norm of \)</span>x$.</p>
-<p>For the <strong>facial landmark training</strong> also the mean-squared-error (MSE) between the 10-coordinates (<span class="math notranslate nohighlight">\((x,y)\)</span> of 5 facial landmarks) of the true and the estimated landmarks is minimized. Each candidate contributes by
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{y}_i^{box}\)</span> is the bounding box, estimated by the network and <span class="math notranslate nohighlight">\(y_i{box}\)</span> is the corresponding ground-truth box. <span class="math notranslate nohighlight">\(|| x ||_2\)</span> is the <span class="math notranslate nohighlight">\(L_2\)</span>-norm of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>For the <strong>facial landmark training</strong> also the mean-squared-error (MSE) between the 10-coordinates (<span class="math notranslate nohighlight">\((x,y)\)</span> of 5 facial landmarks) of the true and the estimated landmarks is minimized. Each candidate contributes by</p>
+<div class="math notranslate nohighlight">
+\[
 L_i^{landmark}=|| \hat{y}_i^{landmark} - y_i^{landmark} ||_2 ,
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\hat{y}_i^{landmark}<span class="math notranslate nohighlight">\( is the 10-dimensional landmark vector, estimated by the network and \)</span>y_i^{landmark}$ is the vector describing the true positions of the 5 landmarks.</p>
-<p>The <strong>overall loss-function</strong> is then
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{y}_i^{landmark}\)</span> is the 10-dimensional landmark vector, estimated by the network and <span class="math notranslate nohighlight">\(y_i^{landmark}\)</span> is the vector describing the true positions of the 5 landmarks.</p>
+<p>The <strong>overall loss-function</strong> is then</p>
+<div class="math notranslate nohighlight">
+\[
 L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_i^j L_i^j,
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span> \beta_i^j \in {0,1}<span class="math notranslate nohighlight">\( is the sample-type indicator (1 if i.th sample belongs to training set of task j, else 0). In the paper \)</span>\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=0.5<span class="math notranslate nohighlight">\( have been applied to train P- and R-Net, and \)</span>\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=1$ for O-Net. The overall loss-function has been minimized by Stochastic-Gradient-Descent.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( \beta_i^j \in \{0,1\}\)</span> is the sample-type indicator (1 if i.th sample belongs to training set of task j, else 0). In the paper <span class="math notranslate nohighlight">\(\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=0.5\)</span> have been applied to train P- and R-Net, and <span class="math notranslate nohighlight">\(\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=1\)</span> for O-Net. The overall loss-function has been minimized by Stochastic-Gradient-Descent.</p>
 </div>
 <div class="section" id="sketches-for-training-and-inference">
 <h3>Sketches for Training and Inference<a class="headerlink" href="#sketches-for-training-and-inference" title="Permalink to this headline">¶</a></h3>
@@ -653,7 +657,7 @@ where \)</span> \beta_i^j \in {0,1}<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7fa05f97a550&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7ffc9197b550&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <img alt="../_images/faceDetection_31_1.png" src="../_images/faceDetection_31_1.png" />
