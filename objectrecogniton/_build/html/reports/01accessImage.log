@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 609, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/util.py", line 85, in ensure_async
+    result = await obj
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/jupyter_client/asynchronous/channels.py", line 48, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
   File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 1087, in execute
@@ -11,31 +22,25 @@ Traceback (most recent call last):
     return future.result()
   File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 540, in async_execute
     await self.async_execute_cell(
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 832, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 740, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-imgpath='../Data/mo.png'
-m_im=plt.imread(imgpath)
-#m_im_new=m_im[:,:,[2,1,0]] #swap color channels
-print(type(m_im))
-print("Shape of numpy array : \t", m_im.shape)
-plt.figure(figsize=(10,8))
-plt.axis("off") #switch off numbered axis
-plt.imshow(m_im_new)
-plt.show()
-------------------
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-4-2c679378f73f>[0m in [0;36m<module>[0;34m[0m
-[1;32m      6[0m [0mplt[0m[0;34m.[0m[0mfigure[0m[0;34m([0m[0mfigsize[0m[0;34m=[0m[0;34m([0m[0;36m10[0m[0;34m,[0m[0;36m8[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      7[0m [0mplt[0m[0;34m.[0m[0maxis[0m[0;34m([0m[0;34m"off"[0m[0;34m)[0m [0;31m#switch off numbered axis[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 8[0;31m [0mplt[0m[0;34m.[0m[0mimshow[0m[0;34m([0m[0mm_im_new[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      9[0m [0mplt[0m[0;34m.[0m[0mshow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mNameError[0m: name 'm_im_new' is not defined
-NameError: name 'm_im_new' is not defined
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 816, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 633, in _async_poll_for_reply
+    await self._async_handle_timeout(timeout, cell)
+  File "/Users/johannes/opt/anaconda3/envs/books/lib/python3.8/site-packages/nbclient/client.py", line 683, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+try:
+    cam = cv2.VideoCapture(0) #Index in brackets determine the camera. If there is only one camera available the index must be 0
+    while True:
+        img2 = cam.read()[1]
+        cv2.imshow("Video",img2)
+        if cv2.waitKey(1) == 27: # Stop if ESC is pressed
+                break
+except:
+    print("No camera available")
+cv2.destroyAllWindows()
+-------------------
 

@@ -399,8 +399,8 @@
 <li><p>Last Update: 28th January 2021</p></li>
 </ul>
 <p>In section <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">Basic Filter Operations</span></a> and section <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">Gaussian Filters</span></a> the average- and the Gaussian filter have been described, respectively. Both of them blur their input by calculating at each position <span class="math notranslate nohighlight">\(i\)</span> a weighted sum of the values <span class="math notranslate nohighlight">\(f(i+u)\)</span> in the neighbouring positions.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b550bd94-0010-45ba-b3a4-bb2be431ef0f">
-<span class="eqno">(41)<a class="headerlink" href="#equation-b550bd94-0010-45ba-b3a4-bb2be431ef0f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7da5f477-ff30-4de7-9d2b-8ea4c07b105b">
+<span class="eqno">(41)<a class="headerlink" href="#equation-7da5f477-ff30-4de7-9d2b-8ea4c07b105b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
 \end{equation}\]</div>
 <p>The difference is that for the the average filters the weights <span class="math notranslate nohighlight">\(h(u)\)</span> are all the same, whereas in the Gaussian filter the weights <span class="math notranslate nohighlight">\(h(u)\)</span> decrease for increasing absolute values of <span class="math notranslate nohighlight">\(u\)</span>.</p>
