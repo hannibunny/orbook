@@ -229,6 +229,18 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
+  Pose Estimation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
+   Multi-Person 2D Pose Estimation using Part Affinity Fields
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
   References
  </span>
 </p>
@@ -476,13 +488,13 @@ Even though <em>deep learning</em> approaches are excluded in this section, the 
 <h3>From BoW to Bag of Visual Words<a class="headerlink" href="#from-bow-to-bag-of-visual-words" title="Permalink to this headline">¶</a></h3>
 <p>In contrast to NLP in Object Recognition the input are not texts but images. Moreover, the <strong>input objects are not described by words but by local features</strong>, such as e.g. SIFT features. Hence the <em>Bag of Visual Words</em>-model of an image, contains for each local feature the frequency of the feature in the image. However, this idea must be adapted slightly because there is an important distinction between words in a textcorpus and visual words in a collection of images: <strong>In the text corpus there exists a finite number of different words, but the space of visual words in an image-collection is continuous with an infinite number of possible descriptors</strong> (note that the local descriptors are float-vectors). Hence, the problem is <em>how to quantize the continuous space of local descriptors into a finite discrete set of clusters?</em> The answer is: <em>By applying a clustering-algorithms!</em> Such an algorithm, e.g. k-means clustering, calculates for a given set of vectors and for a user-defined number of clusters <span class="math notranslate nohighlight">\(k\)</span>, a partition into <span class="math notranslate nohighlight">\(k\)</span> cells (=clusters), such that similar vectors are assigned to the same cluster.</p>
 <p>The centroids of the calculated <span class="math notranslate nohighlight">\(k\)</span> clusters constitute the set of visual words, also called the <strong>Visual Vocabulary:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-229136a3-e25f-492f-8bf7-c402563fd1fd">
-<span class="eqno">(74)<a class="headerlink" href="#equation-229136a3-e25f-492f-8bf7-c402563fd1fd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c36ef72-cab1-476d-b18a-423ac729d6d0">
+<span class="eqno">(74)<a class="headerlink" href="#equation-5c36ef72-cab1-476d-b18a-423ac729d6d0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 V=\lbrace v_t \rbrace_{t=1}^K
 \end{equation}\]</div>
 <p>In the Bag-Of-Visual Word matrix, each of the <span class="math notranslate nohighlight">\(k\)</span> columns corresponds to a visual word <span class="math notranslate nohighlight">\(v_t \in V\)</span> and each image in the set ov <span class="math notranslate nohighlight">\(N\)</span> images</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ed889e4e-34fa-4157-a48c-b696e06da29e">
-<span class="eqno">(75)<a class="headerlink" href="#equation-ed889e4e-34fa-4157-a48c-b696e06da29e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-00124055-2548-4839-97f8-ed3644cc9b4e">
+<span class="eqno">(75)<a class="headerlink" href="#equation-00124055-2548-4839-97f8-ed3644cc9b4e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 I=\lbrace I_i \rbrace_{i=1}^N
 \end{equation}\]</div>
 <p>corresponds to a row. The entry <span class="math notranslate nohighlight">\(N(t,i)\)</span> in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(t\)</span> of the matrix counts the number of times visual word <span class="math notranslate nohighlight">\(v_t\)</span> occurs in image <span class="math notranslate nohighlight">\(I_i\)</span>. Or more accurate: <span class="math notranslate nohighlight">\(N(t,i)\)</span> is the number of local descriptors in image <span class="math notranslate nohighlight">\(i\)</span>, which are assigned to the <span class="math notranslate nohighlight">\(t.th\)</span> cluster.</p>
@@ -524,15 +536,15 @@ I=\lbrace I_i \rbrace_{i=1}^N
 <li><p>First, the number of clusters <span class="math notranslate nohighlight">\(k\)</span> must be defined by the user</p></li>
 <li><p>Then <span class="math notranslate nohighlight">\(k\)</span> initial cluster centers <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> are randomly placed into the d-dimensional space</p></li>
 <li><p>Next, each of the given vectors <span class="math notranslate nohighlight">\(\mathbf{x}_p \in T\)</span> is assigned to it’s closest center-vector <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d1cbd7c-0b73-4845-bd95-4f5cb9c501f2">
-<span class="eqno">(77)<a class="headerlink" href="#equation-9d1cbd7c-0b73-4845-bd95-4f5cb9c501f2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7e90876f-45f1-44b0-b66d-a63ed918b037">
+<span class="eqno">(77)<a class="headerlink" href="#equation-7e90876f-45f1-44b0-b66d-a63ed918b037" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\left\|\mathbf{x}_p-\mathbf{v}_i \right\| = \min\limits_{j \in 1 \ldots k } \left\|\mathbf{x}_p-\mathbf{v}_j \right\|,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\left\| \mathbf{x}-\mathbf{v} \right\|\)</span> is the distance between <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 </li>
 <li><p>After this assignment for each cluster <span class="math notranslate nohighlight">\(C_i\)</span> the new cluster centroid <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> is calculated as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b105f39a-5dca-4c30-9825-f068d00edbbb">
-<span class="eqno">(78)<a class="headerlink" href="#equation-b105f39a-5dca-4c30-9825-f068d00edbbb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d6a60c4d-0f3a-48fb-aaf1-dc7e5e4d40f4">
+<span class="eqno">(78)<a class="headerlink" href="#equation-d6a60c4d-0f3a-48fb-aaf1-dc7e5e4d40f4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 	\mathbf{v}_i = \frac{1}{n_i} \sum\limits_{\forall \mathbf{x}_p \in C_i} \mathbf{x}_p,
 	\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n_i\)</span> is the number of vectors that are assigned to <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
@@ -579,19 +591,19 @@ P^*(C_j|I_q) = \prod_{t=1}^K P(v_t|C_j)^{N(t,q)} P(C_j)
 <p><strong>Training:</strong></p>
 <p>In order to calculate <a class="reference internal" href="#equation-eq-nbred">(81)</a> for all classes, the terms on the right hand side of this equation must be estimated for all classes and all visual words from a given set of <span class="math notranslate nohighlight">\(N\)</span> training samples (pairs of images and corresponding class-label).</p>
 <p>The <em>a-priori probabilities</em> of the classes are estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ac754b3-eb3c-428f-9351-1acbafe7947c">
-<span class="eqno">(82)<a class="headerlink" href="#equation-2ac754b3-eb3c-428f-9351-1acbafe7947c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3a057d54-1c17-439d-b990-82483f999605">
+<span class="eqno">(82)<a class="headerlink" href="#equation-3a057d54-1c17-439d-b990-82483f999605" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(C_j)=\frac{|C_j|}{N},
 \end{equation}\]</div>
 <p>for all classes <span class="math notranslate nohighlight">\(C_1,C_2,\ldots,C_L\)</span>.</p>
 <p>For all visual words <span class="math notranslate nohighlight">\(v_t\)</span> and all classes <span class="math notranslate nohighlight">\(C_j\)</span> the <strong>likelihood</strong> is estimated by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4198906a-b208-4814-b403-3cb2848f3433">
-<span class="eqno">(83)<a class="headerlink" href="#equation-4198906a-b208-4814-b403-3cb2848f3433" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-37790d39-60e1-403b-b3f0-ece145aab84c">
+<span class="eqno">(83)<a class="headerlink" href="#equation-37790d39-60e1-403b-b3f0-ece145aab84c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{\sum\limits_{I_i \in C_j}N(t,i)}{\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In order to avoid likelihoods of value <span class="math notranslate nohighlight">\(0\)</span> <strong>Laplace Smoothing</strong> is applied instead of the equation above:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07a023c2-d672-420a-ab27-da170d60eb22">
-<span class="eqno">(84)<a class="headerlink" href="#equation-07a023c2-d672-420a-ab27-da170d60eb22" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-883bb4c3-819f-4817-b005-d22074974c1e">
+<span class="eqno">(84)<a class="headerlink" href="#equation-883bb4c3-819f-4817-b005-d22074974c1e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
 \end{equation}\]</div>
 <p>In <a class="bibtex reference internal" href="../referenceSection.html#csurka04" id="id5">[CDF+04]</a> the authors applied a dataset of 1776 images of 7 different classes. 700 images thereof have been applied for test, the remaining for training. Below for each of the 7 classes a few examples are shown:</p>

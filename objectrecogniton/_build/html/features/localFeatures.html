@@ -229,6 +229,18 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
+  Pose Estimation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
+   Multi-Person 2D Pose Estimation using Part Affinity Fields
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
   References
  </span>
 </p>
@@ -609,8 +621,8 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 </li>
 <li><p><strong>Difference of Gaussian (DoG)</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-9d30d131-2894-4266-8b1a-d556db363a9a">
-<span class="eqno">(70)<a class="headerlink" href="#equation-9d30d131-2894-4266-8b1a-d556db363a9a" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-dec611f7-ab5b-46f3-b45d-254968bfdd95">
+<span class="eqno">(70)<a class="headerlink" href="#equation-dec611f7-ab5b-46f3-b45d-254968bfdd95" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \\
               &amp; = &amp; L(x,y,k\sigma)-L(x,y,\sigma).
 \end{eqnarray}\]</div>
@@ -725,14 +737,14 @@ r=\frac{\alpha}{\beta}
 <ul class="simple">
 <li><p>Calculate trace and determinant of <span class="math notranslate nohighlight">\(\mathbf{H}\)</span></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-f18b4821-1498-47a0-b902-661875a0cac0">
-<span class="eqno">(72)<a class="headerlink" href="#equation-f18b4821-1498-47a0-b902-661875a0cac0" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-9d521065-74f6-4361-9b7e-813be3704c1b">
+<span class="eqno">(72)<a class="headerlink" href="#equation-9d521065-74f6-4361-9b7e-813be3704c1b" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 Tr(\mathbf{H}) &amp; = D_{xx}+D_{yy} = \alpha + \beta \\
 Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 \end{eqnarray}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ef7c429c-0a62-47b3-884e-f0222d9e5552">
-<span class="eqno">(73)<a class="headerlink" href="#equation-ef7c429c-0a62-47b3-884e-f0222d9e5552" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1052b110-11f5-4bc3-a28f-c242ffc4f95f">
+<span class="eqno">(73)<a class="headerlink" href="#equation-1052b110-11f5-4bc3-a28f-c242ffc4f95f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{Tr(\mathbf{H})^2}{Det(\mathbf{H})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
 \end{equation}\]</div>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>

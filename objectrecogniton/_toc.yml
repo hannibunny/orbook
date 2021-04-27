@@ -35,6 +35,10 @@
   - file: face/faceDetection
   - file: face/faceRecognition
 
+- part: Pose Estimation
+  chapters:
+  - file: poseEstimation/Pose_Estimation
+
 
 - part: References
   chapters:
