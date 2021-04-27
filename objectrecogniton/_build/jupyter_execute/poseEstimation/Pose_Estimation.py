@@ -56,8 +56,17 @@ In this notebook a bottom-up approach, which applies deep neural netorks is impl
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/poseOverall.png" style="width:600px" align="center">
 
 ### Confidence Maps and Part Affinitiy Fields
-* Set of $J$ Confidence Maps: $$S=\lbrace S_1,S_2,\ldots,S_J \rbrace,$$ one for each body-part.
-* Set of $C$ Part Affinity Fields: $$L=\lbrace L_1,L_2,\ldots,L_C \rbrace,$$ one per limb.
+* Set of $J$ Confidence Maps: 
+
+$$
+S=\lbrace S_1,S_2,\ldots,S_J \rbrace,$$ one for each body-part.
+* Set of $C$ Part Affinity Fields: 
+
+$$
+L=\lbrace L_1,L_2,\ldots,L_C \rbrace,
+$$ 
+
+one per limb.
 * Both have the same size $w  \times h$ as the image at the input
 
 ### CNN Architecture
@@ -75,42 +84,73 @@ In this notebook a bottom-up approach, which applies deep neural netorks is impl
 
 ### Loss at each stage
 * Loss function for Confidence Map at stage t
-$$ f_S^t= \sum\limits_{j=1}^J \sum_{\mathbf{b}} W(\mathbf{p}) \cdot \mid \mid S_j^t(\mathbf{p})-S_j^*(\mathbf{p})\mid\mid ^2)$$
+
+$$ 
+f_S^t= \sum\limits_{j=1}^J \sum_{\mathbf{b}} W(\mathbf{p}) \cdot \mid \mid S_j^t(\mathbf{p})-S_j^*(\mathbf{p})\mid\mid ^2)
+$$
 
 * Loss function for Part Affinity Field at stage t
-$$ f_L^t= \sum\limits_{c=1}^C \sum_{\mathbf{b}} W(\mathbf{p}) \cdot \mid \mid L_c^t(\mathbf{p})-L_c^*(\mathbf{p})\mid\mid ^2)$$
+
+$$ 
+f_L^t= \sum\limits_{c=1}^C \sum_{\mathbf{b}} W(\mathbf{p}) \cdot \mid \mid L_c^t(\mathbf{p})-L_c^*(\mathbf{p})\mid\mid ^2)
+$$
 
 $S_j^*$ and $L_c^*$ are the groundtruths. $W$ is a binary mask with $W(\mathbf{p})=0$ if annotation is missing at an image location $\mathbf{p}$.
 
 ### Overall Loss
 * The overall loss function is
-$$f=\sum\limits_{t=1}^T (f_S^t+f_L^t)$$
+
+$$
+f=\sum\limits_{t=1}^T (f_S^t+f_L^t)
+$$
 
 * Stochastic Gradient Descent is applied to minimize the overall loss during training
 
 ### Groundtrouth for Confidence Maps
 * Put Gaussian peaks over ground truth locations $\mathbf{x_{j,k}}$ of each body part $j$. Value at location $\mathbf{p}$ for the $k.th$ person in $S_{j,k}^*$: 
-$$S_{j,k}^*(\mathbf{p}) = \exp \left( - \frac{\mid \mid \mathbf{p} - \mathbf{x_{j,k}} \mid \mid ^2}{\sigma^2} \right).$$
+
+$$
+S_{j,k}^*(\mathbf{p}) = \exp \left( - \frac{\mid \mid \mathbf{p} - \mathbf{x_{j,k}} \mid \mid ^2}{\sigma^2} \right).
+$$
+
 * Gaussian peaks of multiple persons in one map may overlap at location $\mathbf{p}$
 * They are combined by
-$$S_j^*(\mathbf{p}) = \max_k S_{j,k}^*(\mathbf{p})$$
+
+$$
+S_j^*(\mathbf{p}) = \max_k S_{j,k}^*(\mathbf{p})
+$$
+
 
 ### Groundtruth for Part Affinity Fields
 * $\mathbf{x_{j_1,k}}$ and $\mathbf{x_{j_2,k}}$ are the groundtruth-positions of bodyparts $j_1$ and $j_2$ from limb $c$ of person $k$.
 * $L_{c,k}^*(\mathbf{p})$ is a unit vector
-$$\mathbf{v}=\frac{(\mathbf{x_{j_2,k}}-\mathbf{x_{j_1,k}})}{\mid \mid \mathbf{x_{j_2,k}}-\mathbf{x_{j_1,k}}\mid \mid},$$
+
+$$
+\mathbf{v}=\frac{(\mathbf{x_{j_2,k}}-\mathbf{x_{j_1,k}})}{\mid \mid \mathbf{x_{j_2,k}}-\mathbf{x_{j_1,k}}\mid \mid},
+$$
+
 that points from one bodypart to the other, if $\mathbf{p}$ lies on the limb, otherwise it is 0.
 * $\mathbf{p}$ is said to *lie on the limb* if
-$$0 \leq (\mathbf{p}-\mathbf{x_{j_1,k}}) \cdot \mathbf{v}\leq l_{c,k} $$
+
+$$
+0 \leq (\mathbf{p}-\mathbf{x_{j_1,k}}) \cdot \mathbf{v}\leq l_{c,k} $$
+
 and
-$$0 \leq (\mathbf{p}-\mathbf{x_{j_1,k}}) \cdot \mathbf{v_{\perp}}\leq \sigma_l ,$$
+
+$$
+0 \leq (\mathbf{p}-\mathbf{x_{j_1,k}}) \cdot \mathbf{v_{\perp}}\leq \sigma_l ,
+$$
+
 where $\sigma_l$ is the limb width and $l_{c,k}=\mid \mid \mathbf{x_{j_1,k}}-\mathbf{x_{j_2,k}}\mid \mid$.
 
 ### Groundtruth for Part Affinity Fields
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/poseArm.png" style="width:500px" align="center">
 
 * Since the PAFs of multiple persons may overlap, they are combined by
-$$L_c^*(\mathbf{p}) = \frac{1}{n_c(\mathbf{p})} \sum \limits_k L_{c,k}^*(\mathbf{p})$$
+
+$$
+L_c^*(\mathbf{p}) = \frac{1}{n_c(\mathbf{p})} \sum \limits_k L_{c,k}^*(\mathbf{p})
+$$
 
 ### Infer limbs from part candidates
 * Non-maximum suppression is applied on the detected confidence maps to obtain a set of discrete part candidate locations
@@ -122,31 +162,56 @@ $$L_c^*(\mathbf{p}) = \frac{1}{n_c(\mathbf{p})} \sum \limits_k L_{c,k}^*(\mathbf
 
 ### Measure Association between candidate part detections
 * During **testing** association between candidate part detections is measured
-$$E=\int_{u=0}^{u=1} L_c(\mathbf{p}(u)) \cdot  \frac{(\mathbf{d_{j_2,k}}-\mathbf{d_{j_1,k}})}{\mid \mid \mathbf{d_{j_2,k}}-\mathbf{d_{j_1,k}}\mid \mid} du , $$
+
+$$
+E=\int_{u=0}^{u=1} L_c(\mathbf{p}(u)) \cdot  \frac{(\mathbf{d_{j_2,k}}-\mathbf{d_{j_1,k}})}{\mid \mid \mathbf{d_{j_2,k}}-\mathbf{d_{j_1,k}}\mid \mid} du , 
+$$
+
 where $\mathbf{p}(u)$ interpolates the position between the two bodypart-locations $\mathbf{d_{j_1,k}}$ and $\mathbf{d_{j_2,k}}$:
-$$\mathbf{p}(u)=(1-u)\mathbf{d_{j_1,k}} + u \mathbf{d_{j_2,k}}$$
+
+$$
+\mathbf{p}(u)=(1-u)\mathbf{d_{j_1,k}} + u \mathbf{d_{j_2,k}}
+$$
+
 * $L_c$ is the predicted PAF for limb $c$ and $\mathbf{d_{j_1,k}}$ and $\mathbf{d_{j_2,k}}$ are predicted part posistions (candidates for being part of limb $c$).
 
 ### Optimisation problem
 * Set of body-part detection candidates:
-$$ D_J = \lbrace \mathbf{d}_j^m : \mbox{ for } j \in \lbrace 1 \ldots J \rbrace,  m \in \lbrace 1 \ldots N_j \rbrace \rbrace,$$
+
+$$ D_J = \lbrace \mathbf{d}_j^m : \mbox{ for } j \in \lbrace 1 \ldots J \rbrace,  m \in \lbrace 1 \ldots N_j \rbrace \rbrace,
+$$
+
 where 
     * $N_j$: number of candidates of part $j$
     * $\mathbf{d}_j^m$: location of $m.th$ detection candidate for part $j$
     
 * Connection indicator
-$$z_{j_1j_2}^{mn} \in \lbrace 0,1 \rbrace,$$
+
+$$
+z_{j_1j_2}^{mn} \in \lbrace 0,1 \rbrace,
+$$
+
 with $z_{j_1j_2}^{mn}=1$, if detection candidates $\mathbf{d}_{j_1}^m$ and $\mathbf{d}_{j_2}^n$ are connected.
 
 * **Goal** ist to find the optimal assignment for the set of all possible connections
-$$Z=\lbrace z_{j_1j_2}^{mn} : \mbox{ for } j_1,j_2 \in \lbrace 1 \ldots J \rbrace,  m \in \lbrace 1 \ldots N_{j_1} \rbrace, n \in \lbrace 1 \ldots N_{j_2} \rbrace \rbrace,$$
+
+$$
+Z=\lbrace z_{j_1j_2}^{mn} : \mbox{ for } j_1,j_2 \in \lbrace 1 \ldots J \rbrace,  m \in \lbrace 1 \ldots N_{j_1} \rbrace, n \in \lbrace 1 \ldots N_{j_2} \rbrace \rbrace,
+$$
+
 
 * For a pair of parts $j_1$ and $j_2$ the optimsation problem can be considered as an **maximum weight matching problem in a bipartite Graph**
 * A matching in a bipartite graph is a subset of the edges chosen in such a way that no two edges share a node. Our goal is to find a matching with maximum weight for the chosen edges
-$$\max_{Z_c} E_c = \max_{Z_c} \sum\limits_{m \in D_{j_1}} \sum\limits_{n \in D_{j_2}} E_{mn} \cdot z_{j_1j_2}^{mn},$$
+
+$$
+\max_{Z_c} E_c = \max_{Z_c} \sum\limits_{m \in D_{j_1}} \sum\limits_{n \in D_{j_2}} E_{mn} \cdot z_{j_1j_2}^{mn},
+$$
+
 such that
-    * $\forall m \in D_{j_1}: \sum\limits_{n \in D_{j_2}} z_{j_1j_2}^{mn} \leq 1$ and
-    * $\forall n \in D_{j_2}: \sum\limits_{m \in D_{j_1}} z_{j_1j_2}^{mn} \leq 1$
+
+* $\forall m \in D_{j_1}: \sum\limits_{n \in D_{j_2}} z_{j_1j_2}^{mn} \leq 1$ and
+
+* $\forall n \in D_{j_2}: \sum\limits_{m \in D_{j_1}} z_{j_1j_2}^{mn} \leq 1$
 
 ### Maximum Weight Matching in Bipartite-Graph  
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/poseBipartite.png" style="width:500px" align="center">

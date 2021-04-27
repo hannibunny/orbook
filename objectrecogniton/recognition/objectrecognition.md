@@ -263,7 +263,7 @@ The work of Czurka et al ({cite}`Csurka04`) introduced the idea of visual words 
 
 #### How to sample local descriptors from the image?
 
-In [Local Fetures](../features/localFeatures) SIFT has been introduced. There, only the option that these descriptors are sampled at the image's keypoint (sparse sampling) has been mentioned. However, keypoint detection on on hand and describing a local region on the other hand are decoupled. In fact, as the image below shows, local descriptors can also be extracted at all points of a regular grid (dense sampling) or even at randomly determined points (random sampling). 
+In [Local Fetures](../features/localFeatures) SIFT has been introduced. There, only the option that these descriptors are sampled at the image's keypoint (sparse sampling) has been mentioned. However, keypoint detection on one hand and describing a local region on the other hand are decoupled. In fact, as the image below shows, local descriptors can also be extracted at all points of a regular grid (dense sampling) or even at randomly determined points (random sampling). 
 
 
 
@@ -287,9 +287,9 @@ Visual words must be learned, e.g. by applying the k-means algorithm. Which imag
 
 #### Number of Visual Words and how to count words in the matrix?
 
-Up to now, we pretended that the entries in the Bag of Visual Words matrix are the numbers of local descriptors in the image of the current row, which are assigned to the visual word of the current columnt. However, using the visual-word frequencies is only one option. In BoWs in NLP an alternative to word-frequencies is the so called **tf-idf** (term frequency -inverse document frequency), where
+Up to now, we pretended that the entries in the Bag of Visual Words matrix are the numbers of local descriptors in the image of the current row, which are assigned to the visual word of the current column. However, using the visual-word frequencies is only one option. In BoWs in NLP an alternative to word-frequencies is the so called **tf-idf** (term frequency -inverse document frequency), where
 
-* term frequency $tf_{i,j}$] counts how often word $i$ appears in document $j$, and
+* term frequency $tf_{i,j}$ counts how often word $i$ appears in document $j$, and
 
 * inverse document frequency $idf_i$ is the logarithm of inverse ratio of documents (images) that contain (visual) word $i$:
 
@@ -313,7 +313,7 @@ The idea of tf-idf is that words, which occur in many documents, are less inform
 
 have been compared. The best results have been obtained by tf-idf, the worst by the binary count.
 
-The problem on the size of the visual vocabulary, i.e. the number of different clusters $k$, has already been mentioned above. As {numref}`errorrateVsK` shows, in general the error-rate of the downstream task (classification) decreases, with an increasing number of visual words. However, the error-rate-decrease gets smaller in the range of large $k$ - values. It also important to be aware, that this plot has been drawn for a specific task and a specific dataset. The question on the number of viusal words must be answered individually for each data set and each task.
+The problem on the size of the visual vocabulary, i.e. the number of different clusters $k$, has already been mentioned above. As {numref}`errorrateVsK` shows, in general the error-rate of the downstream task (classification) decreases, with an increasing number of visual words. However, the error-rate-decrease gets smaller in the range of large $k$ - values. It is also important to be aware, that this plot has been drawn for a specific task and a specific dataset. The question on the number of viusal words must be answered individually for each data set and each task.
 
 
 #### Algorithms for Training and Encoding?  
@@ -325,7 +325,7 @@ In the context of visual vocabularies the two stages *training* and *encoding* m
 1. Initialisation: Define branching-factor $k$ and maximum depth $L$. Set current depth $l=1$. 
 2. Apply k-means algorithm to training-set in order to determine k different clusters in depth $l=1$.
 3. Determine for each subregion in depth $l$ the subsetset of training-data, which is assigned to this subregion.
-3. Apply k-means algorithm to each of the subregions in depth $l$, by applying the subregion-specific traning-subset. In this way new subregions for depth $l+1$ are generated. The umber of subregions in depth $l+1$ is $k$ times the number of subregions in depth $l$.
+3. Apply k-means algorithm to each of the subregions in depth $l$, by applying the subregion-specific training-subset. In this way new subregions for depth $l+1$ are generated. The number of subregions in depth $l+1$ is $k$ times the number of subregions in depth $l$.
 4. Set $l := l+1$ and continue with step 3 until $l=L$
 
 
@@ -341,7 +341,7 @@ Training: Hierarchical application of $k$-means clustering, for branching factor
 
 
 **Encoding:**
-In the encoding phase a new vector $p$ (point) must be assigned to it's closest cluster-center (visual word). In the hierearchical tree of visual words, in the first iteration the distance between $p$ and $k$ cluster-enters must be determined and the closest is selected. In the next iteration again only $k$ distances must be determined and compared- the distances between $p$ and the $k$ cluster centers of the subregion, which has been found in the previous iteration. In total, far fewer distances must calculated and compared, than in the encoding phase w.r.t. a flat set of visual words.
+In the encoding phase a new vector $p$ (point) must be assigned to it's closest cluster-center (visual word). In the hierearchical tree of visual words, in the first iteration the distance between $p$ and $k$ cluster-centers must be determined and the closest is selected. In the next iteration again only $k$ distances must be determined and compared- the distances between $p$ and the $k$ cluster centers of the subregion, which has been found in the previous iteration. In total, far fewer distances must be calculated and compared, than in the encoding phase w.r.t. a flat set of visual words.
 
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeRecognition.PNG

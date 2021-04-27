@@ -430,14 +430,16 @@
 <p>The goal of the triplet loss is to ensure that an image <span class="math notranslate nohighlight">\(x_i^a\)</span> (anchor) of a specific person is closer to all other images <span class="math notranslate nohighlight">\(x_i^p\)</span> (positive) of the same person than it is to any image <span class="math notranslate nohighlight">\(x_i^n\)</span> (negative) of any other person. This is visualized in the figure below:</p>
 <img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/faceNetLoss.png" />
 <p>Source: <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet paper</a></p>
-<p>More formally, the following relation shall be fulfilled:
-$<span class="math notranslate nohighlight">\(
+<p>More formally, the following relation shall be fulfilled:</p>
+<div class="math notranslate nohighlight">
+\[
 || f(x_i^a) - f(x_i^p) ||_2^2 + \alpha &lt; || f(x_i^a) - f(x_i^n) ||_2^2, \quad \forall (f(x_i^a), f(x_i^p), f(x_i^n) \in \cal{T},
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\alpha<span class="math notranslate nohighlight">\( is a margin that is enforced between positive and negative pairs. This implies that the following loss function must be minimized:
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a margin that is enforced between positive and negative pairs. This implies that the following loss function must be minimized:</p>
+<div class="math notranslate nohighlight">
+\[
 L=\sum\limits_{i=1}^N \left[ || f(x_i^a) - f(x_i^p) ||_2^2 -  || f(x_i^a) - f(x_i^n) ||_2^2 + \alpha  \right].
-\)</span>$</p>
+\]</div>
 <p>If just all possible triplets <span class="math notranslate nohighlight">\(\cal{T}\)</span> are applied, training would converge slowly, because many triplets already fulfill the inequality-relation formulated above and won’t yield weight-adaptations. Therefore, the authors of the FaceNet paper suggest a specific <strong>triplet selection process</strong> such that for a given anchor <span class="math notranslate nohighlight">\(x_i^a\)</span> only those positives are selected, for which <span class="math notranslate nohighlight">\(|| f(x_i^a) - f(x_i^p) ||_2^2\)</span> is maximal and only those negatives are selected, for which <span class="math notranslate nohighlight">\(|| f(x_i^a) - f(x_i^n) ||_2^2\)</span> is minimal. For details please refer to <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet paper</a>.</p>
 </div>
 </div>

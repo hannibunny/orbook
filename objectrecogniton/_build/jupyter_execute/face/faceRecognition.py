@@ -34,10 +34,13 @@ The goal of the triplet loss is to ensure that an image $x_i^a$ (anchor) of a sp
 Source: [FaceNet paper](https://arxiv.org/abs/1503.03832) 
 
 More formally, the following relation shall be fulfilled:
+
 $$
 || f(x_i^a) - f(x_i^p) ||_2^2 + \alpha < || f(x_i^a) - f(x_i^n) ||_2^2, \quad \forall (f(x_i^a), f(x_i^p), f(x_i^n) \in \cal{T},
 $$
+
 where $\alpha$ is a margin that is enforced between positive and negative pairs. This implies that the following loss function must be minimized:
+
 $$
 L=\sum\limits_{i=1}^N \left[ || f(x_i^a) - f(x_i^p) ||_2^2 -  || f(x_i^a) - f(x_i^n) ||_2^2 + \alpha  \right].
 $$
