@@ -229,6 +229,18 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
+  Pose Estimation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
+   Multi-Person 2D Pose Estimation using Part Affinity Fields
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
   References
  </span>
 </p>
@@ -387,8 +399,8 @@
 <li><p>Last Update: 28th January 2021</p></li>
 </ul>
 <p>In section <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">Basic Filter Operations</span></a> and section <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">Gaussian Filters</span></a> the average- and the Gaussian filter have been described, respectively. Both of them blur their input by calculating at each position <span class="math notranslate nohighlight">\(i\)</span> a weighted sum of the values <span class="math notranslate nohighlight">\(f(i+u)\)</span> in the neighbouring positions.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2daddad7-8761-45f5-b582-e4e744d554cf">
-<span class="eqno">(41)<a class="headerlink" href="#equation-2daddad7-8761-45f5-b582-e4e744d554cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b550bd94-0010-45ba-b3a4-bb2be431ef0f">
+<span class="eqno">(41)<a class="headerlink" href="#equation-b550bd94-0010-45ba-b3a4-bb2be431ef0f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
 \end{equation}\]</div>
 <p>The difference is that for the the average filters the weights <span class="math notranslate nohighlight">\(h(u)\)</span> are all the same, whereas in the Gaussian filter the weights <span class="math notranslate nohighlight">\(h(u)\)</span> decrease for increasing absolute values of <span class="math notranslate nohighlight">\(u\)</span>.</p>
