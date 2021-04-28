@@ -698,16 +698,144 @@ In the k-means **training phase** the optimisation problem of equation {eq}`kopt
 
 #### From k-means to sparse-coding
 
-The step from k-means to sparse coding can be done by relaxing the condition $Card(\mathbf{u_m})=1$ in equation {eq}`kopt`. I.e. instead of requiring, that each input is mapped to exactly one cluster, we allow inputs to be assigned to more but only a few clusters. The condition *one or only a few* can be realized by **L1-regularisation**, which is defined in this context as follows:
+The step from k-means to sparse coding can be done by relaxing the condition $Card(\mathbf{u_m})=1$ in equation {eq}`kopt`. I.e. instead of requiring, that each input is mapped to exactly one cluster, **we allow inputs to be assigned to more than one, but only a few clusters**. The condition *one or only a few* can be realized by **L1-regularisation**, which is defined in this context as follows:
 
 $$
 \min\limits_{U,V} \sum\limits_{m=1}^N \Vert \mathbf{x}_m - \mathbf{u}_m V \Vert ^2 + \lambda|\mathbf{u}_m| \quad \mbox{ subject to } \Vert \mathbf{v}_k \Vert = 1 \; \forall k
 $$ (sparsecoding})
 
-The $L1$-norm regularization enforces $\mathbf{u}_m$ to have a small number of nonzero elements. Moreover, the constraint $\Vert \mathbf{v}_k \Vert = 1$ provides normalisation of the codebook. The sparse optimisation problem of equation {eq}`sparsecoding` can be solved e.g. by the [Coordinate Descent Algorithm](http://en.wikipedia.org/wiki/Coordinate\_descent).   
+The $L1$-norm regularization enforces $\mathbf{u}_m$ to have a small number of nonzero elements. Moreover, the constraint $\Vert \mathbf{v}_k \Vert = 1$ provides normalisation of the codebook. 
+
+**Coordinate Descent Algorithm:**
+
+The sparse optimisation problem of equation {eq}`sparsecoding` can be solved e.g. by the [Coordinate Descent Algorithm](http://en.wikipedia.org/wiki/Coordinate\_descent). This algorithms minimizes a multivariate function $f(\mathbf{x})=f(x_1,x_2,\ldots,x_n)$ as follows:
+
+1. Start at an arbitrary point $\mathbf{x}^0=(x_1^0,x_2^0,\ldots,x_n^0)$ 
+2. Set $k=1,i=1$: The index $i$ defines along which coordinate $x_i$ the function $f(\mathbf{x})=f(x_1,x_2,\ldots,x_n)$ is minimized in round $k$  
+3. In round $k$ determine a new value for $x_i^{k}$. This new value for $x_i^{k}$ minimizes the function along the $x_i$-axis:
+
+	$$
+	x_i^{k}=\arg \min \limits_{y \in \cal{R}} f(x_1^{k-1},x_2^{k-1},\ldots,x_{i-1}^{k-1},y,x_{i+1}^k,\ldots,x_n^k)
+	$$
+	
+	For all other axis $x_j, j \neq  i$ the values $x_j$ remain unchanged, i.e. $x_j^k=x_j^{k-1}$ in this iteration
+
+4. Set $i:=(i+1)\mod n$ and $k:=k+1$
+5. Go to 3. as long as termination criteria is not fulfilled  
+
+It is guaranteed that from iteration to iterartion the function contiuously decreases until a local minima is reached.
+
+$$
+f(\mathbf{x}^0) \geq f(\mathbf{x}^1) \geq f(\mathbf{x}^2) \geq \ldots
+$$
+   
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/CoordinateDescent.png
+---
+width: 550px
+align: center
+name: coordinatedescent
+---
+In each iteration the coordinate-descent-algorithms minimizes the function along only one axis. 
+```
+
+Other popular sparse coding techniques are e.g. **sparse Restricted Boltzman Machines (RBM)** and **sparse Autoencoders**. Both can be 
+realized as neural networks.
 
 
-### !This section and all the following sections are under construction!
+### Replace non-linear by linear SVM
+
+As already mentioned above, in {cite}`Yang09` an extension to the Spatial Pyramid Matching approach of {cite}`Lazebnik06` has been developed, which integrates **linear SVMs** and **sparse coding** in the overall stack. This new stack is depicted below:
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/layerSchemaLinearSPM.png
+---
+width: 650px
+align: center
+name: linearSPM
+---
+The new approach integrates Sparse Coding, Pooling and a linear SVM
+```
+
+The application of Sparse Coding, Pooling and linear SVM in the context of this stack is described below:
+
+#### Sparse Coding for generating mid level features
+
+**Training of Sparse Coder:** 
+
+* Let $X$ be the set of $N$ training descriptors, as defined in equation {eq}`eq:notX`
+* equation {eq}`eq:sparsecoding` w.r.t. $U$ and $V$ for the given training images, where $U$ and $V$ are defined as in equation {eq}`eq:notU` and {eq}`eq:notV`, respectively.
+
+**Inference Phase Sparse Coder:**
+
+* Let $X$ be the matrix of $M$ descriptors of the new image.  
+* $V$ is the codebook determined in the training phase.
+* Solve equation {eq}`eq:sparsecoding` w.r.t. $U$. 
+* The $i.th$ row of $U$ determines which codewords (mid level features) of the codebook $V$ are activated by the $i.th$ descriptor in $X$.
+* The $j.th$ column determines the responses of all descriptors in $X$ to one specific mid level feature (codeword) in $V$.
+
+#### Maxpooling
+
+* Let $U$ be the sparse code of descriptor set $X$.
+* For each of the $K$ columns in matrix $U$ calculate the $j.th$ component of vector $\mathbf{Z}$ as
+
+$$
+z_j=\max \lbrace |u_{1,j}|, |u_{2,j}|, \ldots, |u_{M,j}|\rbrace
+$$
+
+* **The value of $z_j$ describes the presence of mid-level feature $\mathbf{v}_j$** in the corresponding spatial region of the image, described by $X$.
+* Note, that in the original Spatial Pyramid Matching approach by {cite}`Lazebnik06` the representation $z$ is a histogram, which counts the frequency of a mid-level feature $\mathbf{v}_j$ in the corresponding spatial region of the image. 
+
+**Max Pooling in the context of Spatial Pyramid Matching:**
+
+Similar to the construction of histograms in SPM, Max Pooling Spatial Pyramids are constructed by applying max pooling across different locations and over different spatial scales. Max-Pooled features from different locations and scales are then concatenated as in SPM.
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/yangSCandPooling.PNG
+---
+width: 450px
+align: center
+name: linearSPM
+---
+Integration of Max Pooling in Spatial Pyramid Matching
+```
+
+#### Integrate Linear SVM 
+
+* Let $\mathbf{z}_i$ be the max pooling representation of image $I_i$. 
+* The \alert{linear kernel} in the SVM is 
+
+	$$
+	\kappa(\mathbf{z}_i,\mathbf{z}_j) = \mathbf{z}_i^T \mathbf{z}_j = \sum\limits_{\ell=0}^2 \sum\limits_{s=0}^{2^\ell} \sum\limits_{t=0}^{2^\ell} \mathbf{z}_i^T(\ell,s,t) \mathbf{z}_j(\ell,s,t),
+	$$
+
+	where $\mathbf{z}_i^T(\ell,s,t)$ is the max-pooling output of the spatial segment at position $(s,t)$ at level $\ell$.
+
+* The binary decision function of the SVM is then
+
+	$$
+	f(\mathbf{z}) = \left(\sum\limits_{i=1}^N \alpha_i y_i \mathbf{z}_i \right)^T \mathbf{z} + b = \mathbf{w}^T \mathbf{z} + b
+	$$
+	
+
+#### Performance of the linear Spatial Pyramid Matching approach
+
+The computational **training cost is $\mathcal{O}(N)$*, testing cost is constant (independent of $N$). According to the authors of {cite}`Yang09` **Linear SPM kernel based on sparse coding statistics always achieves excellent classification accuracy**, because
+* Sparse Coding has much less quantization errors than vector quantisation (k-means)
+* The computed statistics by max pooling are more salient and robust to local translations
+
+On the Caltech-101 dataset the classification accuracy of this approach is **about $10\%$ better**, than the SPM approach of {cite}`Lazebnik06`.  
+
+```{figure} https://maucher.home.hdm-stuttgart.de/Pics/linearSPM.png
+---
+width: 550px
+align: center
+name: linearSPM
+---
+```
+
+* KSPM: Spatial Pyramid Matching with K-means, histogram pooling and non-linear SVM {cite}`Lazebnik06`
+* LSPM: Spatial Pyramid Matching with K-means, histogram pooling and linear SVM
+* ScSPM: Spatial Pyramid Matching with Sparse Coding, maxpooling and linear SVM {cite}`Yang09`.
+
+
 
 [^footnote1]: **Mean Rank** is the mean position of the correct label, when labels are sorted in decreasing order w.r.t. the classifier score, as calculated in equation {eq}`eq:NBred`
 
