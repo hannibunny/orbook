@@ -817,7 +817,7 @@ Integration of Max Pooling in Spatial Pyramid Matching
 
 #### Performance of the linear Spatial Pyramid Matching approach
 
-The computational **training cost is $\mathcal{O}(N)$*, testing cost is constant (independent of $N$). According to the authors of {cite}`Yang09` **Linear SPM kernel based on sparse coding statistics always achieves excellent classification accuracy**, because
+The computational **training cost is $\mathcal{O}(N)$**, testing cost is constant (independent of $N$). According to the authors of {cite}`Yang09` **Linear SPM kernel based on sparse coding statistics always achieves excellent classification accuracy**, because
 * Sparse Coding has much less quantization errors than vector quantisation (k-means)
 * The computed statistics by max pooling are more salient and robust to local translations
 
