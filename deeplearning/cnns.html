@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convolutional Neural Networks for Object Recognition &#8212; Object Recognition Lecture</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Face Detection" href="../face/faceDetection.html" />
+    <link rel="prev" title="Animations of Convolution and Deconvolution" href="convolutionDemos.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Intro and Overview Object Recognition Lecture
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/01accessImage.html">
+   Basic Image Access Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/02filtering.html">
+   Basic Filter Operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/04gaussianDerivatives.html">
+   Gaussian Filter and Derivatives of Gaussian
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/03LowPassFilter.html">
+   Rectangular- and Gaussian Low Pass Filtering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/06GaussianNoiseReduction.html">
+   Noise Suppression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html">
+   Gaussian and Difference of Gaussian Pyramid
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Features
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/globalDescriptors.html">
+   Global Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/similarityMetrics.html">
+   Similarity Measures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html">
+   Histogram-based Image Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
+   Use pretrained CNNs for Retrieval
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/multiReceptiveFields.html">
+   Multidimensional Receptive Field Histograms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/naiveBayesHistogram.html">
+   Histogram-based Naive Bayes Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/probRecognition.html">
+   Example: Naive Bayes Object Recognition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/localFeatures.html">
+   Local Image Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/harrisCornerDetection.html">
+   Example: Harris-Förstner Corner Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/siftDescriptorCV2.html">
+   Example: Create SIFT Descriptors with openCV
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HoGfeatures.html">
+   Histogram of Oriented Gradients: Step-by-Step
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../features/HOGpedestrianDetection.html">
+   HOG-based Pedestrian Detection
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Object Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../recognition/objectrecognition.html">
+   Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolutionDemos.html">
+   Animations of Convolution and Deconvolution
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Convolutional Neural Networks for Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Face Detection and Recognition
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../face/faceDetection.html">
+   Face Detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../face/faceRecognition.html">
+   Face Recognition using FaceNet
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Pose Estimation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
+   Multi-Person 2D Pose Estimation using Part Affinity Fields
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../referenceSection.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/deeplearning/cnns.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imagenet-contest">
+   ImageNet Contest
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#detection-challenge">
+     Detection Challenge
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-challenge">
+     Classification Challenge
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alexnet">
+   AlexNet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vgg-net">
+   VGG Net
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resnet">
+   ResNet
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convolutional-neural-networks-for-object-recognition">
+<h1>Convolutional Neural Networks for Object Recognition<a class="headerlink" href="#convolutional-neural-networks-for-object-recognition" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imagenet-contest">
+<h2>ImageNet Contest<a class="headerlink" href="#imagenet-contest" title="Permalink to this headline">¶</a></h2>
+<p>The ImageNet Large Scale Visual Recognition Challenge (ILSVRC) evaluates algorithms for <strong>object detection</strong> and <strong>image classification</strong> at large scale. It contains</p>
+<ul class="simple">
+<li><p><strong>Detection challenge</strong> on fully labeled data for 200 categories of objects</p></li>
+<li><p><strong>Image classification</strong> challenge with 1000 categories</p></li>
+<li><p>Image classification plus <strong>object localization</strong> challenge with 1000 categories</p></li>
+</ul>
+<p>The Training data, provided for the challenge is a subset of <a class="reference external" href="https://imagenet.stanford.edu">ImageNet data</a>. ImageNet is an image database organized according to the WordNet hierarchy, in which each node of the hierarchy is depicted by hundreds and thousands of images. (15 million images in 22000 categories).</p>
+<hr class="docutils" />
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/imageNetTaxonomy.PNG" style="width:500px" align="center">
+</figure>
+<div class="section" id="detection-challenge">
+<h3>Detection Challenge<a class="headerlink" href="#detection-challenge" title="Permalink to this headline">¶</a></h3>
+<p>In the detection challenge 200 object categories must be distinguished. Training data consists of 456567 images with 478807 objects. For validation  20121 images with 55502 objects from flickr and other search engines are provided. The test-dataset consists of 40152 images from flickr and other search engines. The average image resolution in validation data is: <span class="math notranslate nohighlight">\(482 \times 415\)</span> pixels. For each image, the algorithms must produce a set of annotations <span class="math notranslate nohighlight">\((c_i,b_i,s_i)\)</span> of class labels <span class="math notranslate nohighlight">\(c_i\)</span>, bounding boxes <span class="math notranslate nohighlight">\(b_i\)</span> and confidence scores <span class="math notranslate nohighlight">\(s_i\)</span>.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ILSVRC2014detection.PNG" style="width:500px" align="center">
+</figure>
+</div>
+<div class="section" id="classification-challenge">
+<h3>Classification Challenge<a class="headerlink" href="#classification-challenge" title="Permalink to this headline">¶</a></h3>
+<p>In the classification challenge 1000 object categories are distinguished <strong>Training data</strong> consists of 1.2 Million images from ImageNet. For <strong>validation</strong> 50 000 images from flickr and other search engines are provided. The <strong>test-dataset</strong> consists of 100 000 images from flickr and other search engines. For each image the algorithms must produce <span class="math notranslate nohighlight">\(5\)</span> class labels <span class="math notranslate nohighlight">\(c_i, \, i \in \lbrace1,\ldots,5\rbrace\)</span> in decreasing order of confidence and 5 bounding boxes <span class="math notranslate nohighlight">\(b_i, \, i \in \lbrace1,\ldots,5\rbrace\)</span>, one for each class label. The <strong>Top-5 error rate</strong> is the fraction of test images for which the correct label is not among the five labels considered most probable by the model.</p>
+<p>In the <strong>localisation-task</strong> object-category and bounding boxes must match. Bounding boxes are defined to match, if they have an overlap (Intersection over Union) of <span class="math notranslate nohighlight">\(&gt;50\%\)</span>.</p>
+</div>
+</div>
+<div class="section" id="alexnet">
+<h2>AlexNet<a class="headerlink" href="#alexnet" title="Permalink to this headline">¶</a></h2>
+<p>AlexNet is considered to be an important milestone in Deeplearning. This CNN has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#krizhevskysutskeverhinton" id="id1">[KSH]</a> and won the   <strong>ILSVRC 2012 classification- and localisation task</strong>. It achieved a top-5 classification error of <span class="math notranslate nohighlight">\(15.4\%\)</span> (next best achieved <span class="math notranslate nohighlight">\(26.2\%\)</span>!).</p>
+<p>The key elements of AlexNet are:</p>
+<ul class="simple">
+<li><p>ReLu activations decrease training time</p></li>
+<li><p>Local Response Normalisation (LRN) in order to limit the outputs of the Relu activations</p></li>
+<li><p>Overlapped Pooling regions</p></li>
+<li><p>For reducing overfitting Data augmentation and Dropout are applied.</p>
+<ul>
+<li><p><strong>Data Augmentation</strong>: For training not only the <span class="math notranslate nohighlight">\(224 \times 224\)</span> crop at the center, but several crops within the <span class="math notranslate nohighlight">\(256 \times 256\)</span> image are extracted. Moreover, also their horizontal flips are applied and the intensities of the RGB channels have been altered to provide more robustness w.r.t. color changes. The augmented training dataset consisted of 15 million annotated images</p></li>
+<li><p><strong>Dropout</strong> is applied in the first 2 fully-connected-layers</p></li>
+</ul>
+</li>
+<li><p>Training duration 6 days on <strong>two parallel GTX 580 3GB GPUs</strong></p></li>
+</ul>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/AlexNetArchitecture.png" style="width:500px" align="center">
+</figure>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/AlexNetSpec.PNG" style="width:500px" align="center">
+</figure>
+<p>At the input AlexNet requires images of size <span class="math notranslate nohighlight">\(256 \times 256\)</span>. Since ImageNet consists of variable-resolution images, in the preprocessing the rectangular images are first rescaled such that shorter side is of length <span class="math notranslate nohighlight">\(256\)</span>.
+Then the central <span class="math notranslate nohighlight">\(224 \times 224\)</span> patch is cropped from the resulting image.
+In addition to this scaling, the only <strong>preprocessing</strong> routine is subtraction of the mean value over the training set from each pixel.</p>
+<p>In the <strong>test-phase</strong> from each test - image 10 versions werecreated:</p>
+<ul class="simple">
+<li><p>the four <span class="math notranslate nohighlight">\(224 \times 224\)</span> corner crops and the center crop</p></li>
+<li><p>from each of the 5 crops the horizontal flip</p></li>
+</ul>
+<p>For the 10 versions the corresponding output of the softmax-layer is calculated and the class which yields highest average output over the 10 versions is selected.</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/AlexNetEvaluation.PNG" style="width:500px" align="center">
+</figure>
+</div>
+<div class="section" id="vgg-net">
+<h2>VGG Net<a class="headerlink" href="#vgg-net" title="Permalink to this headline">¶</a></h2>
+<p>In <span class="bibtex" id="id2">[KarenSimonyan2014]</span> the <em>Visual Geometry Group</em> of the Universitiy of Oxford introduced the VGG Net. The main goal of the researches was to investigate the influence of depth in CNNs. VGG Net won the ILSVRC 2014 localisation-challenge and became <span class="math notranslate nohighlight">\(2nd\)</span> in the classification task.</p>
+<p>The architecture of VGG-13 (13 learnable layers) is shown below:</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/vgg19.png" style="width:500px" align="center">
+</figure>
+<p>All VGG versions are summarized in this table:</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/vggConfigurations.png" style="width:500px" align="center">
+</figure>
+<p>The number of parameters in these versions are millions:</p>
+<ul class="simple">
+<li><p>A, A-LRN: 133 millions</p></li>
+<li><p>B: 133 millions</p></li>
+<li><p>C: 134 millions</p></li>
+<li><p>D: 138 millions</p></li>
+<li><p>E: 144 millions</p></li>
+</ul>
+<p>As can be seen only version A-LRN contains Local Response Normalisation. In the experiments this version did not perform better than the version A without LRN.</p>
+<p>The key facts of the VGG-architecture are:</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(224 \times 224 \)</span></strong> RGB images at the input</p></li>
+<li><p><strong>Preprocessing:</strong> Subtract mean-RGB image computed on trainings set.</p></li>
+<li><p><strong>Small receptive fields of <span class="math notranslate nohighlight">\(3 \times 3\)</span></strong> in filters, particularly in the first conv-layers.</p></li>
+<li><p><strong>Stride:</strong> <span class="math notranslate nohighlight">\(1\)</span></p></li>
+<li><p><strong>Padding:</strong> <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(3 \times 3\)</span>-filters</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(2 \times 2\)</span>-Max-Pooling</strong> with stride 2</p></li>
+<li><p><strong>ReLu</strong> activation in all hidden layers</p></li>
+<li><p><strong>No Normalization</strong></p></li>
+<li><p><strong>Feature Maps:</strong> 64 in the first layer and increasing by a factor of 2 after each pooling layer.</p></li>
+</ul>
+<p>All VGG versions apply only filters of size <span class="math notranslate nohighlight">\(3 \times 3\)</span>. The apparent drawback of small filters may be that only small features in the input can be extracted. This assumption is not valid, if the local receptive fields of a sequence of layers is considered: A stack of two conv-layers with <span class="math notranslate nohighlight">\(3 \times 3\)</span> receptive field has an effective receptive field of <span class="math notranslate nohighlight">\(5 \times 5\)</span> and a stack of three conv-layers with <span class="math notranslate nohighlight">\(3 \times 3\)</span> receptive field has an effective receptive field of <span class="math notranslate nohighlight">\(7 \times 7\)</span>. The advantages of a stack of layers with smaller filters are:</p>
+<ul>
+<li><p>Stacked version has more ReLu-nonlinearities, which enables more discriminative decision function</p>
+<ul>
+<li><p>Stacked version has less parameters:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(3 \cdot 3^2C^2 = 27C^2\)</span> for a 3-layer stack of <span class="math notranslate nohighlight">\((3 \times 3)\)</span>-filters, versus …</p></li>
+<li><p><span class="math notranslate nohighlight">\(7^2C^2=49C^2\)</span> for a single layer with  <span class="math notranslate nohighlight">\((3 \times 3)\)</span>-filters</p></li>
+</ul>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is the number of channels (feature maps in the layer). Less parameters impose better generalisation.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The VGG experiments prove that it is better to apply more layers with small filters than less layers with larger filters.</p>
+<p>The images passed to the input of VGG are of size <span class="math notranslate nohighlight">\(224 \times 224\)</span>. In the training phase this input is cropped from a training image, which is isotropically rescaled. The smallest side of the rescaled training image is called <strong>training scale <span class="math notranslate nohighlight">\(S\)</span></strong>. There exist two options for setting <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Use constant <span class="math notranslate nohighlight">\(S\)</span> (<strong>single-scale training}</strong>, e.g. <span class="math notranslate nohighlight">\(S=256\)</span> or <span class="math notranslate nohighlight">\(S=384\)</span>.</p></li>
+<li><p><strong>multi-scale training:</strong> randomly sample <span class="math notranslate nohighlight">\(S\)</span> from a range e.g. <span class="math notranslate nohighlight">\([256,512]\)</span>.</p></li>
+</ul>
+<p>Results of single- and multiscale-testing are listed in the tables below:</p>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/vggPerfSingleScale.png" style="width:500px" align="center">
+  <figcaption>
+Single scale testing
+</figcaption>
+</figure>
+<figure align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/vggPerfMultiScale.png" style="width:500px" align="center">
+  <figcaption>
+Multi scale testing
+</figcaption>
+</figure>
+</div>
+<div class="section" id="resnet">
+<h2>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./deeplearning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="convolutionDemos.html" title="previous page">Animations of Convolution and Deconvolution</a>
+    <a class='right-next' id="next-link" href="../face/faceDetection.html" title="next page">Face Detection</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Prof. Dr. Johannes Maucher<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

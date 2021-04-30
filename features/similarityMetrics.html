@@ -212,6 +212,28 @@
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
+  Deep Learning
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
+   Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../deeplearning/convolutionDemos.html">
+   Animations of Convolution and Deconvolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../deeplearning/cnns.html">
+   Convolutional Neural Networks for Object Recognition
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
@@ -481,8 +503,8 @@ v3 =  [7 5 1 1 1 1 1 1]
 <p>Distance and similarity are inverse to each other, i.e. the higher the distance the lower the similarity between anc vice versa. Below the most important distance- and similarity-measures are described. Some of them are primarily defined as distance-metric (e.g. euclidean distance) and a transformation-function can be applied to compute the associated similarity. Others are primarily defined as similarity-metric (e.g. cosine similarity) and a transformation function can be applied to compute the associated distance.</p>
 <p>In the context of this section vectors represent Histograms. However, the distance metrics described below can be applied for arbitrary numeric vectors.</p>
 <p>We denote by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6a180e1-586d-4443-b974-4fac210d5c3c">
-<span class="eqno">(42)<a class="headerlink" href="#equation-b6a180e1-586d-4443-b974-4fac210d5c3c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6e35e22e-a7ca-4fcc-a669-54ea44af5da6">
+<span class="eqno">(42)<a class="headerlink" href="#equation-6e35e22e-a7ca-4fcc-a669-54ea44af5da6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_q = \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(N) \right)
 \end{equation}\]</div>
 <p>the N-bin histogram of an image(-region) <span class="math notranslate nohighlight">\(q\)</span>. The value <span class="math notranslate nohighlight">\(H_q(i)\)</span> is the frequency of the values in <span class="math notranslate nohighlight">\(q\)</span>, which fall into the <span class="math notranslate nohighlight">\(i.th\)</span> bin.</p>
@@ -493,8 +515,8 @@ H_q = \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(N) \right)
 H^n_q := \frac{1}{m_q} \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(Z) \right),
 \]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa2cdf81-752d-45ea-b2b7-f234c7eb2b79">
-<span class="eqno">(44)<a class="headerlink" href="#equation-aa2cdf81-752d-45ea-b2b7-f234c7eb2b79" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c2b2e614-1991-4f6a-9d46-ac5d7edd9e08">
+<span class="eqno">(44)<a class="headerlink" href="#equation-c2b2e614-1991-4f6a-9d46-ac5d7edd9e08" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 m_q=\sum\limits_{i=1}^Z H_q(i)
 \end{equation}\]</div>
 </div>
@@ -503,13 +525,13 @@ m_q=\sum\limits_{i=1}^Z H_q(i)
 <div class="section" id="euclidean-distance">
 <h3>Euclidean Distance<a class="headerlink" href="#euclidean-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Euclidean distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e3d5899-d376-4953-9b58-30e860974078">
-<span class="eqno">(45)<a class="headerlink" href="#equation-7e3d5899-d376-4953-9b58-30e860974078" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-676c6962-83f8-494f-87f6-194cb5031582">
+<span class="eqno">(45)<a class="headerlink" href="#equation-676c6962-83f8-494f-87f6-194cb5031582" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_E(H_q,H_p)=\sqrt{\sum_i (H_q(i)-H_p(i))^2}
 \end{equation}\]</div>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff769a1b-c241-42f3-ab04-d793fbb42167">
-<span class="eqno">(46)<a class="headerlink" href="#equation-ff769a1b-c241-42f3-ab04-d793fbb42167" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-667cae03-4530-4ba8-9115-764b69a8a6b3">
+<span class="eqno">(46)<a class="headerlink" href="#equation-667cae03-4530-4ba8-9115-764b69a8a6b3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
@@ -524,13 +546,13 @@ s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
 <div class="section" id="cosine-similarity">
 <h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h3>
 <p>The Cosine similarity between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-605da32c-3ad7-41bc-99e7-a1554a6c3e69">
-<span class="eqno">(47)<a class="headerlink" href="#equation-605da32c-3ad7-41bc-99e7-a1554a6c3e69" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95019eac-5370-48b2-8509-6525d0e12aa3">
+<span class="eqno">(47)<a class="headerlink" href="#equation-95019eac-5370-48b2-8509-6525d0e12aa3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_C(H_q,H_p)= \frac{\sum_i H_q(i)\cdot H_p(i)}{\sqrt{\sum_i H_q(i)^2 \cdot \sum_i H_p(i)^2}},
 \end{equation}\]</div>
 <p>The corresponding distance measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4676f0c1-ee22-4bf8-8988-9c2ddcea061d">
-<span class="eqno">(48)<a class="headerlink" href="#equation-4676f0c1-ee22-4bf8-8988-9c2ddcea061d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1034c4ff-baa1-4505-8133-d5f16966df8c">
+<span class="eqno">(48)<a class="headerlink" href="#equation-1034c4ff-baa1-4505-8133-d5f16966df8c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_C(H_q,H_p)=1-s_C(H_q,H_p)
 \end{equation}\]</div>
 <p>Characteristics of the Cosine similarity <span class="math notranslate nohighlight">\(s_C(H_q,H_p)\)</span>:</p>
@@ -543,8 +565,8 @@ d_C(H_q,H_p)=1-s_C(H_q,H_p)
 <div class="section" id="pearson-correlation">
 <h3>Pearson Correlation<a class="headerlink" href="#pearson-correlation" title="Permalink to this headline">¶</a></h3>
 <p>The Pearson correlation (similarity measure) between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86028b76-f100-4438-b48e-029b7a83f55a">
-<span class="eqno">(49)<a class="headerlink" href="#equation-86028b76-f100-4438-b48e-029b7a83f55a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-71cbe9b8-6307-4142-bf22-4c38be45cd48">
+<span class="eqno">(49)<a class="headerlink" href="#equation-71cbe9b8-6307-4142-bf22-4c38be45cd48" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q(i)-\mu_q)^2 \cdot \sum_i (H_p(i)-\mu_p)^2}},
 \end{equation}\]</div>
 <p>where</p>
@@ -554,8 +576,8 @@ s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q
 \]</div>
 <p>is the mean value over all bins in <span class="math notranslate nohighlight">\(H_q\)</span>.</p>
 <p>The corresponding distance measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2184b2a2-2a21-42e1-aa52-eab2e2a8d3a7">
-<span class="eqno">(50)<a class="headerlink" href="#equation-2184b2a2-2a21-42e1-aa52-eab2e2a8d3a7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-11121d0d-1aab-44c5-bf76-e4638b957ac6">
+<span class="eqno">(50)<a class="headerlink" href="#equation-11121d0d-1aab-44c5-bf76-e4638b957ac6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_P(H_q,H_p)=1-s_P(H_q,H_p)
 \end{equation}\]</div>
 <p>Characteristics of the Pearson correlation <span class="math notranslate nohighlight">\(s_P(H_q,H_p)\)</span>:</p>
@@ -568,13 +590,13 @@ d_P(H_q,H_p)=1-s_P(H_q,H_p)
 <div class="section" id="bray-curtis-distance">
 <h3>Bray-Curtis Distance<a class="headerlink" href="#bray-curtis-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Bray-Curtis distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6696a6c-cc11-4c6f-b867-667b4a7edf12">
-<span class="eqno">(51)<a class="headerlink" href="#equation-b6696a6c-cc11-4c6f-b867-667b4a7edf12" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a3c78e0-e83f-4aaf-a5f9-0b0dc323422a">
+<span class="eqno">(51)<a class="headerlink" href="#equation-8a3c78e0-e83f-4aaf-a5f9-0b0dc323422a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_{BC}(H_q,H_p)=\frac{\sum_i |H_q(i)-H_p(i)|}{\sum_i|H_q(i)+H_p(i)|}
 \end{equation}\]</div>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fda1a72-fe8d-44b5-bad4-22530f46cff4">
-<span class="eqno">(52)<a class="headerlink" href="#equation-5fda1a72-fe8d-44b5-bad4-22530f46cff4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f9d09c1-b8fc-4bff-a35a-ec516f7812a1">
+<span class="eqno">(52)<a class="headerlink" href="#equation-2f9d09c1-b8fc-4bff-a35a-ec516f7812a1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
 \end{equation}\]</div>
 <p>Characteristics:</p>
@@ -588,13 +610,13 @@ s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
 <div class="section" id="canberra-distance">
 <h3>Canberra Distance<a class="headerlink" href="#canberra-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Canberra distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8af807b7-78ac-4cce-a905-5f26bca88e1f">
-<span class="eqno">(53)<a class="headerlink" href="#equation-8af807b7-78ac-4cce-a905-5f26bca88e1f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-498cf86c-062f-4d92-ac73-156fac07297d">
+<span class="eqno">(53)<a class="headerlink" href="#equation-498cf86c-062f-4d92-ac73-156fac07297d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_{Ca}(H_q,H_p)=\sum_i\frac{|H_q(i)-H_p(i)|}{|H_q(i)|+|H_p(i)|}
 \end{equation}\]</div>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3fc9c0a5-af52-45b9-b44d-14ca77776cf0">
-<span class="eqno">(54)<a class="headerlink" href="#equation-3fc9c0a5-af52-45b9-b44d-14ca77776cf0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e53f7e71-ebf7-4253-be27-f6afd640db01">
+<span class="eqno">(54)<a class="headerlink" href="#equation-e53f7e71-ebf7-4253-be27-f6afd640db01" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_{Ca}(H_q,H_p)=1-d_{Ca}(H_q,H_p)
 \end{equation}\]</div>
 <p>Characteristics:</p>
@@ -607,8 +629,8 @@ s_{Ca}(H_q,H_p)=1-d_{Ca}(H_q,H_p)
 <div class="section" id="bhattacharyya-distance">
 <h3>Bhattacharyya Distance<a class="headerlink" href="#bhattacharyya-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Bhattacharyya distance between two normalized histograms <span class="math notranslate nohighlight">\(H^n_q\)</span> and <span class="math notranslate nohighlight">\(H^n_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f017ee55-d8cd-4702-b115-26c874725803">
-<span class="eqno">(55)<a class="headerlink" href="#equation-f017ee55-d8cd-4702-b115-26c874725803" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6b203e6-4b53-46f4-94d5-6195e66055fe">
+<span class="eqno">(55)<a class="headerlink" href="#equation-b6b203e6-4b53-46f4-94d5-6195e66055fe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
 \end{equation}\]</div>
 <p>Characteristics:</p>
@@ -622,13 +644,13 @@ d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
 <div class="section" id="chi-square-distance">
 <h3>Chi-Square Distance<a class="headerlink" href="#chi-square-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Chi-Square (<span class="math notranslate nohighlight">\(\chi^2\)</span>) distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97f77c48-6ed1-4bc3-b9eb-bed7859e514f">
-<span class="eqno">(56)<a class="headerlink" href="#equation-97f77c48-6ed1-4bc3-b9eb-bed7859e514f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-850773fd-6634-4f06-96da-69939b8cab77">
+<span class="eqno">(56)<a class="headerlink" href="#equation-850773fd-6634-4f06-96da-69939b8cab77" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_{\chi^2}(H_q,H_p)=\sum_i \frac{(H_q(i)-H_p(i))^2}{H_q(i)+H_p(i)}
 \end{equation}\]</div>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bae34670-6768-403a-bf9a-95e6eefda78e">
-<span class="eqno">(57)<a class="headerlink" href="#equation-bae34670-6768-403a-bf9a-95e6eefda78e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-916208b7-cd70-4650-b3fb-e76ec9baba60">
+<span class="eqno">(57)<a class="headerlink" href="#equation-916208b7-cd70-4650-b3fb-e76ec9baba60" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
@@ -643,13 +665,13 @@ s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
 <div class="section" id="intersection-distance">
 <h3>Intersection Distance<a class="headerlink" href="#intersection-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Intersection distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c5735bc-fe9d-452c-9327-0c884140efa1">
-<span class="eqno">(58)<a class="headerlink" href="#equation-5c5735bc-fe9d-452c-9327-0c884140efa1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-762614e5-2b8d-41a2-96eb-40e0cb2f3867">
+<span class="eqno">(58)<a class="headerlink" href="#equation-762614e5-2b8d-41a2-96eb-40e0cb2f3867" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 d_{IS}(H_q,H_p)=\sum_i \min(H_q(i),H_p(i))
 \end{equation}\]</div>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7503906b-3b7c-4d3c-9e67-2146f23da015">
-<span class="eqno">(59)<a class="headerlink" href="#equation-7503906b-3b7c-4d3c-9e67-2146f23da015" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f282e971-4503-456f-b0eb-a7209409de80">
+<span class="eqno">(59)<a class="headerlink" href="#equation-f282e971-4503-456f-b0eb-a7209409de80" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 s_{IS}(H_q,H_p)=\frac{1}{d_{IS}(H_q,H_p)+\epsilon},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
