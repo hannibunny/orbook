@@ -644,13 +644,13 @@ In order to describe sparse coding, we apply the following notation:
 
 	$$
 	X=\left[\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N \right]^T
-	$$ (eq:notX)
+	$$ (notX)
 
 * The $K$ cluster centers are the rows of the matrix
 	
 	$$
 	V=\left[\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_K \right]^T
-	$$
+	$$ (notV)
     
 	Matrix $V$ is also called codebook. 
 
@@ -658,7 +658,7 @@ In order to describe sparse coding, we apply the following notation:
 
 	$$
 	U=\left[\mathbf{u}_1,\mathbf{u}_2,\ldots,\mathbf{u}_N \right]^T
-	$$ (eq:notU)
+	$$ (notU)
 	
 	define the cluster membership of the training sampels, i.e. if the $i.th$ training vector $\mathbf{x}_i$ belongs to cluster $j$, then the $j.th$ component of $\mathbf{u}_i$ is $1$ and all other components are $0$.
 	
@@ -702,7 +702,7 @@ The step from k-means to sparse coding can be done by relaxing the condition $Ca
 
 $$
 \min\limits_{U,V} \sum\limits_{m=1}^N \Vert \mathbf{x}_m - \mathbf{u}_m V \Vert ^2 + \lambda|\mathbf{u}_m| \quad \mbox{ subject to } \Vert \mathbf{v}_k \Vert = 1 \; \forall k
-$$ (sparsecoding})
+$$ (sparsecoding)
 
 The $L1$-norm regularization enforces $\mathbf{u}_m$ to have a small number of nonzero elements. Moreover, the constraint $\Vert \mathbf{v}_k \Vert = 1$ provides normalisation of the codebook. 
 
@@ -761,14 +761,14 @@ The application of Sparse Coding, Pooling and linear SVM in the context of this 
 
 **Training of Sparse Coder:** 
 
-* Let $X$ be the set of $N$ training descriptors, as defined in equation {eq}`eq:notX`
-* equation {eq}`eq:sparsecoding` w.r.t. $U$ and $V$ for the given training images, where $U$ and $V$ are defined as in equation {eq}`eq:notU` and {eq}`eq:notV`, respectively.
+* Let $X$ be the set of $N$ training descriptors, as defined in equation {eq}`notX`
+* equation {eq}`sparsecoding` w.r.t. $U$ and $V$ for the given training images, where $U$ and $V$ are defined as in equation {eq}`notU` and {eq}`notV`, respectively.
 
 **Inference Phase Sparse Coder:**
 
 * Let $X$ be the matrix of $M$ descriptors of the new image.  
 * $V$ is the codebook determined in the training phase.
-* Solve equation {eq}`eq:sparsecoding` w.r.t. $U$. 
+* Solve equation {eq}`sparsecoding` w.r.t. $U$. 
 * The $i.th$ row of $U$ determines which codewords (mid level features) of the codebook $V$ are activated by the $i.th$ descriptor in $X$.
 * The $j.th$ column determines the responses of all descriptors in $X$ to one specific mid level feature (codeword) in $V$.
 
@@ -800,7 +800,7 @@ Integration of Max Pooling in Spatial Pyramid Matching
 #### Integrate Linear SVM 
 
 * Let $\mathbf{z}_i$ be the max pooling representation of image $I_i$. 
-* The \alert{linear kernel} in the SVM is 
+* The **linear kernel** in the SVM is 
 
 	$$
 	\kappa(\mathbf{z}_i,\mathbf{z}_j) = \mathbf{z}_i^T \mathbf{z}_j = \sum\limits_{\ell=0}^2 \sum\limits_{s=0}^{2^\ell} \sum\limits_{t=0}^{2^\ell} \mathbf{z}_i^T(\ell,s,t) \mathbf{z}_j(\ell,s,t),
@@ -817,7 +817,7 @@ Integration of Max Pooling in Spatial Pyramid Matching
 
 #### Performance of the linear Spatial Pyramid Matching approach
 
-The computational **training cost is $\mathcal{O}(N)$*, testing cost is constant (independent of $N$). According to the authors of {cite}`Yang09` **Linear SPM kernel based on sparse coding statistics always achieves excellent classification accuracy**, because
+The computational **training cost is $\mathcal{O}(N)$**, testing cost is constant (independent of $N$). According to the authors of {cite}`Yang09` **Linear SPM kernel based on sparse coding statistics always achieves excellent classification accuracy**, because
 * Sparse Coding has much less quantization errors than vector quantisation (k-means)
 * The computed statistics by max pooling are more salient and robust to local translations
 

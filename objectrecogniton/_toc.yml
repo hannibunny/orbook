@@ -30,6 +30,12 @@
   chapters:
   - file: recognition/objectrecognition
 
+- part: Deep Learning
+  chapters:
+  - file: deeplearning/ConvolutionNeuralNetworks
+  - file: deeplearning/convolutionDemos
+  - file: deeplearning/cnns
+
 - part: Face Detection and Recognition
   chapters:
   - file: face/faceDetection
