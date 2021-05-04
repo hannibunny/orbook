@@ -155,7 +155,7 @@ The research goal of the authors was simply to find a neural network architectur
 The crucial feature of an inception layer is that it allows multiple filters of different size within a single layer. The different filters are applied in parallel. Hence features, which are spatially spread over different region sizes, can be learned within one layer. Two typical inception modules with parallel filters in one layer are depcited below. Within GoogLeNet such inception modules are stacked on top of each other. 
 
 <figure align="center">
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/inceptionModule.png" style="width:500px" align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/inceptionModule.png" style="width:600px" align="center">
 </figure>
 
 The inception module on the left-hand-side in the picture above has been the original (or *naive*) version. The problem with this version is that particularly in the case of filters of larger size ($5 \times 5$) and a high-dimensional input[^1], the number of required learnable parameters and thus the memory- and computation-complexity is high. E.g. for a single filter of size ($5 \times 5$), which operates on a 128-dimensional input has $5 \cdot 5 \cdot 128 = 3200$ parameters (coefficients). Therefore, the inception-module on the right-hand-side of the picture above has been developed. It contains [$1 \times 1$-convolution](ConvolutionNeuralNetworks) for dimensionality reduction.
