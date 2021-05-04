@@ -1159,10 +1159,10 @@ b^i_{x,y} = a^i_{x,y} \frac{1}{\left(k+\alpha \sum\limits_{u=\max(0,x-n/2)}^{\mi
 </div>
 <div class="section" id="x1-convolution">
 <h3>1x1 Convolution<a class="headerlink" href="#x1-convolution" title="Permalink to this headline">¶</a></h3>
-<p>As described above, convolution-filtering provides the possibility to extract spatially extended features. The size of the filter defines the size of the feature, that can be extracted. A feature which is stretched over <span class="math notranslate nohighlight">\(p \times p\)</span> pixels requires a filter of at least that size to extract it. In this view a <span class="math notranslate nohighlight">\(1 \times 1\)</span>-filter sounds impractical.</p>
+<p>As described above, convolution-filtering provides the possibility to extract spatially extended features. The size of the filter defines the size of the feature, that can be extracted. A feature which is stretched over <span class="math notranslate nohighlight">\(p \times p\)</span> pixels requires a filter of at least this size to extract it. In this view a <span class="math notranslate nohighlight">\(1 \times 1\)</span>-filter sounds impractical.</p>
 <p>A <em>usual</em> filter-size of <span class="math notranslate nohighlight">\(3 \times 3\)</span> and a filter of size <span class="math notranslate nohighlight">\(1 \times 1\)</span> is visualized in the image below.</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/channelCube1x1.png" /></p>
-<p>A <span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution can be viewed as an Dense-layer opearted over all channels at a specific pixel location. As such it is often applied to reduce the number of channels, while keeping the spatial resolution constant.</p>
+<p>A <span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution can be viewed as an Dense-layer operated over all channels at a specific pixel location. As such it is often applied to reduce the number of channels (<strong>dimensionality-reduction</strong>), while keeping the spatial resolution constant. For this purpose <span class="math notranslate nohighlight">\(1 \times 1\)</span>-convolution is applied e.g. in <a class="reference internal" href="cnns.html"><span class="doc std std-doc">inception modules (GoogLeNet)</span></a>.</p>
 <hr class="docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
