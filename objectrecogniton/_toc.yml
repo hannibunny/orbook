@@ -35,6 +35,7 @@
   - file: deeplearning/ConvolutionNeuralNetworks
   - file: deeplearning/convolutionDemos
   - file: deeplearning/cnns
+  - file: deeplearning/detection
 
 - part: Face Detection and Recognition
   chapters:

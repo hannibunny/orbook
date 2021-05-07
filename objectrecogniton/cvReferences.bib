@@ -214,6 +214,14 @@ primaryClass={cs.CV}
   url =           {http://arxiv.org/abs/1705.03122}
 }
 
+
+@Misc{GirshickDonahueDarrellEtAl,
+author = {Girshick, Ross and Donahue, Jeff and Darrell, Trevor and Malik, Jitendra},
+title =   {Rich feature hierarchies for accurate object detection and semantic segmentation},
+month =  {October},
+year =          {2014}
+}
+
 @article{swainballard,
 	author = {Swain, Michael J. and Ballard, Dana H.},
 	title = {Color Indexing},
@@ -231,30 +239,6 @@ primaryClass={cs.CV}
 	numpages = {22}
 }
 
-@Misc{GirshickDonahueDarrellEtAl,
-  author =        {Girshick, Ross and Donahue, Jeff and Darrell, Trevor and Malik, Jitendra},
-  title =         {Rich feature hierarchies for accurate object detection and semantic segmentation},
-  month =         {October},
-  year =          {2014},
-  __markedentry = {[maucher:]},
-  abstract =      {Object detection performance, as measured on the canonical PASCAL VOC dataset, has plateaued in the last few years. The best-performing methods are complex en-semble systems that typically combine multiple low-level image features with high-level context. In this paper, we propose a simple and scalable detection algorithm that im-proves mean average precision (mAP) by more than 30% relative to the previous best result on VOC 2012—achieving a mAP of 53.3%. Our approach combines two key insights: (1) one can apply high-capacity convolutional neural net-works (CNNs) to bottom-up region proposals in order to localize and segment objects and (2) when labeled training data is scarce, supervised pre-training for an auxiliary task, followed by domain-specific fine-tuning, yields a significant performance boost. Since we combine region proposals with CNNs, we call our method R-CNN: Regions with CNN features. Source code for the complete system is available at}
-}
-
-@InProceedings{GirshickFastRCNN,
-  author =    {Girshick, Ross},
-  title =     {Fast R-CNN},
-  booktitle = {Proceedings of the 2015 IEEE International Conference on Computer Vision (ICCV)},
-  year =      {2015},
-  series =    {ICCV '15},
-  pages =     {1440--1448},
-  address =   {Washington, DC, USA},
-  publisher = {IEEE Computer Society},
-  acmid =     {2920125},
-  doi =       {10.1109/ICCV.2015.169},
-  isbn =      {978-1-4673-8391-2},
-  numpages =  {9},
-  url =       {http://dx.doi.org/10.1109/ICCV.2015.169}
-}
 
 @INPROCEEDINGS{rubner,
 	author={Y. {Rubner} and C. {Tomasi} and L. J. {Guibas}},
@@ -330,15 +314,13 @@ primaryClass={cs.CV}
   url =           {http://arxiv.org/abs/1703.06870}
 }
 
-@InCollection{HeZhangRenEtAl2014,
+@misc{HeZhangRenEtAl2014,
   author =        {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
   title =         {Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition},
   booktitle =     {Computer Vision – ECCV 2014},
   publisher =     {Springer},
   year =          {2014},
   month =         jan,
-  __markedentry = {[maucher:6]},
-  abstract =      {Existing deep convolutional neural networks (CNNs) require a fixed-size (e.g. 224×224) input image. This requirement is “artificial” and may hurt the recognition accuracy for the images or sub-images of an arbitrary size/scale. In this work, we equip the networks with a more principled pooling strategy, “spatial pyramid pooling”, to eliminate the above requirement. The new network structure, called SPP-net, can generate a fixed-length representation regardless of image size/scale. By removing the fixed-size limitation, we can improve all CNN-based image classification methods in general. Our SPP-net achieves state-of-the-art accuracy on the datasets of ImageNet 2012, Pascal VOC 2007, and Caltech101.The power of SPP-net is more significant in object detection. Using SPP-net, we compute the feature maps from the entire image only once, and then pool features in arbitrary regions (sub-images) to generate fixed-length representations for training the detectors. This method avoids repeatedly computing the convolutional features. In processing test images, our method computes convolutional features 30-170× faster than the recent leading method R-CNN (and 24-64× faster overall), while achieving better or comparable accuracy on Pascal VOC 2007.},
   date =          {2014-01-01},
   doi =           {10.1007/978-3-319-10578-9_23},
   isbn =          {978-3-319-10577-2},
@@ -617,6 +599,21 @@ ISSN={1063-6919},}
 	year = {2009}
 }
 
+@InProceedings{GirshickFastRCNN,
+author =    {Girshick, Ross},
+title =     {Fast R-CNN},
+booktitle = {Proceedings of the 2015 IEEE International Conference on Computer Vision (ICCV)},
+year =      {2015},
+series =    {ICCV '15},
+pages =     {1440--1448},
+address =   {Washington, DC, USA},
+publisher = {IEEE Computer Society},
+acmid =     {2920125},
+doi =       {10.1109/ICCV.2015.169},
+isbn =      {978-1-4673-8391-2},
+numpages =  {9},
+url =       {http://dx.doi.org/10.1109/ICCV.2015.169}
+}
 
 
 @inproceedings{ViolaJ01,

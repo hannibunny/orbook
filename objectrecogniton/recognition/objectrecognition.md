@@ -369,7 +369,7 @@ In {cite}`Nister06` visual-vocabulary-trees have been applied for real-time reco
 
 ```{figure} https://maucher.home.hdm-stuttgart.de/Pics/vocabTreeTest.PNG
 ---
-width: 350px
+width: 450px
 align: center
 name: hierClustTest
 ---
@@ -750,7 +750,7 @@ As already mentioned above, in {cite}`Yang09` an extension to the Spatial Pyrami
 ---
 width: 650px
 align: center
-name: linearSPM
+name: layerSPM
 ---
 The new approach integrates Sparse Coding, Pooling and a linear SVM
 ```
@@ -827,7 +827,7 @@ On the Caltech-101 dataset the classification accuracy of this approach is **abo
 ---
 width: 550px
 align: center
-name: linearSPM
+name: linear2SPM
 ---
 ```
 
