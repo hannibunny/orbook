@@ -231,6 +231,11 @@
    Convolutional Neural Networks for Object Recognition
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../deeplearning/detection.html">
+   Object Detection and Localisation
+  </a>
+ </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
@@ -643,8 +648,8 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 </li>
 <li><p><strong>Difference of Gaussian (DoG)</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-d51a2cd2-9795-4854-87ce-b75bd98b65ef">
-<span class="eqno">(70)<a class="headerlink" href="#equation-d51a2cd2-9795-4854-87ce-b75bd98b65ef" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-04bc6eaa-3932-4ca1-92e7-612261c91fb2">
+<span class="eqno">(70)<a class="headerlink" href="#equation-04bc6eaa-3932-4ca1-92e7-612261c91fb2" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \\
               &amp; = &amp; L(x,y,k\sigma)-L(x,y,\sigma).
 \end{eqnarray}\]</div>
@@ -759,14 +764,14 @@ r=\frac{\alpha}{\beta}
 <ul class="simple">
 <li><p>Calculate trace and determinant of <span class="math notranslate nohighlight">\(\mathbf{H}\)</span></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-4c4d51ce-e2b7-4efd-900d-a8187c3733a9">
-<span class="eqno">(72)<a class="headerlink" href="#equation-4c4d51ce-e2b7-4efd-900d-a8187c3733a9" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-d5c97955-bdb1-4255-8450-63f70729d497">
+<span class="eqno">(72)<a class="headerlink" href="#equation-d5c97955-bdb1-4255-8450-63f70729d497" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 Tr(\mathbf{H}) &amp; = D_{xx}+D_{yy} = \alpha + \beta \\
 Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 \end{eqnarray}\]</div>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1293a59b-e0b1-4a07-b2d1-84e95a4d98ef">
-<span class="eqno">(73)<a class="headerlink" href="#equation-1293a59b-e0b1-4a07-b2d1-84e95a4d98ef" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8459169b-456f-4c64-8238-bbfdfcb95642">
+<span class="eqno">(73)<a class="headerlink" href="#equation-8459169b-456f-4c64-8238-bbfdfcb95642" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{Tr(\mathbf{H})^2}{Det(\mathbf{H})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
 \end{equation}\]</div>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>

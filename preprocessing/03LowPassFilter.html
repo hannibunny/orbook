@@ -231,6 +231,11 @@
    Convolutional Neural Networks for Object Recognition
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../deeplearning/detection.html">
+   Object Detection and Localisation
+  </a>
+ </li>
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
@@ -421,8 +426,8 @@
 <li><p>Last Update: 28th January 2021</p></li>
 </ul>
 <p>In section <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">Basic Filter Operations</span></a> and section <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">Gaussian Filters</span></a> the average- and the Gaussian filter have been described, respectively. Both of them blur their input by calculating at each position <span class="math notranslate nohighlight">\(i\)</span> a weighted sum of the values <span class="math notranslate nohighlight">\(f(i+u)\)</span> in the neighbouring positions.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8c0d0c4c-ad22-4465-be88-428d26a74753">
-<span class="eqno">(41)<a class="headerlink" href="#equation-8c0d0c4c-ad22-4465-be88-428d26a74753" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-48f327a9-074b-442e-bf25-137f4b4fffa2">
+<span class="eqno">(41)<a class="headerlink" href="#equation-48f327a9-074b-442e-bf25-137f4b4fffa2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
 \end{equation}\]</div>
 <p>The difference is that for the the average filters the weights <span class="math notranslate nohighlight">\(h(u)\)</span> are all the same, whereas in the Gaussian filter the weights <span class="math notranslate nohighlight">\(h(u)\)</span> decrease for increasing absolute values of <span class="math notranslate nohighlight">\(u\)</span>.</p>
