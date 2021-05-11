@@ -121,7 +121,7 @@ $$
 o=\frac{r-a+2p}{s}+1.
 $$
 
-<img src="http://maucher.home.hdm-stuttgart.de/Pics/ConvolutionFilterDemo3.gif" style="width:800px" align="middle">
+<img src="http://maucher.home.hdm-stuttgart.de/Pics/ConvolutionFilterDemo3.gif" style="width:800px" align="center">
 
 <a id="convLayer"></a>
 ### Convolutional Layer in CNNs
@@ -515,7 +515,10 @@ rawdata=np.array([[18,0.01,17000],
 print(rawdata)
 
 For normalization, first the mean and the standard-variation is calculated for each feature. Then from each value $x_{i,j}$ in the datamatrix, the column-mean $mean_j$ is subtracted and the result is divided by the column-standard-deviation $std_j$:
-$$x'_{i,j}=\frac{x_{i,j}-mean_j}{std_j}$$
+
+$$
+x'_{i,j}=\frac{x_{i,j}-mean_j}{std_j}
+$$
 
 featmean=rawdata.mean(axis=0)
 featstd=rawdata.std(axis=0)
@@ -611,4 +614,11 @@ A *usual* filter-size of $3 \times 3$ and a filter of size $1 \times 1$ is visua
 
 A $1 \times 1$-convolution can be viewed as an Dense-layer operated over all channels at a specific pixel location. As such it is often applied to reduce the number of channels (**dimensionality-reduction**), while keeping the spatial resolution constant. For this purpose $1 \times 1$-convolution is applied e.g. in [inception modules (GoogLeNet)](cnns.md).
 
+
+#### Fully Convolutional Networks
+
+In Fully Convolutional Networks (FCN) Dense Layers are replaced by $1 \times 1$ - convolutional filters. The fact, that no dense-layers are required provides the possibility to apply images of different size to the input of the network. In convolutional-layers varying input size yields varying output size, but in contrast to dense layers it does not apply varying weight-matrices!
+As depicted in the image below, in a FCN not only one class per input is calculated. Instead, the output is a **classification map**, which defines in which region which class is most likely. Such classification maps are applied e.g. for **semantic segmentation** (e.g. [Shelhamer et al; Fully Convolutional Networks for Semantic Image Segmentaion](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf))
+
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFullyConvolutional.png" width="800" align="center">
 
