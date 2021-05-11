@@ -58,7 +58,7 @@ At the input AlexNet requires images of size $256 \times 256$. Since ImageNet co
 Then the central $224 \times 224$ patch is cropped from the resulting image. 
 In addition to this scaling, the only **preprocessing** routine is subtraction of the mean value over the training set from each pixel.  
 
-In the **test-phase** from each test - image 10 versions werecreated:
+In the **test-phase** from each test - image 10 versions were created:
 
 * the four $224 \times 224$ corner crops and the center crop
 * from each of the 5 crops the horizontal flip
@@ -108,8 +108,10 @@ All VGG versions apply only filters of size $3 \times 3$. The apparent drawback 
 
 * Stacked version has more ReLu-nonlinearities, which enables more discriminative decision function
 * Stacked version has less parameters: 
+
       *  $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
-      *  $7^2C^2=49C^2$ for a single layer with  $(3 \times 3)$-filters
+      *  $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
+	  
     where $C$ is the number of channels (feature maps in the layer). Less parameters impose better generalisation.  
 
 The VGG experiments prove that it is better to apply more layers with small filters than less layers with larger filters. 

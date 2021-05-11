@@ -56,7 +56,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Object Detection and Localisation" href="detection.html" />
+    <link rel="next" title="Object Detection" href="detection.html" />
     <link rel="prev" title="Animations of Convolution and Deconvolution" href="convolutionDemos.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -233,7 +233,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
@@ -453,7 +453,7 @@
 <p>At the input AlexNet requires images of size <span class="math notranslate nohighlight">\(256 \times 256\)</span>. Since ImageNet consists of variable-resolution images, in the preprocessing the rectangular images are first rescaled such that shorter side is of length <span class="math notranslate nohighlight">\(256\)</span>.
 Then the central <span class="math notranslate nohighlight">\(224 \times 224\)</span> patch is cropped from the resulting image.
 In addition to this scaling, the only <strong>preprocessing</strong> routine is subtraction of the mean value over the training set from each pixel.</p>
-<p>In the <strong>test-phase</strong> from each test - image 10 versions werecreated:</p>
+<p>In the <strong>test-phase</strong> from each test - image 10 versions were created:</p>
 <ul class="simple">
 <li><p>the four <span class="math notranslate nohighlight">\(224 \times 224\)</span> corner crops and the center crop</p></li>
 <li><p>from each of the 5 crops the horizontal flip</p></li>
@@ -496,12 +496,15 @@ In addition to this scaling, the only <strong>preprocessing</strong> routine is 
 <li><p><strong>Feature Maps:</strong> 64 in the first layer and increasing by a factor of 2 after each pooling layer.</p></li>
 </ul>
 <p>All VGG versions apply only filters of size <span class="math notranslate nohighlight">\(3 \times 3\)</span>. The apparent drawback of small filters may be that only small features in the input can be extracted. This assumption is not valid, if the local receptive fields of a sequence of layers is considered: A stack of two conv-layers with <span class="math notranslate nohighlight">\(3 \times 3\)</span> receptive field has an effective receptive field of <span class="math notranslate nohighlight">\(5 \times 5\)</span> and a stack of three conv-layers with <span class="math notranslate nohighlight">\(3 \times 3\)</span> receptive field has an effective receptive field of <span class="math notranslate nohighlight">\(7 \times 7\)</span>. The advantages of a stack of layers with smaller filters are:</p>
-<ul class="simple">
+<ul>
 <li><p>Stacked version has more ReLu-nonlinearities, which enables more discriminative decision function</p></li>
-<li><p>Stacked version has less parameters:
-*  <span class="math notranslate nohighlight">\(3 \cdot 3^2C^2 = 27C^2\)</span> for a 3-layer stack of <span class="math notranslate nohighlight">\((3 \times 3)\)</span>-filters, versus …
-*  <span class="math notranslate nohighlight">\(7^2C^2=49C^2\)</span> for a single layer with  <span class="math notranslate nohighlight">\((3 \times 3)\)</span>-filters
-where <span class="math notranslate nohighlight">\(C\)</span> is the number of channels (feature maps in the layer). Less parameters impose better generalisation.</p></li>
+<li><p>Stacked version has less parameters:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*  $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
+*  $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
+</pre></div>
+</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is the number of channels (feature maps in the layer). Less parameters impose better generalisation.</p>
+</li>
 </ul>
 <p>The VGG experiments prove that it is better to apply more layers with small filters than less layers with larger filters.</p>
 <p>The images passed to the input of VGG are of size <span class="math notranslate nohighlight">\(224 \times 224\)</span>. In the training phase this input is cropped from a training image, which is isotropically rescaled. The smallest side of the rescaled training image is called <strong>training scale <span class="math notranslate nohighlight">\(S\)</span></strong>. There exist two options for setting <span class="math notranslate nohighlight">\(S\)</span>:</p>
@@ -668,7 +671,7 @@ VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="convolutionDemos.html" title="previous page">Animations of Convolution and Deconvolution</a>
-    <a class='right-next' id="next-link" href="detection.html" title="next page">Object Detection and Localisation</a>
+    <a class='right-next' id="next-link" href="detection.html" title="next page">Object Detection</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
