@@ -297,5 +297,77 @@ where
  
 
  
+## Faster R-CNN
+
+Faster R-CNN has been published 2015 in {cite}`GirshickFaster`. In R-CNN and Fast R-CNN [Selective Search](http://www.huppelen.nl/publications/selectiveSearchDraft.pdf)) has been applied for generating the Region Proposals (RoIs). Faster R-CNN is based on R-CNN and Fast R-CNN but replaces *Selective Search* by a **Region Proposal Network (RPN)**, that shares full-image convolutional features with the detection network. An RPN is a **fully-convolutional network** that simultaneously predicts object bounds and objectness scores at each position. RPNs are trained end-to-end to generate high- quality region proposals, which are used by Fast R-CNN for detection. With a simple alternating optimization, RPN and Fast R-CNN can be trained to share convolutional features.
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNoverview.png" style="width:400px" align="center">
+	<figcaption>
+		Region Proposal Network (RPN) in Faster R-CNN. The convolutional layers at the bottom are shared by the RPN and the Fast R-CNN module.
+	</figcaption>
+</figure> 
+
+Faster-RCNNs overall process can be summarized as follows:
 
 
+1. RPN generates region proposals, based on the last feature map of the extractor CNN
+2. For all region proposals in the image, a fixed-length feature vector is extracted from each region using the ROI Pooling layer.
+3. The extracted feature vectors are classified using the Fast R-CNN.
+4. The extracted feature vectors are used to adjust the bounding-boxes
+5. The class scores of the detected objects in addition to their bounding-boxes are returned.
+
+
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNanchors.png" style="width:600px" align="center">
+	<figcaption>
+		Each position in the feature maps of the final conv-layer is a anchor. Each anchor has it's correspondence in the input-image. Around each anchor in the input-image a set of 9 anchor-boxes is defined.
+	</figcaption>
+</figure> 
+
+### RPN
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNrpn.png" style="width:600px" align="center">
+	<figcaption>
+		Region Proposal Network is a fully convolutional network, which calculates for each anchor-box an objectiveness-score and a bounding-box-adjustment.
+</figure> 
+
+For each of the $14 \times 14 = 196$ anchors in the input to the RPN, there exists $k=9$ different anchor-boxes. Each anchor box is defined by its corresponding coordinates in the image $(x_c,y_c,w,h)$. To each anchor box in the training images a **ground-truth-label** is assigned as follows:
+
+* The label of the anchor-box is $fg$ (foreground), if the the IoU of the anchor-box and a ground-truth bounding-box object bounding box is $\geq 0.5$
+* If the IoU is $<0.1$ the label of the anchor-box is $bg$ (background) 
+
+The RPN uses all the anchor-boxes selected for the minibatch of size 256 to calculate the objectness-score (foreground/background) and the corresponding classification loss using **binary cross entropy**. Then, it uses only those minibatch anchors marked as foreground to calculate the regression loss. For calculating the targets for the regression, the foreground anchor is compared with the closest ground-truth object in order to calculate the correct adjustment $(\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})$. 
+For measuring the regression error, the {cite}`GirshickFaster` suggests **smooth L1 loss**. If 
+
+* $(\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})$ is the correct adjustment
+
+* $(\delta_{x_c},\delta_{y_c},\delta_{w},\delta_{h})$ is the predicted adjustment
+
+then the contribution of this single bounding-box to the smoothed L1-loss is defined to be
+
+$$
+L_{loc}(\Delta,\delta) = \sum\limits_{i \in \{x_c,y_c,w,h\}} smooth_{L1}(\Delta_i - \delta_i)
+$$
+
+with
+
+$$
+smooth_{L1} (x) = \left\{
+\begin{array}{cc}
+0.5 \cdot x^2 & \mbox{ if } |x| < \sigma \\
+|x|-0.5 & \mbox{ else, } 
+\end{array}
+\right.
+$$
+
+Smooth L1 is basically L1, but when the L1 error is small, defined by a certain $\sigma < 1$, the error is considered almost correct and the loss diminishes at a faster rate.
+
+**Non-maximum suppression:** 
+
+Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g $IoU > 0.6$) with a proposal that has a higher score. After applying NMS, the top $N$ proposals, sorted by score, are kept, while the others are disregarded ($N=2000$ in {cite}`GirshickFaster`).
+
+Note that RPN can be used stand-alone, without needing the second stage model, in problems where there is only a single class of objects, the objectness probability can be used as the final class probability. 
+
+### RoI-Pooling and R-CNN
+
+Once, the region proposals are calculated by the RPN, they are passed to a RoI-Pooling such as in Fast-RCNN. The constant-length feature vector, which is provided by RoI-pooling is then past to the R-CNN, which consists of a classifier and a bounding-box regression. 
