@@ -469,6 +469,23 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#yolo">
+   Yolo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concept">
+     Concept
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture">
+     Architecture
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
         </nav>
@@ -582,8 +599,8 @@ P^i=(P^i_x,P^i_y,P^i_w,P^i_h) \quad \mbox{ and } \quad G^i=(G^i_x,G^i_y,G^i_w,G^
 <ul class="simple">
 <li><p>The goal is to learn a transformation from <span class="math notranslate nohighlight">\(P\)</span> to <span class="math notranslate nohighlight">\(G\)</span> (index <span class="math notranslate nohighlight">\(i\)</span> is omitted ). This transformation is parametrized as follows:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-4b784f26-c008-4b6b-929b-171889b7c1e7">
-<span class="eqno">(94)<a class="headerlink" href="#equation-4b784f26-c008-4b6b-929b-171889b7c1e7" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-7088a8e0-32f4-440f-a061-6b8aa4b9feae">
+<span class="eqno">(94)<a class="headerlink" href="#equation-7088a8e0-32f4-440f-a061-6b8aa4b9feae" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \\
 \hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \\
 \hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\\
@@ -600,8 +617,8 @@ d_*(P)= w_*^T \phi(P)
 w_* = \operatorname*{argmin}_{\hat{w}_*} \sum\limits_{i=1}^N (t^i - \hat{w}_* \phi(P^i))^2 + \lambda \mid\mid \hat{w}_* \mid\mid^2,
 \]</div>
 <p>where the components of the regression targets <span class="math notranslate nohighlight">\(t\)</span> are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd019e9f-c614-43dc-9f67-7b2119a39152">
-<span class="eqno">(95)<a class="headerlink" href="#equation-cd019e9f-c614-43dc-9f67-7b2119a39152" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-e6155052-9ae8-4864-9409-0fdbcc0c90b7">
+<span class="eqno">(95)<a class="headerlink" href="#equation-e6155052-9ae8-4864-9409-0fdbcc0c90b7" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 t_x &amp; = &amp; (G_x - P_x) / P_w \\
 t_y &amp; = &amp; (G_y - P_y) / P_h \\
 t_w &amp; = &amp; \log(G_w / P_w) \\
@@ -797,12 +814,49 @@ smooth_{L1} (x) = \left\{
 \end{split}\]</div>
 <p>Smooth L1 is basically L1, but when the L1 error is small, defined by a certain <span class="math notranslate nohighlight">\(\sigma &lt; 1\)</span>, the error is considered almost correct and the loss diminishes at a faster rate.</p>
 <p><strong>Non-maximum suppression:</strong></p>
-<p>Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g <span class="math notranslate nohighlight">\(IoU &gt; 0.6\)</span>) with a proposal that has a higher score. After applying NMS, the top <span class="math notranslate nohighlight">\(N\)</span> proposals, sorted by score, are kept, while the others are disregarded (<span class="math notranslate nohighlight">\(N=2000\)</span> in <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id15">[RHGS15]</a>).</p>
+<p>Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g <span class="math notranslate nohighlight">\(IoU &gt; 0.7\)</span>) with a proposal that has a higher score. After applying NMS, the top <span class="math notranslate nohighlight">\(N\)</span> proposals, sorted by score, are kept, while the others are disregarded (<span class="math notranslate nohighlight">\(N=2000\)</span> in <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id15">[RHGS15]</a>).</p>
 <p>Note that RPN can be used stand-alone, without needing the second stage model, in problems where there is only a single class of objects, the objectness probability can be used as the final class probability.</p>
 </div>
 <div class="section" id="roi-pooling-and-r-cnn">
 <h3>RoI-Pooling and R-CNN<a class="headerlink" href="#roi-pooling-and-r-cnn" title="Permalink to this headline">¶</a></h3>
 <p>Once, the region proposals are calculated by the RPN, they are passed to a RoI-Pooling such as in Fast-RCNN. The constant-length feature vector, which is provided by RoI-pooling is then past to the R-CNN, which consists of a classifier and a bounding-box regression.</p>
+</div>
+</div>
+<div class="section" id="yolo">
+<h2>Yolo<a class="headerlink" href="#yolo" title="Permalink to this headline">¶</a></h2>
+<p>Yolo (You only look once) has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id16">[RDGF15]</a>. It is the <strong>first real-time object detector</strong> with 45 fps on Titan X GPU. A faster version even achieves 155 fps with a slightly worse accuracy. Yolo doesn’t require other modules such as region proposals. Instead it applies a <strong>single regression Pipeline, which can be learned end-to-end</strong>. YOLO sees the entire image during training and test time so it <strong>regards entire context information</strong>, which is lost in sub-window- or RoI-approaches. Hence, YOLO makes less than half the number of <strong>background errors</strong> compared to Fast R-CNN.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloSpeedComparison.png" style="width:400px" align="center"></figure> 
+<p>Image Source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a></p>
+<div class="section" id="concept">
+<h3>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h3>
+<p>In Yolo the entire image is partitioned into a <strong>regular grid of <span class="math notranslate nohighlight">\(S \times S\)</span> cells</strong> (typical: <span class="math notranslate nohighlight">\(S=7\)</span>). The grid-cell which contains the center of an object is responsible to detect this object. Each grid-cell predicts <strong><span class="math notranslate nohighlight">\(B\)</span> bounding boxes</strong> (typical: <span class="math notranslate nohighlight">\(B=2\)</span>) and confidence scores for these boxes. The <strong>confidence scores</strong> reflect</p>
+<ul>
+<li><p>how confident the model is that the box contains an object: <span class="math notranslate nohighlight">\(P(object)\)</span></p></li>
+<li><p>how accurate the predicted box is: <span class="math notranslate nohighlight">\(IoU(pred,truth)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+	Confidence = P(object) \cdot IoU(pred,truth)
+	\]</div>
+</li>
+</ul>
+<p>Each of the <span class="math notranslate nohighlight">\(B\)</span> bounding boxes consists of 5 predictions: <span class="math notranslate nohighlight">\(x,y,w,h,confidence\)</span>. Each grid-cell predicts <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities <span class="math notranslate nohighlight">\(P(C_j|object)\)</span>.</p>
+<p>At test time class-specific confidence scores are calculated for all <span class="math notranslate nohighlight">\(C\)</span> classes.</p>
+<div class="math notranslate nohighlight">
+\[
+P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
+\]</div>
+<p>This score reflects the probability of that class appearing in the box and how well the predicted box fits the object.</p>
+<p>The following figure (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id17">[RDGF15]</a>) depicts the 49 cells, the bounding boxes and their confidence (higher confidence for thicker lines) and the most probable class for each of the 49 cells. After applying Non Maximum Suppression (NMS) the 3 bounding boxes in the image on the right remain.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloConcept.PNG" style="width:500px" align="center"></figure> 
+</div>
+<div class="section" id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
+<p>The figure below (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id18">[RDGF15]</a>) depicts the architecture of the first Yolo network.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
+<p>The Conv-layers are pretrained with the ILSVRC classification benchmark. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps.</p>
+<p>Yolo’s output is summarized in the image below (source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a>)</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
+<p>The network output is a tensor of size <span class="math notranslate nohighlight">\( S \times S \times (5 \cdot B + C)\)</span>. With <span class="math notranslate nohighlight">\(S=7, C=20, B=2\)</span>, this tensor contains <span class="math notranslate nohighlight">\(49 \cdot 30\)</span> elemenets.</p>
 </div>
 </div>
 </div>

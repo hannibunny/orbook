@@ -364,10 +364,63 @@ Smooth L1 is basically L1, but when the L1 error is small, defined by a certain 
 
 **Non-maximum suppression:** 
 
-Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g $IoU > 0.6$) with a proposal that has a higher score. After applying NMS, the top $N$ proposals, sorted by score, are kept, while the others are disregarded ($N=2000$ in {cite}`GirshickFaster`).
+Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g $IoU > 0.7$) with a proposal that has a higher score. After applying NMS, the top $N$ proposals, sorted by score, are kept, while the others are disregarded ($N=2000$ in {cite}`GirshickFaster`).
 
 Note that RPN can be used stand-alone, without needing the second stage model, in problems where there is only a single class of objects, the objectness probability can be used as the final class probability. 
 
 ### RoI-Pooling and R-CNN
 
 Once, the region proposals are calculated by the RPN, they are passed to a RoI-Pooling such as in Fast-RCNN. The constant-length feature vector, which is provided by RoI-pooling is then past to the R-CNN, which consists of a classifier and a bounding-box regression. 
+
+
+## Yolo
+
+Yolo (You only look once) has been published 2015 in {cite}`RedmonDGF15`. It is the **first real-time object detector** with 45 fps on Titan X GPU. A faster version even achieves 155 fps with a slightly worse accuracy. Yolo doesn't require other modules such as region proposals. Instead it applies a **single regression Pipeline, which can be learned end-to-end**. YOLO sees the entire image during training and test time so it **regards entire context information**, which is lost in sub-window- or RoI-approaches. Hence, YOLO makes less than half the number of **background errors** compared to Fast R-CNN.
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloSpeedComparison.png" style="width:400px" align="center"></figure> 
+
+Image Source [https://pjreddie.com](https://pjreddie.com)
+
+### Concept
+
+In Yolo the entire image is partitioned into a **regular grid of $S \times S$ cells** (typical: $S=7$). The grid-cell which contains the center of an object is responsible to detect this object. Each grid-cell predicts **$B$ bounding boxes** (typical: $B=2$) and confidence scores for these boxes. The **confidence scores** reflect 
+	 
+* how confident the model is that the box contains an object: $P(object)$
+* how accurate the predicted box is: $IoU(pred,truth)$
+	 
+	$$
+	Confidence = P(object) \cdot IoU(pred,truth)
+	$$
+	
+	
+Each of the $B$ bounding boxes consists of 5 predictions: $x,y,w,h,confidence$. Each grid-cell predicts $C$ conditional class probabilities $P(C_j|object)$. 
+
+At test time class-specific confidence scores are calculated for all $C$ classes.
+
+$$
+P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
+$$
+
+This score reflects the probability of that class appearing in the box and how well the predicted box fits the object.
+ 
+The following figure (source {cite}`RedmonDGF15`) depicts the 49 cells, the bounding boxes and their confidence (higher confidence for thicker lines) and the most probable class for each of the 49 cells. After applying Non Maximum Suppression (NMS) the 3 bounding boxes in the image on the right remain.
+
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloConcept.PNG" style="width:500px" align="center"></figure> 
+ 
+
+
+### Architecture
+
+The figure below (source {cite}`RedmonDGF15`) depicts the architecture of the first Yolo network. 
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
+
+The Conv-layers are pretrained with the ILSVRC classification benchmark. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps. 
+
+Yolo's output is summarized in the image below (source [https://pjreddie.com](https://pjreddie.com))
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
+
+The network output is a tensor of size $ S \times S \times (5 \cdot B + C)$. With $S=7, C=20, B=2$, this tensor contains $49 \cdot 30$ elemenets.
+	
