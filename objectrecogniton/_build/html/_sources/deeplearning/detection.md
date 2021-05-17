@@ -297,5 +297,177 @@ where
  
 
  
+## Faster R-CNN
+
+Faster R-CNN has been published 2015 in {cite}`GirshickFaster`. In R-CNN and Fast R-CNN [Selective Search](http://www.huppelen.nl/publications/selectiveSearchDraft.pdf)) has been applied for generating the Region Proposals (RoIs). Faster R-CNN is based on R-CNN and Fast R-CNN but replaces *Selective Search* by a **Region Proposal Network (RPN)**, that shares full-image convolutional features with the detection network. An RPN is a **fully-convolutional network** that simultaneously predicts object bounds and objectness scores at each position. RPNs are trained end-to-end to generate high- quality region proposals, which are used by Fast R-CNN for detection. With a simple alternating optimization, RPN and Fast R-CNN can be trained to share convolutional features.
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNoverview.png" style="width:400px" align="center">
+	<figcaption>
+		Region Proposal Network (RPN) in Faster R-CNN. The convolutional layers at the bottom are shared by the RPN and the Fast R-CNN module.
+	</figcaption>
+</figure> 
+
+Faster-RCNNs overall process can be summarized as follows:
 
 
+1. RPN generates region proposals, based on the last feature map of the extractor CNN
+2. For all region proposals in the image, a fixed-length feature vector is extracted from each region using the ROI Pooling layer.
+3. The extracted feature vectors are classified using the Fast R-CNN.
+4. The extracted feature vectors are used to adjust the bounding-boxes
+5. The class scores of the detected objects in addition to their bounding-boxes are returned.
+
+
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNanchors.png" style="width:600px" align="center">
+	<figcaption>
+		Each position in the feature maps of the final conv-layer is a anchor. Each anchor has it's correspondence in the input-image. Around each anchor in the input-image a set of 9 anchor-boxes is defined.
+	</figcaption>
+</figure> 
+
+### RPN
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNrpn.png" style="width:600px" align="center">
+	<figcaption>
+		Region Proposal Network is a fully convolutional network, which calculates for each anchor-box an objectiveness-score and a bounding-box-adjustment.
+</figure> 
+
+For each of the $14 \times 14 = 196$ anchors in the input to the RPN, there exists $k=9$ different anchor-boxes. Each anchor box is defined by its corresponding coordinates in the image $(x_c,y_c,w,h)$. To each anchor box in the training images a **ground-truth-label** is assigned as follows:
+
+* The label of the anchor-box is $fg$ (foreground), if the the IoU of the anchor-box and a ground-truth bounding-box object bounding box is $\geq 0.5$
+* If the IoU is $<0.1$ the label of the anchor-box is $bg$ (background) 
+
+The RPN uses all the anchor-boxes selected for the minibatch of size 256 to calculate the objectness-score (foreground/background) and the corresponding classification loss using **binary cross entropy**. Then, it uses only those minibatch anchors marked as foreground to calculate the regression loss. For calculating the targets for the regression, the foreground anchor is compared with the closest ground-truth object in order to calculate the correct adjustment $(\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})$. 
+For measuring the regression error, the {cite}`GirshickFaster` suggests **smooth L1 loss**. If 
+
+* $(\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})$ is the correct adjustment
+
+* $(\delta_{x_c},\delta_{y_c},\delta_{w},\delta_{h})$ is the predicted adjustment
+
+then the contribution of this single bounding-box to the smoothed L1-loss is defined to be
+
+$$
+L_{loc}(\Delta,\delta) = \sum\limits_{i \in \{x_c,y_c,w,h\}} smooth_{L1}(\Delta_i - \delta_i)
+$$
+
+with
+
+$$
+smooth_{L1} (x) = \left\{
+\begin{array}{cc}
+0.5 \cdot x^2 & \mbox{ if } |x| < \sigma \\
+|x|-0.5 & \mbox{ else, } 
+\end{array}
+\right.
+$$
+
+Smooth L1 is basically L1, but when the L1 error is small, defined by a certain $\sigma < 1$, the error is considered almost correct and the loss diminishes at a faster rate.
+
+**Non-maximum suppression:** 
+
+Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g $IoU > 0.7$) with a proposal that has a higher score. After applying NMS, the top $N$ proposals, sorted by score, are kept, while the others are disregarded ($N=2000$ in {cite}`GirshickFaster`).
+
+Note that RPN can be used stand-alone, without needing the second stage model, in problems where there is only a single class of objects, the objectness probability can be used as the final class probability. 
+
+### RoI-Pooling and R-CNN
+
+Once, the region proposals are calculated by the RPN, they are passed to a RoI-Pooling such as in Fast-RCNN. The constant-length feature vector, which is provided by RoI-pooling is then past to the R-CNN, which consists of a classifier and a bounding-box regression. 
+
+
+## Yolo
+
+Yolo (You only look once) has been published 2015 in {cite}`RedmonDGF15`. It is the **first real-time object detector** with 45 fps on Titan X GPU. A faster version even achieves 155 fps with a slightly worse accuracy. Yolo doesn't require other modules such as region proposals. Instead it applies a **single regression Pipeline, which can be learned end-to-end**. YOLO sees the entire image during training and test time so it **regards entire context information**, which is lost in sub-window- or RoI-approaches. Hence, YOLO makes less than half the number of **background errors** compared to Fast R-CNN.
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloSpeedComparison.png" style="width:400px" align="center"></figure> 
+
+Image Source [https://pjreddie.com](https://pjreddie.com)
+
+
+
+### Concept
+
+In Yolo the entire image is partitioned into a **regular grid of $S \times S$ cells** (typical: $S=7$). The grid-cell which contains the center of an object is responsible to detect this object. Each grid-cell predicts **$B$ bounding boxes** (typical: $B=2$) and confidence scores for these boxes. The **confidence scores** reflect 
+	 
+* how confident the model is that the box contains an object: $P(object)$
+* how accurate the predicted box is: $IoU(pred,truth)$
+	 
+	$$
+	Confidence = P(object) \cdot IoU(pred,truth)
+	$$
+	
+	
+Each of the $B$ bounding boxes consists of 5 predictions: $x,y,w,h,confidence$. Each grid-cell predicts $C$ conditional class probabilities $P(C_j|object)$. 
+
+At test time **class-specific confidence scores** are calculated for all $C$ classes.
+
+$$
+P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
+$$
+
+This score reflects the probability of that class appearing in the box and how well the predicted box fits the object.
+ 
+The following figure (source {cite}`RedmonDGF15`) depicts the 49 cells, the bounding boxes and their confidence (higher confidence for thicker lines) and the most probable class for each of the 49 cells. After applying Non Maximum Suppression (NMS) the 3 bounding boxes in the image on the right remain.
+
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloConcept.PNG" style="width:500px" align="center"></figure> 
+ 
+
+
+### Architecture
+
+The figure below (source {cite}`RedmonDGF15`) depicts the architecture of the first Yolo network. 
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
+
+
+The network is inspired by GoogLeNet ({cite}`szegedy2014`). Instead of the inception modules, applied in GoogLeNet, in Yolo only $(1 \times 1)$-convolution layers (dimensionality reduction), followed by $(3 \times 3)$ convolutional layers are applied. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps. 
+
+Yolo's output is summarized in the image below (source [https://pjreddie.com](https://pjreddie.com))
+
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
+
+The network output is a tensor of size $ S \times S \times (5 \cdot B + C)$. With $S=7, C=20, B=2$, this tensor contains $49 \cdot 30$ elemenets.
+
+### Training
+
+The convolutional-layers of the Yolo network are pretrained with the ILSVRC classification benchmark. For pretraining the first 20 convolutional layers of the architecture depicted above, followed by an average-pooling layer and a fully connected layer are applied.
+
+After pretraining the network is adapted for object detection by:
+* Adding 4 additional convolutional layers and 2 fully connected layers with randomly intialized weights
+* Resizing the network-input layer from $(224 \times 224)$ to $(448 \times 448)$, since object detection generally requires more fine-grained features than image classification.
+
+The final layer predicts both class probabilities and bounding box coordinates for each of the $S^2=49$ cells. The bounding box width and height are normalized by the image width and height so that they fall between 0 and 1. The bounding box $x$- and $y$- coordinates are expressed as offsets w.r.t. a particular grid cell location so they are also bounded between 0 and 1.
+
+During training a MSE-loss functions $L$ is minimized, which measures the difference between the estimated output and the corresponding ground-truth. As shown in the equation for the loss-function $L$, it weights
+
+* weights the bounding box regression
+* the class-specific confidence scores
+* the $C$ conditional class probabilities
+
+individually. In {cite}`RedmonDGF15` $\lambda_{coord}=5$ and $\lambda_{noobj}=0.5$ are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased. 
+
+
+
+
+\begin{eqnarray}
+L & = &\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
+ & + & \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
+ & + &  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
+  & + &  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
+   & + &  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
+\end{eqnarray}
+
+In this equation 
+* $\mathbb{1}_{i}^{obj}$ is 1, if a object appears in cell $i$, otherwise 0
+* $\mathbb{1}_{i,j}^{obj}$ is 1, if the j.th bounding box predictor in cell i is responsible for that prediction.
+* $\mathbb{1}_{i,j}^{noobj}$ is 1, if no object is in the cell i, box j. 
+
+Moreover, in $L$ for calulating the bounding-box width- and height- deviation the squareroot of $w$ and $h$ is regarded. This reflects that small deviations in large boxes matter less than in small boxes.
+
+### Drawbacks
+
+* Fully connected layer in the output implies, that all input-images have same size as training images
+* Although each cell can predict $B$ bounding boxes, in the end, only the bounding box with the highest IoU is selected as the object detection output, that is, each grid can only predict one object at most. When the proportion of objects in the picture is small and each cell contains multiple objects, only one of them can be detected. 
+* Main error of YOLO is from localization, because the **ratio of bounding box** is totally learned from data and YOLO makes error on the unusual ratio bounding box
+
+Yolo v1 has been significantly improved in [Yolo v2](https://pjreddie.com/media/files/papers/YOLO9000.pdf) and [Yolo v3](https://pjreddie.com/media/files/papers/YOLOv3.pdf)
+	

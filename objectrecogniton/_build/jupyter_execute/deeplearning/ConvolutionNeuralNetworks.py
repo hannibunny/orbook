@@ -620,5 +620,6 @@ A $1 \times 1$-convolution can be viewed as an Dense-layer operated over all cha
 In Fully Convolutional Networks (FCN) Dense Layers are replaced by $1 \times 1$ - convolutional filters. The fact, that no dense-layers are required provides the possibility to apply images of different size to the input of the network. In convolutional-layers varying input size yields varying output size, but in contrast to dense layers it does not apply varying weight-matrices!
 As depicted in the image below, in a FCN not only one class per input is calculated. Instead, the output is a **classification map**, which defines in which region which class is most likely. Such classification maps are applied e.g. for **semantic segmentation** (e.g. [Shelhamer et al; Fully Convolutional Networks for Semantic Image Segmentaion](https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf))
 
+
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvActPoolFullyConvolutional.png" width="800" align="center">
 

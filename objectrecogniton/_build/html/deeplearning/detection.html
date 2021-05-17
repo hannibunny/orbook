@@ -452,6 +452,50 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#faster-r-cnn">
+   Faster R-CNN
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rpn">
+     RPN
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roi-pooling-and-r-cnn">
+     RoI-Pooling and R-CNN
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#yolo">
+   Yolo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concept">
+     Concept
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture">
+     Architecture
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drawbacks">
+     Drawbacks
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
         </nav>
@@ -565,8 +609,8 @@ P^i=(P^i_x,P^i_y,P^i_w,P^i_h) \quad \mbox{ and } \quad G^i=(G^i_x,G^i_y,G^i_w,G^
 <ul class="simple">
 <li><p>The goal is to learn a transformation from <span class="math notranslate nohighlight">\(P\)</span> to <span class="math notranslate nohighlight">\(G\)</span> (index <span class="math notranslate nohighlight">\(i\)</span> is omitted ). This transformation is parametrized as follows:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-6fb006da-2960-4045-b057-d7c16f99a94a">
-<span class="eqno">(94)<a class="headerlink" href="#equation-6fb006da-2960-4045-b057-d7c16f99a94a" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-af9efd89-2c51-4be9-b20f-90afe22e0217">
+<span class="eqno">(94)<a class="headerlink" href="#equation-af9efd89-2c51-4be9-b20f-90afe22e0217" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \\
 \hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \\
 \hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\\
@@ -583,8 +627,8 @@ d_*(P)= w_*^T \phi(P)
 w_* = \operatorname*{argmin}_{\hat{w}_*} \sum\limits_{i=1}^N (t^i - \hat{w}_* \phi(P^i))^2 + \lambda \mid\mid \hat{w}_* \mid\mid^2,
 \]</div>
 <p>where the components of the regression targets <span class="math notranslate nohighlight">\(t\)</span> are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0610207a-348a-4b3a-9516-1721e35063cd">
-<span class="eqno">(95)<a class="headerlink" href="#equation-0610207a-348a-4b3a-9516-1721e35063cd" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-b3704d57-f0cf-49e0-9bd6-639a20f97080">
+<span class="eqno">(95)<a class="headerlink" href="#equation-b3704d57-f0cf-49e0-9bd6-639a20f97080" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 t_x &amp; = &amp; (G_x - P_x) / P_w \\
 t_y &amp; = &amp; (G_y - P_y) / P_h \\
 t_w &amp; = &amp; \log(G_w / P_w) \\
@@ -723,6 +767,147 @@ L(p,u,t^u,v)=L_{cls} +\lambda [u \geq 1] L_{loc}(t^u,v),
 <li><p><span class="math notranslate nohighlight">\(L_{cls}\)</span> is the log-loss function for true class <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(L_{loc}\)</span> is a <span class="math notranslate nohighlight">\(L_1\)</span> loss-function between the elements of the predicted- and the groundtruth bounding-box quadruple (see <a class="bibtex reference internal" href="../referenceSection.html#girshickfastrcnn" id="id12">[Gir15]</a>).</p></li>
 </ul>
 </div>
+</div>
+</div>
+<div class="section" id="faster-r-cnn">
+<h2>Faster R-CNN<a class="headerlink" href="#faster-r-cnn" title="Permalink to this headline">¶</a></h2>
+<p>Faster R-CNN has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id13">[RHGS15]</a>. In R-CNN and Fast R-CNN <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf">Selective Search</a>) has been applied for generating the Region Proposals (RoIs). Faster R-CNN is based on R-CNN and Fast R-CNN but replaces <em>Selective Search</em> by a <strong>Region Proposal Network (RPN)</strong>, that shares full-image convolutional features with the detection network. An RPN is a <strong>fully-convolutional network</strong> that simultaneously predicts object bounds and objectness scores at each position. RPNs are trained end-to-end to generate high- quality region proposals, which are used by Fast R-CNN for detection. With a simple alternating optimization, RPN and Fast R-CNN can be trained to share convolutional features.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNoverview.png" style="width:400px" align="center">
+	<figcaption>
+		Region Proposal Network (RPN) in Faster R-CNN. The convolutional layers at the bottom are shared by the RPN and the Fast R-CNN module.
+	</figcaption>
+</figure> 
+<p>Faster-RCNNs overall process can be summarized as follows:</p>
+<ol class="simple">
+<li><p>RPN generates region proposals, based on the last feature map of the extractor CNN</p></li>
+<li><p>For all region proposals in the image, a fixed-length feature vector is extracted from each region using the ROI Pooling layer.</p></li>
+<li><p>The extracted feature vectors are classified using the Fast R-CNN.</p></li>
+<li><p>The extracted feature vectors are used to adjust the bounding-boxes</p></li>
+<li><p>The class scores of the detected objects in addition to their bounding-boxes are returned.</p></li>
+</ol>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNanchors.png" style="width:600px" align="center">
+	<figcaption>
+		Each position in the feature maps of the final conv-layer is a anchor. Each anchor has it's correspondence in the input-image. Around each anchor in the input-image a set of 9 anchor-boxes is defined.
+	</figcaption>
+</figure> 
+<div class="section" id="rpn">
+<h3>RPN<a class="headerlink" href="#rpn" title="Permalink to this headline">¶</a></h3>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNrpn.png" style="width:600px" align="center">
+	<figcaption>
+		Region Proposal Network is a fully convolutional network, which calculates for each anchor-box an objectiveness-score and a bounding-box-adjustment.
+</figure> 
+<p>For each of the <span class="math notranslate nohighlight">\(14 \times 14 = 196\)</span> anchors in the input to the RPN, there exists <span class="math notranslate nohighlight">\(k=9\)</span> different anchor-boxes. Each anchor box is defined by its corresponding coordinates in the image <span class="math notranslate nohighlight">\((x_c,y_c,w,h)\)</span>. To each anchor box in the training images a <strong>ground-truth-label</strong> is assigned as follows:</p>
+<ul class="simple">
+<li><p>The label of the anchor-box is <span class="math notranslate nohighlight">\(fg\)</span> (foreground), if the the IoU of the anchor-box and a ground-truth bounding-box object bounding box is <span class="math notranslate nohighlight">\(\geq 0.5\)</span></p></li>
+<li><p>If the IoU is <span class="math notranslate nohighlight">\(&lt;0.1\)</span> the label of the anchor-box is <span class="math notranslate nohighlight">\(bg\)</span> (background)</p></li>
+</ul>
+<p>The RPN uses all the anchor-boxes selected for the minibatch of size 256 to calculate the objectness-score (foreground/background) and the corresponding classification loss using <strong>binary cross entropy</strong>. Then, it uses only those minibatch anchors marked as foreground to calculate the regression loss. For calculating the targets for the regression, the foreground anchor is compared with the closest ground-truth object in order to calculate the correct adjustment <span class="math notranslate nohighlight">\((\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})\)</span>.
+For measuring the regression error, the <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id14">[RHGS15]</a> suggests <strong>smooth L1 loss</strong>. If</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})\)</span> is the correct adjustment</p></li>
+<li><p><span class="math notranslate nohighlight">\((\delta_{x_c},\delta_{y_c},\delta_{w},\delta_{h})\)</span> is the predicted adjustment</p></li>
+</ul>
+<p>then the contribution of this single bounding-box to the smoothed L1-loss is defined to be</p>
+<div class="math notranslate nohighlight">
+\[
+L_{loc}(\Delta,\delta) = \sum\limits_{i \in \{x_c,y_c,w,h\}} smooth_{L1}(\Delta_i - \delta_i)
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+smooth_{L1} (x) = \left\{
+\begin{array}{cc}
+0.5 \cdot x^2 &amp; \mbox{ if } |x| &lt; \sigma \\
+|x|-0.5 &amp; \mbox{ else, } 
+\end{array}
+\right.
+\end{split}\]</div>
+<p>Smooth L1 is basically L1, but when the L1 error is small, defined by a certain <span class="math notranslate nohighlight">\(\sigma &lt; 1\)</span>, the error is considered almost correct and the loss diminishes at a faster rate.</p>
+<p><strong>Non-maximum suppression:</strong></p>
+<p>Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g <span class="math notranslate nohighlight">\(IoU &gt; 0.7\)</span>) with a proposal that has a higher score. After applying NMS, the top <span class="math notranslate nohighlight">\(N\)</span> proposals, sorted by score, are kept, while the others are disregarded (<span class="math notranslate nohighlight">\(N=2000\)</span> in <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id15">[RHGS15]</a>).</p>
+<p>Note that RPN can be used stand-alone, without needing the second stage model, in problems where there is only a single class of objects, the objectness probability can be used as the final class probability.</p>
+</div>
+<div class="section" id="roi-pooling-and-r-cnn">
+<h3>RoI-Pooling and R-CNN<a class="headerlink" href="#roi-pooling-and-r-cnn" title="Permalink to this headline">¶</a></h3>
+<p>Once, the region proposals are calculated by the RPN, they are passed to a RoI-Pooling such as in Fast-RCNN. The constant-length feature vector, which is provided by RoI-pooling is then past to the R-CNN, which consists of a classifier and a bounding-box regression.</p>
+</div>
+</div>
+<div class="section" id="yolo">
+<h2>Yolo<a class="headerlink" href="#yolo" title="Permalink to this headline">¶</a></h2>
+<p>Yolo (You only look once) has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id16">[RDGF15]</a>. It is the <strong>first real-time object detector</strong> with 45 fps on Titan X GPU. A faster version even achieves 155 fps with a slightly worse accuracy. Yolo doesn’t require other modules such as region proposals. Instead it applies a <strong>single regression Pipeline, which can be learned end-to-end</strong>. YOLO sees the entire image during training and test time so it <strong>regards entire context information</strong>, which is lost in sub-window- or RoI-approaches. Hence, YOLO makes less than half the number of <strong>background errors</strong> compared to Fast R-CNN.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloSpeedComparison.png" style="width:400px" align="center"></figure> 
+<p>Image Source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a></p>
+<div class="section" id="concept">
+<h3>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h3>
+<p>In Yolo the entire image is partitioned into a <strong>regular grid of <span class="math notranslate nohighlight">\(S \times S\)</span> cells</strong> (typical: <span class="math notranslate nohighlight">\(S=7\)</span>). The grid-cell which contains the center of an object is responsible to detect this object. Each grid-cell predicts <strong><span class="math notranslate nohighlight">\(B\)</span> bounding boxes</strong> (typical: <span class="math notranslate nohighlight">\(B=2\)</span>) and confidence scores for these boxes. The <strong>confidence scores</strong> reflect</p>
+<ul>
+<li><p>how confident the model is that the box contains an object: <span class="math notranslate nohighlight">\(P(object)\)</span></p></li>
+<li><p>how accurate the predicted box is: <span class="math notranslate nohighlight">\(IoU(pred,truth)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+	Confidence = P(object) \cdot IoU(pred,truth)
+	\]</div>
+</li>
+</ul>
+<p>Each of the <span class="math notranslate nohighlight">\(B\)</span> bounding boxes consists of 5 predictions: <span class="math notranslate nohighlight">\(x,y,w,h,confidence\)</span>. Each grid-cell predicts <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities <span class="math notranslate nohighlight">\(P(C_j|object)\)</span>.</p>
+<p>At test time <strong>class-specific confidence scores</strong> are calculated for all <span class="math notranslate nohighlight">\(C\)</span> classes.</p>
+<div class="math notranslate nohighlight">
+\[
+P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
+\]</div>
+<p>This score reflects the probability of that class appearing in the box and how well the predicted box fits the object.</p>
+<p>The following figure (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id17">[RDGF15]</a>) depicts the 49 cells, the bounding boxes and their confidence (higher confidence for thicker lines) and the most probable class for each of the 49 cells. After applying Non Maximum Suppression (NMS) the 3 bounding boxes in the image on the right remain.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloConcept.PNG" style="width:500px" align="center"></figure> 
+</div>
+<div class="section" id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
+<p>The figure below (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id18">[RDGF15]</a>) depicts the architecture of the first Yolo network.</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
+<p>The network is inspired by GoogLeNet (<a class="bibtex reference internal" href="../referenceSection.html#szegedy2014" id="id19">[SLJ+14]</a>). Instead of the inception modules, applied in GoogLeNet, in Yolo only <span class="math notranslate nohighlight">\((1 \times 1)\)</span>-convolution layers (dimensionality reduction), followed by <span class="math notranslate nohighlight">\((3 \times 3)\)</span> convolutional layers are applied. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps.</p>
+<p>Yolo’s output is summarized in the image below (source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a>)</p>
+<figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
+<p>The network output is a tensor of size <span class="math notranslate nohighlight">\( S \times S \times (5 \cdot B + C)\)</span>. With <span class="math notranslate nohighlight">\(S=7, C=20, B=2\)</span>, this tensor contains <span class="math notranslate nohighlight">\(49 \cdot 30\)</span> elemenets.</p>
+</div>
+<div class="section" id="id20">
+<h3>Training<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>The convolutional-layers of the Yolo network are pretrained with the ILSVRC classification benchmark. For pretraining the first 20 convolutional layers of the architecture depicted above, followed by an average-pooling layer and a fully connected layer are applied.</p>
+<p>After pretraining the network is adapted for object detection by:</p>
+<ul class="simple">
+<li><p>Adding 4 additional convolutional layers and 2 fully connected layers with randomly intialized weights</p></li>
+<li><p>Resizing the network-input layer from <span class="math notranslate nohighlight">\((224 \times 224)\)</span> to <span class="math notranslate nohighlight">\((448 \times 448)\)</span>, since object detection generally requires more fine-grained features than image classification.</p></li>
+</ul>
+<p>The final layer predicts both class probabilities and bounding box coordinates for each of the <span class="math notranslate nohighlight">\(S^2=49\)</span> cells. The bounding box width and height are normalized by the image width and height so that they fall between 0 and 1. The bounding box <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>- coordinates are expressed as offsets w.r.t. a particular grid cell location so they are also bounded between 0 and 1.</p>
+<p>During training a MSE-loss functions <span class="math notranslate nohighlight">\(L\)</span> is minimized, which measures the difference between the estimated output and the corresponding ground-truth. As shown in the equation for the loss-function <span class="math notranslate nohighlight">\(L\)</span>, it weights</p>
+<ul class="simple">
+<li><p>weights the bounding box regression</p></li>
+<li><p>the class-specific confidence scores</p></li>
+<li><p>the <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities</p></li>
+</ul>
+<p>individually. In <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id21">[RDGF15]</a> <span class="math notranslate nohighlight">\(\lambda_{coord}=5\)</span> and <span class="math notranslate nohighlight">\(\lambda_{noobj}=0.5\)</span> are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ae98d700-679c-4d77-a95b-5f3666715a85">
+<span class="eqno">(96)<a class="headerlink" href="#equation-ae98d700-679c-4d77-a95b-5f3666715a85" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
+ &amp; + &amp; \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
+ &amp; + &amp;  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
+  &amp; + &amp;  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
+   &amp; + &amp;  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
+\end{eqnarray}\]</div>
+<p>In this equation</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i}^{obj}\)</span> is 1, if a object appears in cell <span class="math notranslate nohighlight">\(i\)</span>, otherwise 0</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i,j}^{obj}\)</span> is 1, if the j.th bounding box predictor in cell i is responsible for that prediction.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i,j}^{noobj}\)</span> is 1, if no object is in the cell i, box j.</p></li>
+</ul>
+<p>Moreover, in <span class="math notranslate nohighlight">\(L\)</span> for calulating the bounding-box width- and height- deviation the squareroot of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(h\)</span> is regarded. This reflects that small deviations in large boxes matter less than in small boxes.</p>
+</div>
+<div class="section" id="drawbacks">
+<h3>Drawbacks<a class="headerlink" href="#drawbacks" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fully connected layer in the output implies, that all input-images have same size as training images</p></li>
+<li><p>Although each cell can predict <span class="math notranslate nohighlight">\(B\)</span> bounding boxes, in the end, only the bounding box with the highest IoU is selected as the object detection output, that is, each grid can only predict one object at most. When the proportion of objects in the picture is small and each cell contains multiple objects, only one of them can be detected.</p></li>
+<li><p>Main error of YOLO is from localization, because the <strong>ratio of bounding box</strong> is totally learned from data and YOLO makes error on the unusual ratio bounding box</p></li>
+</ul>
+<p>Yolo v1 has been significantly improved in <a class="reference external" href="https://pjreddie.com/media/files/papers/YOLO9000.pdf">Yolo v2</a> and <a class="reference external" href="https://pjreddie.com/media/files/papers/YOLOv3.pdf">Yolo v3</a></p>
 </div>
 </div>
 </div>
