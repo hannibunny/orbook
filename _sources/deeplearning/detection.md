@@ -381,6 +381,8 @@ Yolo (You only look once) has been published 2015 in {cite}`RedmonDGF15`. It is 
 
 Image Source [https://pjreddie.com](https://pjreddie.com)
 
+
+
 ### Concept
 
 In Yolo the entire image is partitioned into a **regular grid of $S \times S$ cells** (typical: $S=7$). The grid-cell which contains the center of an object is responsible to detect this object. Each grid-cell predicts **$B$ bounding boxes** (typical: $B=2$) and confidence scores for these boxes. The **confidence scores** reflect 
@@ -395,7 +397,7 @@ In Yolo the entire image is partitioned into a **regular grid of $S \times S$ ce
 	
 Each of the $B$ bounding boxes consists of 5 predictions: $x,y,w,h,confidence$. Each grid-cell predicts $C$ conditional class probabilities $P(C_j|object)$. 
 
-At test time class-specific confidence scores are calculated for all $C$ classes.
+At test time **class-specific confidence scores** are calculated for all $C$ classes.
 
 $$
 P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
@@ -416,11 +418,56 @@ The figure below (source {cite}`RedmonDGF15`) depicts the architecture of the fi
 
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
 
-The Conv-layers are pretrained with the ILSVRC classification benchmark. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps. 
+
+The network is inspired by GoogLeNet ({cite}`szegedy2014`). Instead of the inception modules, applied in GoogLeNet, in Yolo only $(1 \times 1)$-convolution layers (dimensionality reduction), followed by $(3 \times 3)$ convolutional layers are applied. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps. 
 
 Yolo's output is summarized in the image below (source [https://pjreddie.com](https://pjreddie.com))
 
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
 
 The network output is a tensor of size $ S \times S \times (5 \cdot B + C)$. With $S=7, C=20, B=2$, this tensor contains $49 \cdot 30$ elemenets.
+
+### Training
+
+The convolutional-layers of the Yolo network are pretrained with the ILSVRC classification benchmark. For pretraining the first 20 convolutional layers of the architecture depicted above, followed by an average-pooling layer and a fully connected layer are applied.
+
+After pretraining the network is adapted for object detection by:
+* Adding 4 additional convolutional layers and 2 fully connected layers with randomly intialized weights
+* Resizing the network-input layer from $(224 \times 224)$ to $(448 \times 448)$, since object detection generally requires more fine-grained features than image classification.
+
+The final layer predicts both class probabilities and bounding box coordinates for each of the $S^2=49$ cells. The bounding box width and height are normalized by the image width and height so that they fall between 0 and 1. The bounding box $x$- and $y$- coordinates are expressed as offsets w.r.t. a particular grid cell location so they are also bounded between 0 and 1.
+
+During training a MSE-loss functions $L$ is minimized, which measures the difference between the estimated output and the corresponding ground-truth. As shown in the equation for the loss-function $L$, it weights
+
+* weights the bounding box regression
+* the class-specific confidence scores
+* the $C$ conditional class probabilities
+
+individually. In {cite}`RedmonDGF15` $\lambda_{coord}=5$ and $\lambda_{noobj}=0.5$ are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased. 
+
+
+
+
+\begin{eqnarray}
+L & = &\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
+ & + & \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
+ & + &  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
+  & + &  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
+   & + &  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
+\end{eqnarray}
+
+In this equation 
+* $\mathbb{1}_{i}^{obj}$ is 1, if a object appears in cell $i$, otherwise 0
+* $\mathbb{1}_{i,j}^{obj}$ is 1, if the j.th bounding box predictor in cell i is responsible for that prediction.
+* $\mathbb{1}_{i,j}^{noobj}$ is 1, if no object is in the cell i, box j. 
+
+Moreover, in $L$ for calulating the bounding-box width- and height- deviation the squareroot of $w$ and $h$ is regarded. This reflects that small deviations in large boxes matter less than in small boxes.
+
+### Drawbacks
+
+* Fully connected layer in the output implies, that all input-images have same size as training images
+* Although each cell can predict $B$ bounding boxes, in the end, only the bounding box with the highest IoU is selected as the object detection output, that is, each grid can only predict one object at most. When the proportion of objects in the picture is small and each cell contains multiple objects, only one of them can be detected. 
+* Main error of YOLO is from localization, because the **ratio of bounding box** is totally learned from data and YOLO makes error on the unusual ratio bounding box
+
+Yolo v1 has been significantly improved in [Yolo v2](https://pjreddie.com/media/files/papers/YOLO9000.pdf) and [Yolo v3](https://pjreddie.com/media/files/papers/YOLOv3.pdf)
 	

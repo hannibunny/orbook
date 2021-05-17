@@ -484,6 +484,16 @@
      Architecture
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drawbacks">
+     Drawbacks
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -599,8 +609,8 @@ P^i=(P^i_x,P^i_y,P^i_w,P^i_h) \quad \mbox{ and } \quad G^i=(G^i_x,G^i_y,G^i_w,G^
 <ul class="simple">
 <li><p>The goal is to learn a transformation from <span class="math notranslate nohighlight">\(P\)</span> to <span class="math notranslate nohighlight">\(G\)</span> (index <span class="math notranslate nohighlight">\(i\)</span> is omitted ). This transformation is parametrized as follows:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-7088a8e0-32f4-440f-a061-6b8aa4b9feae">
-<span class="eqno">(94)<a class="headerlink" href="#equation-7088a8e0-32f4-440f-a061-6b8aa4b9feae" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-af9efd89-2c51-4be9-b20f-90afe22e0217">
+<span class="eqno">(94)<a class="headerlink" href="#equation-af9efd89-2c51-4be9-b20f-90afe22e0217" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 \hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \\
 \hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \\
 \hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\\
@@ -617,8 +627,8 @@ d_*(P)= w_*^T \phi(P)
 w_* = \operatorname*{argmin}_{\hat{w}_*} \sum\limits_{i=1}^N (t^i - \hat{w}_* \phi(P^i))^2 + \lambda \mid\mid \hat{w}_* \mid\mid^2,
 \]</div>
 <p>where the components of the regression targets <span class="math notranslate nohighlight">\(t\)</span> are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6155052-9ae8-4864-9409-0fdbcc0c90b7">
-<span class="eqno">(95)<a class="headerlink" href="#equation-e6155052-9ae8-4864-9409-0fdbcc0c90b7" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-b3704d57-f0cf-49e0-9bd6-639a20f97080">
+<span class="eqno">(95)<a class="headerlink" href="#equation-b3704d57-f0cf-49e0-9bd6-639a20f97080" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 t_x &amp; = &amp; (G_x - P_x) / P_w \\
 t_y &amp; = &amp; (G_y - P_y) / P_h \\
 t_w &amp; = &amp; \log(G_w / P_w) \\
@@ -840,7 +850,7 @@ smooth_{L1} (x) = \left\{
 </li>
 </ul>
 <p>Each of the <span class="math notranslate nohighlight">\(B\)</span> bounding boxes consists of 5 predictions: <span class="math notranslate nohighlight">\(x,y,w,h,confidence\)</span>. Each grid-cell predicts <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities <span class="math notranslate nohighlight">\(P(C_j|object)\)</span>.</p>
-<p>At test time class-specific confidence scores are calculated for all <span class="math notranslate nohighlight">\(C\)</span> classes.</p>
+<p>At test time <strong>class-specific confidence scores</strong> are calculated for all <span class="math notranslate nohighlight">\(C\)</span> classes.</p>
 <div class="math notranslate nohighlight">
 \[
 P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
@@ -853,10 +863,51 @@ P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,tru
 <h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
 <p>The figure below (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id18">[RDGF15]</a>) depicts the architecture of the first Yolo network.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
-<p>The Conv-layers are pretrained with the ILSVRC classification benchmark. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps.</p>
+<p>The network is inspired by GoogLeNet (<a class="bibtex reference internal" href="../referenceSection.html#szegedy2014" id="id19">[SLJ+14]</a>). Instead of the inception modules, applied in GoogLeNet, in Yolo only <span class="math notranslate nohighlight">\((1 \times 1)\)</span>-convolution layers (dimensionality reduction), followed by <span class="math notranslate nohighlight">\((3 \times 3)\)</span> convolutional layers are applied. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps.</p>
 <p>Yolo’s output is summarized in the image below (source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a>)</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
 <p>The network output is a tensor of size <span class="math notranslate nohighlight">\( S \times S \times (5 \cdot B + C)\)</span>. With <span class="math notranslate nohighlight">\(S=7, C=20, B=2\)</span>, this tensor contains <span class="math notranslate nohighlight">\(49 \cdot 30\)</span> elemenets.</p>
+</div>
+<div class="section" id="id20">
+<h3>Training<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>The convolutional-layers of the Yolo network are pretrained with the ILSVRC classification benchmark. For pretraining the first 20 convolutional layers of the architecture depicted above, followed by an average-pooling layer and a fully connected layer are applied.</p>
+<p>After pretraining the network is adapted for object detection by:</p>
+<ul class="simple">
+<li><p>Adding 4 additional convolutional layers and 2 fully connected layers with randomly intialized weights</p></li>
+<li><p>Resizing the network-input layer from <span class="math notranslate nohighlight">\((224 \times 224)\)</span> to <span class="math notranslate nohighlight">\((448 \times 448)\)</span>, since object detection generally requires more fine-grained features than image classification.</p></li>
+</ul>
+<p>The final layer predicts both class probabilities and bounding box coordinates for each of the <span class="math notranslate nohighlight">\(S^2=49\)</span> cells. The bounding box width and height are normalized by the image width and height so that they fall between 0 and 1. The bounding box <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>- coordinates are expressed as offsets w.r.t. a particular grid cell location so they are also bounded between 0 and 1.</p>
+<p>During training a MSE-loss functions <span class="math notranslate nohighlight">\(L\)</span> is minimized, which measures the difference between the estimated output and the corresponding ground-truth. As shown in the equation for the loss-function <span class="math notranslate nohighlight">\(L\)</span>, it weights</p>
+<ul class="simple">
+<li><p>weights the bounding box regression</p></li>
+<li><p>the class-specific confidence scores</p></li>
+<li><p>the <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities</p></li>
+</ul>
+<p>individually. In <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id21">[RDGF15]</a> <span class="math notranslate nohighlight">\(\lambda_{coord}=5\)</span> and <span class="math notranslate nohighlight">\(\lambda_{noobj}=0.5\)</span> are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ae98d700-679c-4d77-a95b-5f3666715a85">
+<span class="eqno">(96)<a class="headerlink" href="#equation-ae98d700-679c-4d77-a95b-5f3666715a85" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
+ &amp; + &amp; \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
+ &amp; + &amp;  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
+  &amp; + &amp;  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
+   &amp; + &amp;  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
+\end{eqnarray}\]</div>
+<p>In this equation</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i}^{obj}\)</span> is 1, if a object appears in cell <span class="math notranslate nohighlight">\(i\)</span>, otherwise 0</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i,j}^{obj}\)</span> is 1, if the j.th bounding box predictor in cell i is responsible for that prediction.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i,j}^{noobj}\)</span> is 1, if no object is in the cell i, box j.</p></li>
+</ul>
+<p>Moreover, in <span class="math notranslate nohighlight">\(L\)</span> for calulating the bounding-box width- and height- deviation the squareroot of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(h\)</span> is regarded. This reflects that small deviations in large boxes matter less than in small boxes.</p>
+</div>
+<div class="section" id="drawbacks">
+<h3>Drawbacks<a class="headerlink" href="#drawbacks" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fully connected layer in the output implies, that all input-images have same size as training images</p></li>
+<li><p>Although each cell can predict <span class="math notranslate nohighlight">\(B\)</span> bounding boxes, in the end, only the bounding box with the highest IoU is selected as the object detection output, that is, each grid can only predict one object at most. When the proportion of objects in the picture is small and each cell contains multiple objects, only one of them can be detected.</p></li>
+<li><p>Main error of YOLO is from localization, because the <strong>ratio of bounding box</strong> is totally learned from data and YOLO makes error on the unusual ratio bounding box</p></li>
+</ul>
+<p>Yolo v1 has been significantly improved in <a class="reference external" href="https://pjreddie.com/media/files/papers/YOLO9000.pdf">Yolo v2</a> and <a class="reference external" href="https://pjreddie.com/media/files/papers/YOLOv3.pdf">Yolo v3</a></p>
 </div>
 </div>
 </div>
