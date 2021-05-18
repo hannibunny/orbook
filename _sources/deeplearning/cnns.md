@@ -108,9 +108,8 @@ All VGG versions apply only filters of size $3 \times 3$. The apparent drawback 
 
 * Stacked version has more ReLu-nonlinearities, which enables more discriminative decision function
 * Stacked version has less parameters: 
-
-      *  $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
-      *  $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
+	- $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
+    - $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
 	  
     where $C$ is the number of channels (feature maps in the layer). Less parameters impose better generalisation.  
 
