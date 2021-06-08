@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Face Recognition using FaceNet" href="faceRecognition.html" />
-    <link rel="prev" title="Object Detection and Localisation" href="../deeplearning/detection.html" />
+    <link rel="prev" title="Object Detection" href="../deeplearning/detection.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -233,7 +233,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
@@ -433,6 +433,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install opencv-python</span>
+<span class="c1">#!pip install MTCNN</span>
 </pre></div>
 </div>
 </div>
@@ -530,7 +531,7 @@ If you saved this file to your current directory, the trained classifier-object 
 <div class="section" id="deep-learning-based-face-detection">
 <h2>Deep Learning based Face Detection<a class="headerlink" href="#deep-learning-based-face-detection" title="Permalink to this headline">¶</a></h2>
 <p>There exist different deep learning architectures for face detection, e.g. the <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a>.</p>
-<p>A MTCNN package, based on Tensorflow and opencv, which already contains a pretrained model can be installed as follows:</p>
+<p>A MTCNN package, based on Tensorflow and opencv, which already contains a pretrained model can be installed by <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">MTCNN</span></code>.</p>
 <div class="section" id="overall-approach">
 <h3>Overall approach<a class="headerlink" href="#overall-approach" title="Permalink to this headline">¶</a></h3>
 <p>The approach, proposed in <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> consists of 4 stages, which are sketched in the picture below:</p>
@@ -556,7 +557,7 @@ If you saved this file to your current directory, the trained classifier-object 
 <li><p><strong>Negatives:</strong> Regions with an Intersection-over-Union (IoU) ratio less than 0.3 to any ground-truth face,</p></li>
 <li><p><strong>Positives:</strong> IoU above 0.65 to a ground truth face;</p></li>
 <li><p><strong>Part faces:</strong> IoU between 0.4 and 0.65 to a ground truth face;</p></li>
-<li><p><strong>Landmark faces:</strong> faces labeled 5 landmarks’ positions.</p></li>
+<li><p><strong>Landmark faces:</strong> faces labeled with 5 landmarks positions.</p></li>
 </ul>
 <p>Negatives and positives are used for the <strong>face classification task</strong>. Positives and part faces are used for <strong>bounding box regression</strong>. Landmark faces are used for <strong>facial landmark localization</strong>.</p>
 <p>The picture below depicts the determination of <strong>Positives</strong> from labeled training data. In the original size of the image only one of the <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows is annotated as positive, since it’s IoU with a ground-truth bounding box exceeds a defined threshold <span class="math notranslate nohighlight">\(T\)</span>. In the next smaller image-version two <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows are annotated as positive and in the smallest version another positive candidate is found. Note that to each of the found Positives and Part faces, the corresponding ground-truth bounding-box is assigned.</p>
@@ -573,7 +574,7 @@ L_i^{det}= - (y_i^{det} \log(p_i) + (1-y_i^{det}) \log(1-p_i)),
 \[
 L_i^{box}=|| \hat{y}_i^{box} - y_i^{box} ||_2 ,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\hat{y}_i^{box}\)</span> is the bounding box, estimated by the network and <span class="math notranslate nohighlight">\(y_i{box}\)</span> is the corresponding ground-truth box. <span class="math notranslate nohighlight">\(|| x ||_2\)</span> is the <span class="math notranslate nohighlight">\(L_2\)</span>-norm of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\hat{y}_i^{box}\)</span> is the bounding box, estimated by the network and <span class="math notranslate nohighlight">\(y_i^{box}\)</span> is the corresponding ground-truth box. <span class="math notranslate nohighlight">\(|| x ||_2\)</span> is the <span class="math notranslate nohighlight">\(L_2\)</span>-norm of <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>For the <strong>facial landmark training</strong> also the mean-squared-error (MSE) between the 10-coordinates (<span class="math notranslate nohighlight">\((x,y)\)</span> of 5 facial landmarks) of the true and the estimated landmarks is minimized. Each candidate contributes by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -684,7 +685,7 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7fc7f8179550&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7f8daf462f70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <img alt="../_images/faceDetection_31_1.png" src="../_images/faceDetection_31_1.png" />
@@ -753,7 +754,7 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../deeplearning/detection.html" title="previous page">Object Detection and Localisation</a>
+    <a class='left-prev' id="prev-link" href="../deeplearning/detection.html" title="previous page">Object Detection</a>
     <a class='right-next' id="next-link" href="faceRecognition.html" title="next page">Face Recognition using FaceNet</a>
 
     </div>
