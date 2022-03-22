@@ -1,6 +1,6 @@
 # Face Recognition using FaceNet
 * Author: Johannes Maucher
-* Last update: 26.04.06.2021
+* Last update: 08.06.2021
 
 Conventional methods for face recognition (before the rise of deep learning), are e.g. the Eigenface approach by [Turk and Pentland: Face Recognition using Eigenfaces](https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf) or the [Fisherfaces approach by Belhumeur et al](https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf). Both of these approaches calculate a low-dimensional subspace from the high dimensonal image space. Once this subspace is determined, by PCA or FLDA, respectively, all images are transformed into this subspace and recognition, e.g. simple nearest-neighbour recognition, is performed there. See [J. Maucher: Lecture Object Recognition](https://gitlab.mi.hdm-stuttgart.de/maucher/or/-/blob/master/Slides/V04SubspaceFeatures.pdf) for details on these approaches.
 

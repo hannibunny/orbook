@@ -108,9 +108,8 @@ All VGG versions apply only filters of size $3 \times 3$. The apparent drawback 
 
 * Stacked version has more ReLu-nonlinearities, which enables more discriminative decision function
 * Stacked version has less parameters: 
-
-      *  $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
-      *  $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
+	- $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
+    - $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
 	  
     where $C$ is the number of channels (feature maps in the layer). Less parameters impose better generalisation.  
 
@@ -251,7 +250,7 @@ For the design of $W_s$ the following options exist:
 In the ResNet architecture-figure below, such dimension-modifying shortcuts are represented by dotted lines.
 
 <figure align="center">
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetArchitecture.PNG" style="width:600px" align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetArchitecture.PNG" style="width:700px" align="center">
 </figure>
 <figcaption>
 VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
@@ -277,7 +276,7 @@ VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetErrorIncreaseOptions.PNG" style="width:400px" align="center">
 </figure>
 
-**Esemble: Combination of 6 models of different depth (only 2 of them of depth 152)::**
+**Ensemble: Combination of 6 models of different depth (only 2 of them of depth 152)::**
 
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetErrorEnsembles.PNG" style="width:400px" align="center">

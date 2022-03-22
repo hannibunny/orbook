@@ -233,7 +233,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
@@ -433,7 +433,7 @@
 <h1>Face Recognition using FaceNet<a class="headerlink" href="#face-recognition-using-facenet" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last update: 26.04.06.2021</p></li>
+<li><p>Last update: 08.06.2021</p></li>
 </ul>
 <p>Conventional methods for face recognition (before the rise of deep learning), are e.g. the Eigenface approach by <a class="reference external" href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Turk and Pentland: Face Recognition using Eigenfaces</a> or the <a class="reference external" href="https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf">Fisherfaces approach by Belhumeur et al</a>. Both of these approaches calculate a low-dimensional subspace from the high dimensonal image space. Once this subspace is determined, by PCA or FLDA, respectively, all images are transformed into this subspace and recognition, e.g. simple nearest-neighbour recognition, is performed there. See <a class="reference external" href="https://gitlab.mi.hdm-stuttgart.de/maucher/or/-/blob/master/Slides/V04SubspaceFeatures.pdf">J. Maucher: Lecture Object Recognition</a> for details on these approaches.</p>
 <p>FaceNet is a CNN-based face recognition system that was introduced in <a class="reference external" href="https://arxiv.org/abs/1503.03832">FaceNet: A Unified Embedding for Face Recognition and Clustering</a>. For a given image of a face, FaceNet calculates a vector of length 128, the so called <strong>face embedding</strong>. That is, similar as the conventional approaches, Eigenface and Fisherface, also FaceNet transforms the high-dimensional image space into a low-dimensional subspace. This low-dimensional embedding can be used as input for any supervised machine learning algorithm, e.g. a Support Vector Machine (SVM).</p>

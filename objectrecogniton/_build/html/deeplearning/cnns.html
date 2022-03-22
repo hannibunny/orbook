@@ -499,10 +499,10 @@ In addition to this scaling, the only <strong>preprocessing</strong> routine is 
 <ul>
 <li><p>Stacked version has more ReLu-nonlinearities, which enables more discriminative decision function</p></li>
 <li><p>Stacked version has less parameters:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*  $3 \cdot 3^2C^2 = 27C^2$ for a 3-layer stack of $(3 \times 3)$-filters, versus ...
-*  $7^2C^2=49C^2$ for a single layer with  $(7 \times 7)$-filters
-</pre></div>
-</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(3 \cdot 3^2C^2 = 27C^2\)</span> for a 3-layer stack of <span class="math notranslate nohighlight">\((3 \times 3)\)</span>-filters, versus …</p></li>
+<li><p><span class="math notranslate nohighlight">\(7^2C^2=49C^2\)</span> for a single layer with  <span class="math notranslate nohighlight">\((7 \times 7)\)</span>-filters</p></li>
+</ul>
 <p>where <span class="math notranslate nohighlight">\(C\)</span> is the number of channels (feature maps in the layer). Less parameters impose better generalisation.</p>
 </li>
 </ul>
@@ -607,7 +607,7 @@ Multi scale testing
 </ul>
 <p>In the ResNet architecture-figure below, such dimension-modifying shortcuts are represented by dotted lines.</p>
 <figure align="center">
-<img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetArchitecture.PNG" style="width:600px" align="center">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetArchitecture.PNG" style="width:700px" align="center">
 </figure>
 <figcaption>
 VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
@@ -623,7 +623,7 @@ VGG-19 model (bottom), Plain 34-layer network and 34 layer Residual Network
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetErrorIncreaseOptions.PNG" style="width:400px" align="center">
 </figure>
-<p><strong>Esemble: Combination of 6 models of different depth (only 2 of them of depth 152)::</strong></p>
+<p><strong>Ensemble: Combination of 6 models of different depth (only 2 of them of depth 152)::</strong></p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/resNetErrorEnsembles.PNG" style="width:400px" align="center">
 </figure>

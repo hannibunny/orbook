@@ -4,6 +4,7 @@
 * Last update: 04.06.2020
 
 #!pip install opencv-python
+#!pip install MTCNN
 
 import cv2
 from matplotlib import pyplot as plt
@@ -53,7 +54,7 @@ plt.show()
 
 There exist different deep learning architectures for face detection, e.g. the [Multi-Task Cascaded Convolutional Neural Network (MTCNN)](https://arxiv.org/abs/1604.02878).
 
-A MTCNN package, based on Tensorflow and opencv, which already contains a pretrained model can be installed as follows:   
+A MTCNN package, based on Tensorflow and opencv, which already contains a pretrained model can be installed by `pip install MTCNN`.   
 
 ### Overall approach
 The approach, proposed in [Multi-Task Cascaded Convolutional Neural Network (MTCNN)](https://arxiv.org/abs/1604.02878) consists of 4 stages, which are sketched in the picture below:
@@ -81,7 +82,7 @@ Since **face detection** and **alignment** is performed jointly, different annot
 * **Negatives:** Regions with an Intersection-over-Union (IoU) ratio less than 0.3 to any ground-truth face,
 * **Positives:** IoU above 0.65 to a ground truth face;
 * **Part faces:** IoU between 0.4 and 0.65 to a ground truth face; 
-* **Landmark faces:** faces labeled 5 landmarks’ positions. 
+* **Landmark faces:** faces labeled with 5 landmarks positions. 
 
 Negatives and positives are used for the **face classification task**. Positives and part faces are used for **bounding box regression**. Landmark faces are used for **facial landmark localization**.
 
@@ -105,7 +106,7 @@ $$
 L_i^{box}=|| \hat{y}_i^{box} - y_i^{box} ||_2 ,
 $$
 
-where $\hat{y}_i^{box}$ is the bounding box, estimated by the network and $y_i{box}$ is the corresponding ground-truth box. $|| x ||_2$ is the $L_2$-norm of $x$. 
+where $\hat{y}_i^{box}$ is the bounding box, estimated by the network and $y_i^{box}$ is the corresponding ground-truth box. $|| x ||_2$ is the $L_2$-norm of $x$. 
 
 For the **facial landmark training** also the mean-squared-error (MSE) between the 10-coordinates ($(x,y)$ of 5 facial landmarks) of the true and the estimated landmarks is minimized. Each candidate contributes by
 
