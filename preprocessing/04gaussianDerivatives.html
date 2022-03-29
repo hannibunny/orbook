@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Gaussian Filter and Derivatives of Gaussian &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Rectangular- and Gaussian Low Pass Filtering" href="03LowPassFilter.html" />
     <link rel="prev" title="Basic Filter Operations" href="02filtering.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dimensional-gaussian-filter">
    1-dimensional Gaussian Filter
@@ -375,7 +369,7 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+  <a class="reference internal nav-link" href="#dimensional-gaussian-filter-1">
    2-dimensional Gaussian Filter
   </a>
  </li>
@@ -391,8 +385,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -400,7 +394,7 @@
         
               <div>
                 
-  <div class="section" id="gaussian-filter-and-derivatives-of-gaussian">
+  <section id="gaussian-filter-and-derivatives-of-gaussian">
 <h1>Gaussian Filter and Derivatives of Gaussian<a class="headerlink" href="#gaussian-filter-and-derivatives-of-gaussian" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -415,24 +409,23 @@
 </ul>
 <p>Moreover, derivatives of the Gaussian filter can be applied to perform noise reduction and edge detection in one step. The derivation of a Gaussian-blurred input signal is identical to filter the raw input signal with a derivative of the gaussian.</p>
 <p>In this subsection the 1- and 2-dimensional Gaussian filter as well as their derivatives are introduced. Applications such as low-pass filtering, noise-suppression and scaling are subject of follow-up subsections.</p>
-<div class="section" id="dimensional-gaussian-filter">
+<section id="dimensional-gaussian-filter">
 <h2>1-dimensional Gaussian Filter<a class="headerlink" href="#dimensional-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The univariate Gauss-function is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cfbd7da0-30d2-46da-8f83-e18990ea0192">
-<span class="eqno">(27)<a class="headerlink" href="#equation-cfbd7da0-30d2-46da-8f83-e18990ea0192" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 g_{\sigma,\mu}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(x-\mu)^2}{2 \sigma^2}\right),
-\end{equation}\]</div>
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation and <span class="math notranslate nohighlight">\(\mu\)</span> is the mean. In the context of filtering, the mean is always <span class="math notranslate nohighlight">\(\mu=0\)</span>, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> is a parameter, which determines the width of the filter. In the sequel the mean is implicetly assumed to be <span class="math notranslate nohighlight">\(\mu=0.\)</span></p>
 <p>Below, two Gauss functions with different <span class="math notranslate nohighlight">\(\sigma\)</span> are plotted:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">multivariate_normal</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="k">import</span> <span class="n">Axes3D</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
@@ -467,10 +460,9 @@ g_{\sigma,\mu}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(x-\mu)^2}
 </div>
 </div>
 <p>In image processing we have discrete signals (the pixels of an image) and discrete filters. For the discrete index <span class="math notranslate nohighlight">\(u\)</span>, the <strong>discrete Gaussian filter</strong> is defined to be (for <span class="math notranslate nohighlight">\(\mu=0\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-31c0fa8d-c8eb-4dee-925a-5e4ab1da7e61">
-<span class="eqno">(28)<a class="headerlink" href="#equation-31c0fa8d-c8eb-4dee-925a-5e4ab1da7e61" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 g_{\sigma}(u) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(u)^2}{2 \sigma^2}\right),
-\end{equation}\]</div>
+\end{equation}</p>
 <p>For discrete Gauss-filters, u is an integer in the range</p>
 <div class="math notranslate nohighlight">
 \[
@@ -478,10 +470,9 @@ u \in [-z, \ldots, z],
 \]</div>
 <p>where usually <span class="math notranslate nohighlight">\(z=\lceil 3\sigma \rceil\)</span>.</p>
 <p>The output of the discrete Gaussian filtering, if applied to the discrete signal <span class="math notranslate nohighlight">\(f(i)\)</span> is than</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d42fcb04-9f71-4450-8ca9-7745edc1a62a">
-<span class="eqno">(29)<a class="headerlink" href="#equation-d42fcb04-9f71-4450-8ca9-7745edc1a62a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 h(i) = \sum\limits_{u=-z}^{z} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{u^2}{2 \sigma^2}\right) f(i-u)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Below, two discrete Gauss functions with different <span class="math notranslate nohighlight">\(\sigma\)</span> are plotted:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -542,24 +533,21 @@ h(i) = \sum\limits_{u=-z}^{z} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="derivatives-of-1-dimensional-gaussian-filter">
+</section>
+<section id="derivatives-of-1-dimensional-gaussian-filter">
 <h2>Derivatives of 1-dimensional Gaussian Filter<a class="headerlink" href="#derivatives-of-1-dimensional-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The 1st order derivative of the zero mean Gaussian function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1053dce2-ec19-4433-95f6-fe05c350bc13">
-<span class="eqno">(30)<a class="headerlink" href="#equation-1053dce2-ec19-4433-95f6-fe05c350bc13" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 g_{\sigma}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>can easily be calcultated to be</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fcd05c12-c155-4b81-8662-a470f5299485">
-<span class="eqno">(31)<a class="headerlink" href="#equation-fcd05c12-c155-4b81-8662-a470f5299485" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-g'_{\sigma}(x)=\frac{\partial g_{\sigma}(x)}{\partial x}= -\frac{x}{\sigma^2} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = -\frac{x}{\sigma^2} g_{\sigma}(x),
-\end{equation}\]</div>
+<p>\begin{equation}
+g’<em>{\sigma}(x)=\frac{\partial g</em>{\sigma}(x)}{\partial x}= -\frac{x}{\sigma^2} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = -\frac{x}{\sigma^2} g_{\sigma}(x),
+\end{equation}</p>
 <p>And the 2nd order derivative is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5256f7d2-19f6-4414-83ec-4054f382b6c1">
-<span class="eqno">(32)<a class="headerlink" href="#equation-5256f7d2-19f6-4414-83ec-4054f382b6c1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-g''_{\sigma}(x)=\frac{\partial^2 g_{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = \left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) g_{\sigma}(x).
-\end{equation}\]</div>
+<p>\begin{equation}
+g’’<em>{\sigma}(x)=\frac{\partial^2 g</em>{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = \left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) g_{\sigma}(x).
+\end{equation}</p>
 <p>Below, the gaussian function and it’s 1st and 2nd order derivative are visualized:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -596,19 +584,17 @@ g''_{\sigma}(x)=\frac{\partial^2 g_{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\
 </div>
 <p><strong>Gradient of a Signal:</strong></p>
 <p>In <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">section filtering</span></a> it was shown that the gradient <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x}\)</span> of a 1-dimensional discrete signal <span class="math notranslate nohighlight">\(f\)</span> can be calculated by convolving the signal with the filter <span class="math notranslate nohighlight">\(h=(1,0,-1)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12b23d9a-158f-4309-94b1-4203a2c8358f">
-<span class="eqno">(33)<a class="headerlink" href="#equation-12b23d9a-158f-4309-94b1-4203a2c8358f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{\partial f}{\partial x}=h*f
-\end{equation}\]</div>
+\end{equation}</p>
 <p>By comparing the form of filter <span class="math notranslate nohighlight">\(h\)</span>, with the first derivative of the Gaussian, it becomes obvious, that the first derivative of the Gaussian is a smoothed form of <span class="math notranslate nohighlight">\(h\)</span>. <strong>Filtering a signal <span class="math notranslate nohighlight">\(f\)</span> with a Gaussian and then calculating its gradient is the same as filtering the signal <span class="math notranslate nohighlight">\(f\)</span> with the first order derivative of the Gaussian.</strong></p>
-</div>
-<div class="section" id="id1">
-<h2>2-dimensional Gaussian Filter<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dimensional-gaussian-filter-1">
+<h2>2-dimensional Gaussian Filter<a class="headerlink" href="#dimensional-gaussian-filter-1" title="Permalink to this headline">¶</a></h2>
 <p>A 2-dimensional continous Gaussian filter (again <span class="math notranslate nohighlight">\(\mu=0\)</span>) is defined as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-89efdaf8-c32a-4817-b505-486dc763a4a4">
-<span class="eqno">(34)<a class="headerlink" href="#equation-89efdaf8-c32a-4817-b505-486dc763a4a4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 G_{\sigma}(x,y) = \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{x^2+y^2}{2 \sigma^2}\right)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The following function <code class="docutils literal notranslate"><span class="pre">gauss2d(mu,sigma,order)</span></code> plots either</p>
 <ul class="simple">
 <li><p>the 2-dimensional Gauss-function, if <code class="docutils literal notranslate"><span class="pre">order=[0,0]</span></code></p></li>
@@ -689,16 +675,14 @@ G_{\sigma}(x,y) = \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{x^2+y^2}{2 \sigma
 </div>
 </div>
 <p>The discrete form of the Gaussian filter is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee0db990-6277-477a-bd0e-70e9a0ebd04b">
-<span class="eqno">(35)<a class="headerlink" href="#equation-ee0db990-6277-477a-bd0e-70e9a0ebd04b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 G_{\sigma}(u,v)  =  \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{u^2+v^2}{2 \sigma^2}\right),
-\end{equation}\]</div>
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are integers in the range of <span class="math notranslate nohighlight">\([-z, \ldots, z]\)</span>, and <span class="math notranslate nohighlight">\(z=\lceil 3\sigma \rceil\)</span>.</p>
 <p>The convolution of a discrete 2-dimensional signal <span class="math notranslate nohighlight">\(F\)</span> with the 2-dimensional Gaussian filter <span class="math notranslate nohighlight">\(G\)</span> is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7fa1bc13-70fe-406f-a828-b6b50a056d3a">
-<span class="eqno">(36)<a class="headerlink" href="#equation-7fa1bc13-70fe-406f-a828-b6b50a056d3a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 H(i,j) = \sum\limits_{u=-k}^{k} \sum\limits_{v=-k}^{k} \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{u^2+v^2}{2 \sigma^2}\right) F(i-u,j-v).
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Next, 2-dimensional Gaussian filtering is demonstrated. For this we define
 a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> of shape (10,10) as a numpy-array. The signal values are 1 (white) in the (4,4)-center region and 0 (black) elsewhere.</p>
 <div class="cell docutils container">
@@ -749,15 +733,14 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 <img alt="../_images/04gaussianDerivatives_29_1.png" src="../_images/04gaussianDerivatives_29_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="derivatives-of-the-2-dimensional-gauss-filter">
+</section>
+<section id="derivatives-of-the-2-dimensional-gauss-filter">
 <h2>Derivatives of the 2-dimensional Gauss filter<a class="headerlink" href="#derivatives-of-the-2-dimensional-gauss-filter" title="Permalink to this headline">¶</a></h2>
 <p>For the 2-dimensional Gaussian <span class="math notranslate nohighlight">\(G_{\sigma}(x,y)\)</span> the 1st order partial derivatives are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12df606b-05d9-43a4-ad89-d12073fe6cde">
-<span class="eqno">(37)<a class="headerlink" href="#equation-12df606b-05d9-43a4-ad89-d12073fe6cde" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-\frac{\partial G_{\sigma}(x,y)}{\partial x} &amp; = &amp; -\frac{x}{\sigma^2} G_{\sigma}(x,y) \\
+<p>\begin{eqnarray}
+\frac{\partial G_{\sigma}(x,y)}{\partial x} &amp; = &amp; -\frac{x}{\sigma^2} G_{\sigma}(x,y) \
 \frac{\partial G_{\sigma}(x,y)}{\partial y} &amp; = &amp; -\frac{y}{\sigma^2} G_{\sigma}(x,y)
-\end{eqnarray}\]</div>
+\end{eqnarray}</p>
 <p>The 1st order derivatives are visualized below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -827,7 +810,7 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 \frac{\partial^2 (G_{\sigma}(x,y))}{\partial x^2}  =  \left( \frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) G_{\sigma}(x,y) 
 \]</div>
 <div class="math notranslate nohighlight" id="equation-2nd-derivative-gauss">
-<span class="eqno">(38)<a class="headerlink" href="#equation-2nd-derivative-gauss" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(1)<a class="headerlink" href="#equation-2nd-derivative-gauss" title="Permalink to this equation">¶</a></span>\[
 \frac{\partial^2 (G_{\sigma}(x,y))}{\partial y^2}  =  \left(\frac{y^2}{\sigma^4} - \frac{1}{\sigma^2} \right) G_{\sigma}(x,y)
 \]</div>
 <p>These 2nd order derivatives are visualized below:</p>
@@ -878,24 +861,22 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 <img alt="../_images/04gaussianDerivatives_40_0.png" src="../_images/04gaussianDerivatives_40_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="laplacian-operator-laplacian-of-gaussian">
+</section>
+<section id="laplacian-operator-laplacian-of-gaussian">
 <h2>Laplacian Operator, Laplacian of Gaussian<a class="headerlink" href="#laplacian-operator-laplacian-of-gaussian" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The <strong>Laplacian Operator <span class="math notranslate nohighlight">\(\nabla^2 F\)</span></strong> is the undirected 2nd derivative of a 2-dimensional image <span class="math notranslate nohighlight">\(F\)</span>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-76f5460b-4995-4a46-97b7-40bfe4b5a033">
-<span class="eqno">(39)<a class="headerlink" href="#equation-76f5460b-4995-4a46-97b7-40bfe4b5a033" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \nabla^2 F = \frac{\partial^2 F}{\partial x^2}+\frac{\partial^2 F}{\partial y^2}
-\end{equation}\]</div>
+\end{equation}</p>
 <ul class="simple">
-<li><p>The second order derivatives of the 2-dim Gaussian filter are defined in <a class="reference internal" href="#equation-2nd-derivative-gauss">(38)</a></p></li>
+<li><p>The second order derivatives of the 2-dim Gaussian filter are defined in <a class="reference internal" href="#equation-2nd-derivative-gauss">(1)</a></p></li>
 <li><p>Smoothing an image <span class="math notranslate nohighlight">\(F\)</span> with a Gaussian and then taking its Laplacian operator is equivalent to convolving the image <span class="math notranslate nohighlight">\(F\)</span> with the <strong>Laplacian of Gaussian (LoG) Filter</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-f2c719cf-4a22-4830-a829-07182f5019dd">
-<span class="eqno">(40)<a class="headerlink" href="#equation-f2c719cf-4a22-4830-a829-07182f5019dd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\nabla^2 G_{\sigma}(x,y)=\left(\frac{x^2+y^2}{\sigma^4} - \frac{2}{\sigma^2}\right) G_{\sigma}(x,y) 
-\end{equation}\]</div>
+<p>\begin{equation}
+\nabla^2 G_{\sigma}(x,y)=\left(\frac{x^2+y^2}{\sigma^4} - \frac{2}{\sigma^2}\right) G_{\sigma}(x,y)
+\end{equation}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">gauss2d</span><span class="p">(</span><span class="n">MU</span><span class="p">,</span> <span class="n">SIGMA</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
@@ -962,8 +943,8 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -987,15 +968,15 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="02filtering.html" title="previous page">Basic Filter Operations</a>
     <a class='right-next' id="next-link" href="03LowPassFilter.html" title="next page">Rectangular- and Gaussian Low Pass Filtering</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1003,7 +984,7 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -1012,11 +993,9 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

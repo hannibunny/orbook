@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Noise Suppression &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Gaussian and Difference of Gaussian Pyramid" href="05GaussianLowPassFilter.html" />
     <link rel="prev" title="Rectangular- and Gaussian Low Pass Filtering" href="03LowPassFilter.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gaussian-noise">
    Gaussian Noise
@@ -388,8 +382,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -397,7 +391,7 @@
         
               <div>
                 
-  <div class="section" id="noise-suppression">
+  <section id="noise-suppression">
 <h1>Noise Suppression<a class="headerlink" href="#noise-suppression" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -412,8 +406,7 @@
 <li><p><strong>Salt and Pepper Noise:</strong> White and black pixels, that are randomly distributed over the image.</p></li>
 </ul>
 <p>Below, these three different noise types are visualized:</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/noiseTypes.PNG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/noiseTypes.PNG" />
-<div class="section" id="gaussian-noise">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/noiseTypes.PNG" style="width:700px" align="center"><section id="gaussian-noise">
 <h2>Gaussian Noise<a class="headerlink" href="#gaussian-noise" title="Permalink to this headline">¶</a></h2>
 <p>Independent of the noise type, it is assumed, that in the noise-free picture <strong>nearby pixels</strong> have similar values. Since Gaussian noise is assumed to be independent noisy pixels may vary effectively from their neighbours. This means that the assumed noise is <strong>high-frequent</strong>. From the <a class="reference internal" href="03LowPassFilter.html"><span class="doc std std-doc">previous subsection</span></a> it is known, that high frequencies can be suppressed by applying a <strong>low pass filters</strong>, e.g. an average- or a Gaussian filter. As has been shown previously the Fourier Transform (spectrum) of a Gaussian function is again a Gaussian function with inverse variance. I.e. a smaller variance in time domain implies a larger bandwidth in the frequency domain and vice versa.</p>
 <p>Below, first Gaussian noise is added to an image. Then the filtering of the noisy image with different filter-types and different bandwidths is demonstrated.</p>
@@ -421,10 +414,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="k">import</span> <span class="n">filters</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">filters</span>
 
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="k">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">img_as_float</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">minmax_scale</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">img_as_float</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">minmax_scale</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -459,13 +452,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[  4.  16.  -1. ...  16.  12. -15.]
- [ -7.   0.  -7. ...  11. -22.   3.]
- [ -6.   8.  -6. ... -24.   5.  -1.]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -9.   5.   5. ... -10. -13.   0.]
+ [-13.  -7.  -3. ...  -5.   7. -11.]
+ [  0. -12. -22. ... -10.   5.  -7.]
  ...
- [  0.  -2.   5. ...  11. -25.   2.]
- [  4.  14. -20. ...   9.   2.   4.]
- [  1. -12.  -3. ...  13.  -1.  -5.]]
+ [  3.  30.   0. ...  -4.  -3.  -5.]
+ [  0. -13.  -8. ...   4.  -1.   2.]
+ [ 15.  -7.  -8. ...  -8.   0. -20.]]
 </pre></div>
 </div>
 </div>
@@ -500,7 +493,7 @@
 <img alt="../_images/06GaussianNoiseReduction_12_0.png" src="../_images/06GaussianNoiseReduction_12_0.png" />
 </div>
 </div>
-<div class="section" id="average-and-gaussian-filter-for-gaussian-noise-suppression">
+<section id="average-and-gaussian-filter-for-gaussian-noise-suppression">
 <h3>Average- and Gaussian-Filter for Gaussian Noise suppression<a class="headerlink" href="#average-and-gaussian-filter-for-gaussian-noise-suppression" title="Permalink to this headline">¶</a></h3>
 <p>Below, the result of filtering the noisy image with</p>
 <ul class="simple">
@@ -561,8 +554,8 @@
 </div>
 </div>
 <p>Comparing the filter-outputs above yields, that the Non-Local-Means filter with <span class="math notranslate nohighlight">\(h=8\)</span> yields the best result. This filter is described below:</p>
-</div>
-<div class="section" id="non-local-means-filtering-of-gaussian-noise">
+</section>
+<section id="non-local-means-filtering-of-gaussian-noise">
 <h3>Non-Local-Means Filtering of Gaussian Noise<a class="headerlink" href="#non-local-means-filtering-of-gaussian-noise" title="Permalink to this headline">¶</a></h3>
 <p>Average Filter and Gauss Filter both replace each pixel value by <strong>(weighted) average of neighbouring pixel values</strong>. In contrast to this concept a <strong>Non-Local-Means-Filter (NLM)</strong>: replaces each pixel value by the weighted average of pixel values in similar image regions.</p>
 <p>For images with Gaussian noise we assume:</p>
@@ -572,16 +565,16 @@ P_{noise}=P_{true}+N_0,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(N_0\)</span> is Gaussian distributed noise and <span class="math notranslate nohighlight">\(P_{true}\)</span> is the image without noise.</p>
 <p>The idea of NLM is that by adding many noisy versions of the same image-region, the noise-term will be averaged out and the result is the true image-region.</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/NLMnoiseReduction.PNG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/NLMnoiseReduction.PNG" />
-<p><em>Image Source: <a class="reference external" href="http://docs.opencv.org/trunk/d5/d69/tutorial_py_non_local_means.html">http://docs.opencv.org/trunk/d5/d69/tutorial_py_non_local_means.html</a></em></p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/NLMnoiseReduction.PNG" style="width:900px" align="center">
+<p><em>Image Source: <a class="reference external" href="http://docs.opencv.org/trunk/d5/d69/tutorial%5C_py%5C_non%5C_local%5C_means.html">http://docs.opencv.org/trunk/d5/d69/tutorial_py_non_local_means.html</a></em></p>
 <p>Further reading and demo:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.ipol.im/pub/art/2011/bcm_nlm/revisions/2011-09-13/bcm_nlm.htm">Paper on NLM Denoising</a></p></li>
 <li><p><a class="reference external" href="http://demo.ipol.im/demo/bcm_non_local_means_denoising/">Demo of NLP filtering</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="salt-and-pepper-noise">
+</section>
+</section>
+<section id="salt-and-pepper-noise">
 <h2>Salt-and-Pepper Noise<a class="headerlink" href="#salt-and-pepper-noise" title="Permalink to this headline">¶</a></h2>
 <p>Salt-and-pepper noise is another form of image noise. It is also known as impulse noise. This noise can be caused by sharp and sudden disturbances in the image signal. It presents itself as sparsely occurring white and black pixels.</p>
 <p>Below the original image is modified by two types of impulse-noise:</p>
@@ -718,8 +711,8 @@ P_{noise}=P_{true}+N_0,
 </div>
 </div>
 <p>As can be seen, the median-filter provides the best result in suppressing salt- (and pepper) noise.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -743,15 +736,15 @@ P_{noise}=P_{true}+N_0,
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="03LowPassFilter.html" title="previous page">Rectangular- and Gaussian Low Pass Filtering</a>
     <a class='right-next' id="next-link" href="05GaussianLowPassFilter.html" title="next page">Gaussian and Difference of Gaussian Pyramid</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -759,7 +752,7 @@ P_{noise}=P_{true}+N_0,
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -768,11 +761,9 @@ P_{noise}=P_{true}+N_0,
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

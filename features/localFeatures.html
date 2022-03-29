@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Local Image Features &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Example: Harris-Förstner Corner Detection" href="harrisCornerDetection.html" />
     <link rel="prev" title="Example: Naive Bayes Object Recognition" href="probRecognition.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,27 +320,27 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-requirements-and-categorization">
    General Requirements and Categorization
@@ -415,8 +409,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -424,29 +418,29 @@
         
               <div>
                 
-  <div class="section" id="local-image-features">
+  <section id="local-image-features">
 <h1>Local Image Features<a class="headerlink" href="#local-image-features" title="Permalink to this headline">¶</a></h1>
 <p>In contrast to global features, local features describe not the entire image, but only a local region within the image. As depicted in the figure below, for each image usually a large set of local descriptors is obtained. Actually in the image below, not the <strong>local descriptors</strong> itself, but the <strong>keypoints</strong> are shown by blue markers. Usually one first finds keypoints, then the area around each keypoint is described by a local descriptor, which is usually a numeric vector.</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/a4sift.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/a4sift.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/a4sift.png" style="width:300px" align="center">
 <p>In most applications, local features provide much more robustness than global features. Depending on the specific type of local feature, they can be robust w.r.t. rotation, translation, viewpoint, scale, ligthing partial deformation and partial occlusion.</p>
-<p>In <a class="bibtex reference internal" href="../referenceSection.html#graumanleibe" id="id1">[GL11]</a> local features are defined as follows:</p>
+<p>In <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-23">GL11</a>]</span> local features are defined as follows:</p>
 <div class="admonition-local-features admonition">
 <p class="admonition-title">Local Features</p>
 <p>The purpose of local invariant features is to provide a representation that allows to efficiently match local structures between images. That is, we want to obtain a sparse set of local measurements that capture the essence of the underlying input images and that encode their interesting structure.</p>
-</div>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/vishouse2.jpg" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/vishouse2.jpg" />
+</aside>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/vishouse2.jpg" style="width:300px" align="center">
 <p>Image Source: <a class="reference external" href="http://cs.brown.edu/courses/cs143/results/proj2/sphene">http://cs.brown.edu/courses/cs143/results/proj2/sphene/</a></p>
-<div class="section" id="general-requirements-and-categorization">
+<section id="general-requirements-and-categorization">
 <h2>General Requirements and Categorization<a class="headerlink" href="#general-requirements-and-categorization" title="Permalink to this headline">¶</a></h2>
-<p>According to <a class="bibtex reference internal" href="../referenceSection.html#tuyte07" id="id2">[TM07]</a> local features in general shall have the following characteristics:</p>
+<p>According to <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-49">TM07</a>]</span> local features in general shall have the following characteristics:</p>
 <ul class="simple">
 <li><p><strong>Repeatability</strong>: Given two images of the same object, taken under different viewing conditions, a high percentage of the features detected on the object part visible in both images should be found in both images.</p></li>
 </ul>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/differentEdgesRed.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/differentEdgesRed.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/differentEdgesRed.png" style="width:300px" align="center">
 <ul class="simple">
 <li><p><strong>Distinctiveness/informativeness</strong>: The intensity patterns underlying the detected features should show a lot of variation, such that features can be distinguished and matched. By looking through a small window it must be easy to localize the point. Shifting the window in any direction should give a large change in pixel intensities, gradients, …</p></li>
 </ul>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/properKeypoints.jpg" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/properKeypoints.jpg" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/properKeypoints.jpg" style="width:300px" align="center">
 <ul class="simple">
 <li><p><strong>Locality</strong>: The features should be local, so as to reduce the probability of occlusion and to allow simple model approximations of the geometric and photometric deformations
 between two images taken under different viewing conditions.</p></li>
@@ -459,7 +453,7 @@ a compact image representation.</p></li>
 <li><p><strong>Accuracy</strong>: The detected features should be accurately localized, both in image location, as with respect to scale and possibly shape.</p></li>
 <li><p><strong>Efficiency</strong>: Preferably, the detection of features in a new image should allow for time-critical applications.</p></li>
 </ul>
-<p>Applications, which integrate local features can be categorized in an abstract level as follows (<a class="bibtex reference internal" href="../referenceSection.html#tuyte07" id="id3">[TM07]</a>):</p>
+<p>Applications, which integrate local features can be categorized in an abstract level as follows (<span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#citation-49">TM07</a>]</span>):</p>
 <ol class="simple">
 <li><p>Interest in a <strong>specific type of local feature</strong> that has a clear semantic interpretation in the context of a given application. E.g. in aerial images edges indicate roads.</p></li>
 <li><p>Interest in local features since they <strong>provide a limited set of well localized and individually identifiable anchor points</strong> (e.g. for tracking applications or image stichting).</p></li>
@@ -478,19 +472,19 @@ a compact image representation.</p></li>
     </figcaption>
 </figure>
 <p>An example for the third category is <strong>object identification:</strong> First local features from both images are extracted independently. Then candidate matching pairs of descriptors must be determined. From the location of the matching pairs the most probable geometric configuration can be determined and verified.</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/siftRecognLorry.PNG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/siftRecognLorry.PNG" />
-</div>
-<div class="section" id="harris-forstner-corner-detection">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/siftRecognLorry.PNG" style="width:300px" align="center">
+</section>
+<section id="harris-forstner-corner-detection">
 <h2>Harris-Förstner Corner Detection<a class="headerlink" href="#harris-forstner-corner-detection" title="Permalink to this headline">¶</a></h2>
 <p>As stated above an important <strong>criteria for good keypoints</strong> is:</p>
 <blockquote class="epigraph">
 <div><p>Shifting the small window in any direction should give a large change in gradients.</p>
 </div></blockquote>
-<p>According to <a class="bibtex reference internal" href="../referenceSection.html#harris88" id="id4">[HS88]</a> the <strong>change of gradients</strong> in the neighborhood of a pixel can be determined as follows:</p>
+<p>According to <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-22">HS88</a>]</span> the <strong>change of gradients</strong> in the neighborhood of a pixel can be determined as follows:</p>
 <ol>
 <li><p>Calculate the gradient at position <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-gradim">
-<span class="eqno">(66)<a class="headerlink" href="#equation-gradim" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(9)<a class="headerlink" href="#equation-gradim" title="Permalink to this equation">¶</a></span>\[\begin{split}
     \nabla I(\mathbf{x}) = \left(
     \begin{array}{c}
     \frac{\partial I(\mathbf{x})}{\partial x} \\
@@ -525,7 +519,7 @@ a compact image representation.</p></li>
 </li>
 <li><p>Average matrices <span class="math notranslate nohighlight">\(M_I(\mathbf{x})\)</span> over a region by convolution with a Gaussian <span class="math notranslate nohighlight">\(G_{\sigma}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-aver">
-<span class="eqno">(67)<a class="headerlink" href="#equation-aver" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(10)<a class="headerlink" href="#equation-aver" title="Permalink to this equation">¶</a></span>\[
     C(\mathbf{x},\sigma)=G_{\sigma}(\mathbf{x}) * M_I(\mathbf{x})
     \]</div>
 </li>
@@ -556,24 +550,24 @@ r=\frac{\alpha}{\beta}
 </li>
 <li><p>Then</p>
 <div class="math notranslate nohighlight" id="equation-tracedet">
-<span class="eqno">(68)<a class="headerlink" href="#equation-tracedet" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(11)<a class="headerlink" href="#equation-tracedet" title="Permalink to this equation">¶</a></span>\[
     \frac{Tr(\mathbf{C(\mathbf{x},\sigma)})^2}{Det(\mathbf{C(\mathbf{x},\sigma)})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
     \]</div>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>
 </li>
 <li><p>Corners are at the points where this value is small.</p></li>
-<li><p>In order to check if the value in equation <a class="reference internal" href="#equation-tracedet">(68)</a> is small one can equivalently check if</p></li>
+<li><p>In order to check if the value in equation <a class="reference internal" href="#equation-tracedet">(11)</a> is small one can equivalently check if</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-cornertest">
-<span class="eqno">(69)<a class="headerlink" href="#equation-cornertest" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-cornertest" title="Permalink to this equation">¶</a></span>\[
 Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 &gt; T.
 \]</div>
 <p>Concerning the parameters in in the described process:</p>
 <ul class="simple">
 <li><p><strong><span class="math notranslate nohighlight">\(\kappa\)</span></strong> is in the range <span class="math notranslate nohighlight">\([0.04,\ldots 0.15]\)</span>. Smaller <span class="math notranslate nohighlight">\(\kappa\)</span> yields more detected corners.</p></li>
-<li><p>If the standard deviation of the Gaussian filter, used to calculate the derivatives in equation <a class="reference internal" href="#equation-gradim">(66)</a> is <span class="math notranslate nohighlight">\(\sigma_d\)</span>, then the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of the Gaussian, used in equation <a class="reference internal" href="#equation-aver">(67)</a>, should be <strong><span class="math notranslate nohighlight">\(\sigma \approx 2\sigma_d\)</span></strong>. Typical value: <span class="math notranslate nohighlight">\(\sigma=1.0\)</span> i.e. <span class="math notranslate nohighlight">\(\sigma_d \approx 0.5\)</span>.</p></li>
+<li><p>If the standard deviation of the Gaussian filter, used to calculate the derivatives in equation <a class="reference internal" href="#equation-gradim">(9)</a> is <span class="math notranslate nohighlight">\(\sigma_d\)</span>, then the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> of the Gaussian, used in equation <a class="reference internal" href="#equation-aver">(10)</a>, should be <strong><span class="math notranslate nohighlight">\(\sigma \approx 2\sigma_d\)</span></strong>. Typical value: <span class="math notranslate nohighlight">\(\sigma=1.0\)</span> i.e. <span class="math notranslate nohighlight">\(\sigma_d \approx 0.5\)</span>.</p></li>
 </ul>
-<p>In implementations, e.g. <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.corner_harris">Scikits Image</a>, usually one function calculates for all pixels the value, given in the left hand side of unequation <a class="reference internal" href="#equation-cornertest">(69)</a> and a second function applies the <strong>threshold <span class="math notranslate nohighlight">\(T\)</span></strong> (default value 0) and a <strong>minimum distance <span class="math notranslate nohighlight">\(D_{min}\)</span></strong> to the result of the first function. Detected corners are then separated by at least <span class="math notranslate nohighlight">\(D_{min}\)</span> pixels. The influence of varying parameters <span class="math notranslate nohighlight">\(\kappa\)</span> and <span class="math notranslate nohighlight">\(D_{min}\)</span> is demonstrated in the picture below):</p>
+<p>In implementations, e.g. <a class="reference external" href="https://scikit-image.org/docs/dev/api/skimage.feature.html#skimage.feature.corner_harris">Scikits Image</a>, usually one function calculates for all pixels the value, given in the left hand side of unequation <a class="reference internal" href="#equation-cornertest">(12)</a> and a second function applies the <strong>threshold <span class="math notranslate nohighlight">\(T\)</span></strong> (default value 0) and a <strong>minimum distance <span class="math notranslate nohighlight">\(D_{min}\)</span></strong> to the result of the first function. Detected corners are then separated by at least <span class="math notranslate nohighlight">\(D_{min}\)</span> pixels. The influence of varying parameters <span class="math notranslate nohighlight">\(\kappa\)</span> and <span class="math notranslate nohighlight">\(D_{min}\)</span> is demonstrated in the picture below):</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/harrisCornerAll.png" style="width:600px" align="center">
 </figure>
@@ -583,10 +577,10 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/harrisScale.PNG" style="width:400px" align="center">
 </figure>
 <p>An approach for scale-invariant features is described in the following subsection.</p>
-</div>
-<div class="section" id="scale-invariant-feature-transform-sift">
+</section>
+<section id="scale-invariant-feature-transform-sift">
 <h2>Scale Invariant Feature Transform (SIFT)<a class="headerlink" href="#scale-invariant-feature-transform-sift" title="Permalink to this headline">¶</a></h2>
-<p>Scale Invariant Feature Transform (SIFT) is an algorithm to detect and describe local features in images. It has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#lowe04" id="id5">[Low04]</a>. SIFT features are invariant w.r.t. translation, rotation, scale and quite robust w.r.t. illumination, 3D viewpoint, additional noise and partial occlusion. The SIFT process consists of the following steps:</p>
+<p>Scale Invariant Feature Transform (SIFT) is an algorithm to detect and describe local features in images. It has been introduced in <span id="pending-xref-5">[<a class="reference internal" href="../referenceSection.html#citation-33">Low04</a>]</span>. SIFT features are invariant w.r.t. translation, rotation, scale and quite robust w.r.t. illumination, 3D viewpoint, additional noise and partial occlusion. The SIFT process consists of the following steps:</p>
 <div class="sphinx-bs container pb-4 docutils">
 <div class="row docutils">
 <div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
@@ -631,7 +625,7 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 </div>
 </div>
 </div>
-<div class="section" id="scale-space-extrema-detection">
+<section id="scale-space-extrema-detection">
 <h3>Scale space extrema detection<a class="headerlink" href="#scale-space-extrema-detection" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p><strong>Scale Space</strong> of input image <span class="math notranslate nohighlight">\(I(x,y)\)</span>:</p>
@@ -648,20 +642,19 @@ Det(\mathbf{C(\mathbf{x},\sigma)}) - \kappa Tr(\mathbf{C(\mathbf{x},\sigma)})^2 
 </li>
 <li><p><strong>Difference of Gaussian (DoG)</strong>:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-04bc6eaa-3932-4ca1-92e7-612261c91fb2">
-<span class="eqno">(70)<a class="headerlink" href="#equation-04bc6eaa-3932-4ca1-92e7-612261c91fb2" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \\
-              &amp; = &amp; L(x,y,k\sigma)-L(x,y,\sigma).
-\end{eqnarray}\]</div>
+<p>\begin{eqnarray}
+D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \
+&amp; = &amp; L(x,y,k\sigma)-L(x,y,\sigma).
+\end{eqnarray}</p>
 <ul class="simple">
 <li><p><strong>DoG</strong> has already been introduced in <a class="reference internal" href="../preprocessing/05GaussianLowPassFilter.html"><span class="doc std std-doc">Gaussian and Difference of Gaussian Pyramid</span></a>. It is</p>
 <ul>
 <li><p>efficient to compute - the smoothed images L must be computed in any case for the scale space feature description</p></li>
-<li><p>a close approximation to the <strong>scale-normalized Laplacian of Gaussian</strong>, whose extremas produce the most stable image features (<a class="bibtex reference internal" href="../referenceSection.html#lowe04" id="id6">[Low04]</a>)</p></li>
+<li><p>a close approximation to the <strong>scale-normalized Laplacian of Gaussian</strong>, whose extremas produce the most stable image features (<span id="pending-xref-6">[<a class="reference internal" href="../referenceSection.html#citation-33">Low04</a>]</span>)</p></li>
 </ul>
 </li>
 </ul>
-<p>Scale space and the DOGs are visualized in the image below (Source: <a class="bibtex reference internal" href="../referenceSection.html#lowe04" id="id7">[Low04]</a>). An <em>octave</em> means doubling of <span class="math notranslate nohighlight">\(\sigma\)</span>. The scale space resolution is <span class="math notranslate nohighlight">\(k=2^{1/s}\)</span>, where <span class="math notranslate nohighlight">\(s\)</span> is the number of scales per octave. After each octave the image is subsampled by a factor of <span class="math notranslate nohighlight">\(2\)</span>. For each octave <span class="math notranslate nohighlight">\(s+3\)</span> blurred images are required to determine scale space extrema (see next slide). A typical resolution is <span class="math notranslate nohighlight">\(s=3\)</span>.</p>
+<p>Scale space and the DOGs are visualized in the image below (Source: <span id="pending-xref-7">[<a class="reference internal" href="../referenceSection.html#citation-33">Low04</a>]</span>). An <em>octave</em> means doubling of <span class="math notranslate nohighlight">\(\sigma\)</span>. The scale space resolution is <span class="math notranslate nohighlight">\(k=2^{1/s}\)</span>, where <span class="math notranslate nohighlight">\(s\)</span> is the number of scales per octave. After each octave the image is subsampled by a factor of <span class="math notranslate nohighlight">\(2\)</span>. For each octave <span class="math notranslate nohighlight">\(s+3\)</span> blurred images are required to determine scale space extrema (see next slide). A typical resolution is <span class="math notranslate nohighlight">\(s=3\)</span>.</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/loweSIFTdoG.PNG" style="width:500px" align="center">
 </figure>
@@ -673,15 +666,15 @@ D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/loweSiftextrema.PNG" style="width:700px" align="center">
 </figure>
-</div>
-<div class="section" id="keypoint-localization-and-filtering">
+</section>
+<section id="keypoint-localization-and-filtering">
 <h3>Keypoint localization and filtering<a class="headerlink" href="#keypoint-localization-and-filtering" title="Permalink to this headline">¶</a></h3>
 <p>The set of keypoint candidates is refined as follows:</p>
 <ul class="simple">
 <li><p>Determine <strong>exact position of local extremas</strong> on sub-pixel resolution</p></li>
 <li><p>Select within the set of candidate keypoints only the <strong>stable and distinctive</strong> ones. Candidate keypoints with low contrast are not stable, because they are sensitive to noise. Moreover, candidate keypoints on edges are not distinctive.</p></li>
 </ul>
-<div class="section" id="exact-keypoint-localization">
+<section id="exact-keypoint-localization">
 <h4>Exact Keypoint Localization<a class="headerlink" href="#exact-keypoint-localization" title="Permalink to this headline">¶</a></h4>
 <p>In the previous step candidate keypoints have been localized on pixel level. Note that particularly for candidates on a high level of the DoG (where images are at a low-resolution) a localization on pixel-level is quite inaccurate. Therefore, the keypoint-localization must be improved to sub-pixel level. In general there exist two possibilities to estimate sub-pixel information. The first is <strong>interpolation</strong>, the second is by <strong>Taylor-series expansion</strong>.</p>
 <p>The idea of interpolation is depicted in the image below:</p>
@@ -691,7 +684,7 @@ D(x,y,\sigma) &amp; = &amp; \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  
 <p>However, in SIFT Taylor-series expansion is applied for refining keypoint localization.</p>
 <p><strong>Taylor expansion</strong> of <span class="math notranslate nohighlight">\(D(x,y,\sigma)\)</span> up to quadratic forms around the sample point (keypoint candidate) is defined as follows:</p>
 <div class="math notranslate nohighlight" id="equation-taylor">
-<span class="eqno">(71)<a class="headerlink" href="#equation-taylor" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-taylor" title="Permalink to this equation">¶</a></span>\[
 D(\mathbf{x})=D+\frac{\partial D^T}{\partial \mathbf{x}}\mathbf{x}+\frac{1}{2} \mathbf{x}^T \frac{\partial^2 D}{\partial \mathbf{x}^2}\mathbf{x}.
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(\mathbf{x}=(x,y,\sigma)^T\)</span> is the offset from the candidate keypoint and the first and second derivation are:</p>
@@ -715,14 +708,14 @@ D_{\sigma x} &amp; D_{\sigma y} &amp; D_{\sigma \sigma}\\
 \end{array} \right)
 \end{split}\]</div>
 <p>The derivatives of <span class="math notranslate nohighlight">\(D\)</span> are approximated by calculating differences in the <span class="math notranslate nohighlight">\((3x3)\)</span>-neighbourhood.
-The <strong>true location <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></strong> of the keypoint is determined by taking the derivative of <a class="reference internal" href="#equation-taylor">(71)</a> and setting it to zero:</p>
+The <strong>true location <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span></strong> of the keypoint is determined by taking the derivative of <a class="reference internal" href="#equation-taylor">(13)</a> and setting it to zero:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\mathbf{x}}= - \frac{\partial^2 D}{\partial \mathbf{x}^2}^{-1} \frac{\partial D}{\partial \mathbf{x}}.
 \]</div>
 <p>If the offset <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span> is <span class="math notranslate nohighlight">\(&gt;0.5\)</span> in any dimension, then the extremum lies closer to different sample point and new interpolation starts centered at this new point.</p>
-</div>
-<div class="section" id="reject-low-contrast-candidates">
+</section>
+<section id="reject-low-contrast-candidates">
 <h4>Reject Low Contrast Candidates<a class="headerlink" href="#reject-low-contrast-candidates" title="Permalink to this headline">¶</a></h4>
 <p>Pixels of low contrast can be determined by low DoG values. If the image values are normalized to the range <span class="math notranslate nohighlight">\(\left[0,1\right]\)</span>, candidates with</p>
 <div class="math notranslate nohighlight">
@@ -730,8 +723,8 @@ The <strong>true location <span class="math notranslate nohighlight">\(\hat{\mat
 |D(\hat{\mathbf{x}})|&lt;0.03
 \]</div>
 <p>are rejected as low contrast points.</p>
-</div>
-<div class="section" id="reject-candidates-on-edges">
+</section>
+<section id="reject-candidates-on-edges">
 <h4>Reject Candidates on Edges<a class="headerlink" href="#reject-candidates-on-edges" title="Permalink to this headline">¶</a></h4>
 <p>DoG values can not uniquely locate points on edges (since all points on the edge have similar DoG values), but in corners.
 Since edges constitute extremas in the DoG and are therefore selected as candidates in the first step, they must be filtered out now.
@@ -764,28 +757,26 @@ r=\frac{\alpha}{\beta}
 <ul class="simple">
 <li><p>Calculate trace and determinant of <span class="math notranslate nohighlight">\(\mathbf{H}\)</span></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-d5c97955-bdb1-4255-8450-63f70729d497">
-<span class="eqno">(72)<a class="headerlink" href="#equation-d5c97955-bdb1-4255-8450-63f70729d497" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-Tr(\mathbf{H}) &amp; = D_{xx}+D_{yy} = \alpha + \beta \\
+<p>\begin{eqnarray}
+Tr(\mathbf{H}) &amp; = D_{xx}+D_{yy} = \alpha + \beta \
 Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
-\end{eqnarray}\]</div>
+\end{eqnarray}</p>
 <p>then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8459169b-456f-4c64-8238-bbfdfcb95642">
-<span class="eqno">(73)<a class="headerlink" href="#equation-8459169b-456f-4c64-8238-bbfdfcb95642" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{Tr(\mathbf{H})^2}{Det(\mathbf{H})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>depends only on the ratio <span class="math notranslate nohighlight">\(r\)</span> of eigenvalues.</p>
-<p>In <a class="bibtex reference internal" href="../referenceSection.html#lowe04" id="id8">[Low04]</a> candidates with <span class="math notranslate nohighlight">\(r&gt;10\)</span> are rejected as edges.</p>
+<p>In <span id="pending-xref-8">[<a class="reference internal" href="../referenceSection.html#citation-33">Low04</a>]</span> candidates with <span class="math notranslate nohighlight">\(r&gt;10\)</span> are rejected as edges.</p>
 <p>The following picture displays the contrast-dependent and the curvature-dependent candidate rejection.</p>
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/loweSIFThouseExample.PNG" style="width:650px" align="center">
 </figure>
-</div>
-</div>
-<div class="section" id="orientation-assignment">
+</section>
+</section>
+<section id="orientation-assignment">
 <h3>Orientation Assignment<a class="headerlink" href="#orientation-assignment" title="Permalink to this headline">¶</a></h3>
 <p>This step is required in order to provide an image-descriptor, which is <em>invariant to image-rotation</em>. The idea is to calculate for each keypoint, remained from the previous steps, an <strong>orientation</strong> from it’s local image properties.</p>
-<div class="section" id="create-orientation-histogram">
+<section id="create-orientation-histogram">
 <h4>Create Orientation Histogram<a class="headerlink" href="#create-orientation-histogram" title="Permalink to this headline">¶</a></h4>
 <ol>
 <li><p>From the scale of the keypoint, select the Gaussian smoothed image, <span class="math notranslate nohighlight">\(L\)</span>, with the closest scale.</p></li>
@@ -810,8 +801,8 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/histogramOfGradients.jpg" style="width:650px" align="center">
 </figure>
-</div>
-<div class="section" id="assign-orientations-to-keypoints">
+</section>
+<section id="assign-orientations-to-keypoints">
 <h4>Assign Orientations to Keypoints<a class="headerlink" href="#assign-orientations-to-keypoints" title="Permalink to this headline">¶</a></h4>
 <p>For each histogram the orientations with the</p>
 <ul class="simple">
@@ -819,9 +810,9 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 <li><p>values <span class="math notranslate nohighlight">\(&gt;80\%\)</span> of the histogram’s peak</p></li>
 </ul>
 <p>constitute keypoint orientations. Thus for a given keypoint location, <span class="math notranslate nohighlight">\(&gt;1\)</span> keypoints can be generated. In the average <span class="math notranslate nohighlight">\(15\%\)</span> of all keypoints have multiple orientations. To provide better accuracy of the keypoint orientations quadratic interpolation w.r.t. the <span class="math notranslate nohighlight">\(3\)</span> closest histogram values is applied.</p>
-</div>
-</div>
-<div class="section" id="keypoint-descriptor">
+</section>
+</section>
+<section id="keypoint-descriptor">
 <h3>Keypoint descriptor<a class="headerlink" href="#keypoint-descriptor" title="Permalink to this headline">¶</a></h3>
 <p>For each of the remaining keypoints a descriptor, i.e. a numeric vector of predefined length, is calculated as follows:</p>
 <ol class="simple">
@@ -847,9 +838,9 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 </ul>
 <p>In order to avoid such abrupt changes, <a class="reference external" href="https://en.wikipedia.org/wiki/Trilinear_interpolation">trilinear interpolation</a>, which distributes the value of each gradient sample into adjacent histogram bins, is usually applied.</p>
 <p>SIFT descriptors are not only translation-, rotation- and scale-invariant. They are also robust w.r.t. illumination (contrast and brightness) changes. A <strong>contrast change</strong> is basically a multiplication of all pixel-values with a constant factor. Then the gradients are multiplied by the same constant, but this constant is cancelled out in the case that the histograms are normalized to unit length. A <strong>brightness change</strong> is an addition of a constant to all pixel values. An additonal constant does not have any impact on the gradients, therefore the descriptor is also invariant w.r.t. a homogenous brightness variation.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -873,15 +864,15 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="probRecognition.html" title="previous page">Example: Naive Bayes Object Recognition</a>
     <a class='right-next' id="next-link" href="harrisCornerDetection.html" title="next page">Example: Harris-Förstner Corner Detection</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -889,7 +880,7 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -898,11 +889,9 @@ Det(\mathbf{H}) &amp; = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

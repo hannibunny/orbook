@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Object Detection &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Face Detection" href="../face/faceDetection.html" />
     <link rel="prev" title="Convolutional Neural Networks for Object Recognition" href="cnns.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -237,12 +230,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,27 +320,27 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -429,7 +423,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
+    <a class="reference internal nav-link" href="#training-1">
      Training
     </a>
     <ul class="nav section-nav flex-column">
@@ -485,7 +479,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
+    <a class="reference internal nav-link" href="#training-2">
      Training
     </a>
    </li>
@@ -498,8 +492,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -507,11 +501,11 @@
         
               <div>
                 
-  <div class="section" id="object-detection">
+  <section id="object-detection">
 <h1>Object Detection<a class="headerlink" href="#object-detection" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="goal">
+<section id="goal">
 <h3>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h3>
 <p>The goal of object detection is to dermine for a given image:</p>
 <ul class="simple">
@@ -523,8 +517,8 @@
   <img src="https://maucher.home.hdm-stuttgart.de/Pics/ILSVRC2014detection.PNG" style="width:600px" align="center">
   <figurecaption>Image Source: <a href="http://image-net.org/challenges/LSVRC/2014/index">http://image-net.org/challenges/LSVRC/2014/index</a></figurecaption>
 </figure>
-</div>
-<div class="section" id="approaches">
+</section>
+<section id="approaches">
 <h3>Approaches<a class="headerlink" href="#approaches" title="Permalink to this headline">¶</a></h3>
 <p>An old approach for obect detection is sliding window detection. Here a window is slided over the entire image. For each window a classifier determines, which object is contained in the window. In the most simple version only one object-type (e.g. car) is of interest and the binary classifier has to distinguish if this object is contained in the window or not. The corresponding position information provided implicitely by the position of the current window within the image. This approach is depicted below:</p>
 <figure align="center">
@@ -535,8 +529,8 @@ Sliding window approach for object detection
 </figure> 
 <p>For this approach any supervised Machine-Learning algorithm can be applied, e.g. Support Vector Machines (SVM) or Mult-Layer-Perceptron. The content of a single window is either passed directly, in terms of pixel intensities, to the classifier or represented by other types of manually or automatically extracted features (see <a class="reference internal" href="../features/globalDescriptors.html"><span class="doc std std-doc">section features</span></a>). The sliding window approach is computationally expensive, since windows of different sizes and aspect ratios have to be shifted in a fine-granular manner over the entire image-space</p>
 <p>Subject of this section is another approach for object detection: Deep Neural Networks, such as R-CNN and Yolo.</p>
-</div>
-<div class="section" id="performance-measure">
+</section>
+<section id="performance-measure">
 <h3>Performance Measure<a class="headerlink" href="#performance-measure" title="Permalink to this headline">¶</a></h3>
 <p><strong>Intersection over Union (IoU) and mean Average Precision (mAP)</strong></p>
 <p>If <span class="math notranslate nohighlight">\(A\)</span> is the set of detected pixels and <span class="math notranslate nohighlight">\(B\)</span> is the set of Groundtruth-pixel, their IoU is defined to be</p>
@@ -555,16 +549,16 @@ IoU(A, B) = \frac{|A \cap B|}{|A \cup B|},
 AP=\frac{1}{11} \sum\limits_{r \in \lbrace 0, 0.1, \ldots, 1 \rbrace} p_{interp}(r),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(p_{interp}(r)\)</span> is the interpolated precision at recall <span class="math notranslate nohighlight">\(r\)</span>. The mean of these average individual-class-precisions is the <strong>mean Average Precision (mAP)</strong>. More info can be obtained from <a class="reference external" href="http://homepages.inf.ed.ac.uk/ckiw/postscript/ijcv_voc09.pdf">PASCAL VOC Challenge</a></p>
-</div>
-</div>
-<div class="section" id="region-proposals">
+</section>
+</section>
+<section id="region-proposals">
 <h2>Region Proposals<a class="headerlink" href="#region-proposals" title="Permalink to this headline">¶</a></h2>
 <p>Many Deep Neural Networks for Object Detection, e.g. R-CNN, require region proposals. The task of region proposal methods is to propose a list of bounding boxes within the image, which likely contain an object of interest. In order to determine these regions image-segmentation algorithms are applied, such as hierarchical clustering, mean-shift clustering or graph-based segmentation. The outputs of the applied segmentation process is often refined by methods such as selective search (see e.g. <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf">here</a>).</p>
-</div>
-<div class="section" id="r-cnn">
+</section>
+<section id="r-cnn">
 <h2>R-CNN<a class="headerlink" href="#r-cnn" title="Permalink to this headline">¶</a></h2>
-<p>R-CNN (Regions with CNN features) has been published 2014 in <a class="bibtex reference internal" href="../referenceSection.html#girshickdonahuedarrelletal" id="id1">[GDDM14]</a>. It combines <strong>Region Proposals</strong> and <strong>CNNs</strong>. As mentioned above <em>Region Proposals</em> are candidate boxes, which likely contain an object. R-CNN does not require a specific region proposal algorithm. However, in the experiments of <a class="bibtex reference internal" href="../referenceSection.html#girshickdonahuedarrelletal" id="id2">[GDDM14]</a> the authors applied <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf">Selective Search</a>).</p>
-<div class="section" id="inference-process">
+<p>R-CNN (Regions with CNN features) has been published 2014 in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-18">GDDM14</a>]</span>. It combines <strong>Region Proposals</strong> and <strong>CNNs</strong>. As mentioned above <em>Region Proposals</em> are candidate boxes, which likely contain an object. R-CNN does not require a specific region proposal algorithm. However, in the experiments of <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-18">GDDM14</a>]</span> the authors applied <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf">Selective Search</a>).</p>
+<section id="inference-process">
 <h3>Inference Process<a class="headerlink" href="#inference-process" title="Permalink to this headline">¶</a></h3>
 <p>The overall R-CNN process, as depicted in the image below, consists of the following steps:</p>
 <ol class="simple">
@@ -580,8 +574,8 @@ AP=\frac{1}{11} \sum\limits_{r \in \lbrace 0, 0.1, \ldots, 1 \rbrace} p_{interp}
 	Image Source: Source: <a href="https://arxiv.org/pdf/1311.2524.pdf">https://arxiv.org/pdf/1311.2524.pdf</a>
 </figcaption>
 </figure> 
-</div>
-<div class="section" id="training">
+</section>
+<section id="training">
 <h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
 <p>R-CNN consists of 3 modells, which are trained as described below.</p>
 <p><strong>Training the CNN-Feature Extractor:</strong></p>
@@ -609,13 +603,12 @@ P^i=(P^i_x,P^i_y,P^i_w,P^i_h) \quad \mbox{ and } \quad G^i=(G^i_x,G^i_y,G^i_w,G^
 <ul class="simple">
 <li><p>The goal is to learn a transformation from <span class="math notranslate nohighlight">\(P\)</span> to <span class="math notranslate nohighlight">\(G\)</span> (index <span class="math notranslate nohighlight">\(i\)</span> is omitted ). This transformation is parametrized as follows:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-af9efd89-2c51-4be9-b20f-90afe22e0217">
-<span class="eqno">(94)<a class="headerlink" href="#equation-af9efd89-2c51-4be9-b20f-90afe22e0217" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-\hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \\
-\hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \\
-\hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\\
-\hat{G}_h &amp; = &amp; P_h \exp(d_h(P))\\
-\end{eqnarray}\]</div>
+<p>\begin{eqnarray}
+\hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \
+\hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \
+\hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\
+\hat{G}_h &amp; = &amp; P_h \exp(d_h(P))\
+\end{eqnarray}</p>
 <p>where <span class="math notranslate nohighlight">\(\hat{G}\)</span> is the regressors prediction for <span class="math notranslate nohighlight">\(G\)</span>. Each of the 4 function <span class="math notranslate nohighlight">\(d_*(P)\)</span> is modeled as a linear function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -627,20 +620,19 @@ d_*(P)= w_*^T \phi(P)
 w_* = \operatorname*{argmin}_{\hat{w}_*} \sum\limits_{i=1}^N (t^i - \hat{w}_* \phi(P^i))^2 + \lambda \mid\mid \hat{w}_* \mid\mid^2,
 \]</div>
 <p>where the components of the regression targets <span class="math notranslate nohighlight">\(t\)</span> are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3704d57-f0cf-49e0-9bd6-639a20f97080">
-<span class="eqno">(95)<a class="headerlink" href="#equation-b3704d57-f0cf-49e0-9bd6-639a20f97080" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-t_x &amp; = &amp; (G_x - P_x) / P_w \\
-t_y &amp; = &amp; (G_y - P_y) / P_h \\
-t_w &amp; = &amp; \log(G_w / P_w) \\
-t_h &amp; = &amp; \log(G_h / P_h). \\
-\end{eqnarray}\]</div>
-</div>
-<div class="section" id="r-cnn-performance-and-drawbacks">
+<p>\begin{eqnarray}
+t_x &amp; = &amp; (G_x - P_x) / P_w \
+t_y &amp; = &amp; (G_y - P_y) / P_h \
+t_w &amp; = &amp; \log(G_w / P_w) \
+t_h &amp; = &amp; \log(G_h / P_h). \
+\end{eqnarray}</p>
+</section>
+<section id="r-cnn-performance-and-drawbacks">
 <h3>R-CNN Performance and Drawbacks<a class="headerlink" href="#r-cnn-performance-and-drawbacks" title="Permalink to this headline">¶</a></h3>
-<p>In <a class="bibtex reference internal" href="../referenceSection.html#girshickdonahuedarrelletal" id="id3">[GDDM14]</a> the following R-CNN performance figures were obtained:</p>
+<p>In <span id="pending-xref-3">[<a class="reference internal" href="../referenceSection.html#citation-18">GDDM14</a>]</span> the following R-CNN performance figures were obtained:</p>
 <ul class="simple">
 <li><p>mAP (mean Average Precision) of <span class="math notranslate nohighlight">\(53.7\%\)</span> on PASCAL VOC 2010- compared to <span class="math notranslate nohighlight">\(35.1\%\)</span> of an approach, which uses the same region proposals, but spatial pyramid matching + BoW</p></li>
-<li><p>mAP of <span class="math notranslate nohighlight">\(33.4\%\)</span> on ILSVRC 2013 Detection benchmark- compared to <span class="math notranslate nohighlight">\(24.3\%\)</span> of the previous best result OverFeat <a class="bibtex reference internal" href="../referenceSection.html#sermaneteigenzhangetal" id="id4">[SEZ+]</a></p></li>
+<li><p>mAP of <span class="math notranslate nohighlight">\(33.4\%\)</span> on ILSVRC 2013 Detection benchmark- compared to <span class="math notranslate nohighlight">\(24.3\%\)</span> of the previous best result OverFeat <span id="pending-xref-4">[<a class="reference internal" href="../referenceSection.html#citation-41">SEZ+</a>]</span></p></li>
 </ul>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/rcnnPerformanceVOC.png" style="width:600px" align="center">
 	<figcaption>
@@ -661,23 +653,23 @@ t_h &amp; = &amp; \log(G_h / P_h). \\
 		Image Source: Source: <a href="https://towardsdatascience.com/r-cnn-fast-r-cnn-faster-r-cnn-yolo-object-detection-algorithms-36d53571365e">https://towardsdatascience.com/r-cnn-fast-r-cnn-faster-r-cnn-yolo-object-detection-algorithms-36d53571365e</a>
 	</figcaption>
 </figure> 
-</div>
-</div>
-<div class="section" id="spatial-pyramid-pooling-sppnet">
+</section>
+</section>
+<section id="spatial-pyramid-pooling-sppnet">
 <h2>Spatial Pyramid Pooling (SPPnet)<a class="headerlink" href="#spatial-pyramid-pooling-sppnet" title="Permalink to this headline">¶</a></h2>
-<p>Spatial Pyramid Pooling has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#hezhangrenetal2014" id="id5">[HZRS14]</a>. It integrates <strong>Spatial Pyramid Pooling</strong> (<a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id6">[LSP06]</a>) into CNNs. SPPnet is applicable for classification and detection: In the ILSVRC 2014 challenge it achieved rank 3 and rank 2 in in the classification- and detection task respectively. Same as R-CNN, it is also based on region proposals**. However,</p>
+<p>Spatial Pyramid Pooling has been published 2015 in <span id="pending-xref-5">[<a class="reference internal" href="../referenceSection.html#citation-26">HZRS14</a>]</span>. It integrates <strong>Spatial Pyramid Pooling</strong> (<span id="pending-xref-6">[<a class="reference internal" href="../referenceSection.html#citation-31">LSP06</a>]</span>) into CNNs. SPPnet is applicable for classification and detection: In the ILSVRC 2014 challenge it achieved rank 3 and rank 2 in in the classification- and detection task respectively. Same as R-CNN, it is also based on region proposals**. However,</p>
 <ul class="simple">
 <li><p>no warping to fixed CNN-input size is required.</p></li>
 <li><p>it <strong>passes each image only once through conv- and pool-layers of CNN</strong>.</p></li>
 </ul>
 <p>SPPnet is <span class="math notranslate nohighlight">\(24-102\)</span> times faster than R-CNN in the inference phase.</p>
-<div class="section" id="problem-of-fixed-size-input-to-cnn">
+<section id="problem-of-fixed-size-input-to-cnn">
 <h3>Problem of fixed size input to CNN<a class="headerlink" href="#problem-of-fixed-size-input-to-cnn" title="Permalink to this headline">¶</a></h3>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/CNNpartitioned.png" style="width:500px" align="center">
 </figure> 
 <p>In a CNN, as depicted above, convolutional- and pooling layer can easily cope with varying input-size. However, <strong>fully connected layers require fixed-size input</strong>, because for this type varying size means varying number of weights.</p>
-</div>
-<div class="section" id="sppnet-allows-variable-size-input">
+</section>
+<section id="sppnet-allows-variable-size-input">
 <h3>SPPnet allows variable size input<a class="headerlink" href="#sppnet-allows-variable-size-input" title="Permalink to this headline">¶</a></h3>
 <p>Maybe, the most important contribution of SPPnet is it’s integration of a method, which is able to map an arbitray size output of the feature-extractor part to a fixed size input to the classifier part of a CNN.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/sppNetFixedSize.PNG" style="width:450px" align="center">
@@ -685,7 +677,7 @@ t_h &amp; = &amp; \log(G_h / P_h). \\
 		Image Source: Source: <a href="https://arxiv.org/pdf/1406.4729v4.pdf">https://arxiv.org/pdf/1406.4729v4.pdf</a>
 	</figcaption>
 </figure> 
-<p>Actually this mapping method to a fixed size classifier-input is the spatial pyramid pooling method as introduced long before in <a class="bibtex reference internal" href="../referenceSection.html#lazebnik06" id="id7">[LSP06]</a>) - see also <a class="reference internal" href="../recognition/objectrecognition.html"><span class="doc std std-doc">section object recognition</span></a>. As sketched below, the arbitrary-sized feature maps at the output of the last convolutional layer are paritioned with an increasing granularity:</p>
+<p>Actually this mapping method to a fixed size classifier-input is the spatial pyramid pooling method as introduced long before in <span id="pending-xref-7">[<a class="reference internal" href="../referenceSection.html#citation-31">LSP06</a>]</span>) - see also <a class="reference internal" href="../recognition/objectrecognition.html"><span class="doc std std-doc">section object recognition</span></a>. As sketched below, the arbitrary-sized feature maps at the output of the last convolutional layer are paritioned with an increasing granularity:</p>
 <ul class="simple">
 <li><p>on level 0 each feature map constitutes a single region</p></li>
 <li><p>on level 1 each feature map is partitioned into <span class="math notranslate nohighlight">\(2 \times 2\)</span> subregions.</p></li>
@@ -693,7 +685,7 @@ t_h &amp; = &amp; \log(G_h / P_h). \\
 <li><p>on level 3 each feature map is partitioned into <span class="math notranslate nohighlight">\(6 \times 6\)</span> subregions.</p></li>
 </ul>
 <p>Within each region max-pooling is applied to compute one value per region. The number of all regions in the entire pyramid is therefore <span class="math notranslate nohighlight">\(1+4+9+36=50\)</span>.
-Since the number of all regions in the entire pyramid is independent of the size of the feature maps, the successive fully-connected layers always receive the same number of inputs. SPPnet, as defined in <a class="bibtex reference internal" href="../referenceSection.html#hezhangrenetal2014" id="id8">[HZRS14]</a> provides 256 feature maps at the last convolution layer. Therefore the fixed-size input to the classifier has length <span class="math notranslate nohighlight">\(50*256 = 12800\)</span>. As in R-CNN</p>
+Since the number of all regions in the entire pyramid is independent of the size of the feature maps, the successive fully-connected layers always receive the same number of inputs. SPPnet, as defined in <span id="pending-xref-8">[<a class="reference internal" href="../referenceSection.html#citation-26">HZRS14</a>]</span> provides 256 feature maps at the last convolution layer. Therefore the fixed-size input to the classifier has length <span class="math notranslate nohighlight">\(50*256 = 12800\)</span>. As in R-CNN</p>
 <ul class="simple">
 <li><p>a binary linear SVM is trained for each class (now the size of the SVM input-vectors is 12800)</p></li>
 <li><p>a bounding box regression model is learned.</p></li>
@@ -705,21 +697,21 @@ Since the number of all regions in the entire pyramid is independent of the size
 </figure> 
 <p>Note that with this approach, it is possible to pass the entire image only once through the CNN. Then the representation of each region proposal in the feature maps of the last conv-layer can be determined and the 256 feature maps are cropped to the size of the current region-proposal representation in this layer. Spatial pyramid max pooling, as described above, is then applied to the region proposal representation of the feature maps.</p>
 <p>Compared to R-CNN, SPPnet achieves a slightly better mAP, whilst beeing much faster. The drawbacks of SPPnet are, that still 3 models must be trained. Moreover, the convolutional layers that precede the spatial pyramid pooling can not be fine-tuned, because the gradients of the error function can not be passed efficiently through the Spatial Pyramid Pooling). I.e. <strong>End-to-End training is not possible</strong>.</p>
-</div>
-</div>
-<div class="section" id="fast-r-cnn">
+</section>
+</section>
+<section id="fast-r-cnn">
 <h2>Fast R-CNN<a class="headerlink" href="#fast-r-cnn" title="Permalink to this headline">¶</a></h2>
-<p>Fast R-CNN has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#girshickfastrcnn" id="id9">[Gir15]</a>. It constitutes an modification and extension of R-CNN, which is much faster in training and inference. Moreover, it achieves a higher detection quality (mAP) than R-CNN and SPPnet. It also applies region proposals (RoIs), but the image must be passed only once through the CNN. Another important improvement is that only one model must be trained using task-specific loss-functions.
+<p>Fast R-CNN has been published 2015 in <span id="pending-xref-9">[<a class="reference internal" href="../referenceSection.html#citation-52">Gir15</a>]</span>. It constitutes an modification and extension of R-CNN, which is much faster in training and inference. Moreover, it achieves a higher detection quality (mAP) than R-CNN and SPPnet. It also applies region proposals (RoIs), but the image must be passed only once through the CNN. Another important improvement is that only one model must be trained using task-specific loss-functions.
 Fast R-CNN also requires less memory, because there is no need to store for about 2000 RoIs per image a corresponding feature vector of length 4096.</p>
-<div class="section" id="inference-process-overview">
+<section id="inference-process-overview">
 <h3>Inference Process Overview<a class="headerlink" href="#inference-process-overview" title="Permalink to this headline">¶</a></h3>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fastRCNN.PNG" style="width:500px" align="center">
 	<figcaption>
 		Image Source: Source: <a href="https://arxiv.org/pdf/1504.08083.pdf">https://arxiv.org/pdf/1504.08083.pdf</a>
 	</figcaption>
 </figure> 
-</div>
-<div class="section" id="roi-pooling-layer">
+</section>
+<section id="roi-pooling-layer">
 <h3>RoI Pooling Layer<a class="headerlink" href="#roi-pooling-layer" title="Permalink to this headline">¶</a></h3>
 <p>A RoI of size <span class="math notranslate nohighlight">\(h \times w\)</span> at the last convolutional layer is partitioned into a <span class="math notranslate nohighlight">\(H \times W\)</span>-grid, where each region is approximately of size <span class="math notranslate nohighlight">\(h/H \times w/W\)</span>. Typical values: <span class="math notranslate nohighlight">\(W=H=7\)</span>. This is like level-1 partitioning in SPP. The features in each region are <strong>max-pooled</strong>, independently for each feature map.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/roiPoolingCombined.png" style="width:550px" align="center">
@@ -727,19 +719,19 @@ Fast R-CNN also requires less memory, because there is no need to store for abou
 		RoI Partitioning of a (5x7)-feature map into a (2x2)-grid and ROI-pooling. Image Source: Source: <a href="https://deepsense.ai/region-of-interest-pooling-explained/">https://deepsense.ai/region-of-interest-pooling-explained/</a>
 	</figcaption>
 </figure> 
-</div>
-<div class="section" id="id10">
-<h3>Training<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="apply-pretrained-cnns">
+</section>
+<section id="training-1">
+<h3>Training<a class="headerlink" href="#training-1" title="Permalink to this headline">¶</a></h3>
+<section id="apply-pretrained-cnns">
 <h4>Apply pretrained CNNs<a class="headerlink" href="#apply-pretrained-cnns" title="Permalink to this headline">¶</a></h4>
-<p>In <a class="bibtex reference internal" href="../referenceSection.html#girshickfastrcnn" id="id11">[Gir15]</a> three CNNs of different size are poposed. No matter which of them is applied in it’s pretrained version, three transformation steps are required to integrate it in Fast R-CNN:</p>
+<p>In <span id="pending-xref-10">[<a class="reference internal" href="../referenceSection.html#citation-52">Gir15</a>]</span> three CNNs of different size are poposed. No matter which of them is applied in it’s pretrained version, three transformation steps are required to integrate it in Fast R-CNN:</p>
 <ol class="simple">
 <li><p>the last max pooling layer is replaced by a RoI pooling layer that is configured by setting <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(W\)</span> to be compatible with the net’s first fully connected layer.</p></li>
 <li><p>the network’s last fully connected layer (which was trained for 1000 objects) is replaced with the two sibling layers: a fully connected layer for <span class="math notranslate nohighlight">\(K + 1\)</span> categories and a category-specific bounding-box regressors.</p></li>
 <li><p>the network is modified to take two data inputs: a list of images and a list of RoIs in those images.</p></li>
 </ol>
-</div>
-<div class="section" id="hierarchical-sampling-enables-fine-tuning">
+</section>
+<section id="hierarchical-sampling-enables-fine-tuning">
 <h4>Hierarchical Sampling enables Fine-Tuning<a class="headerlink" href="#hierarchical-sampling-enables-fine-tuning" title="Permalink to this headline">¶</a></h4>
 <p>In R-CNN and SPPnet minibatches of size <span class="math notranslate nohighlight">\(N=128\)</span> were constructed by <strong>sampling one RoI from 128 different images</strong>. Sampling multiple RoIs from a single image was supposed to be inadequate, because RoIs from the same image are correlated, causing slow training convergence. Since at the end of the feature extractor each RoI has a large receptive field (sometimes covering the entire image), fine-tuning of the Feature Extractor would be very expensive, if each element of the batch comes from a different image. Therefore, <strong>the Feature Extractor has not been fine-tuned in R-CNN and SPPnet</strong>.</p>
 <p>In Fast-RCNN minibatches are sampled hierarchically:</p>
@@ -748,8 +740,8 @@ Fast R-CNN also requires less memory, because there is no need to store for abou
 <li><p>sample <span class="math notranslate nohighlight">\(R/N\)</span> RoIs from each image (<span class="math notranslate nohighlight">\(R=128\)</span>).</p></li>
 </ol>
 <p><strong>Samples from the same image share computation and memory in Forward- and Backwardpass</strong>. This yields a <span class="math notranslate nohighlight">\(64 \times \)</span> decrease in fine-tuning time compared to sampling <span class="math notranslate nohighlight">\(R=128\)</span> different images. This is why <strong>fine-tuning the feature extractor is possible in Fast R-CNN</strong>. The concern of slow convergence due to correlated samples within a minibatch has appeared to be not true in the research on Fast R-CNN.</p>
-</div>
-<div class="section" id="multi-task-loss">
+</section>
+<section id="multi-task-loss">
 <h4>Multi-Task Loss<a class="headerlink" href="#multi-task-loss" title="Permalink to this headline">¶</a></h4>
 <p>Fast R-CNN has <strong>Two output-layers</strong>:</p>
 <ul class="simple">
@@ -764,14 +756,14 @@ L(p,u,t^u,v)=L_{cls} +\lambda [u \geq 1] L_{loc}(t^u,v),
 <p>where</p>
 <ul class="simple">
 <li><p>the <span class="math notranslate nohighlight">\([u \geq 1]\)</span>-operator evaluates to 1 for <span class="math notranslate nohighlight">\(u \geq 1\)</span> and <span class="math notranslate nohighlight">\(0\)</span> otherwise (class-index <span class="math notranslate nohighlight">\(u=0\)</span> indicates <em>no-known class</em>).</p></li>
-<li><p><span class="math notranslate nohighlight">\(L_{cls}\)</span> is the log-loss function for true class <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(L_{loc}\)</span> is a <span class="math notranslate nohighlight">\(L_1\)</span> loss-function between the elements of the predicted- and the groundtruth bounding-box quadruple (see <a class="bibtex reference internal" href="../referenceSection.html#girshickfastrcnn" id="id12">[Gir15]</a>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(L_{cls}\)</span> is the log-loss function for true class <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(L_{loc}\)</span> is a <span class="math notranslate nohighlight">\(L_1\)</span> loss-function between the elements of the predicted- and the groundtruth bounding-box quadruple (see <span id="pending-xref-11">[<a class="reference internal" href="../referenceSection.html#citation-52">Gir15</a>]</span>).</p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="faster-r-cnn">
+</section>
+</section>
+</section>
+<section id="faster-r-cnn">
 <h2>Faster R-CNN<a class="headerlink" href="#faster-r-cnn" title="Permalink to this headline">¶</a></h2>
-<p>Faster R-CNN has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id13">[RHGS15]</a>. In R-CNN and Fast R-CNN <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf">Selective Search</a>) has been applied for generating the Region Proposals (RoIs). Faster R-CNN is based on R-CNN and Fast R-CNN but replaces <em>Selective Search</em> by a <strong>Region Proposal Network (RPN)</strong>, that shares full-image convolutional features with the detection network. An RPN is a <strong>fully-convolutional network</strong> that simultaneously predicts object bounds and objectness scores at each position. RPNs are trained end-to-end to generate high- quality region proposals, which are used by Fast R-CNN for detection. With a simple alternating optimization, RPN and Fast R-CNN can be trained to share convolutional features.</p>
+<p>Faster R-CNN has been published 2015 in <span id="pending-xref-12">[<a class="reference internal" href="../referenceSection.html#citation-53">RHGS15</a>]</span>. In R-CNN and Fast R-CNN <a class="reference external" href="http://www.huppelen.nl/publications/selectiveSearchDraft.pdf">Selective Search</a>) has been applied for generating the Region Proposals (RoIs). Faster R-CNN is based on R-CNN and Fast R-CNN but replaces <em>Selective Search</em> by a <strong>Region Proposal Network (RPN)</strong>, that shares full-image convolutional features with the detection network. An RPN is a <strong>fully-convolutional network</strong> that simultaneously predicts object bounds and objectness scores at each position. RPNs are trained end-to-end to generate high- quality region proposals, which are used by Fast R-CNN for detection. With a simple alternating optimization, RPN and Fast R-CNN can be trained to share convolutional features.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNoverview.png" style="width:400px" align="center">
 	<figcaption>
 		Region Proposal Network (RPN) in Faster R-CNN. The convolutional layers at the bottom are shared by the RPN and the Fast R-CNN module.
@@ -790,7 +782,7 @@ L(p,u,t^u,v)=L_{cls} +\lambda [u \geq 1] L_{loc}(t^u,v),
 		Each position in the feature maps of the final conv-layer is a anchor. Each anchor has it's correspondence in the input-image. Around each anchor in the input-image a set of 9 anchor-boxes is defined.
 	</figcaption>
 </figure> 
-<div class="section" id="rpn">
+<section id="rpn">
 <h3>RPN<a class="headerlink" href="#rpn" title="Permalink to this headline">¶</a></h3>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/fasterRCNNrpn.png" style="width:600px" align="center">
 	<figcaption>
@@ -802,7 +794,7 @@ L(p,u,t^u,v)=L_{cls} +\lambda [u \geq 1] L_{loc}(t^u,v),
 <li><p>If the IoU is <span class="math notranslate nohighlight">\(&lt;0.1\)</span> the label of the anchor-box is <span class="math notranslate nohighlight">\(bg\)</span> (background)</p></li>
 </ul>
 <p>The RPN uses all the anchor-boxes selected for the minibatch of size 256 to calculate the objectness-score (foreground/background) and the corresponding classification loss using <strong>binary cross entropy</strong>. Then, it uses only those minibatch anchors marked as foreground to calculate the regression loss. For calculating the targets for the regression, the foreground anchor is compared with the closest ground-truth object in order to calculate the correct adjustment <span class="math notranslate nohighlight">\((\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})\)</span>.
-For measuring the regression error, the <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id14">[RHGS15]</a> suggests <strong>smooth L1 loss</strong>. If</p>
+For measuring the regression error, the <span id="pending-xref-13">[<a class="reference internal" href="../referenceSection.html#citation-53">RHGS15</a>]</span> suggests <strong>smooth L1 loss</strong>. If</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\((\Delta_{x_c},\Delta_{y_c},\Delta_{w},\Delta_{h})\)</span> is the correct adjustment</p></li>
 <li><p><span class="math notranslate nohighlight">\((\delta_{x_c},\delta_{y_c},\delta_{w},\delta_{h})\)</span> is the predicted adjustment</p></li>
@@ -824,20 +816,20 @@ smooth_{L1} (x) = \left\{
 \end{split}\]</div>
 <p>Smooth L1 is basically L1, but when the L1 error is small, defined by a certain <span class="math notranslate nohighlight">\(\sigma &lt; 1\)</span>, the error is considered almost correct and the loss diminishes at a faster rate.</p>
 <p><strong>Non-maximum suppression:</strong></p>
-<p>Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g <span class="math notranslate nohighlight">\(IoU &gt; 0.7\)</span>) with a proposal that has a higher score. After applying NMS, the top <span class="math notranslate nohighlight">\(N\)</span> proposals, sorted by score, are kept, while the others are disregarded (<span class="math notranslate nohighlight">\(N=2000\)</span> in <a class="bibtex reference internal" href="../referenceSection.html#girshickfaster" id="id15">[RHGS15]</a>).</p>
+<p>Since anchors usually overlap, proposals which belong to the same object may also overlap. To solve this problem Non-Maximum Suppression (NMS) is applied. NMS takes the list of proposals sorted by score and iterates over the sorted list, discarding those proposals that have an IoU larger than some predefined threshold (e.g <span class="math notranslate nohighlight">\(IoU &gt; 0.7\)</span>) with a proposal that has a higher score. After applying NMS, the top <span class="math notranslate nohighlight">\(N\)</span> proposals, sorted by score, are kept, while the others are disregarded (<span class="math notranslate nohighlight">\(N=2000\)</span> in <span id="pending-xref-14">[<a class="reference internal" href="../referenceSection.html#citation-53">RHGS15</a>]</span>).</p>
 <p>Note that RPN can be used stand-alone, without needing the second stage model, in problems where there is only a single class of objects, the objectness probability can be used as the final class probability.</p>
-</div>
-<div class="section" id="roi-pooling-and-r-cnn">
+</section>
+<section id="roi-pooling-and-r-cnn">
 <h3>RoI-Pooling and R-CNN<a class="headerlink" href="#roi-pooling-and-r-cnn" title="Permalink to this headline">¶</a></h3>
 <p>Once, the region proposals are calculated by the RPN, they are passed to a RoI-Pooling such as in Fast-RCNN. The constant-length feature vector, which is provided by RoI-pooling is then past to the R-CNN, which consists of a classifier and a bounding-box regression.</p>
-</div>
-</div>
-<div class="section" id="yolo">
+</section>
+</section>
+<section id="yolo">
 <h2>Yolo<a class="headerlink" href="#yolo" title="Permalink to this headline">¶</a></h2>
-<p>Yolo (You only look once) has been published 2015 in <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id16">[RDGF15]</a>. It is the <strong>first real-time object detector</strong> with 45 fps on Titan X GPU. A faster version even achieves 155 fps with a slightly worse accuracy. Yolo doesn’t require other modules such as region proposals. Instead it applies a <strong>single regression Pipeline, which can be learned end-to-end</strong>. YOLO sees the entire image during training and test time so it <strong>regards entire context information</strong>, which is lost in sub-window- or RoI-approaches. Hence, YOLO makes less than half the number of <strong>background errors</strong> compared to Fast R-CNN.</p>
+<p>Yolo (You only look once) has been published 2015 in <span id="pending-xref-15">[<a class="reference internal" href="../referenceSection.html#citation-38">RDGF15</a>]</span>. It is the <strong>first real-time object detector</strong> with 45 fps on Titan X GPU. A faster version even achieves 155 fps with a slightly worse accuracy. Yolo doesn’t require other modules such as region proposals. Instead it applies a <strong>single regression Pipeline, which can be learned end-to-end</strong>. YOLO sees the entire image during training and test time so it <strong>regards entire context information</strong>, which is lost in sub-window- or RoI-approaches. Hence, YOLO makes less than half the number of <strong>background errors</strong> compared to Fast R-CNN.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloSpeedComparison.png" style="width:400px" align="center"></figure> 
 <p>Image Source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a></p>
-<div class="section" id="concept">
+<section id="concept">
 <h3>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h3>
 <p>In Yolo the entire image is partitioned into a <strong>regular grid of <span class="math notranslate nohighlight">\(S \times S\)</span> cells</strong> (typical: <span class="math notranslate nohighlight">\(S=7\)</span>). The grid-cell which contains the center of an object is responsible to detect this object. Each grid-cell predicts <strong><span class="math notranslate nohighlight">\(B\)</span> bounding boxes</strong> (typical: <span class="math notranslate nohighlight">\(B=2\)</span>) and confidence scores for these boxes. The <strong>confidence scores</strong> reflect</p>
 <ul>
@@ -856,20 +848,20 @@ smooth_{L1} (x) = \left\{
 P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,truth)
 \]</div>
 <p>This score reflects the probability of that class appearing in the box and how well the predicted box fits the object.</p>
-<p>The following figure (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id17">[RDGF15]</a>) depicts the 49 cells, the bounding boxes and their confidence (higher confidence for thicker lines) and the most probable class for each of the 49 cells. After applying Non Maximum Suppression (NMS) the 3 bounding boxes in the image on the right remain.</p>
+<p>The following figure (source <span id="pending-xref-16">[<a class="reference internal" href="../referenceSection.html#citation-38">RDGF15</a>]</span>) depicts the 49 cells, the bounding boxes and their confidence (higher confidence for thicker lines) and the most probable class for each of the 49 cells. After applying Non Maximum Suppression (NMS) the 3 bounding boxes in the image on the right remain.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloConcept.PNG" style="width:500px" align="center"></figure> 
-</div>
-<div class="section" id="architecture">
+</section>
+<section id="architecture">
 <h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
-<p>The figure below (source <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id18">[RDGF15]</a>) depicts the architecture of the first Yolo network.</p>
+<p>The figure below (source <span id="pending-xref-17">[<a class="reference internal" href="../referenceSection.html#citation-38">RDGF15</a>]</span>) depicts the architecture of the first Yolo network.</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloArchitecture.PNG" style="width:600px" align="center"></figure> 
-<p>The network is inspired by GoogLeNet (<a class="bibtex reference internal" href="../referenceSection.html#szegedy2014" id="id19">[SLJ+14]</a>). Instead of the inception modules, applied in GoogLeNet, in Yolo only <span class="math notranslate nohighlight">\((1 \times 1)\)</span>-convolution layers (dimensionality reduction), followed by <span class="math notranslate nohighlight">\((3 \times 3)\)</span> convolutional layers are applied. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps.</p>
+<p>The network is inspired by GoogLeNet (<span id="pending-xref-18">[<a class="reference internal" href="../referenceSection.html#citation-13">SLJ+14</a>]</span>). Instead of the inception modules, applied in GoogLeNet, in Yolo only <span class="math notranslate nohighlight">\((1 \times 1)\)</span>-convolution layers (dimensionality reduction), followed by <span class="math notranslate nohighlight">\((3 \times 3)\)</span> convolutional layers are applied. The faster Yolo version contains only 9 instead of 24 conv-layers and less feature maps.</p>
 <p>Yolo’s output is summarized in the image below (source <a class="reference external" href="https://pjreddie.com">https://pjreddie.com</a>)</p>
 <figure align="center"><img src="https://maucher.home.hdm-stuttgart.de/Pics/yoloOutput.png" style="width:500px" align="center"></figure> 
 <p>The network output is a tensor of size <span class="math notranslate nohighlight">\( S \times S \times (5 \cdot B + C)\)</span>. With <span class="math notranslate nohighlight">\(S=7, C=20, B=2\)</span>, this tensor contains <span class="math notranslate nohighlight">\(49 \cdot 30\)</span> elemenets.</p>
-</div>
-<div class="section" id="id20">
-<h3>Training<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="training-2">
+<h3>Training<a class="headerlink" href="#training-2" title="Permalink to this headline">¶</a></h3>
 <p>The convolutional-layers of the Yolo network are pretrained with the ILSVRC classification benchmark. For pretraining the first 20 convolutional layers of the architecture depicted above, followed by an average-pooling layer and a fully connected layer are applied.</p>
 <p>After pretraining the network is adapted for object detection by:</p>
 <ul class="simple">
@@ -883,15 +875,14 @@ P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,tru
 <li><p>the class-specific confidence scores</p></li>
 <li><p>the <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities</p></li>
 </ul>
-<p>individually. In <a class="bibtex reference internal" href="../referenceSection.html#redmondgf15" id="id21">[RDGF15]</a> <span class="math notranslate nohighlight">\(\lambda_{coord}=5\)</span> and <span class="math notranslate nohighlight">\(\lambda_{noobj}=0.5\)</span> are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae98d700-679c-4d77-a95b-5f3666715a85">
-<span class="eqno">(96)<a class="headerlink" href="#equation-ae98d700-679c-4d77-a95b-5f3666715a85" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
- &amp; + &amp; \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
- &amp; + &amp;  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
-  &amp; + &amp;  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
-   &amp; + &amp;  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
-\end{eqnarray}\]</div>
+<p>individually. In <span id="pending-xref-19">[<a class="reference internal" href="../referenceSection.html#citation-38">RDGF15</a>]</span> <span class="math notranslate nohighlight">\(\lambda_{coord}=5\)</span> and <span class="math notranslate nohighlight">\(\lambda_{noobj}=0.5\)</span> are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased.</p>
+<p>\begin{eqnarray}
+L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}<em>{i,j}^{obj} \left[ (x_i-\hat{x}<em>i)^2 + (y_i-\hat{y}<em>i)^2 \right] \nonumber \
+&amp; + &amp; \lambda</em>{coord} \sum\limits</em>{i=0}^{S^2} \sum\limits</em>{j=0}^{B} \mathbb{1}<em>{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}<em>i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}<em>i})^2 \right] \nonumber \
+&amp; + &amp;  \sum\limits</em>{i=0}^{S^2} \sum\limits</em>{j=0}^{B} \mathbb{1}</em>{i,j}^{obj}  (C_i-\hat{C}<em>i)^2 \nonumber \
+&amp; + &amp;  \lambda</em>{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}<em>{i,j}^{noobj}  (C_i-\hat{C}<em>i)^2 \nonumber \
+&amp; + &amp;  \sum\limits</em>{i=0}^{S^2} \mathbb{1}</em>{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \
+\end{eqnarray}</p>
 <p>In this equation</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i}^{obj}\)</span> is 1, if a object appears in cell <span class="math notranslate nohighlight">\(i\)</span>, otherwise 0</p></li>
@@ -899,8 +890,8 @@ L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \ma
 <li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i,j}^{noobj}\)</span> is 1, if no object is in the cell i, box j.</p></li>
 </ul>
 <p>Moreover, in <span class="math notranslate nohighlight">\(L\)</span> for calulating the bounding-box width- and height- deviation the squareroot of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(h\)</span> is regarded. This reflects that small deviations in large boxes matter less than in small boxes.</p>
-</div>
-<div class="section" id="drawbacks">
+</section>
+<section id="drawbacks">
 <h3>Drawbacks<a class="headerlink" href="#drawbacks" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Fully connected layer in the output implies, that all input-images have same size as training images</p></li>
@@ -908,9 +899,9 @@ L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \ma
 <li><p>Main error of YOLO is from localization, because the <strong>ratio of bounding box</strong> is totally learned from data and YOLO makes error on the unusual ratio bounding box</p></li>
 </ul>
 <p>Yolo v1 has been significantly improved in <a class="reference external" href="https://pjreddie.com/media/files/papers/YOLO9000.pdf">Yolo v2</a> and <a class="reference external" href="https://pjreddie.com/media/files/papers/YOLOv3.pdf">Yolo v3</a></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -934,15 +925,15 @@ L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \ma
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="cnns.html" title="previous page">Convolutional Neural Networks for Object Recognition</a>
     <a class='right-next' id="next-link" href="../face/faceDetection.html" title="next page">Face Detection</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -950,7 +941,7 @@ L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \ma
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -959,11 +950,9 @@ L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \ma
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

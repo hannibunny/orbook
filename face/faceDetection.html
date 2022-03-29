@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Face Detection &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Face Recognition using FaceNet" href="faceRecognition.html" />
     <link rel="prev" title="Object Detection" href="../deeplearning/detection.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -237,12 +230,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#apply-viola-jones-face-detection">
    Apply Viola-Jones Face Detection
@@ -415,8 +409,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -424,7 +418,7 @@
         
               <div>
                 
-  <div class="section" id="face-detection">
+  <section id="face-detection">
 <h1>Face Detection<a class="headerlink" href="#face-detection" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -441,12 +435,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="apply-viola-jones-face-detection">
+<section id="apply-viola-jones-face-detection">
 <h2>Apply Viola-Jones Face Detection<a class="headerlink" href="#apply-viola-jones-face-detection" title="Permalink to this headline">¶</a></h2>
 <p>Viola-Jones algorithm is a machine learning based approach for detecting and localising faces in images. For a detailed description of the algorithm see for example <a class="reference external" href="https://gitlab.mi.hdm-stuttgart.de/maucher/or/-/blob/master/Slides/V06DetectionWindowBased.pdf">J. Maucher: Object Recognition Lecture</a>.
 OpenCV provides an already trained Viola-Jones algorithm for face detection. The pre-trained model is available as a .xml - file, which must be downloaded from here: <a class="reference external" href="https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml">haarcascade_frontalface_default.xml</a>
@@ -458,7 +452,7 @@ If you saved this file to your current directory, the trained classifier-object 
 </div>
 </div>
 </div>
-<div class="section" id="load-and-display-image">
+<section id="load-and-display-image">
 <h3>Load and display image<a class="headerlink" href="#load-and-display-image" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -495,8 +489,8 @@ If you saved this file to your current directory, the trained classifier-object 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="apply-pretrained-algorithm-to-find-faces">
+</section>
+<section id="apply-pretrained-algorithm-to-find-faces">
 <h3>Apply pretrained algorithm to find faces<a class="headerlink" href="#apply-pretrained-algorithm-to-find-faces" title="Permalink to this headline">¶</a></h3>
 <p>The classifier-object created above provides the <code class="docutils literal notranslate"><span class="pre">detectMultiScale2(image,scaleFactor,minNeighbors)</span></code>-method. This method localises the faces in <code class="docutils literal notranslate"><span class="pre">image</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code>-argument controls how the input image is scaled prior to detection, e.g. is it scaled up or down, which can help to better find the faces in the image. The default value is 1.1 (10% increase).</p>
@@ -526,13 +520,13 @@ If you saved this file to your current directory, the trained classifier-object 
 <img alt="../_images/faceDetection_13_0.png" src="../_images/faceDetection_13_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="deep-learning-based-face-detection">
+</section>
+</section>
+<section id="deep-learning-based-face-detection">
 <h2>Deep Learning based Face Detection<a class="headerlink" href="#deep-learning-based-face-detection" title="Permalink to this headline">¶</a></h2>
 <p>There exist different deep learning architectures for face detection, e.g. the <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a>.</p>
 <p>A MTCNN package, based on Tensorflow and opencv, which already contains a pretrained model can be installed by <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">MTCNN</span></code>.</p>
-<div class="section" id="overall-approach">
+<section id="overall-approach">
 <h3>Overall approach<a class="headerlink" href="#overall-approach" title="Permalink to this headline">¶</a></h3>
 <p>The approach, proposed in <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> consists of 4 stages, which are sketched in the picture below:</p>
 <ol class="simple">
@@ -541,16 +535,16 @@ If you saved this file to your current directory, the trained classifier-object 
 <li><p><strong>Stage 3:</strong> All candidates (i.e. positives and false positives) are fed to another CNN, called Refine Network (R-Net), which further rejects a large number of false candidates, performs calibration with bounding box regression, and NMS candidate merge</p></li>
 <li><p><strong>Stage 4:</strong> This stage is similar to the second stage, but in this stage the goal is to describe the face in more details. In particular, the network will output five facial landmarks’ positions</p></li>
 </ol>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnStages.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnStages.png" alt="Drawing" style="width: 500px;"/>
 <p>Source: <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a></p>
-</div>
-<div class="section" id="architecture-of-3-cnns">
+</section>
+<section id="architecture-of-3-cnns">
 <h3>Architecture of 3 CNNs<a class="headerlink" href="#architecture-of-3-cnns" title="Permalink to this headline">¶</a></h3>
 <p><strong>P-Net interpretation as fully convolutional net:</strong> Densely scanning an image of size <span class="math notranslate nohighlight">\(W × H\)</span> for <span class="math notranslate nohighlight">\(12 × 12\)</span> detection windows with a stepsize of 4 is equivalent to apply the entire net to the whole image to obtain a <span class="math notranslate nohighlight">\((⌊(W − 12)/4⌋ + 1) × (⌊(H − 12)/4⌋ + 1)\)</span> map of confidence scores. Each point on the confidence map refers to a <span class="math notranslate nohighlight">\(12 × 12\)</span> detection window on the testing image.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnArchitecture.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnArchitecture.png" alt="Drawing" style="width: 800px;"/>
 <p>Source: <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a></p>
-</div>
-<div class="section" id="training">
+</section>
+<section id="training">
 <h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
 <p>Since <strong>face detection</strong> and <strong>alignment</strong> is performed jointly, different annotation types for training-data is required:</p>
 <ul class="simple">
@@ -561,8 +555,7 @@ If you saved this file to your current directory, the trained classifier-object 
 </ul>
 <p>Negatives and positives are used for the <strong>face classification task</strong>. Positives and part faces are used for <strong>bounding box regression</strong>. Landmark faces are used for <strong>facial landmark localization</strong>.</p>
 <p>The picture below depicts the determination of <strong>Positives</strong> from labeled training data. In the original size of the image only one of the <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows is annotated as positive, since it’s IoU with a ground-truth bounding box exceeds a defined threshold <span class="math notranslate nohighlight">\(T\)</span>. In the next smaller image-version two <span class="math notranslate nohighlight">\((12 x 12)\)</span> windows are annotated as positive and in the smallest version another positive candidate is found. Note that to each of the found Positives and Part faces, the corresponding ground-truth bounding-box is assigned.</p>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/IoUpositives.png" />
-<p>The authors of <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> applied the <a class="reference external" href="http://shuoyang1213.me/WIDERFACE/">WIDER FACE benchmark</a> to annotate Positives, Negatives and Part faces. For landmark annotations the <a class="reference external" href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA benchmark</a> has been applied.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/IoUpositives.png" alt="Drawing" style="width: 400px;"/><p>The authors of <a class="reference external" href="https://arxiv.org/abs/1604.02878">Multi-Task Cascaded Convolutional Neural Network (MTCNN)</a> applied the <a class="reference external" href="http://shuoyang1213.me/WIDERFACE/">WIDER FACE benchmark</a> to annotate Positives, Negatives and Part faces. For landmark annotations the <a class="reference external" href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA benchmark</a> has been applied.</p>
 <p>For the <strong>face classification task training</strong> the binary cross-entropy is minimized. Each sample <span class="math notranslate nohighlight">\(x_i\)</span> (detection window) contributes by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -587,20 +580,19 @@ L_i^{landmark}=|| \hat{y}_i^{landmark} - y_i^{landmark} ||_2 ,
 L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_i^j L_i^j,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\( \beta_i^j \in \{0,1\}\)</span> is the sample-type indicator (1 if i.th sample belongs to training set of task j, else 0). In the paper <span class="math notranslate nohighlight">\(\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=0.5\)</span> have been applied to train P- and R-Net, and <span class="math notranslate nohighlight">\(\alpha_{det}=1, \alpha_{box}=0.5, \alpha_{landmark}=1\)</span> for O-Net. The overall loss-function has been minimized by Stochastic-Gradient-Descent.</p>
-</div>
-<div class="section" id="sketches-for-training-and-inference">
+</section>
+<section id="sketches-for-training-and-inference">
 <h3>Sketches for Training and Inference<a class="headerlink" href="#sketches-for-training-and-inference" title="Permalink to this headline">¶</a></h3>
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnTraining.png" />
-<img alt="Drawing" src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnInference.png" />
-<div class="cell docutils container">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnTraining.png" alt="Drawing" style="width: 700px;"/>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/mtcnnInference.png" alt="Drawing" style="width: 650px;"/><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install mtcnn</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="apply-pretrained-mtcnn-for-face-detection-and-facial-landmark-detection">
+</section>
+<section id="apply-pretrained-mtcnn-for-face-detection-and-facial-landmark-detection">
 <h3>Apply pretrained MTCNN for face detection and facial landmark detection<a class="headerlink" href="#apply-pretrained-mtcnn-for-face-detection-and-facial-landmark-detection" title="Permalink to this headline">¶</a></h3>
 <p>In the following code-cell first a MTCNN-object is created. Then this object’s <code class="docutils literal notranslate"><span class="pre">detect_faces()</span></code>-method is invoked in order to detect the faces and the facial landmarks</p>
 <div class="cell docutils container">
@@ -612,10 +604,15 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mtcnn.mtcnn</span> <span class="k">import</span> <span class="n">MTCNN</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mtcnn.mtcnn</span> <span class="kn">import</span> <span class="n">MTCNN</span>
 
 <span class="n">detector</span> <span class="o">=</span> <span class="n">MTCNN</span><span class="p">()</span>
 <span class="n">faces</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect_faces</span><span class="p">(</span><span class="n">img2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7fa23b5c8d30&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 </div>
@@ -676,7 +673,7 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="k">import</span> <span class="n">Rectangle</span><span class="p">,</span><span class="n">Circle</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span><span class="p">,</span><span class="n">Circle</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">detector</span> <span class="o">=</span> <span class="n">MTCNN</span><span class="p">()</span>
 <span class="n">faces</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detect_faces</span><span class="p">(</span><span class="n">img2</span><span class="p">)</span>
@@ -685,7 +682,7 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7f8daf462f70&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:tensorflow:5 out of the last 23 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x7fa23c6a8040&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has experimental_relax_shapes=True option that relaxes argument shapes that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
 </pre></div>
 </div>
 <img alt="../_images/faceDetection_31_1.png" src="../_images/faceDetection_31_1.png" />
@@ -722,9 +719,9 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 <img alt="../_images/faceDetection_33_0.png" src="../_images/faceDetection_33_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -748,15 +745,15 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="../deeplearning/detection.html" title="previous page">Object Detection</a>
     <a class='right-next' id="next-link" href="faceRecognition.html" title="next page">Face Recognition using FaceNet</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -764,7 +761,7 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -773,11 +770,9 @@ L = \sum\limits_{i=1}^N \sum\limits_{j \in \{det,box,landmark\}} \alpha_j \beta_
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Histogram of Oriented Gradients: Step-by-Step &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="HOG-based Pedestrian Detection" href="HOGpedestrianDetection.html" />
     <link rel="prev" title="Example: Create SIFT Descriptors with openCV" href="siftDescriptorCV2.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#extract-image-patch">
    Extract Image Patch
@@ -426,8 +420,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -435,7 +429,7 @@
         
               <div>
                 
-  <div class="section" id="histogram-of-oriented-gradients-step-by-step">
+  <section id="histogram-of-oriented-gradients-step-by-step">
 <h1>Histogram of Oriented Gradients: Step-by-Step<a class="headerlink" href="#histogram-of-oriented-gradients-step-by-step" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -454,7 +448,7 @@
 <span class="c1">#import imutils</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
 <span class="c1">#from PIL import Image</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -479,7 +473,7 @@
 <img alt="../_images/HoGfeatures_2_1.png" src="../_images/HoGfeatures_2_1.png" />
 </div>
 </div>
-<div class="section" id="extract-image-patch">
+<section id="extract-image-patch">
 <h2>Extract Image Patch<a class="headerlink" href="#extract-image-patch" title="Permalink to this headline">¶</a></h2>
 <p>HoG are calculated for image patches (i.e. sub-windows within the image). For example in a pedestrian-detection task a window is slided over the entire image. At each window-position the HoG-descriptor is calculated. This HoG-descriptor is then passed to a binary classifier, e.g. a Support-Vector-Machine (SVM), which determines whether or not there is a pedestrian in the current sub-window.</p>
 <p>In this exercise a patch-size of 128 rows and 64 columns is applied. In the code cell below the upper-left corner of the patch is at position <code class="docutils literal notranslate"><span class="pre">Location</span></code>. The patch is further subdivided into regions of size <span class="math notranslate nohighlight">\(8 \times 8\)</span>. For each of these region an individual histogram is calculated. The entire HoG-descriptor of the patch is the concatenation of all regional histograms within the patch.</p>
@@ -519,10 +513,10 @@
 <img alt="../_images/HoGfeatures_4_0.png" src="../_images/HoGfeatures_4_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="calculate-gradient">
+</section>
+<section id="calculate-gradient">
 <h2>Calculate Gradient<a class="headerlink" href="#calculate-gradient" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="apply-sobel-filter-to-calculate-partial-derivations">
+<section id="apply-sobel-filter-to-calculate-partial-derivations">
 <h3>Apply Sobel Filter to calculate partial derivations<a class="headerlink" href="#apply-sobel-filter-to-calculate-partial-derivations" title="Permalink to this headline">¶</a></h3>
 <p>For each of the 3 channels the derivation in x- and y-direction is calculated by applying the <em>Sobel-filter</em>.</p>
 <div class="cell docutils container">
@@ -590,8 +584,8 @@
 <img alt="../_images/HoGfeatures_10_1.png" src="../_images/HoGfeatures_10_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="analyse-pixels-and-gradients-in-a-8-times-8-region">
+</section>
+<section id="analyse-pixels-and-gradients-in-a-8-times-8-region">
 <h3>Analyse Pixels and Gradients in a <span class="math notranslate nohighlight">\(8 \times 8\)</span> region<a class="headerlink" href="#analyse-pixels-and-gradients-in-a-8-times-8-region" title="Permalink to this headline">¶</a></h3>
 <p>For the upper left <span class="math notranslate nohighlight">\(8 \times 8\)</span>-region of the selected patch the pixel values of channel <code class="docutils literal notranslate"><span class="pre">Chan</span></code> are displayed and visualized in the following code cells. There is a vertical edge in within this region. Hence there should be high values for the gradients in direction of <em>x</em>.</p>
 <blockquote>
@@ -676,8 +670,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="magnitude-and-angle-of-the-gradients">
+</section>
+<section id="magnitude-and-angle-of-the-gradients">
 <h3>Magnitude and Angle of the Gradients<a class="headerlink" href="#magnitude-and-angle-of-the-gradients" title="Permalink to this headline">¶</a></h3>
 <p>The magnitude and the direction of the gradient can be calculated as follows:</p>
 <div class="math notranslate nohighlight">
@@ -760,9 +754,9 @@
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="apply-max-operator-over-channels">
+</section>
+</section>
+<section id="apply-max-operator-over-channels">
 <h2>Apply max-operator over channels<a class="headerlink" href="#apply-max-operator-over-channels" title="Permalink to this headline">¶</a></h2>
 <p>Up to now gradients have been calculated for all channels individually. For calculating the HOG-descriptor, at each pixel-position the channel with the highest gradient at this position is determined. Only the gradients of the locally strongest channel are applied in the HoG-descriptor.</p>
 <p>The array <code class="docutils literal notranslate"><span class="pre">maxChan</span></code>, as calculated below, contains for each pixel the channel with the highest magnitude at the pixel’s position.</p>
@@ -886,8 +880,8 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="create-histogram-of-single-8-times-8-region">
+</section>
+<section id="create-histogram-of-single-8-times-8-region">
 <h2>Create Histogram of single <span class="math notranslate nohighlight">\(8 \times 8\)</span>-region<a class="headerlink" href="#create-histogram-of-single-8-times-8-region" title="Permalink to this headline">¶</a></h2>
 <p>For each <span class="math notranslate nohighlight">\(8 \times 8\)</span>-region of the selected patch a 9-bin histogram is calculated. The bin-centers are</p>
 <div class="math notranslate nohighlight">
@@ -993,8 +987,8 @@
 <img alt="../_images/HoGfeatures_53_0.png" src="../_images/HoGfeatures_53_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="normalization">
+</section>
+<section id="normalization">
 <h2>Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h2>
 <p>The historgrams of gradients must be normalized in order to make them robust with respect to overall lighting. For example, consider the case, where a stronger lighting of the scene yields a doubling of all pixel values. Then also the gradient-magnitudes and thus the histogram-values will be doubled. In order to avoid this a <em>L2-normalization</em> is applied. However, this normalization is not processed across a single histogram but across a <em>super-region</em> of size <span class="math notranslate nohighlight">\(16 \times 16\)</span>, which is covered by 4 histograms.</p>
 <p>The following code cells draws the first two super-regions in the upper-left part of the considered patch. Each super-region contains <span class="math notranslate nohighlight">\(2 \times 2\)</span> regions of size <span class="math notranslate nohighlight">\(8 \times 8\)</span>. First a 36-Bin normalized histogram is calculated for the green super-region. Then the window is shifted by 8 pixels to the right to the position of the red super-region and so on. All in all there will be <span class="math notranslate nohighlight">\(7 \times 15 =105\)</span> super-region positions within this patch, resulting in a HoG-descriptor of length <span class="math notranslate nohighlight">\(105 \times 36 = 7380 Bins.\)</span></p>
@@ -1119,8 +1113,8 @@ Normalized Histogram of upper-left super-region:
 <img alt="../_images/HoGfeatures_62_0.png" src="../_images/HoGfeatures_62_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="hog-descriptor-for-entire-image-patch">
+</section>
+<section id="hog-descriptor-for-entire-image-patch">
 <h2>HoG-Descriptor for entire image patch<a class="headerlink" href="#hog-descriptor-for-entire-image-patch" title="Permalink to this headline">¶</a></h2>
 <p>The HoG-descriptor of the entire image-patch consists of all normalized-region histograms within the patch. Each normalized region histogram contains 36 elements and is calculated as shown in the subsection above. In the subsection above the normalized histogram is calculated for the upper-left <span class="math notranslate nohighlight">\(16 \times 16\)</span>-window in the patch (green rectangle in the patch-visualization). Next, the window is shifted by 8 pixels to the right and the next 36 elements of the HoG-descriptor are calculated (red rectangle). The vertical-stepsize is also 8 pixels.</p>
 <p>All in all for a patch of height <span class="math notranslate nohighlight">\(h\)</span> and width <span class="math notranslate nohighlight">\(w\)</span> the number of window positions, i.e. the number of 36-Bin normalized histograms is:</p>
@@ -1133,14 +1127,14 @@ Normalized Histogram of upper-left super-region:
 \[ 
 15 \cdot 7 \cdot 36 =  105 \cdot 36 = 3780 Bins.
 \]</div>
-</div>
-<div class="section" id="further-references">
+</section>
+<section id="further-references">
 <h2>Further References<a class="headerlink" href="#further-references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://scikit-image.org/docs/dev/auto_examples/features_detection/plot_hog.html">HOG in scikit image</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1164,15 +1158,15 @@ Normalized Histogram of upper-left super-region:
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="siftDescriptorCV2.html" title="previous page">Example: Create SIFT Descriptors with openCV</a>
     <a class='right-next' id="next-link" href="HOGpedestrianDetection.html" title="next page">HOG-based Pedestrian Detection</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1180,7 +1174,7 @@ Normalized Histogram of upper-left super-region:
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -1189,11 +1183,9 @@ Normalized Histogram of upper-left super-region:
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>
