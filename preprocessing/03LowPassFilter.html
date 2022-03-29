@@ -420,9 +420,10 @@
 <li><p>Last Update: 28th January 2021</p></li>
 </ul>
 <p>In section <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">Basic Filter Operations</span></a> and section <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">Gaussian Filters</span></a> the average- and the Gaussian filter have been described, respectively. Both of them blur their input by calculating at each position <span class="math notranslate nohighlight">\(i\)</span> a weighted sum of the values <span class="math notranslate nohighlight">\(f(i+u)\)</span> in the neighbouring positions.</p>
-<p>\begin{equation}
-g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u)
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
+\]</div>
 <p>The difference is that for the the average filters the weights <span class="math notranslate nohighlight">\(h(u)\)</span> are all the same, whereas in the Gaussian filter the weights <span class="math notranslate nohighlight">\(h(u)\)</span> decrease for increasing absolute values of <span class="math notranslate nohighlight">\(u\)</span>.</p>
 <p>Both filters reduce variations in neighbouring values by replacing original values by neighbourhood-averages. Filters with this property are called <strong>Low-Pass Filters (LP)</strong>. In order to understand this term, the term of <em>frequency in the context of images</em> must be explained: <strong>In image-processing the term of frequency refers to pixel-value variations within a neighbourhood</strong>. If their are strong variations within neighbouring pixel-values we speak of high-frequencies, whereas in homogenous regions with nearly no variations the frequency is low. A Low-Pass filter suppresses high-frequencies, whereas low-frequencies are left unchanged. Correspondingly, a <strong>High-Pass Filter (HP)</strong> suppresses low-frequencies but leaves high-frequencies unchanged. Both, Low- and High-Pass Filters have a wide range of applications in image-processing, for example noise-reduction (LP) and contour-extraction (HP). Noise reduction is subject of the <a class="reference internal" href="06GaussianNoiseReduction.html"><span class="doc std std-doc">next section</span></a>.</p>
 <p>In the current section we will demonstrate and compare the properties of the average- and Gauss-Filter. For this demonstration we apply 1-dimensional signals and filters. The adaptation to the 2-dimensional case should be obvious.</p>
@@ -789,116 +790,6 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 <h2>Spectrum of 2-dimensional Average- and Gaussian Filter<a class="headerlink" href="#spectrum-of-2-dimensional-average-and-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The different behaviour of average- and Gaussian-filter, as demonstrated above for 1-dimensional signals, is the same for 2-dimensional data like images. This is shown in the figure below. The leftmost input-image contains low frequencies at the center, with increasing radial distance from the center, the frequency increases. The center image shows the result from filtering the input image with an 2-dimensional average-filter. As can be seen the suppression does not monotonously increase with increasing frequency: some lower frequencies are suppressed stronger than higher frequencies. In the image on the right hand side, the output of a Gaussian filter is shown. Here the suppression increases with increasing frequency.</p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/kreiseAll.png" style="width:900px" align="center"><p>In the <a class="reference internal" href="06GaussianNoiseReduction.html"><span class="doc std std-doc">next subsection</span></a> it is shown how low-pass filters can be applied for noise reduction in images.</p>
-<p id="bibliography-1"><div class="citation" id="citation-10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>CN11<span class="fn-bracket">]</span></span>
-<p>A. Coates and A. Ng. The importance of encoding versus training with sparse coding and vector quantization. In Lise Getoor and Tobias Scheffer, editors, <em>Proceedings of the 28th International Conference on Machine Learning (ICML-11)</em>, ICML '11, 921–928. New York, NY, USA, June 2011. ACM.</p>
-</div>
-<div class="citation" id="citation-2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>CDF+04<span class="fn-bracket">]</span></span>
-<p>G. Csurka, C. R. Dance, L. Fan, J. Willamowski, and C. Bray. Visual categorization with bags of keypoints. In <em>In Workshop on Statistical Learning in Computer Vision, ECCV</em>, 1–22. 2004.</p>
-</div>
-<div class="citation" id="citation-16" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>FvE91<span class="fn-bracket">]</span></span>
-<p>D.J. Felleman and D.C. van Essen. Distributed hierarchical processing in the primate cerebral cortex. <em>Cereb Cortex</em>, pages 1–47, 1991.</p>
-</div>
-<div class="citation" id="citation-52" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Gir15<span class="fn-bracket">]</span></span>
-<p>Ross Girshick. Fast r-cnn. In <em>Proceedings of the 2015 IEEE International Conference on Computer Vision (ICCV)</em>, ICCV '15, 1440–1448. Washington, DC, USA, 2015. IEEE Computer Society. URL: <a class="reference external" href="http://dx.doi.org/10.1109/ICCV.2015.169">http://dx.doi.org/10.1109/ICCV.2015.169</a>, <a class="reference external" href="https://doi.org/10.1109/ICCV.2015.169">doi:10.1109/ICCV.2015.169</a>.</p>
-</div>
-<div class="citation" id="citation-18" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>GDDM14<span class="fn-bracket">]</span></span>
-<p>Ross Girshick, Jeff Donahue, Trevor Darrell, and Jitendra Malik. Rich feature hierarchies for accurate object detection and semantic segmentation. October 2014.</p>
-</div>
-<div class="citation" id="citation-21" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>GD07<span class="fn-bracket">]</span></span>
-<p>K. Grauman and T. Darrell. The pyramid match kernel: efficient learning with sets of features. <em>J. Mach. Learn. Res.</em>, 8:725–760, May 2007. URL: <a class="reference external" href="http://dl.acm.org/citation.cfm?id=1248659.1248685">http://dl.acm.org/citation.cfm?id=1248659.1248685</a>.</p>
-</div>
-<div class="citation" id="citation-23" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>GL11<span class="fn-bracket">]</span></span>
-<p>K. Grauman and B. Leibe. <em>Visual Object Recognition</em>. Synthesis Lectures on Artificial Intelligence and Machine Learning. Morgan &amp; Claypool Publishers, 2011.</p>
-</div>
-<div class="citation" id="citation-22" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HS88<span class="fn-bracket">]</span></span>
-<p>C. Harris and M. Stephens. A combined corner and edge detector. In <em>In Proc. of Fourth Alvey Vision Conference</em>, 147–151. 1988.</p>
-</div>
-<div class="citation" id="citation-28" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HZRS16<span class="fn-bracket">]</span></span>
-<p>K. He, X. Zhang, S. Ren, and J. Sun. Deep residual learning for image recognition. In <em>2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 770–778. 2016. <a class="reference external" href="https://doi.org/10.1109/CVPR.2016.90">doi:10.1109/CVPR.2016.90</a>.</p>
-</div>
-<div class="citation" id="citation-26" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>HZRS14<span class="fn-bracket">]</span></span>
-<p>Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Spatial pyramid pooling in deep convolutional networks for visual recognition. January 2014. URL: <a class="reference external" href="http://dx.doi.org/10.1007/978-3-319-10578-9_23">http://dx.doi.org/10.1007/978-3-319-10578-9_23</a>, <a class="reference external" href="https://doi.org/10.1007/978-3-319-10578-9_23">doi:10.1007/978-3-319-10578-9_23</a>.</p>
-</div>
-<div class="citation" id="citation-11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>IS15<span class="fn-bracket">]</span></span>
-<p>Sergey Ioffe and Christian Szegedy. Batch normalization: accelerating deep network training by reducing internal covariate shift. <em>CoRR</em>, 2015. URL: <a class="reference external" href="http://arxiv.org/abs/1502.03167">http://arxiv.org/abs/1502.03167</a>.</p>
-</div>
-<div class="citation" id="citation-30" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>KS14<span class="fn-bracket">]</span></span>
-<p>Andrew Zisserman Karen Simonyan. Very deep convolutional networks for large-scale image recognition. 2014.</p>
-</div>
-<div class="citation" id="citation-29" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>KSH<span class="fn-bracket">]</span></span>
-<p>Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton. Imagenet classification with deep convolutional neural networks.</p>
-</div>
-<div class="citation" id="citation-31" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>LSP06<span class="fn-bracket">]</span></span>
-<p>S. Lazebnik, C. Schmid, and J. Ponce. Beyond bags of features: spatial pyramid matching for recognizing natural scene categories. In <em>Proceedings of the 2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition - Volume 2</em>, CVPR '06, 2169–2178. Washington, DC, USA, 2006. IEEE Computer Society. URL: <a class="reference external" href="http://dx.doi.org/10.1109/CVPR.2006.68">http://dx.doi.org/10.1109/CVPR.2006.68</a>, <a class="reference external" href="https://doi.org/10.1109/CVPR.2006.68">doi:10.1109/CVPR.2006.68</a>.</p>
-</div>
-<div class="citation" id="citation-33" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Low04<span class="fn-bracket">]</span></span>
-<p>D. G. Lowe. Distinctive image features from scale-invariant keypoints. <em>International Journal of Computer Vision</em>, 60(2):91–110, 2004.</p>
-</div>
-<div class="citation" id="citation-37" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>NS06<span class="fn-bracket">]</span></span>
-<p>D. Nister and H. Stewenius. Scalable recognition with a vocabulary tree. In <em>CVPR</em>, 2161–2168. 2006.</p>
-</div>
-<div class="citation" id="citation-38" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>RDGF15<span class="fn-bracket">]</span></span>
-<p>Joseph Redmon, Santosh Kumar Divvala, Ross B. Girshick, and Ali Farhadi. You only look once: unified, real-time object detection. <em>CoRR</em>, 2015. URL: <a class="reference external" href="http://arxiv.org/abs/1506.02640">http://arxiv.org/abs/1506.02640</a>, <a class="reference external" href="https://arxiv.org/abs/1506.02640">arXiv:1506.02640</a>.</p>
-</div>
-<div class="citation" id="citation-53" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>RHGS15<span class="fn-bracket">]</span></span>
-<p>Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun. Faster r-cnn: towards real-time object detection with region proposal networks. In C. Cortes, N. Lawrence, D. Lee, M. Sugiyama, and R. Garnett, editors, <em>Advances in Neural Information Processing Systems</em>, volume 28. Curran Associates, Inc., 2015. URL: <a class="reference external" href="https://proceedings.neurips.cc/paper/2015/file/14bfa6bb14875e45bba028a21ed38046-Paper.pdf">https://proceedings.neurips.cc/paper/2015/file/14bfa6bb14875e45bba028a21ed38046-Paper.pdf</a>.</p>
-</div>
-<div class="citation" id="citation-40" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SC00<span class="fn-bracket">]</span></span>
-<p>B. Schiele and J.L. Crowley. Recognition without correspondence using multidimensional receptive field histograms. <em>International Journal of Computer Vision</em>, 36(1):31–50, 2000.</p>
-</div>
-<div class="citation" id="citation-41" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SEZ+<span class="fn-bracket">]</span></span>
-<p>Pierre Sermanet, David Eigen, Xiang Zhang, Michael Mathieu, Rob Fergus, and Yann Lecun. Overfeat: integrated recognition, localization and detection using convolutional networks.</p>
-</div>
-<div class="citation" id="citation-44" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SZ03<span class="fn-bracket">]</span></span>
-<p>J. Sivic and A. Zisserman. Video google: a text retrieval approach to object matching in videos. In <em>Proceedings of the Ninth IEEE International Conference on Computer Vision - Volume 2</em>, ICCV '03, 1470–. Washington, DC, USA, 2003. IEEE Computer Society. URL: <a class="reference external" href="http://dl.acm.org/citation.cfm?id=946247.946751">http://dl.acm.org/citation.cfm?id=946247.946751</a>.</p>
-</div>
-<div class="citation" id="citation-19" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SB91<span class="fn-bracket">]</span></span>
-<p>Michael J. Swain and Dana H. Ballard. Color indexing. <em>Int. J. Comput. Vision</em>, 7(1):11–32, 1991. URL: <a class="reference external" href="https://doi.org/10.1007/BF00130487">https://doi.org/10.1007/BF00130487</a>, <a class="reference external" href="https://doi.org/10.1007/BF00130487">doi:10.1007/BF00130487</a>.</p>
-</div>
-<div class="citation" id="citation-13" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SLJ+14<span class="fn-bracket">]</span></span>
-<p>Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir Anguelov, Dumitru Erhan, Vincent Vanhoucke, and Andrew Rabinovich. Going deeper with convolutions. 2014. <a class="reference external" href="https://arxiv.org/abs/1409.4842">arXiv:1409.4842</a>.</p>
-</div>
-<div class="citation" id="citation-48" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Sze10<span class="fn-bracket">]</span></span>
-<p>R. Szeliski. <em>Computer Vision: Algorithms and Applications</em>. Springer-Verlag New York, Inc., New York, NY, USA, 1st edition, 2010. ISBN 1848829345, 9781848829343.</p>
-</div>
-<div class="citation" id="citation-49" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>TM07<span class="fn-bracket">]</span></span>
-<p>T. Tuytelaars and K. Mikolajczyk. Local invariant feature detectors: a survey. <em>Foundations and Trends in Computer Graphics and Vision</em>, 3(3):177–280, 2007.</p>
-</div>
-<div class="citation" id="citation-51" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>YYGTHuang09<span class="fn-bracket">]</span></span>
-<p>J. Yang, K. Yu, Y. Gong, and T.Huang. Linear spatial pyramid matching using sparse coding for image classification. In <em>in IEEE Conference on Computer Vision and Pattern Recognition(CVPR</em>. 2009.</p>
-</div>
-<div class="citation" id="citation-20" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>RubnerTomasiGuibas98<span class="fn-bracket">]</span></span>
-<p>Y. Rubner, C. Tomasi, and L. J. Guibas. A metric for distributions with applications to image databases. In <em>Sixth International Conference on Computer Vision (IEEE Cat. No.98CH36271)</em>, volume, 59–66. 1998. <a class="reference external" href="https://doi.org/10.1109/ICCV.1998.710701">doi:10.1109/ICCV.1998.710701</a>.</p>
-</div>
-</div>
-</p>
 </section>
 </section>
 
