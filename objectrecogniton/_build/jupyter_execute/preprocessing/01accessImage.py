@@ -1,28 +1,37 @@
-# Basic Image Access Operations
+#!/usr/bin/env python
+# coding: utf-8
 
-* Author: Johannes Maucher
-* Last Update: 28th January 2021
+# # Basic Image Access Operations
+# 
+# * Author: Johannes Maucher
+# * Last Update: 28th January 2021
+# 
+# ## Required modules
+# 
+# There are several libraries for image processing in python. The following libraries will be frequently applied througout this lecture:
+# 
+# * Python bindings of  [OpenCV](http://opencv.org/). OpenCV is the most comprehensive open-source Library for computer vision. It includes several hundreds of algorithms, ranging from basic image- and video processing to advanced machine learning algorithms for pattern recognition,
+#     
+# * [Scikits Image](http://scikit-image.org/) provides a collection of algorithms for image processing (open-source).
+# 
+# * The Python [Imaging Library (PIL)](https://pillow.readthedocs.io/en/stable/reference/) provides standard image processing functions, e.g. for filtering and transcoding. 
+# 
+# * [Matplotlib](https://matplotlib.org) is a python 2D plotting library. 
+# 
+# * [Numpy](https://numpy.org) is the fundamental package for scientific computing with Python.
+# 
+# * [SciPy](http://docs.scipy.org/doc/) is an open-source software for mathematics, science, and engineering. The SciPy library depends on Numpy, which provides convenient and fast N-dimensional array manipulation. Image processing functionality is encapsulated in the Scipy package ndimage.
+# 
 
-## Required modules
-
-There are several libraries for image processing in python. The following libraries will be frequently applied througout this lecture:
-
-* Python bindings of  [OpenCV](http://opencv.org/). OpenCV is the most comprehensive open-source Library for computer vision. It includes several hundreds of algorithms, ranging from basic image- and video processing to advanced machine learning algorithms for pattern recognition,
-    
-* [Scikits Image](http://scikit-image.org/) provides a collection of algorithms for image processing (open-source).
-
-* The Python [Imaging Library (PIL)](https://pillow.readthedocs.io/en/stable/reference/) provides standard image processing functions, e.g. for filtering and transcoding. 
-
-* [Matplotlib](https://matplotlib.org) is a python 2D plotting library. 
-
-* [Numpy](https://numpy.org) is the fundamental package for scientific computing with Python.
-
-* [SciPy](http://docs.scipy.org/doc/) is an open-source software for mathematics, science, and engineering. The SciPy library depends on Numpy, which provides convenient and fast N-dimensional array manipulation. Image processing functionality is encapsulated in the Scipy package ndimage.
+# In[2]:
 
 
 #!pip install opencv-python
 
-%matplotlib inline
+
+# In[2]:
+
+
 from PIL import Image
 from matplotlib import pyplot as plt
 import matplotlib.cm as cm
@@ -30,25 +39,38 @@ import numpy as np
 import os
 import cv2
 
+
+# In[3]:
+
+
 cv2.__version__
 
-## Read and open image
 
-Read File from Directory, print image metadata and display the image with Matplotlibs plotting function
+# ## Read and open image
 
-### Option 1: Read image with matplotlib
+# Read File from Directory, print image metadata and display the image with Matplotlibs plotting function
+
+# ### Option 1: Read image with matplotlib
+
+# In[7]:
+
 
 imgpath='../Data/mo.png'
 m_im=plt.imread(imgpath)
 m_im_new=m_im[:,:,[2,1,0]] #swap color channels
+#m_im_new=m_im
 print(type(m_im))
 print("Shape of numpy array : \t", m_im.shape)
-plt.figure(figsize=(10,8))
+plt.figure(figsize=(12,10))
 plt.axis("off") #switch off numbered axis
 plt.imshow(m_im_new)
 plt.show()
 
-### Option 2: Read image with PIL
+
+# ### Option 2: Read image with PIL
+
+# In[8]:
+
 
 pil_im = Image.open(imgpath)
 print("Format: \t",pil_im.format)
@@ -62,7 +84,11 @@ plt.figure(figsize=(10,8))
 plt.imshow(np_im_new)
 plt.show()
 
-Read and display image as greyscale
+
+# Read and display image as greyscale
+
+# In[9]:
+
 
 pil_im_grey = Image.open(imgpath).convert('L')
 np_im_grey=np.array(pil_im_grey)
@@ -71,9 +97,13 @@ plt.figure(figsize=(10,8))
 plt.imshow(np_im_grey,cmap='Greys_r')
 plt.show()
 
-### Read all images in specified directory
 
-The python [os package](http://docs.python.org/2/library/os.html) provides miscellaneous operating system interfaces. Using this package it is possible to access a set of files, which is defined by a partiular pattern. In the following example all .jpg files of the given directory are accessed and displayed. In the third line a list is created, which contains all file- and pathnames, which match the specified pattern.
+# ### Read all images in specified directory
+
+# The python [os package](http://docs.python.org/2/library/os.html) provides miscellaneous operating system interfaces. Using this package it is possible to access a set of files, which is defined by a partiular pattern. In the following example all .jpg files of the given directory are accessed and displayed. In the third line a list is created, which contains all file- and pathnames, which match the specified pattern.
+
+# In[8]:
+
 
 imageformat=".JPG"
 path="../Data/66obj/images"
@@ -85,10 +115,18 @@ for el in imfilelist[:10]:
         plt.imshow(image)
         plt.show()
 
-### Option 3: Read Images using OpenCv
-[OpenCV](http://opencv.org/) is the most comprehensive open source library for video- and imageprocessing. OpenCV is implemented in C++, bindings for other languages exist. We apply the OpenCV python bindings. After installing OpenCV it can be accessed by importing cv2
+
+# ### Option 3: Read Images using OpenCv
+# [OpenCV](http://opencv.org/) is the most comprehensive open source library for video- and imageprocessing. OpenCV is implemented in C++, bindings for other languages exist. We apply the OpenCV python bindings. After installing OpenCV it can be accessed by importing cv2
+
+# In[10]:
+
 
 import cv2
+
+
+# In[10]:
+
 
 print(cv2.__version__)
 #cv2.namedWindow("Image")
@@ -99,10 +137,18 @@ plt.axis("off")
 plt.imshow(image)
 plt.show()
 
+
+# In[11]:
+
+
 image[:5,:5,0]
 
-## Capture video from camera
-Using OpenCV videos can be captured, processed and displayed. Within a video sequence each frame is read and stored in a 2D Numpy array. In this representation frames of a video sequence can be processed in the same way as single images
+
+# ## Capture video from camera
+# Using OpenCV videos can be captured, processed and displayed. Within a video sequence each frame is read and stored in a 2D Numpy array. In this representation frames of a video sequence can be processed in the same way as single images
+
+# In[13]:
+
 
 try:
     cam = cv2.VideoCapture(0) #Index in brackets determine the camera. If there is only one camera available the index must be 0
@@ -115,8 +161,12 @@ except:
     print("No camera available")
 cv2.destroyAllWindows()
 
-## Capture Video from Disk
-Specify location of video file and open VideoCapture object. Get video properties and display them. Read video frame by frame.
+
+# ## Capture Video from Disk
+# Specify location of video file and open VideoCapture object. Get video properties and display them. Read video frame by frame.
+
+# In[12]:
+
 
 file="../Data/4p-c1.avi"
 cam = cv2.VideoCapture(file)
@@ -139,6 +189,16 @@ while True and frameCount<NofFrames:
         break
 cam.release()
 cv2.destroyAllWindows()
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
 
 
 

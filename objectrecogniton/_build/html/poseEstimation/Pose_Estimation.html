@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Multi-Person 2D Pose Estimation using Part Affinity Fields &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="References" href="../referenceSection.html" />
     <link rel="prev" title="Face Recognition using FaceNet" href="../face/faceRecognition.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#multiperson-pose-estimation">
    Multiperson Pose Estimation
@@ -429,7 +423,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#groundtruth-for-part-affinity-fields-1">
      Groundtruth for Part Affinity Fields
     </a>
    </li>
@@ -516,8 +510,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -525,7 +519,7 @@
         
               <div>
                 
-  <div class="section" id="multi-person-2d-pose-estimation-using-part-affinity-fields">
+  <section id="multi-person-2d-pose-estimation-using-part-affinity-fields">
 <h1>Multi-Person 2D Pose Estimation using Part Affinity Fields<a class="headerlink" href="#multi-person-2d-pose-estimation-using-part-affinity-fields" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -584,31 +578,30 @@
 </div>
 </div>
 </div>
-<div class="section" id="multiperson-pose-estimation">
+<section id="multiperson-pose-estimation">
 <h2>Multiperson Pose Estimation<a class="headerlink" href="#multiperson-pose-estimation" title="Permalink to this headline">¶</a></h2>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/multiposeEstimation.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/multiposeEstimation.png" />
-<div class="section" id="approaches-for-multi-person-pose-estimation">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/multiposeEstimation.png" style="width:600px" align="center"><section id="approaches-for-multi-person-pose-estimation">
 <h3>Approaches for Multi-Person Pose Estimation<a class="headerlink" href="#approaches-for-multi-person-pose-estimation" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="top-down">
+<section id="top-down">
 <h4>Top-Down<a class="headerlink" href="#top-down" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Person Detection</p></li>
 <li><p>Single Person Pose Estimation</p></li>
 </ul>
-</div>
-<div class="section" id="bottom-up">
+</section>
+<section id="bottom-up">
 <h4>Bottom-Up<a class="headerlink" href="#bottom-up" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Detect keypoints (joints) in the image</p></li>
 <li><p>Connect joints to single person pose-models</p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="theory">
+</section>
+</section>
+</section>
+<section id="theory">
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
 <p>In this notebook a bottom-up approach, which applies deep neural netorks is implemented. The approach has been developed in <a class="reference external" href="https://arxiv.org/pdf/1611.08050.pdf">Chao et al; Realtime Multi-Person 2D Pose Estimation using Part Affinty Fields</a>. All images in this notebook are from this paper.</p>
-<div class="section" id="overall-pipeline">
+<section id="overall-pipeline">
 <h3>Overall Pipeline<a class="headerlink" href="#overall-pipeline" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Pass entire image to CNN</p></li>
@@ -621,9 +614,8 @@
 <li><p>Perform bipartite matching to find candidates of body-part associations</p></li>
 <li><p>Assemble parts and associations to full body poses</p></li>
 </ol>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/poseOverall.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/poseOverall.png" />
-</div>
-<div class="section" id="confidence-maps-and-part-affinitiy-fields">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/poseOverall.png" style="width:600px" align="center"></section>
+<section id="confidence-maps-and-part-affinitiy-fields">
 <h3>Confidence Maps and Part Affinitiy Fields<a class="headerlink" href="#confidence-maps-and-part-affinitiy-fields" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Set of <span class="math notranslate nohighlight">\(J\)</span> Confidence Maps:</p></li>
@@ -638,24 +630,23 @@ $$</p>
 <ul class="simple">
 <li><p>Both have the same size <span class="math notranslate nohighlight">\(w  \times h\)</span> as the image at the input</p></li>
 </ul>
-</div>
-<div class="section" id="cnn-architecture">
+</section>
+<section id="cnn-architecture">
 <h3>CNN Architecture<a class="headerlink" href="#cnn-architecture" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Stage 0: First 10 layers of VGG16, pretrained and fine tuned <span class="math notranslate nohighlight">\(\Rightarrow\)</span> Feature Extraction</p></li>
 <li><p>Stage 1:</p></li>
 <li><p>Stage t (<span class="math notranslate nohighlight">\(t\geq2\)</span>):</p></li>
 </ul>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/poseArchitecture.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/poseArchitecture.png" />
-<ul class="simple">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/poseArchitecture.png" style="width:500px" align="center"><ul class="simple">
 <li><p>In each stage the simultaneous prediction of Confidence Maps and Part Affinity Fields is refined.</p></li>
 <li><p>The multi-stage approach mitigates the vanishing gradient problem</p></li>
 <li><p>Input to the first branch are the features F, extracted from the first 10 layers of VGG16</p></li>
 <li><p>In each subsequent stage, the predictions from both branches in the previous stage, along with the original image features F, are concatenated and used to produce refined predictions</p></li>
 <li><p>An L2 loss between the estimated predictions and the groundtruth maps and fields is applied in each stage.</p></li>
 </ul>
-</div>
-<div class="section" id="loss-at-each-stage">
+</section>
+<section id="loss-at-each-stage">
 <h3>Loss at each stage<a class="headerlink" href="#loss-at-each-stage" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Loss function for Confidence Map at stage t</p></li>
@@ -672,8 +663,8 @@ f_S^t= \sum\limits_{j=1}^J \sum_{\mathbf{b}} W(\mathbf{p}) \cdot \mid \mid S_j^t
 f_L^t= \sum\limits_{c=1}^C \sum_{\mathbf{b}} W(\mathbf{p}) \cdot \mid \mid L_c^t(\mathbf{p})-L_c^*(\mathbf{p})\mid\mid ^2)
 \]</div>
 <p><span class="math notranslate nohighlight">\(S_j^*\)</span> and <span class="math notranslate nohighlight">\(L_c^*\)</span> are the groundtruths. <span class="math notranslate nohighlight">\(W\)</span> is a binary mask with <span class="math notranslate nohighlight">\(W(\mathbf{p})=0\)</span> if annotation is missing at an image location <span class="math notranslate nohighlight">\(\mathbf{p}\)</span>.</p>
-</div>
-<div class="section" id="overall-loss">
+</section>
+<section id="overall-loss">
 <h3>Overall Loss<a class="headerlink" href="#overall-loss" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The overall loss function is</p></li>
@@ -685,8 +676,8 @@ f=\sum\limits_{t=1}^T (f_S^t+f_L^t)
 <ul class="simple">
 <li><p>Stochastic Gradient Descent is applied to minimize the overall loss during training</p></li>
 </ul>
-</div>
-<div class="section" id="groundtrouth-for-confidence-maps">
+</section>
+<section id="groundtrouth-for-confidence-maps">
 <h3>Groundtrouth for Confidence Maps<a class="headerlink" href="#groundtrouth-for-confidence-maps" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Put Gaussian peaks over ground truth locations <span class="math notranslate nohighlight">\(\mathbf{x_{j,k}}\)</span> of each body part <span class="math notranslate nohighlight">\(j\)</span>. Value at location <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> for the <span class="math notranslate nohighlight">\(k.th\)</span> person in <span class="math notranslate nohighlight">\(S_{j,k}^*\)</span>:</p></li>
@@ -703,8 +694,8 @@ S_{j,k}^*(\mathbf{p}) = \exp \left( - \frac{\mid \mid \mathbf{p} - \mathbf{x_{j,
 \[
 S_j^*(\mathbf{p}) = \max_k S_{j,k}^*(\mathbf{p})
 \]</div>
-</div>
-<div class="section" id="groundtruth-for-part-affinity-fields">
+</section>
+<section id="groundtruth-for-part-affinity-fields">
 <h3>Groundtruth for Part Affinity Fields<a class="headerlink" href="#groundtruth-for-part-affinity-fields" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbf{x_{j_1,k}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x_{j_2,k}}\)</span> are the groundtruth-positions of bodyparts <span class="math notranslate nohighlight">\(j_1\)</span> and <span class="math notranslate nohighlight">\(j_2\)</span> from limb <span class="math notranslate nohighlight">\(c\)</span> of person <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
@@ -727,10 +718,10 @@ S_j^*(\mathbf{p}) = \max_k S_{j,k}^*(\mathbf{p})
 0 \leq (\mathbf{p}-\mathbf{x_{j_1,k}}) \cdot \mathbf{v_{\perp}}\leq \sigma_l ,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma_l\)</span> is the limb width and <span class="math notranslate nohighlight">\(l_{c,k}=\mid \mid \mathbf{x_{j_1,k}}-\mathbf{x_{j_2,k}}\mid \mid\)</span>.</p>
-</div>
-<div class="section" id="id1">
-<h3>Groundtruth for Part Affinity Fields<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/poseArm.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/poseArm.png" />
+</section>
+<section id="groundtruth-for-part-affinity-fields-1">
+<h3>Groundtruth for Part Affinity Fields<a class="headerlink" href="#groundtruth-for-part-affinity-fields-1" title="Permalink to this headline">¶</a></h3>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/poseArm.png" style="width:500px" align="center">
 <ul class="simple">
 <li><p>Since the PAFs of multiple persons may overlap, they are combined by</p></li>
 </ul>
@@ -738,8 +729,8 @@ S_j^*(\mathbf{p}) = \max_k S_{j,k}^*(\mathbf{p})
 \[
 L_c^*(\mathbf{p}) = \frac{1}{n_c(\mathbf{p})} \sum \limits_k L_{c,k}^*(\mathbf{p})
 \]</div>
-</div>
-<div class="section" id="infer-limbs-from-part-candidates">
+</section>
+<section id="infer-limbs-from-part-candidates">
 <h3>Infer limbs from part candidates<a class="headerlink" href="#infer-limbs-from-part-candidates" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Non-maximum suppression is applied on the detected confidence maps to obtain a set of discrete part candidate locations</p></li>
@@ -752,8 +743,8 @@ L_c^*(\mathbf{p}) = \frac{1}{n_c(\mathbf{p})} \sum \limits_k L_{c,k}^*(\mathbf{p
 <li><p>Set of part candidate locations defines a large set of possible limbs, among which the true limbs must be detected.</p></li>
 <li><p>For this the <strong>association between part candidates</strong> is measured as described in the following slide.</p></li>
 </ul>
-</div>
-<div class="section" id="measure-association-between-candidate-part-detections">
+</section>
+<section id="measure-association-between-candidate-part-detections">
 <h3>Measure Association between candidate part detections<a class="headerlink" href="#measure-association-between-candidate-part-detections" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>During <strong>testing</strong> association between candidate part detections is measured</p></li>
@@ -770,8 +761,8 @@ E=\int_{u=0}^{u=1} L_c(\mathbf{p}(u)) \cdot  \frac{(\mathbf{d_{j_2,k}}-\mathbf{d
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(L_c\)</span> is the predicted PAF for limb <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(\mathbf{d_{j_1,k}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{d_{j_2,k}}\)</span> are predicted part posistions (candidates for being part of limb <span class="math notranslate nohighlight">\(c\)</span>).</p></li>
 </ul>
-</div>
-<div class="section" id="optimisation-problem">
+</section>
+<section id="optimisation-problem">
 <h3>Optimisation problem<a class="headerlink" href="#optimisation-problem" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Set of body-part detection candidates:</p></li>
@@ -810,16 +801,15 @@ Z=\lbrace z_{j_1j_2}^{mn} : \mbox{ for } j_1,j_2 \in \lbrace 1 \ldots J \rbrace,
 <li><p><span class="math notranslate nohighlight">\(\forall m \in D_{j_1}: \sum\limits_{n \in D_{j_2}} z_{j_1j_2}^{mn} \leq 1\)</span> and</p></li>
 <li><p><span class="math notranslate nohighlight">\(\forall n \in D_{j_2}: \sum\limits_{m \in D_{j_1}} z_{j_1j_2}^{mn} \leq 1\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="maximum-weight-matching-in-bipartite-graph">
+</section>
+<section id="maximum-weight-matching-in-bipartite-graph">
 <h3>Maximum Weight Matching in Bipartite-Graph<a class="headerlink" href="#maximum-weight-matching-in-bipartite-graph" title="Permalink to this headline">¶</a></h3>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/poseBipartite.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/poseBipartite.png" />
-</div>
-</div>
-<div class="section" id="implementation">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/poseBipartite.png" style="width:500px" align="center"></section>
+</section>
+<section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>The authors of <a class="reference external" href="https://arxiv.org/pdf/1611.08050.pdf">Chao et al; Realtime Multi-Person 2D Pose Estimation using Part Affinty Fields</a> provide a pretrained model for the pose-estimation approach, which has been descriped in the <em>Theory</em> part of this notebook. This pretrained model will be applied in the following code-cells.</p>
-<div class="section" id="specify-the-model-to-be-used">
+<section id="specify-the-model-to-be-used">
 <h3>Specify the model to be used<a class="headerlink" href="#specify-the-model-to-be-used" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>COCO and MPI are body pose estimation models. COCO has 18 points and MPI has 15 points as output.</p></li>
@@ -863,9 +853,9 @@ Z=\lbrace z_{j_1j_2}^{mn} : \mbox{ for } j_1,j_2 \in \lbrace 1 \ldots J \rbrace,
 &lt;&gt;:9: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
 &lt;&gt;:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
 &lt;&gt;:9: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
-&lt;ipython-input-4-a10dad32cb4c&gt;:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+&lt;ipython-input-5-a10dad32cb4c&gt;:3: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
   if MODE is &quot;COCO&quot;:
-&lt;ipython-input-4-a10dad32cb4c&gt;:9: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+&lt;ipython-input-5-a10dad32cb4c&gt;:9: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
   elif MODE is &quot;MPI&quot; :
 </pre></div>
 </div>
@@ -882,8 +872,8 @@ Left Ear – 17, Background – 18</p>
 Left Shoulder – 5, Left Elbow – 6, Left Wrist – 7, Right Hip – 8,
 Right Knee – 9, Right Ankle – 10, Left Hip – 11, Left Knee – 12,
 Left Ankle – 13, Chest – 14, Background – 15</p>
-</div>
-<div class="section" id="load-image">
+</section>
+<section id="load-image">
 <h3>Load image<a class="headerlink" href="#load-image" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -907,8 +897,8 @@ Left Ankle – 13, Chest – 14, Background – 15</p>
 <img alt="../_images/Pose_Estimation_32_0.png" src="../_images/Pose_Estimation_32_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="load-pretrained-network">
+</section>
+<section id="load-pretrained-network">
 <h3>Load pretrained network<a class="headerlink" href="#load-pretrained-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -934,8 +924,8 @@ Left Ankle – 13, Chest – 14, Background – 15</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="transform-image-to-caffe-blob">
+</section>
+<section id="transform-image-to-caffe-blob">
 <h3>Transform image to Caffe blob<a class="headerlink" href="#transform-image-to-caffe-blob" title="Permalink to this headline">¶</a></h3>
 <p>The image must be converted into a <em>Caffe blob format</em>. This is done using the <code class="docutils literal notranslate"><span class="pre">blobFromImage()</span></code>-function. The parameters are</p>
 <ul class="simple">
@@ -953,8 +943,8 @@ Left Ankle – 13, Chest – 14, Background – 15</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="pass-input-blob-through-the-network">
+</section>
+<section id="pass-input-blob-through-the-network">
 <h3>Pass input blob through the network<a class="headerlink" href="#pass-input-blob-through-the-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -998,8 +988,8 @@ Maximum in confidence map: 0.833
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="plot-confidence-map-of-selected-keypoint">
+</section>
+<section id="plot-confidence-map-of-selected-keypoint">
 <h3>Plot confidence map of selected keypoint<a class="headerlink" href="#plot-confidence-map-of-selected-keypoint" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1015,14 +1005,14 @@ Maximum in confidence map: 0.833
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f8fb4f3c100&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fe63d7369a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/Pose_Estimation_43_1.png" src="../_images/Pose_Estimation_43_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="plot-affinity-map-on-the-image">
+</section>
+<section id="plot-affinity-map-on-the-image">
 <h3>Plot affinity map on the image<a class="headerlink" href="#plot-affinity-map-on-the-image" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1044,8 +1034,8 @@ Maximum in confidence map: 0.833
 <img alt="../_images/Pose_Estimation_45_1.png" src="../_images/Pose_Estimation_45_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="keypoints-of-image-with-only-single-person">
+</section>
+<section id="keypoints-of-image-with-only-single-person">
 <h3>Keypoints of image with only single person<a class="headerlink" href="#keypoints-of-image-with-only-single-person" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1070,7 +1060,7 @@ Maximum in confidence map: 0.833
 <img alt="../_images/Pose_Estimation_48_0.png" src="../_images/Pose_Estimation_48_0.png" />
 </div>
 </div>
-<div class="section" id="pass-image-blob-to-network">
+<section id="pass-image-blob-to-network">
 <h4>Pass image-blob to network<a class="headerlink" href="#pass-image-blob-to-network" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1086,8 +1076,8 @@ Maximum in confidence map: 0.833
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="determine-detected-part-locations">
+</section>
+<section id="determine-detected-part-locations">
 <h4>Determine detected part locations<a class="headerlink" href="#determine-detected-part-locations" title="Permalink to this headline">¶</a></h4>
 <p>The location of each detected keypoint can be obtained by  determining the maxima of the keypoint’s confidence map. A threshold is applied to reduce false positive detections. In order to plot the keypoint in the image, it’s location in the output-map must be transformed to the corresponding image location.</p>
 <div class="cell docutils container">
@@ -1155,10 +1145,10 @@ Maximum in confidence map: 0.833
 <img alt="../_images/Pose_Estimation_55_0.png" src="../_images/Pose_Estimation_55_0.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1182,15 +1172,15 @@ Maximum in confidence map: 0.833
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="../face/faceRecognition.html" title="previous page">Face Recognition using FaceNet</a>
     <a class='right-next' id="next-link" href="../referenceSection.html" title="next page">References</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1198,7 +1188,7 @@ Maximum in confidence map: 0.833
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -1207,11 +1197,9 @@ Maximum in confidence map: 0.833
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

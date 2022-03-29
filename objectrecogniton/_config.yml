@@ -18,3 +18,5 @@ latex:
 html:
   only_build_toc_files: true
 
+execute:
+  execute_notebooks: 'off'

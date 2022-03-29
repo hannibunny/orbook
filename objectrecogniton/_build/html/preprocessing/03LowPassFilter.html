@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Rectangular- and Gaussian Low Pass Filtering &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Noise Suppression" href="06GaussianNoiseReduction.html" />
     <link rel="prev" title="Gaussian Filter and Derivatives of Gaussian" href="04gaussianDerivatives.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#function-for-calculating-and-plotting-the-spectral-representation-of-a-signal">
    Function for calculating and plotting the spectral representation of a signal
@@ -397,7 +391,7 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain-1">
      Plot signal, filter and filtered signal in time- and frequency domain
     </a>
    </li>
@@ -410,8 +404,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -419,17 +413,17 @@
         
               <div>
                 
-  <div class="section" id="rectangular-and-gaussian-low-pass-filtering">
+  <section id="rectangular-and-gaussian-low-pass-filtering">
 <h1>Rectangular- and Gaussian Low Pass Filtering<a class="headerlink" href="#rectangular-and-gaussian-low-pass-filtering" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
 <li><p>Last Update: 28th January 2021</p></li>
 </ul>
 <p>In section <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">Basic Filter Operations</span></a> and section <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">Gaussian Filters</span></a> the average- and the Gaussian filter have been described, respectively. Both of them blur their input by calculating at each position <span class="math notranslate nohighlight">\(i\)</span> a weighted sum of the values <span class="math notranslate nohighlight">\(f(i+u)\)</span> in the neighbouring positions.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-48f327a9-074b-442e-bf25-137f4b4fffa2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-48f327a9-074b-442e-bf25-137f4b4fffa2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
-\end{equation}\]</div>
+\]</div>
 <p>The difference is that for the the average filters the weights <span class="math notranslate nohighlight">\(h(u)\)</span> are all the same, whereas in the Gaussian filter the weights <span class="math notranslate nohighlight">\(h(u)\)</span> decrease for increasing absolute values of <span class="math notranslate nohighlight">\(u\)</span>.</p>
 <p>Both filters reduce variations in neighbouring values by replacing original values by neighbourhood-averages. Filters with this property are called <strong>Low-Pass Filters (LP)</strong>. In order to understand this term, the term of <em>frequency in the context of images</em> must be explained: <strong>In image-processing the term of frequency refers to pixel-value variations within a neighbourhood</strong>. If their are strong variations within neighbouring pixel-values we speak of high-frequencies, whereas in homogenous regions with nearly no variations the frequency is low. A Low-Pass filter suppresses high-frequencies, whereas low-frequencies are left unchanged. Correspondingly, a <strong>High-Pass Filter (HP)</strong> suppresses low-frequencies but leaves high-frequencies unchanged. Both, Low- and High-Pass Filters have a wide range of applications in image-processing, for example noise-reduction (LP) and contour-extraction (HP). Noise reduction is subject of the <a class="reference internal" href="06GaussianNoiseReduction.html"><span class="doc std std-doc">next section</span></a>.</p>
 <p>In the current section we will demonstrate and compare the properties of the average- and Gauss-Filter. For this demonstration we apply 1-dimensional signals and filters. The adaptation to the 2-dimensional case should be obvious.</p>
@@ -441,11 +435,17 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 <p>Again, the <a class="reference external" href="http://docs.scipy.org/doc/scipy-0.13.0/reference/ndimage.html">scipy ndimage package</a> is applied for convolution filtering.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install --upgrade scipy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sci</span>
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
+<span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sf</span>
 </pre></div>
 </div>
 </div>
@@ -458,7 +458,7 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 </div>
-<div class="section" id="function-for-calculating-and-plotting-the-spectral-representation-of-a-signal">
+<section id="function-for-calculating-and-plotting-the-spectral-representation-of-a-signal">
 <h2>Function for calculating and plotting the spectral representation of a signal<a class="headerlink" href="#function-for-calculating-and-plotting-the-spectral-representation-of-a-signal" title="Permalink to this headline">¶</a></h2>
 <p>The function below calculates the single-sided amplitude spectrum of a 1-dimensional time domain signal <span class="math notranslate nohighlight">\(y\)</span>. The sampling frequency <span class="math notranslate nohighlight">\(Fs\)</span> is required for a correct scaling of the frequency-axis in the plot.</p>
 <div class="cell docutils container">
@@ -473,7 +473,7 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
  <span class="n">frq</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="n">T</span> <span class="c1"># two sides frequency range</span>
  <span class="n">frq</span> <span class="o">=</span> <span class="n">frq</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span> <span class="c1"># one side frequency range</span>
 
- <span class="n">Y</span> <span class="o">=</span> <span class="n">sci</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1"># fft computing and normalization</span>
+ <span class="n">Y</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1"># fft computing and normalization</span>
  <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span>
  <span class="k">if</span> <span class="p">(</span><span class="n">FX</span> <span class="ow">and</span> <span class="n">FY</span><span class="p">)</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
      <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">FX</span><span class="p">,</span><span class="n">FY</span><span class="p">))</span>
@@ -485,8 +485,8 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="define-signal-that-shall-be-filtered">
+</section>
+<section id="define-signal-that-shall-be-filtered">
 <h2>Define signal that shall be filtered<a class="headerlink" href="#define-signal-that-shall-be-filtered" title="Permalink to this headline">¶</a></h2>
 <p>The input signal</p>
 <div class="math notranslate nohighlight">
@@ -522,7 +522,7 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Accumulation of 3 sinusoidal signals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/03LowPassFilter_8_1.png" src="../_images/03LowPassFilter_8_1.png" />
+<img alt="../_images/03LowPassFilter_9_1.png" src="../_images/03LowPassFilter_9_1.png" />
 </div>
 </div>
 <p>The spectrum of this signal is plotted below. As can be seen, it contains non-zero values only at the frequencies <span class="math notranslate nohighlight">\(f=15 Hz\)</span>, <span class="math notranslate nohighlight">\(f=30 Hz\)</span> and <span class="math notranslate nohighlight">\(f=45 Hz\)</span>:</p>
@@ -533,11 +533,11 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03LowPassFilter_10_0.png" src="../_images/03LowPassFilter_10_0.png" />
+<img alt="../_images/03LowPassFilter_11_0.png" src="../_images/03LowPassFilter_11_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="rectangular-average-low-pass-filtering">
+</section>
+<section id="rectangular-average-low-pass-filtering">
 <h2>Rectangular (Average) Low Pass Filtering<a class="headerlink" href="#rectangular-average-low-pass-filtering" title="Permalink to this headline">¶</a></h2>
 <p>Below an average filter of with <span class="math notranslate nohighlight">\(L=0.1s\)</span> is defined:</p>
 <div class="cell docutils container">
@@ -596,11 +596,11 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03LowPassFilter_17_0.png" src="../_images/03LowPassFilter_17_0.png" />
+<img alt="../_images/03LowPassFilter_18_0.png" src="../_images/03LowPassFilter_18_0.png" />
 </div>
 </div>
 <p>As can be seen in the plot above, the spectrum of the filter is not monotonously decreasing with increasing frequency. For the filter of width <span class="math notranslate nohighlight">\(L=0.1s\)</span>, a frequency of <span class="math notranslate nohighlight">\(f=0\)</span> is not suppressed. In the range from 0 to 10 Hz, the suppression increases and a frequency of <span class="math notranslate nohighlight">\(f=10Hz\)</span> is totally blocked. However, from 10 to 15 Hz the suppression decreases and <span class="math notranslate nohighlight">\(f=20 Hz, f=30 Hz, ...\)</span> are again totally blocked.</p>
-<div class="section" id="apply-rectangular-filter-to-input-signal">
+<section id="apply-rectangular-filter-to-input-signal">
 <h3>Apply rectangular filter to input signal<a class="headerlink" href="#apply-rectangular-filter-to-input-signal" title="Permalink to this headline">¶</a></h3>
 <p>Next we convolve the average-filter of length <span class="math notranslate nohighlight">\(L=0.1s\)</span> with the input signal:</p>
 <div class="cell docutils container">
@@ -623,7 +623,7 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Filtered Signal&#39;)
 </pre></div>
 </div>
-<img alt="../_images/03LowPassFilter_22_1.png" src="../_images/03LowPassFilter_22_1.png" />
+<img alt="../_images/03LowPassFilter_23_1.png" src="../_images/03LowPassFilter_23_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -633,12 +633,12 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03LowPassFilter_23_0.png" src="../_images/03LowPassFilter_23_0.png" />
+<img alt="../_images/03LowPassFilter_24_0.png" src="../_images/03LowPassFilter_24_0.png" />
 </div>
 </div>
 <p>As can be seen in the plots above, the average filter blocked the frequency of <span class="math notranslate nohighlight">\(f=30 Hz\)</span> totally. The signal part with <span class="math notranslate nohighlight">\(f=15 Hz\)</span> is suppressed less than the signal part with <span class="math notranslate nohighlight">\(f=45 Hz\)</span>.</p>
-</div>
-<div class="section" id="plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain">
+</section>
+<section id="plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain">
 <h3>Plot signal, filter and filtered signal in time- and frequency domain<a class="headerlink" href="#plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain" title="Permalink to this headline">¶</a></h3>
 <p>Below we just summarize the visualisations of the input-signal, filter and output-signal, both in time- and frequency-domain:</p>
 <div class="cell docutils container">
@@ -675,12 +675,12 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Filtered Signal&#39;)
 </pre></div>
 </div>
-<img alt="../_images/03LowPassFilter_26_1.png" src="../_images/03LowPassFilter_26_1.png" />
+<img alt="../_images/03LowPassFilter_27_1.png" src="../_images/03LowPassFilter_27_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="gaussian-filter">
+</section>
+</section>
+<section id="gaussian-filter">
 <h2>Gaussian Filter<a class="headerlink" href="#gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The same process as above is now repeated for the Gaussian Filter. In contrast to the average-filter, the spectrum of the Gaussian filter decreases monotonously with increasing frequency. This is actually what we expect from a <strong>Low-Pass:</strong> The signal suppression increases with increasing frequency.</p>
 <div class="cell docutils container">
@@ -693,8 +693,8 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Plot signal, filter and filtered signal in time- and frequency domain<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain-1">
+<h3>Plot signal, filter and filtered signal in time- and frequency domain<a class="headerlink" href="#plot-signal-filter-and-filtered-signal-in-time-and-frequency-domain-1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
@@ -729,7 +729,7 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Filtered Signal&#39;)
 </pre></div>
 </div>
-<img alt="../_images/03LowPassFilter_31_1.png" src="../_images/03LowPassFilter_31_1.png" />
+<img alt="../_images/03LowPassFilter_32_1.png" src="../_images/03LowPassFilter_32_1.png" />
 </div>
 </div>
 <p>In the case of the average-filter, it has been shown above, that by increasing the filter-length <span class="math notranslate nohighlight">\(L\)</span> in time-domain, the bandwidth of the filter can be decreased and vice versa. In the case of the Gaussian filter the bandwidth can be controlled by the standard-devaiation <span class="math notranslate nohighlight">\(\sigma\)</span>. Increasing <span class="math notranslate nohighlight">\(\sigma\)</span> yields an increased width of the filter in time-domain, but a decreased bandwidth in frequency domain. This is demonstrated below, by visualizing a Gaussian filter with <span class="math notranslate nohighlight">\(\sigma=0.01\)</span> and one with <span class="math notranslate nohighlight">\(\sigma=0.02\)</span>:</p>
@@ -781,18 +781,17 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03LowPassFilter_34_0.png" src="../_images/03LowPassFilter_34_0.png" />
+<img alt="../_images/03LowPassFilter_35_0.png" src="../_images/03LowPassFilter_35_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="spectrum-of-2-dimensional-average-and-gaussian-filter">
+</section>
+</section>
+<section id="spectrum-of-2-dimensional-average-and-gaussian-filter">
 <h2>Spectrum of 2-dimensional Average- and Gaussian Filter<a class="headerlink" href="#spectrum-of-2-dimensional-average-and-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The different behaviour of average- and Gaussian-filter, as demonstrated above for 1-dimensional signals, is the same for 2-dimensional data like images. This is shown in the figure below. The leftmost input-image contains low frequencies at the center, with increasing radial distance from the center, the frequency increases. The center image shows the result from filtering the input image with an 2-dimensional average-filter. As can be seen the suppression does not monotonously increase with increasing frequency: some lower frequencies are suppressed stronger than higher frequencies. In the image on the right hand side, the output of a Gaussian filter is shown. Here the suppression increases with increasing frequency.</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/kreiseAll.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/kreiseAll.png" />
-<p>In the <a class="reference internal" href="06GaussianNoiseReduction.html"><span class="doc std std-doc">next subsection</span></a> it is shown how low-pass filters can be applied for noise reduction in images.</p>
-</div>
-</div>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/kreiseAll.png" style="width:900px" align="center"><p>In the <a class="reference internal" href="06GaussianNoiseReduction.html"><span class="doc std std-doc">next subsection</span></a> it is shown how low-pass filters can be applied for noise reduction in images.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -816,15 +815,15 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="04gaussianDerivatives.html" title="previous page">Gaussian Filter and Derivatives of Gaussian</a>
     <a class='right-next' id="next-link" href="06GaussianNoiseReduction.html" title="next page">Noise Suppression</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -832,7 +831,7 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -841,11 +840,9 @@ y(t)=sin(2\pi \cdot 15 \cdot t) + sin(2\pi \cdot 30 \cdot t) + sin(2\pi \cdot 45
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

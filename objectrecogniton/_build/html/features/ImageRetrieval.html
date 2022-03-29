@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Histogram-based Image Retrieval &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Multidimensional Receptive Field Histograms" href="multiReceptiveFields.html" />
     <link rel="prev" title="Similarity Measures" href="similarityMetrics.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,21 +348,21 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Histogram-based Image Retrieval
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#testprocedure">
      Testprocedure
@@ -395,8 +389,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -404,12 +398,11 @@
         
               <div>
                 
-  <div class="section" id="histogram-based-image-retrieval">
+  <section id="histogram-based-image-retrieval">
 <h1>Histogram-based Image Retrieval<a class="headerlink" href="#histogram-based-image-retrieval" title="Permalink to this headline">¶</a></h1>
-<p>As introduced in <a class="reference external" href="http://www.cs.utexas.edu/~dana/Swain1.pdf">Swain, Ballard</a> (<a class="bibtex reference internal" href="../referenceSection.html#swainballard" id="id1">[SB91]</a>)  3-dimensional color histograms can be applied for specific object recognition. We consider the image retrieval case, i.e. given a large database of images and a novel query image, the task is to determine the database image which is most similar to the query image. The images in the database as well as the query image are represented by their 3-dimensional color histograms. Hence, the search for the most similar image in the database is equal to find the 3-d color histogram, which matches best to the 3-d color historgram of the query image.</p>
+<p>As introduced in <a class="reference external" href="http://www.cs.utexas.edu/~dana/Swain1.pdf">Swain, Ballard</a> (<span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-19">SB91</a>]</span>)  3-dimensional color histograms can be applied for specific object recognition. We consider the image retrieval case, i.e. given a large database of images and a novel query image, the task is to determine the database image which is most similar to the query image. The images in the database as well as the query image are represented by their 3-dimensional color histograms. Hence, the search for the most similar image in the database is equal to find the 3-d color histogram, which matches best to the 3-d color historgram of the query image.</p>
 <p>In this demo the <a class="reference external" href="http://www.vision.ee.ethz.ch/datasets/index.en.html">Another 53 objects database</a> is applied. The database contains for each of the 53 objects 5 images, which differ in viewpoint, rotation vertical- and horizontal alignment of the object. Actually, the dataset contains one object, for which only one image exists. This image (image215) has been removed for the test below. A sample of the image database is shown in the picture below.</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/53objects.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/53objects.png" />
-<div class="section" id="testprocedure">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/53objects.png" style="width:500px" align="center"><section id="testprocedure">
 <h2>Testprocedure<a class="headerlink" href="#testprocedure" title="Permalink to this headline">¶</a></h2>
 <p>In order to evaluate the recognition performance of the 3-d color histogram image retrieval system a leave-one-out test procedure is applied. This means that in each of the 265 iterations one image is selected as query image and the remaining 264 images constitute the database. The recognition is considered to be correct, if the best matching image contains the same object as the query image.</p>
 <p>Recognition performance depends on the metric used for comparing multidimensional histograms. In this demo the following distance measures are compared:</p>
@@ -423,23 +416,23 @@
 <li><p>Chi-Square</p></li>
 </ul>
 <p>For a formal definition of these metrics see <a class="reference internal" href="similarityMetrics.html"><span class="doc std std-doc">previous section</span></a>.</p>
-</div>
-<div class="section" id="implementation">
+</section>
+<section id="implementation">
 <h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
 <p>The following modules are applied:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">wasserstein_distance</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">wasserstein_distance</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="distance-functions">
+<section id="distance-functions">
 <h3>Distance functions<a class="headerlink" href="#distance-functions" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/spatial.distance.html">Scipy package spatial.distance</a> contains methods for calculating the euclidean-, Pearson-Correlation-, Canberra- and Bray-Curtis-distance. The remaining distance measures as well as a corresponding normalization function are defined in this python program.</p>
 <div class="cell docutils container">
@@ -689,10 +682,10 @@
 </table>
 </div></div></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="use-pretrained-cnns-for-retrieval">
+</section>
+</section>
+</section>
+<section id="use-pretrained-cnns-for-retrieval">
 <h1>Use pretrained CNNs for Retrieval<a class="headerlink" href="#use-pretrained-cnns-for-retrieval" title="Permalink to this headline">¶</a></h1>
 <p>Convolutional Neural Networks (CNN) consist of a feature-extractor part and a classifier. The last part of the CNN (blue part in the image below) is the classifier, consisting one or more dense layers. All other layers (orange part in the image below) constitute the feature extractor part, usually realised by convolutional and pooling layers.
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/dnnExtractorClassifier.png" style="width:600px" align="middle">
@@ -701,9 +694,9 @@ In a well trained CNN, the feature-extractor part provides a good representation
 <p>In the remainder of this notebook we apply different pretrained deep neural networks to calculate good representations. Based on these representations best matching image-pairs are determined in the same way as above. All CNNs have been pretrained on the imagenet-dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="k">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="k">import</span> <span class="n">load_img</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="k">import</span> <span class="n">img_to_array</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="kn">import</span> <span class="n">vgg16</span><span class="p">,</span> <span class="n">inception_v3</span><span class="p">,</span> <span class="n">resnet50</span><span class="p">,</span> <span class="n">mobilenet</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">load_img</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">img_to_array</span>
 <span class="c1">#from tensorflow.keras.applications.imagenet_utils import decode_predictions</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
@@ -901,7 +894,7 @@ In a well trained CNN, the feature-extractor part provides a good representation
 </table>
 </div></div></div>
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -925,15 +918,15 @@ In a well trained CNN, the feature-extractor part provides a good representation
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="similarityMetrics.html" title="previous page">Similarity Measures</a>
     <a class='right-next' id="next-link" href="multiReceptiveFields.html" title="next page">Multidimensional Receptive Field Histograms</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -941,7 +934,7 @@ In a well trained CNN, the feature-extractor part provides a good representation
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -950,11 +943,9 @@ In a well trained CNN, the feature-extractor part provides a good representation
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

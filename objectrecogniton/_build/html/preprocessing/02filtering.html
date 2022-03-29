@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Basic Filter Operations &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Gaussian Filter and Derivatives of Gaussian" href="04gaussianDerivatives.html" />
     <link rel="prev" title="Basic Image Access Operations" href="01accessImage.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dimensional-filtering">
    1-dimensional Filtering
@@ -387,7 +381,7 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
+  <a class="reference internal nav-link" href="#dimensional-filtering-1">
    2-dimensional Filtering
   </a>
   <ul class="nav section-nav flex-column">
@@ -452,8 +446,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -461,7 +455,7 @@
         
               <div>
                 
-  <div class="section" id="basic-filter-operations">
+  <section id="basic-filter-operations">
 <h1>Basic Filter Operations<a class="headerlink" href="#basic-filter-operations" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -474,7 +468,7 @@
 <li><p><strong>Template Matching</strong> is a simple object recognition method which just correlates a filter with the image.</p></li>
 <li><p>In order to achieve <strong>scale invariance</strong> in recognition, usually Gaussian Pyramids are applied to generate different scale levels.</p></li>
 </ul>
-<div class="section" id="dimensional-filtering">
+<section id="dimensional-filtering">
 <h2>1-dimensional Filtering<a class="headerlink" href="#dimensional-filtering" title="Permalink to this headline">¶</a></h2>
 <p><strong>Notation:</strong></p>
 <ul class="simple">
@@ -483,40 +477,34 @@
 <li><p><span class="math notranslate nohighlight">\(g(i)\)</span> is the <span class="math notranslate nohighlight">\(i.th\)</span> component of the 1-D diskret output signal</p></li>
 </ul>
 <p><strong>Correlation Filtering</strong> <span class="math notranslate nohighlight">\(g=h \circledast f\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-2b12393c-698e-46fa-92fe-3855aef9d39c">
-<span class="eqno">(1)<a class="headerlink" href="#equation-2b12393c-698e-46fa-92fe-3855aef9d39c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
-\end{equation}\]</div>
-<p><strong>Convolution Filtering</strong> <span class="math notranslate nohighlight">\(g=h*f\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe0bad17-09ec-4f0d-b56d-99e9b977fb2d">
-<span class="eqno">(2)<a class="headerlink" href="#equation-fe0bad17-09ec-4f0d-b56d-99e9b977fb2d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u) 
-\end{equation}\]</div>
+<p>\begin{equation}
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u)
+\end{equation}</p>
+<p><strong>Convolution Filtering</strong> <span class="math notranslate nohighlight">\(g=h*f\)</span>
+\begin{equation}
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u)
+\end{equation}</p>
 <p><strong>Correlation- and Convolutional Filtering of a 1-dimensional analog signal:</strong></p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/ComparisonConvolutionCorrelation.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ComparisonConvolutionCorrelation.png" />
-<div class="section" id="example-1-dimensional-discrete-filtering">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ComparisonConvolutionCorrelation.png" style="width:500px" align="center"><section id="example-1-dimensional-discrete-filtering">
 <h3>Example 1-dimensional discrete filtering:<a class="headerlink" href="#example-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p><strong>Without extension (padding) of the signal</strong></p>
-<p>The input signal:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e19e0aff-9ab7-4187-a476-2ece499dc538">
-<span class="eqno">(3)<a class="headerlink" href="#equation-e19e0aff-9ab7-4187-a476-2ece499dc538" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>The input signal:
+\begin{equation}
 f= \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
-\end{equation}\]</div>
-<p>shall be convolved with the <strong>length-3 moving average filter:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-e83080da-fdd5-48f7-adc1-5943b28b93d2">
-<span class="eqno">(4)<a class="headerlink" href="#equation-e83080da-fdd5-48f7-adc1-5943b28b93d2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\end{equation}
+shall be convolved with the <strong>length-3 moving average filter:</strong>
+\begin{equation}
 h=\left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right]
-\end{equation}\]</div>
-<p>The result <span class="math notranslate nohighlight">\(g\)</span> of convolutional filtering is:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{eqnarray*}
-g &amp;=&amp; h * f \\
-  &amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \\
-  &amp;=&amp; \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
-\end{eqnarray*}\]</div>
+\end{equation}</p>
+<p>The result <span class="math notranslate nohighlight">\(g\)</span> of convolutional filtering is:
+\begin{eqnarray*}
+g &amp;=&amp; h * f \
+&amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \
+&amp;=&amp; \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
+\end{eqnarray*}</p>
 <p><a id="1dextension"></a></p>
-</div>
-<div class="section" id="signal-extension-padding">
+</section>
+<section id="signal-extension-padding">
 <h3>Signal Extension (Padding)<a class="headerlink" href="#signal-extension-padding" title="Permalink to this headline">¶</a></h3>
 <p>As can be seen in the previous example the output of the filtering <span class="math notranslate nohighlight">\(g\)</span> is shorter than the input <span class="math notranslate nohighlight">\(f\)</span>. This is due to the fact that the first position, at which the scalar-product between the filter coefficients and the signal-values can be calculated, is not at the first position, but at the <span class="math notranslate nohighlight">\(p.th\)</span>, position of the signal, where</p>
 <div class="math notranslate nohighlight">
@@ -555,14 +543,13 @@ p=\lfloor \frac{a-1}{2} \rfloor
 \]</div>
 <p>See also <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">Scipy documentation</a></p>
 <p>With the extension option <strong>nearest</strong> the output of the example above is:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{eqnarray*}
-g &amp;=&amp; h * f \\
-  &amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \\
-  &amp;=&amp; \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
-\end{eqnarray*}\]</div>
-</div>
-<div class="section" id="implementation-of-1-dimensional-discrete-filtering">
+<p>\begin{eqnarray*}
+g &amp;=&amp; h * f \
+&amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \
+&amp;=&amp; \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
+\end{eqnarray*}</p>
+</section>
+<section id="implementation-of-1-dimensional-discrete-filtering">
 <h3>Implementation of 1-dimensional discrete filtering<a class="headerlink" href="#implementation-of-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p>In this subsection the already introduced example signal <span class="math notranslate nohighlight">\(f\)</span> is convolved with different filters <span class="math notranslate nohighlight">\(g\)</span>. The goals are</p>
 <ul class="simple">
@@ -574,8 +561,8 @@ g &amp;=&amp; h * f \\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -654,10 +641,10 @@ h=[1,0,-1].
 <img alt="../_images/02filtering_15_1.png" src="../_images/02filtering_15_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>2-dimensional Filtering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="dimensional-filtering-1">
+<h2>2-dimensional Filtering<a class="headerlink" href="#dimensional-filtering-1" title="Permalink to this headline">¶</a></h2>
 <p>The same concepts as introduced above for the 1-dimensional case can be applied for 2-dimensional signals and 2-dimensional filters.</p>
 <p><strong>Notation:</strong></p>
 <ul class="simple">
@@ -666,31 +653,28 @@ h=[1,0,-1].
 <li><p><span class="math notranslate nohighlight">\(G(i,j)\)</span> is the component in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the 2-dimensional diskret output signal</p></li>
 </ul>
 <p><strong>Correlation Filtering <span class="math notranslate nohighlight">\(G=H \circledast F\)</span></strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-eef72d35-8ac8-44b3-ada6-fd2604ae2537">
-<span class="eqno">(5)<a class="headerlink" href="#equation-eef72d35-8ac8-44b3-ada6-fd2604ae2537" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v) 
-\label{eq:2dimFilter} 
-\end{equation}\]</div>
+<p>\begin{equation}
+G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v)
+\label{eq:2dimFilter}
+\end{equation}</p>
 <p><strong>Convolution Filtering <span class="math notranslate nohighlight">\(G=H*F\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-75264aac-fd4d-451a-8f30-ca67ed5c34e3">
-<span class="eqno">(6)<a class="headerlink" href="#equation-75264aac-fd4d-451a-8f30-ca67ed5c34e3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
-\end{equation}\]</div>
-<div class="section" id="example-2-dimensional-discrete-filtering">
+\end{equation}</p>
+<section id="example-2-dimensional-discrete-filtering">
 <h3>Example 2-dimensional discrete filtering<a class="headerlink" href="#example-2-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p><strong>Without extension:</strong></p>
 <p>For the sake of clarity, in the picture below only the first and last positon are shown. However, the calculation of the 2-dimensional scalar-product between the filter-coefficients and the input-signal is performed at any possible shift of the filter within the image.</p>
-<a class="reference internal image-reference" href="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png"><img alt="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" style="width: 500px;" /></a>
-<p>For 2-dimensional filtering the same extension-options (padding) can be applied as mentioned in the <a class="reference external" href="#1dextension">1-dimensional case</a>.</p>
-</div>
-<div class="section" id="implementation-of-2-dimensional-discrete-filtering">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/ConvolutionConceptSmall.png" width="500" align="center"><p>For 2-dimensional filtering the same extension-options (padding) can be applied as mentioned in the <a class="reference external" href="#1dextension">1-dimensional case</a>.</p>
+</section>
+<section id="implementation-of-2-dimensional-discrete-filtering">
 <h3>Implementation of 2-dimensional discrete filtering<a class="headerlink" href="#implementation-of-2-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p>The required packages are again</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
@@ -786,142 +770,126 @@ G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
 <img alt="../_images/02filtering_30_1.png" src="../_images/02filtering_30_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="filters-for-edge-detection">
+</section>
+</section>
+<section id="filters-for-edge-detection">
 <h2>Filters for Edge Detection<a class="headerlink" href="#filters-for-edge-detection" title="Permalink to this headline">¶</a></h2>
 <p>The defining property of <strong>Edges</strong> are distinctive changes of pixel intensities. The change of values in a mathematical function <span class="math notranslate nohighlight">\(f(x)\)</span> is measured by the function’s 1st order derivative <span class="math notranslate nohighlight">\(f'(x)\)</span>. High positive values in <span class="math notranslate nohighlight">\(f'(x)\)</span> correspond to a strong increase of values in <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(f'(x)=0\)</span> indicates no change in the values of <span class="math notranslate nohighlight">\(f(x)\)</span>. This means that edges can be found by searching for the locations, where the 1st order derivative of an image has high absolut values.</p>
 <p>We start by recalling the definition of the 1st order derivative of uni- and bivariate functions:</p>
 <ul class="simple">
 <li><p>1-dimensional continuous function:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-9731a791-c02e-48a0-b11a-fa83d9582183">
-<span class="eqno">(7)<a class="headerlink" href="#equation-9731a791-c02e-48a0-b11a-fa83d9582183" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-f'(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon} 
-\end{equation}\]</div>
+<p>\begin{equation}
+f’(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon}
+\end{equation}</p>
 <ul class="simple">
 <li><p>1-dimensional discrete function:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-02231266-27b5-48f8-8dab-2ff241e6117c">
-<span class="eqno">(8)<a class="headerlink" href="#equation-02231266-27b5-48f8-8dab-2ff241e6117c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-f'(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
-\end{equation}\]</div>
+<p>\begin{equation}
+f’(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
+\end{equation}</p>
 <ul class="simple">
 <li><p>2-dimensional continuous function:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-2bf3dcae-aa44-4d2c-8b88-90da43411554">
-<span class="eqno">(9)<a class="headerlink" href="#equation-2bf3dcae-aa44-4d2c-8b88-90da43411554" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-\frac{\partial f(x,y)}{\partial x} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon} \\
+<p>\begin{eqnarray}
+\frac{\partial f(x,y)}{\partial x} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon} \
 \frac{\partial f(x,y)}{\partial y} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
-\end{eqnarray}\]</div>
+\end{eqnarray}</p>
 <ul class="simple">
 <li><p>2-dimensional discrete function (<strong>Image</strong>):</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-7493b6f6-8c05-4311-b707-6ff1b287f884">
-<span class="eqno">(10)<a class="headerlink" href="#equation-7493b6f6-8c05-4311-b707-6ff1b287f884" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
-\frac{\partial f(x,y)}{\partial x} &amp; \approx &amp; \frac{f(x+1,y)-f(x,y)}{1} \\
+<p>\begin{eqnarray}
+\frac{\partial f(x,y)}{\partial x} &amp; \approx &amp; \frac{f(x+1,y)-f(x,y)}{1} \
 \frac{\partial f(x,y)}{\partial y} &amp; \approx &amp; \frac{f(x,y+1)-f(x,y)}{1}
-\end{eqnarray}\]</div>
-<div class="section" id="filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal">
+\end{eqnarray}</p>
+<section id="filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal">
 <h3>Filter for calculating 1st order derivative of discrete 1-dimensional signal<a class="headerlink" href="#filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal" title="Permalink to this headline">¶</a></h3>
 <p>For a discrete 1-dimensional function the derivative is just the <strong>difference between two successive values</strong>. Calculating the difference of successive values in signal <span class="math notranslate nohighlight">\(f\)</span> can be realized by convolving the signal with the filter</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8986ba64-684b-4727-a2fa-3df7581fcf62">
-<span class="eqno">(11)<a class="headerlink" href="#equation-8986ba64-684b-4727-a2fa-3df7581fcf62" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 h=(1,-1)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>or better (due to symmetry)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a628012-bd58-4e90-b9b0-9f172a25fe41">
-<span class="eqno">(12)<a class="headerlink" href="#equation-1a628012-bd58-4e90-b9b0-9f172a25fe41" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 h=(1,0,-1)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The discrete derivative of <span class="math notranslate nohighlight">\(f\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69c228b2-deeb-4b5a-8a95-3ac3d083eead">
-<span class="eqno">(13)<a class="headerlink" href="#equation-69c228b2-deeb-4b5a-8a95-3ac3d083eead" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{\partial f}{\partial x}=h*f
-\end{equation}\]</div>
+\end{equation}</p>
 <p>This filter operation for calculating the 1st order derivative of a 1-dimensional signal has already be implemented <a class="reference external" href="#1dimgrad">above</a></p>
-</div>
-<div class="section" id="filters-for-calculating-1st-order-derivative-in-images">
+</section>
+<section id="filters-for-calculating-1st-order-derivative-in-images">
 <h3>Filters for calculating 1st order derivative in images<a class="headerlink" href="#filters-for-calculating-1st-order-derivative-in-images" title="Permalink to this headline">¶</a></h3>
 <p>Similar to the 1-dimensional case, for a 2-dimensional discrete signals <span class="math notranslate nohighlight">\(F\)</span> the <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(x\)</span></strong> is calculated as convolution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1bf7593a-53f0-4556-b272-5d5f1ea50fd4">
-<span class="eqno">(14)<a class="headerlink" href="#equation-1bf7593a-53f0-4556-b272-5d5f1ea50fd4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{\partial F}{\partial x}=H_x * F
-\end{equation}\]</div>
+\end{equation}</p>
 <p>with the derivative filter</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da23963a-d15c-4d33-9ac6-6ba5c001767b">
-<span class="eqno">(15)<a class="headerlink" href="#equation-da23963a-d15c-4d33-9ac6-6ba5c001767b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-H_x = \left[ 
+<p>\begin{equation}
+H_x = \left[
 \begin{array}{ccc}
-1 &amp; 0 &amp; -1 \\
-1 &amp; 0 &amp; -1 \\
-1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \
+1 &amp; 0 &amp; -1 \
+1 &amp; 0 &amp; -1 \
 \end{array}
 \right]
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(y\)</span></strong> is calculated as convolution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-559e6ed7-2843-4afd-bf33-d2d4c41b4597">
-<span class="eqno">(16)<a class="headerlink" href="#equation-559e6ed7-2843-4afd-bf33-d2d4c41b4597" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{\partial F}{\partial y}=H_y * F
-\end{equation}\]</div>
+\end{equation}</p>
 <p>with the derivative filter</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70b18a51-59ee-4767-90db-00bcf3075e42">
-<span class="eqno">(17)<a class="headerlink" href="#equation-70b18a51-59ee-4767-90db-00bcf3075e42" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-H_y = \left[ 
+<p>\begin{equation}
+H_y = \left[
 \begin{array}{ccc}
-1 &amp; 1 &amp; 1 \\
-0 &amp; 0 &amp; 0 \\
--1 &amp; -1 &amp; -1 \\
+1 &amp; 1 &amp; 1 \
+0 &amp; 0 &amp; 0 \
+-1 &amp; -1 &amp; -1 \
 \end{array}
 \right]
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The filter pair <span class="math notranslate nohighlight">\(H_x\)</span> and <span class="math notranslate nohighlight">\(H_y\)</span> as defined above is called <strong>Prewitt Filter</strong>.</p>
 <p>Another frequently applied filter for edge-detection is the <strong>Sobel Filter</strong>, which is defined by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3dd0e78-02ad-43cb-8ee3-b3416f3f1d29">
-<span class="eqno">(18)<a class="headerlink" href="#equation-d3dd0e78-02ad-43cb-8ee3-b3416f3f1d29" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-H_x = \left[ 
+<p>\begin{equation}
+H_x = \left[
 \begin{array}{ccc}
-1 &amp; 0 &amp; -1 \\
-2 &amp; 0 &amp; -2 \\
-1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \
+2 &amp; 0 &amp; -2 \
+1 &amp; 0 &amp; -1 \
 \end{array}
 \right] \quad \mbox{ and }
 H_y = \left[ \begin{array}{ccc}
-1 &amp; 2 &amp; 1 \\
-0 &amp; 0 &amp; 0 \\
--1 &amp; -2 &amp; -1 \\
+1 &amp; 2 &amp; 1 \
+0 &amp; 0 &amp; 0 \
+-1 &amp; -2 &amp; -1 \
 \end{array}
 \right]
-\end{equation}\]</div>
+\end{equation}</p>
 <p>There exists even more edge-detection filters, for example der derivatives of the Gaussian, which are introduced in the <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">next section</span></a>.</p>
 <p>For all of the edge detectors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37ed78c7-5522-4fe5-b0fd-535795b64153">
-<span class="eqno">(19)<a class="headerlink" href="#equation-37ed78c7-5522-4fe5-b0fd-535795b64153" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{\partial F}{\partial x}= H_x * F
 \quad \mbox{ and } \quad
 \frac{\partial F}{\partial y}= H_y * F
-\end{equation}\]</div>
+\end{equation}</p>
 <p>constitute the <strong>gradient of image <span class="math notranslate nohighlight">\(F\)</span></strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fc1eac3-d5b0-4c57-a6e7-476ab04d7e57">
-<span class="eqno">(20)<a class="headerlink" href="#equation-5fc1eac3-d5b0-4c57-a6e7-476ab04d7e57" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \nabla F = \left( \begin{array}{c}
-\frac{\partial F}{\partial x} \\
+\frac{\partial F}{\partial x} \
 \frac{\partial F}{\partial y}
 \end{array} \right)
-\end{equation}\]</div>
-<p>The magnitude of the gradient is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eef87eab-6551-4096-bc8e-54046d2a5442">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eef87eab-6551-4096-bc8e-54046d2a5442" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\end{equation}</p>
+<p>The magnitude of the gradient is
+\begin{equation}
 \Vert \nabla F \Vert = \sqrt{\left(\frac{\partial F}{\partial x}\right)^2 + \left(\frac{\partial F}{\partial y}\right)^2}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>and its direction is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-14572cdf-fb64-4d5a-8b9f-030655a1406b">
-<span class="eqno">(22)<a class="headerlink" href="#equation-14572cdf-fb64-4d5a-8b9f-030655a1406b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \theta = \arctan\left( \frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x}}\right)
-\end{equation}\]</div>
+\end{equation}</p>
 <p><strong>Edges</strong> are at the <strong>extremas</strong> of <span class="math notranslate nohighlight">\(\Vert \nabla F \Vert\)</span>.</p>
-</div>
-<div class="section" id="implementation-of-edge-detection-in-images">
+</section>
+<section id="implementation-of-edge-detection-in-images">
 <h3>Implementation of Edge Detection in Images<a class="headerlink" href="#implementation-of-edge-detection-in-images" title="Permalink to this headline">¶</a></h3>
 <p>The Prewitt filter for calculating the 1st order derivative of an image in x-direction is implemented as a 2-dimensional numpy-array</p>
 <div class="cell docutils container">
@@ -1033,8 +1001,8 @@ Filter Sobel-y:
 </div>
 </div>
 <p>Above different techniques to calculate the derivatives of a 2-dimensional input signal have been shown. Now, the 2-dimensional input signal is a real greyscale image. In order to determine the horizontal and vertical edges of the image a Sobel filter is applied - here the Sobel-filter provided by the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/ndimage.html">Scipy ndimage package</a>.</p>
-</div>
-<div class="section" id="read-rgb-image-and-convert-to-greyscale">
+</section>
+<section id="read-rgb-image-and-convert-to-greyscale">
 <h3>Read RGB image and convert to greyscale<a class="headerlink" href="#read-rgb-image-and-convert-to-greyscale" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1049,8 +1017,8 @@ Filter Sobel-y:
 <img alt="../_images/02filtering_47_0.png" src="../_images/02filtering_47_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="apply-sobel-filter-for-calculating-the-x-derivative-and-y-derivative">
+</section>
+<section id="apply-sobel-filter-for-calculating-the-x-derivative-and-y-derivative">
 <h3>Apply Sobel Filter for calculating the x-derivative and y-derivative<a class="headerlink" href="#apply-sobel-filter-for-calculating-the-x-derivative-and-y-derivative" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1099,18 +1067,18 @@ Filter Sobel-y:
 <img alt="../_images/02filtering_51_0.png" src="../_images/02filtering_51_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="template-matching">
+</section>
+</section>
+<section id="template-matching">
 <h2>Template Matching<a class="headerlink" href="#template-matching" title="Permalink to this headline">¶</a></h2>
 <p>Template matching is a technique to find patterns in an image. For this a filter is configured whose response is the pattern. This filter is correlated over the image. A high correlation value at a given position indicates a high probability for the pattern at this position.</p>
 <p><a class="reference external" href="http://scikit-image.org/">Scikits-Image</a> modules are applied in this excercise for importing the data, for template-matching and for indicating the positions where the pattern (template) is found in the image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from skimage import data</span>
-<span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="k">import</span> <span class="n">match_template</span>
-<span class="kn">from</span> <span class="nn">skimage.draw</span> <span class="k">import</span> <span class="n">circle</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">match_template</span>
+<span class="kn">from</span> <span class="nn">skimage.draw</span> <span class="kn">import</span> <span class="n">circle</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
@@ -1157,9 +1125,7 @@ Filter Sobel-y:
 285 430 [0.964]
 285 718 [0.95]
 285 992 [0.973]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>732 147 [0.954]
+732 147 [0.954]
 732 428 [0.971]
 </pre></div>
 </div>
@@ -1187,24 +1153,22 @@ Filter Sobel-y:
 <img alt="../_images/02filtering_61_0.png" src="../_images/02filtering_61_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="mathematical-properties-of-filters">
+</section>
+<section id="mathematical-properties-of-filters">
 <h2>Mathematical Properties of Filters<a class="headerlink" href="#mathematical-properties-of-filters" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p><strong>Shift Invariance:</strong> A filter is shift invariant, if it’s output depends only on the values in the relevant region, not on the position of the region.</p></li>
 <li><p><strong>Linear Filter</strong>, A filter is a linear filter, if and only if it fulfills the following two properties:</p>
 <ul>
 <li><p>Superposition</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ffbe94fe-3abc-48d6-a045-4984120538de">
-<span class="eqno">(23)<a class="headerlink" href="#equation-ffbe94fe-3abc-48d6-a045-4984120538de" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-        H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
-        \end{equation}\]</div>
+<p>\begin{equation}
+H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
+\end{equation}</p>
 </li>
 <li><p>Scaling</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c713772-228b-458b-ba15-9bfbbd93ebe2">
-<span class="eqno">(24)<a class="headerlink" href="#equation-9c713772-228b-458b-ba15-9bfbbd93ebe2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-        H \odot (k F) = k(H \odot F)
-        \end{equation}\]</div>
+<p>\begin{equation}
+H \odot (k F) = k(H \odot F)
+\end{equation}</p>
 </li>
 </ul>
 </li>
@@ -1231,24 +1195,22 @@ H * \delta = H, \mbox{ where }  \delta \mbox{ is the unit impulse } \delta=\left
 <ul class="simple">
 <li><p>Differentiation:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-c7ed0c61-dbc9-42d9-82af-79d08e0b97fa">
-<span class="eqno">(25)<a class="headerlink" href="#equation-c7ed0c61-dbc9-42d9-82af-79d08e0b97fa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 \frac{\partial}{\partial x}(H*G) = \frac{\partial H}{\partial x} *G
-\end{equation}\]</div>
+\end{equation}</p>
 <ul class="simple">
-<li><p><strong>Fourier Transform:</strong></p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight" id="equation-c01dc930-d871-4adb-b372-cc49f14cdc65">
-<span class="eqno">(26)<a class="headerlink" href="#equation-c01dc930-d871-4adb-b372-cc49f14cdc65" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<li><p><strong>Fourier Transform:</strong>
+\begin{equation}
 \mathcal{F}(H*G)=\mathcal{F}(H)\cdot \mathcal{F}(G)
-\end{equation}\]</div>
+\end{equation}</p></li>
+</ul>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
 <li><p>Averaging Filter (=Uniform Filter) and Gaussian Filter can be described as convolution. Thus they are linear and shift invariant.</p></li>
 <li><p>The Median Filter (next subsection) can not be described as convolution and is not linear.</p></li>
 </ul>
-</div>
-<div class="section" id="median-filter">
+</section>
+<section id="median-filter">
 <h2>Median Filter<a class="headerlink" href="#median-filter" title="Permalink to this headline">¶</a></h2>
 <p>A median filter can not be described by convolution. As mentioned above, it is not a linear-filter. The median filter <span class="math notranslate nohighlight">\(H_k\)</span> of half-width <span class="math notranslate nohighlight">\(k\)</span> calculates it’s output <span class="math notranslate nohighlight">\(G(i,j)\)</span> from the Input <span class="math notranslate nohighlight">\(F\)</span> as follows:</p>
 <ol class="simple">
@@ -1262,7 +1224,7 @@ F[i-k:i+k,j-k:j+k]
 <li><p>Then the filter output <span class="math notranslate nohighlight">\(G(i,j)\)</span> is the value, which is in the center of the ordered list.</p></li>
 </ol>
 <p><strong>Example:</strong></p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/medianFilter.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/medianFilter.png" />
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/medianFilter.png" style="width:500px" align="center">
 <p>Important features of the Median Filter are:</p>
 <ul class="simple">
 <li><p>No new pixel values</p></li>
@@ -1270,8 +1232,8 @@ F[i-k:i+k,j-k:j+k]
 <li><p>Removes spikes (Salt and Pepper Noise)</p></li>
 </ul>
 <p>The application of the Median Filter on images, disturbed by Salt-and-Pepper Noise is shown in <a class="reference internal" href="06GaussianNoiseReduction.html"><span class="doc std std-doc">this section</span></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1295,15 +1257,15 @@ F[i-k:i+k,j-k:j+k]
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="01accessImage.html" title="previous page">Basic Image Access Operations</a>
     <a class='right-next' id="next-link" href="04gaussianDerivatives.html" title="next page">Gaussian Filter and Derivatives of Gaussian</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1311,7 +1273,7 @@ F[i-k:i+k,j-k:j+k]
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -1320,11 +1282,9 @@ F[i-k:i+k,j-k:j+k]
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Similarity Measures &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Histogram-based Image Retrieval" href="ImageRetrieval.html" />
     <link rel="prev" title="Global Image Features" href="globalDescriptors.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../preprocessing/01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#similarity-and-distance">
    Similarity and Distance
@@ -435,8 +429,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -444,7 +438,7 @@
         
               <div>
                 
-  <div class="section" id="similarity-measures">
+  <section id="similarity-measures">
 <h1>Similarity Measures<a class="headerlink" href="#similarity-measures" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -478,7 +472,7 @@ v3 =  [7 5 1 1 1 1 1 1]
 <p>The 3 vectors are visualized below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">v1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -497,7 +491,7 @@ v3 =  [7 5 1 1 1 1 1 1]
 <img alt="../_images/similarityMetrics_5_0.png" src="../_images/similarityMetrics_5_0.png" />
 </div>
 </div>
-<div class="section" id="similarity-and-distance">
+<section id="similarity-and-distance">
 <h2>Similarity and Distance<a class="headerlink" href="#similarity-and-distance" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>similarity</strong> between a pair of vectors <span class="math notranslate nohighlight">\(\mathbf{u}=(u_0,u_1,\ldots,u_{N-1})\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}=(v_0,v_1,\ldots,v_{N-1})\)</span>, each of length <span class="math notranslate nohighlight">\(N\)</span>, is denoted by</p>
 <div class="math notranslate nohighlight">
@@ -508,37 +502,33 @@ v3 =  [7 5 1 1 1 1 1 1]
 <p>Distance and similarity are inverse to each other, i.e. the higher the distance the lower the similarity between anc vice versa. Below the most important distance- and similarity-measures are described. Some of them are primarily defined as distance-metric (e.g. euclidean distance) and a transformation-function can be applied to compute the associated similarity. Others are primarily defined as similarity-metric (e.g. cosine similarity) and a transformation function can be applied to compute the associated distance.</p>
 <p>In the context of this section vectors represent Histograms. However, the distance metrics described below can be applied for arbitrary numeric vectors.</p>
 <p>We denote by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05f6253d-a4da-442a-a88d-241cdaf52ca9">
-<span class="eqno">(42)<a class="headerlink" href="#equation-05f6253d-a4da-442a-a88d-241cdaf52ca9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 H_q = \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(N) \right)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>the N-bin histogram of an image(-region) <span class="math notranslate nohighlight">\(q\)</span>. The value <span class="math notranslate nohighlight">\(H_q(i)\)</span> is the frequency of the values in <span class="math notranslate nohighlight">\(q\)</span>, which fall into the <span class="math notranslate nohighlight">\(i.th\)</span> bin.</p>
 <p><strong>Normalized Histogram:</strong></p>
 <p>A normalized representation <span class="math notranslate nohighlight">\(H^n_q\)</span> of histogram <span class="math notranslate nohighlight">\(H_q\)</span> can be obtained as follows:</p>
 <div class="math notranslate nohighlight" id="equation-normalizehist">
-<span class="eqno">(43)<a class="headerlink" href="#equation-normalizehist" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(2)<a class="headerlink" href="#equation-normalizehist" title="Permalink to this equation">¶</a></span>\[
 H^n_q := \frac{1}{m_q} \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(Z) \right),
 \]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3aead6cb-e408-4770-b751-870f9cf73928">
-<span class="eqno">(44)<a class="headerlink" href="#equation-3aead6cb-e408-4770-b751-870f9cf73928" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 m_q=\sum\limits_{i=1}^Z H_q(i)
-\end{equation}\]</div>
-</div>
-<div class="section" id="common-distance-and-similarity-metrics">
+\end{equation}</p>
+</section>
+<section id="common-distance-and-similarity-metrics">
 <h2>Common Distance- and Similarity Metrics<a class="headerlink" href="#common-distance-and-similarity-metrics" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="euclidean-distance">
+<section id="euclidean-distance">
 <h3>Euclidean Distance<a class="headerlink" href="#euclidean-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Euclidean distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b5bff152-1a79-4b29-82c6-a98020f6cfb0">
-<span class="eqno">(45)<a class="headerlink" href="#equation-b5bff152-1a79-4b29-82c6-a98020f6cfb0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_E(H_q,H_p)=\sqrt{\sum_i (H_q(i)-H_p(i))^2}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd390bf1-95ff-4aba-891b-843441067bfc">
-<span class="eqno">(46)<a class="headerlink" href="#equation-cd390bf1-95ff-4aba-891b-843441067bfc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
-\end{equation}\]</div>
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
 <p>Characteristics of the Euclidean distance <span class="math notranslate nohighlight">\(d_E(H_q,H_p)\)</span> are:</p>
 <ul class="simple">
@@ -547,33 +537,30 @@ s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
 <li><p>Strong impact of outliers</p></li>
 <li><p><em>Bin-by-Bin comparison</em>. Drawback: If two images are identical up to a small brightness change, then the histograms look similar up to a small shift along the x-axis (see <span class="math notranslate nohighlight">\(v1\)</span> and <span class="math notranslate nohighlight">\(v2\)</span> in the example above). However, such a type of similarity can not be measured by a Bin-by-Bin metric.</p></li>
 </ul>
-</div>
-<div class="section" id="cosine-similarity">
+</section>
+<section id="cosine-similarity">
 <h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h3>
 <p>The Cosine similarity between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ca6132b-560b-48f2-9762-a17064ec96f1">
-<span class="eqno">(47)<a class="headerlink" href="#equation-3ca6132b-560b-48f2-9762-a17064ec96f1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_C(H_q,H_p)= \frac{\sum_i H_q(i)\cdot H_p(i)}{\sqrt{\sum_i H_q(i)^2 \cdot \sum_i H_p(i)^2}},
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The corresponding distance measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d14417a-5f01-4b75-895f-6b030d1f7740">
-<span class="eqno">(48)<a class="headerlink" href="#equation-7d14417a-5f01-4b75-895f-6b030d1f7740" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_C(H_q,H_p)=1-s_C(H_q,H_p)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Characteristics of the Cosine similarity <span class="math notranslate nohighlight">\(s_C(H_q,H_p)\)</span>:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([-1,1]\)</span></p></li>
 <li><p>Bin-by-bin comparison</p></li>
 <li><p>Regards the angle between vectors. Two vectors are maximal similar, if they point to the same direction (the angle between them is 0°).</p></li>
 </ul>
-</div>
-<div class="section" id="pearson-correlation">
+</section>
+<section id="pearson-correlation">
 <h3>Pearson Correlation<a class="headerlink" href="#pearson-correlation" title="Permalink to this headline">¶</a></h3>
 <p>The Pearson correlation (similarity measure) between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38597212-ca49-49e8-9d5f-b63be9c620bb">
-<span class="eqno">(49)<a class="headerlink" href="#equation-38597212-ca49-49e8-9d5f-b63be9c620bb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q(i)-\mu_q)^2 \cdot \sum_i (H_p(i)-\mu_p)^2}},
-\end{equation}\]</div>
+\end{equation}</p>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[
@@ -581,29 +568,26 @@ s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q
 \]</div>
 <p>is the mean value over all bins in <span class="math notranslate nohighlight">\(H_q\)</span>.</p>
 <p>The corresponding distance measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72f95a9f-2f10-4be2-8ccc-39bab671b1a0">
-<span class="eqno">(50)<a class="headerlink" href="#equation-72f95a9f-2f10-4be2-8ccc-39bab671b1a0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_P(H_q,H_p)=1-s_P(H_q,H_p)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Characteristics of the Pearson correlation <span class="math notranslate nohighlight">\(s_P(H_q,H_p)\)</span>:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([-1,1]\)</span></p></li>
 <li><p>Bin-by-bin comparison</p></li>
 <li><p>Ignores different offsets and is an measure for linearity</p></li>
 </ul>
-</div>
-<div class="section" id="bray-curtis-distance">
+</section>
+<section id="bray-curtis-distance">
 <h3>Bray-Curtis Distance<a class="headerlink" href="#bray-curtis-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Bray-Curtis distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab925182-25b3-4778-98c6-0c20731d084d">
-<span class="eqno">(51)<a class="headerlink" href="#equation-ab925182-25b3-4778-98c6-0c20731d084d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_{BC}(H_q,H_p)=\frac{\sum_i |H_q(i)-H_p(i)|}{\sum_i|H_q(i)+H_p(i)|}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ab0f402-d176-490c-becb-d016589d6bc9">
-<span class="eqno">(52)<a class="headerlink" href="#equation-7ab0f402-d176-490c-becb-d016589d6bc9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Characteristics:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([0,1]\)</span> for positive signals as in the case of histograms</p></li>
@@ -611,33 +595,30 @@ s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
 <li><p>More robust w.r.t. outliers than euclidean distance</p></li>
 <li><p>Each bin difference is weighted equally</p></li>
 </ul>
-</div>
-<div class="section" id="canberra-distance">
+</section>
+<section id="canberra-distance">
 <h3>Canberra Distance<a class="headerlink" href="#canberra-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Canberra distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-432d8b65-dc0c-43a1-9a67-1ecc5cf224a6">
-<span class="eqno">(53)<a class="headerlink" href="#equation-432d8b65-dc0c-43a1-9a67-1ecc5cf224a6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_{Ca}(H_q,H_p)=\sum_i\frac{|H_q(i)-H_p(i)|}{|H_q(i)|+|H_p(i)|}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-892502a3-6b05-497a-b698-e8c82215ea7c">
-<span class="eqno">(54)<a class="headerlink" href="#equation-892502a3-6b05-497a-b698-e8c82215ea7c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_{Ca}(H_q,H_p)=1-d_{Ca}(H_q,H_p)
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Characteristics:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([0,1]\)</span></p></li>
 <li><p>Bin-by-bin comparison</p></li>
 <li><p>Compared to Bray-Curtis now each bin difference is weighted individually.</p></li>
 </ul>
-</div>
-<div class="section" id="bhattacharyya-distance">
+</section>
+<section id="bhattacharyya-distance">
 <h3>Bhattacharyya Distance<a class="headerlink" href="#bhattacharyya-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Bhattacharyya distance between two normalized histograms <span class="math notranslate nohighlight">\(H^n_q\)</span> and <span class="math notranslate nohighlight">\(H^n_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e24baa63-882c-470e-b868-934d45bf1929">
-<span class="eqno">(55)<a class="headerlink" href="#equation-e24baa63-882c-470e-b868-934d45bf1929" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>Characteristics:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([0,1]\)</span></p></li>
@@ -645,19 +626,17 @@ d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
 <li><p>Requires normalized inputs</p></li>
 <li><p>Statistically motivated for measuring similarity between probability distributions. Here applied for the univariate case, but also applicable for multivariate distributions.</p></li>
 </ul>
-</div>
-<div class="section" id="chi-square-distance">
+</section>
+<section id="chi-square-distance">
 <h3>Chi-Square Distance<a class="headerlink" href="#chi-square-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Chi-Square (<span class="math notranslate nohighlight">\(\chi^2\)</span>) distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b014ff7-2564-4cb9-bc59-74d7df6e2a51">
-<span class="eqno">(56)<a class="headerlink" href="#equation-5b014ff7-2564-4cb9-bc59-74d7df6e2a51" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_{\chi^2}(H_q,H_p)=\sum_i \frac{(H_q(i)-H_p(i))^2}{H_q(i)+H_p(i)}
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-40aca109-fb5a-462b-8ba7-0122d4311305">
-<span class="eqno">(57)<a class="headerlink" href="#equation-40aca109-fb5a-462b-8ba7-0122d4311305" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
-\end{equation}\]</div>
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
 <p>Characteristics:</p>
 <ul class="simple">
@@ -666,19 +645,17 @@ s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
 <li><p>Each bin is weighted individually</p></li>
 <li><p>Statistically motivated for measuring similarity between probability distributions. Here applied for the univariate case, but also applicable for multivariate distributions.</p></li>
 </ul>
-</div>
-<div class="section" id="intersection-distance">
+</section>
+<section id="intersection-distance">
 <h3>Intersection Distance<a class="headerlink" href="#intersection-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Intersection distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fc8537cb-b229-4987-9eb5-4c951984b6fc">
-<span class="eqno">(58)<a class="headerlink" href="#equation-fc8537cb-b229-4987-9eb5-4c951984b6fc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 d_{IS}(H_q,H_p)=\sum_i \min(H_q(i),H_p(i))
-\end{equation}\]</div>
+\end{equation}</p>
 <p>The corresponding similarity measure is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f19d82d1-33c7-4504-9f64-162867da1faa">
-<span class="eqno">(59)<a class="headerlink" href="#equation-f19d82d1-33c7-4504-9f64-162867da1faa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>\begin{equation}
 s_{IS}(H_q,H_p)=\frac{1}{d_{IS}(H_q,H_p)+\epsilon},
-\end{equation}\]</div>
+\end{equation}</p>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
 <p>Characteristics:</p>
 <ul class="simple">
@@ -686,42 +663,41 @@ s_{IS}(H_q,H_p)=\frac{1}{d_{IS}(H_q,H_p)+\epsilon},
 <li><p>Value range is <span class="math notranslate nohighlight">\([0,\infty]\)</span></p></li>
 <li><p>Bin-by-bin comparison</p></li>
 <li><p>Measures intersection of both histograms</p></li>
-<li><p>Introduced in <a class="bibtex reference internal" href="../referenceSection.html#swainballard" id="id1">[SB91]</a> for color histogram comparison</p></li>
+<li><p>Introduced in <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-19">SB91</a>]</span> for color histogram comparison</p></li>
 </ul>
-</div>
-<div class="section" id="earth-mover-distance-wasserstein-distance">
+</section>
+<section id="earth-mover-distance-wasserstein-distance">
 <h3>Earth Mover Distance (Wasserstein Distance)<a class="headerlink" href="#earth-mover-distance-wasserstein-distance" title="Permalink to this headline">¶</a></h3>
 <p>All of the distance measures introduced so far, ingore shift-similarity. Shift-similar means, that one histogram is the shifted version of the other. This is actually the case for vectors <span class="math notranslate nohighlight">\(v1\)</span> and <span class="math notranslate nohighlight">\(v2\)</span> in the example above. The previously defined distance measure compare bin-by-bin. Therefore, they are not able to detect the shift-similarity.</p>
-<p>The Earth Mover Distance (EMD) has been introduced in <a class="bibtex reference internal" href="../referenceSection.html#rubner" id="id2">[RubnerTomasiGuibas98]</a>. It’s not a bin-by-bin similarity measure and it is capable to detect shift-similarity. The drawback of the EMD is that it is quite complex to calculate.</p>
+<p>The Earth Mover Distance (EMD) has been introduced in <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-20">RubnerTomasiGuibas98</a>]</span>. It’s not a bin-by-bin similarity measure and it is capable to detect shift-similarity. The drawback of the EMD is that it is quite complex to calculate.</p>
 <p>The EMD between two histograms measures the amount of work, which is necessary to transform one histogram to the other, where work is the product of</p>
 <div class="math notranslate nohighlight">
 \[
 \mbox{amount of pieces that must be shifted} \cdot \mbox{distance of corresponding shift}. 
 \]</div>
 <p>The idea is sketched in the pictures below:</p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/emdAll.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/emdAll.png" />
-<p>The EMD requires the two histograms to be normalized, i.e. both histograms contain the equal amount of <em>earth</em>.</p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/emdAll.png" style="width:600px" align="center"><p>The EMD requires the two histograms to be normalized, i.e. both histograms contain the equal amount of <em>earth</em>.</p>
 <div class="math notranslate nohighlight">
 \[
 Work  =  \sum (\mbox{ distance moved }) \cdot  (\mbox{ amount moved })
 \]</div>
 <div class="math notranslate nohighlight" id="equation-work">
-<span class="eqno">(60)<a class="headerlink" href="#equation-work" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(3)<a class="headerlink" href="#equation-work" title="Permalink to this equation">¶</a></span>\[
 Work  =  \sum\limits_{a=1}^m \sum\limits_{b=1}^n d_{a,b} \cdot  f_{a,b}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is the number of bins in histogram <span class="math notranslate nohighlight">\(H_p\)</span> and <span class="math notranslate nohighlight">\(n\)</span> is the number of bins in histogram <span class="math notranslate nohighlight">\(H_q\)</span>.</p>
 <p>The Earth Mover Distance <span class="math notranslate nohighlight">\(d_{emd}(H_q,H_p)\)</span> between histogram <span class="math notranslate nohighlight">\(H_q\)</span> and histogram <span class="math notranslate nohighlight">\(H_p\)</span> is the minimum possible amount of work, required to convert <span class="math notranslate nohighlight">\(H_p\)</span> into <span class="math notranslate nohighlight">\(H_q\)</span>, divided by the sum over all <span class="math notranslate nohighlight">\(f_{a,b}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-worknormalized">
-<span class="eqno">(61)<a class="headerlink" href="#equation-worknormalized" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(4)<a class="headerlink" href="#equation-worknormalized" title="Permalink to this equation">¶</a></span>\[
 Work  =  \frac{\sum\limits_{a=1}^m \sum\limits_{b=1}^n d_{a,b} \cdot  f_{a,b}}{\sum\limits_{a=1}^m \sum\limits_{b=1}^n  f_{a,b}}
 \]</div>
 <p>The EMD is also called Wasserstein-Distance (see <a class="reference external" href="https://en.wikipedia.org/wiki/Wasserstein_metric">Wikipedia</a>). A nice example for calculating the EMD between two 2-dimensional distributions can be found <a class="reference external" href="https://jamesmccaffrey.wordpress.com/2018/03/05/earth-mover-distance-wasserstein-metric-example-calculation/">here</a>.</p>
-<div class="section" id="calculation-of-emd-wasserstein-distance-with-scipy">
+<section id="calculation-of-emd-wasserstein-distance-with-scipy">
 <h4>Calculation of EMD (Wasserstein-Distance) with scipy<a class="headerlink" href="#calculation-of-emd-wasserstein-distance-with-scipy" title="Permalink to this headline">¶</a></h4>
 <p>In order to calculate the Wasserstein-distance the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wasserstein_distance.html">scipy method <em>wasserstein_distance</em></a> can be applied. This function calculates a variant of the EMD by:</p>
 <ol class="simple">
-<li><p>The histograms are internally normalized, such that in both histograms the sum over all bins is 1 (like in equation <a class="reference internal" href="#equation-normalizehist">(43)</a> ).</p></li>
-<li><p>Work is calculated as in equation <a class="reference internal" href="#equation-work">(60)</a>, i.e. not normalized like in <a class="reference internal" href="#equation-worknormalized">(61)</a>.</p></li>
+<li><p>The histograms are internally normalized, such that in both histograms the sum over all bins is 1 (like in equation <a class="reference internal" href="#equation-normalizehist">(2)</a> ).</p></li>
+<li><p>Work is calculated as in equation <a class="reference internal" href="#equation-work">(3)</a>, i.e. not normalized like in <a class="reference internal" href="#equation-worknormalized">(4)</a>.</p></li>
 </ol>
 <p>Below, we apply this scipy-method to calculate the Wasserstein-distance between <span class="math notranslate nohighlight">\(v1\)</span>, <span class="math notranslate nohighlight">\(v2\)</span> and <span class="math notranslate nohighlight">\(v3\)</span>:</p>
 <div class="cell docutils container">
@@ -764,7 +740,7 @@ v3 =  [7 5 1 1 1 1 1 1]
 <p>Then the pairwise Wasserstein-distances between <span class="math notranslate nohighlight">\(v1\)</span>, <span class="math notranslate nohighlight">\(v2\)</span> and <span class="math notranslate nohighlight">\(v3\)</span> can be calculated as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">wasserstein_distance</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">wasserstein_distance</span>
 </pre></div>
 </div>
 </div>
@@ -831,10 +807,10 @@ Wasserstein distance between v2 and v3 : 2.222
 \[
 \frac{4}{18} \cdot 1 + \frac{6}{18} \cdot 1 = \frac{10}{18} = 0.555
 \]</div>
-</div>
-</div>
-</div>
-<div class="section" id="application-of-different-distance-metrics">
+</section>
+</section>
+</section>
+<section id="application-of-different-distance-metrics">
 <h2>Application of different Distance Metrics<a class="headerlink" href="#application-of-different-distance-metrics" title="Permalink to this headline">¶</a></h2>
 <p>Below, we will apply all the distance measures introduced above on the pairwise similarity determination between our example-vectors vectors <span class="math notranslate nohighlight">\(v1\)</span>, <span class="math notranslate nohighlight">\(v2\)</span> and <span class="math notranslate nohighlight">\(v3\)</span>.</p>
 <p>The <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/spatial.distance.html">Scipy package spatial.distance</a> contains methods for calculating the euclidean-, Pearson-Correlation-, Canberra- and Bray-Curtis-distance. As already mentioned the EMD distance is implemented as <em>wasserstein_distance()</em> in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wasserstein_distance.html">scipy.stats</a>. The remaining distance measures as well as a corresponding normalization function are defined in this python program.</p>
@@ -870,8 +846,8 @@ Wasserstein distance between v2 and v3 : 2.222
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">wasserstein_distance</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">wasserstein_distance</span>
 </pre></div>
 </div>
 </div>
@@ -988,8 +964,8 @@ Wasserstein distance between v2 and v3 : 2.222
 <p>The absolute distance values of different distance-measures can not be compared. But we can analyse the for each distance measure the relative distances.</p>
 <p>As can be seen all distance measures, except EMD, calculate the same distance between <span class="math notranslate nohighlight">\(v1\)</span> and <span class="math notranslate nohighlight">\(v2\)</span> as between <span class="math notranslate nohighlight">\(v2\)</span> and <span class="math notranslate nohighlight">\(v3\)</span>. This is because these distance measures perform a bin-by-bin comparison, and these bin-by-bin comparisons are identical for both vector-pairs. Moreover, all metrics except EMD, find that <span class="math notranslate nohighlight">\(v1\)</span> is closer to <span class="math notranslate nohighlight">\(v3\)</span> than to <span class="math notranslate nohighlight">\(v2\)</span>. This contradicts the subjective assessment, because subjectively one would say <span class="math notranslate nohighlight">\(v2\)</span> is closer to <span class="math notranslate nohighlight">\(v1\)</span>, because <span class="math notranslate nohighlight">\(v2\)</span> is just a one-step-right-shift of <span class="math notranslate nohighlight">\(v1\)</span>.</p>
 <p>As will be demonstrated in the <span class="xref myst">next section</span>, the performance of, e.g. a CBIR system, strongly depends on the choice of the distance metric. The question on which metric will perform best in a given task and given data can not be determined in advance, it must be determined empirically.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1013,15 +989,15 @@ Wasserstein distance between v2 and v3 : 2.222
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="globalDescriptors.html" title="previous page">Global Image Features</a>
     <a class='right-next' id="next-link" href="ImageRetrieval.html" title="next page">Histogram-based Image Retrieval</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -1029,7 +1005,7 @@ Wasserstein distance between v2 and v3 : 2.222
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -1038,11 +1014,9 @@ Wasserstein distance between v2 and v3 : 2.222
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

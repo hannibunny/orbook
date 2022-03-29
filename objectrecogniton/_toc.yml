@@ -1,9 +1,7 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-
-- file: intro
-
-- part: Image Processing
+format: jb-book
+root: intro
+parts:
+- caption: Image Processing
   chapters:
   - file: preprocessing/01accessImage
   - file: preprocessing/02filtering
@@ -11,8 +9,7 @@
   - file: preprocessing/03LowPassFilter
   - file: preprocessing/06GaussianNoiseReduction
   - file: preprocessing/05GaussianLowPassFilter
-
-- part: Features
+- caption: Features
   chapters:
   - file: features/globalDescriptors
   - file: features/similarityMetrics
@@ -25,32 +22,22 @@
   - file: features/siftDescriptorCV2
   - file: features/HoGfeatures
   - file: features/HOGpedestrianDetection
-
-- part: Object Recognition
+- caption: Object Recognition
   chapters:
   - file: recognition/objectrecognition
-
-- part: Deep Learning
+- caption: Deep Learning
   chapters:
   - file: deeplearning/ConvolutionNeuralNetworks
   - file: deeplearning/convolutionDemos
   - file: deeplearning/cnns
   - file: deeplearning/detection
-
-- part: Face Detection and Recognition
+- caption: Face Detection and Recognition
   chapters:
   - file: face/faceDetection
   - file: face/faceRecognition
-
-- part: Pose Estimation
+- caption: Pose Estimation
   chapters:
   - file: poseEstimation/Pose_Estimation
-
-
-- part: References
+- caption: References
   chapters:
-  - file: referenceSection 
-
-#- part: Global, Local and Subspace Features
-#  chapters:
-#  - file: 
+  - file: referenceSection

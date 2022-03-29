@@ -4,10 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Gaussian and Difference of Gaussian Pyramid &#8212; Object Recognition Lecture</title>
     
-  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +21,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +42,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -58,14 +56,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Global Image Features" href="../features/globalDescriptors.html" />
     <link rel="prev" title="Noise Suppression" href="06GaussianNoiseReduction.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -74,32 +72,32 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/hdmlogomed.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Object Recognition Lecture</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Intro and Overview Object Recognition Lecture
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Image Processing
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01accessImage.html">
    Basic Image Access Operations
@@ -131,12 +129,12 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Features
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../features/globalDescriptors.html">
    Global Image Features
@@ -150,11 +148,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../features/ImageRetrieval.html">
    Histogram-based Image Retrieval
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../features/ImageRetrieval.html#use-pretrained-cnns-for-retrieval">
-   Use pretrained CNNs for Retrieval
   </a>
  </li>
  <li class="toctree-l1">
@@ -198,24 +191,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Object Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../recognition/objectrecognition.html">
    Object Recognition
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Deep Learning
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/ConvolutionNeuralNetworks.html">
    Convolutional Neural Networks
@@ -223,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Animations of Convolution and Deconvolution
+   Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,16 +226,16 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/detection.html">
-   Object Detection and Localisation
+   Object Detection
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Face Detection and Recognition
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../face/faceDetection.html">
    Face Detection
@@ -254,24 +247,24 @@
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   Pose Estimation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../poseEstimation/Pose_Estimation.html">
    Multi-Person 2D Pose Estimation using Part Affinity Fields
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p>
  <span class="caption-text">
   References
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../referenceSection.html">
    References
@@ -279,6 +272,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -294,21 +288,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -326,16 +320,16 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -354,16 +348,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
    Spectrum of 1-dimensional Gaussian and Difference Of Gaussian Filter
@@ -376,8 +370,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -385,7 +379,7 @@
         
               <div>
                 
-  <div class="section" id="gaussian-and-difference-of-gaussian-pyramid">
+  <section id="gaussian-and-difference-of-gaussian-pyramid">
 <h1>Gaussian and Difference of Gaussian Pyramid<a class="headerlink" href="#gaussian-and-difference-of-gaussian-pyramid" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
@@ -399,17 +393,17 @@
 <li><p>Downsample the smoothed <span class="math notranslate nohighlight">\(G_l\)</span> by a factor of 2. The result is <span class="math notranslate nohighlight">\(G_{l+1}\)</span></p></li>
 <li><p>Set <span class="math notranslate nohighlight">\(l=l+1\)</span> and continue with step 2 until <span class="math notranslate nohighlight">\(G_l\)</span> contains only a single pixel</p></li>
 </ol>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" />
-<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id1">[Sze10]</a></em></p>
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/pyramideGauss.png" style="width:600px" align="center">
+<p><em>Image Source: <span id="pending-xref-1">[<a class="reference internal" href="../referenceSection.html#citation-48">Sze10</a>]</span></em></p>
 <p>In the Gaussian pyramid in each level the input image is <strong>low pass filtered</strong>. Thus in each level finer structures (higher frequencies) are filtered out. At high levels <span class="math notranslate nohighlight">\(l\)</span> only coarse structures (<strong>low frequencies</strong>) are represented in <span class="math notranslate nohighlight">\(G_l\)</span>. The Difference at level <span class="math notranslate nohighlight">\(l\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 D_l=G_l-G_{l+1}^{\uparrow}
 \]</div>
 <p>represents the high frequencies which are filtered out in level <span class="math notranslate nohighlight">\(l\)</span>, where <span class="math notranslate nohighlight">\(G_{l+1}^{\uparrow}\)</span> is the upsampled (interpolated) version of <span class="math notranslate nohighlight">\(G_{l+1}\)</span>. The pyramide of all <span class="math notranslate nohighlight">\(D_l\)</span> constitute the <strong>Laplacian Pyramid.</strong></p>
-<img alt="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" class="align-center" src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" />
-<p><em>Image Source: <a class="bibtex reference internal" href="../referenceSection.html#szeliski10" id="id2">[Sze10]</a></em></p>
-<div class="section" id="spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
+<img src="https://maucher.home.hdm-stuttgart.de/Pics/szeBandpass.JPG" style="width:600px" align="center">
+<p><em>Image Source: <span id="pending-xref-2">[<a class="reference internal" href="../referenceSection.html#citation-48">Sze10</a>]</span></em></p>
+<section id="spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter">
 <h2>Spectrum of 1-dimensional Gaussian and Difference Of Gaussian Filter<a class="headerlink" href="#spectrum-of-1-dimensional-gaussian-and-difference-of-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>Below the spectrum of</p>
 <ul class="simple">
@@ -420,9 +414,9 @@ D_l=G_l-G_{l+1}^{\uparrow}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sci</span>
+<span class="kn">import</span> <span class="nn">scipy.fft</span> <span class="k">as</span> <span class="nn">sf</span>
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span> <span class="k">as</span> <span class="nn">ndi</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -444,7 +438,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
  <span class="n">frq</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="n">T</span> <span class="c1"># two sides frequency range</span>
  <span class="n">frq</span> <span class="o">=</span> <span class="n">frq</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span> <span class="c1"># one side frequency range</span>
 
- <span class="n">Y</span> <span class="o">=</span> <span class="n">sci</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1"># fft computing and normalization</span>
+ <span class="n">Y</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1"># fft computing and normalization</span>
  <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span>
 
  <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">frq</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plotting the spectrum</span>
@@ -520,15 +514,22 @@ D_l=G_l-G_{l+1}^{\uparrow}
 <img alt="../_images/05GaussianLowPassFilter_13_0.png" src="../_images/05GaussianLowPassFilter_13_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="gaussian-pyramide-and-laplacian-pyramide-of-images">
+</section>
+<section id="gaussian-pyramide-and-laplacian-pyramide-of-images">
 <h2>Gaussian Pyramide and Laplacian Pyramide of Images<a class="headerlink" href="#gaussian-pyramide-and-laplacian-pyramide-of-images" title="Permalink to this headline">¶</a></h2>
 <p>Below the Gaussian- and the Laplacian Pyramide of a given image is calculated and visualized. For the calculations of the pyramids the functions <code class="docutils literal notranslate"><span class="pre">pyramid_gaussian()</span></code> and <code class="docutils literal notranslate"><span class="pre">pyramid_laplacian()</span></code> from <a class="reference external" href="https://scikit-image.org/docs/0.7.0/api/skimage.transform.pyramids.html#skimage.transform.pyramids.pyramid_laplacian">scikit-image</a> are applied.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.transform.pyramids</span> <span class="k">import</span> <span class="n">pyramid_gaussian</span><span class="p">,</span> <span class="n">pyramid_laplacian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!conda install -y scikit-image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.transform.pyramids</span> <span class="kn">import</span> <span class="n">pyramid_gaussian</span><span class="p">,</span> <span class="n">pyramid_laplacian</span>
 <span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
@@ -544,7 +545,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05GaussianLowPassFilter_16_0.png" src="../_images/05GaussianLowPassFilter_16_0.png" />
+<img alt="../_images/05GaussianLowPassFilter_17_0.png" src="../_images/05GaussianLowPassFilter_17_0.png" />
 </div>
 </div>
 <p>Calculate Gaussian- and Laplacian Pyramide:</p>
@@ -590,12 +591,12 @@ D_l=G_l-G_{l+1}^{\uparrow}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05GaussianLowPassFilter_21_0.png" src="../_images/05GaussianLowPassFilter_21_0.png" />
+<img alt="../_images/05GaussianLowPassFilter_22_0.png" src="../_images/05GaussianLowPassFilter_22_0.png" />
 </div>
 </div>
 <p>In the left column of the picture above the Gaussian pyramide, in the right column the Laplacian pyramide is shown (both upsidedown).</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -619,15 +620,15 @@ D_l=G_l-G_{l+1}^{\uparrow}
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
+        <div class='prev-next-bottom'>
+            
     <a class='left-prev' id="prev-link" href="06GaussianNoiseReduction.html" title="previous page">Noise Suppression</a>
     <a class='right-next' id="next-link" href="../features/globalDescriptors.html" title="next page">Global Image Features</a>
 
+        </div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -635,7 +636,7 @@ D_l=G_l-G_{l+1}^{\uparrow}
         
           By Prof. Dr. Johannes Maucher<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -644,11 +645,9 @@ D_l=G_l-G_{l+1}^{\uparrow}
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>
