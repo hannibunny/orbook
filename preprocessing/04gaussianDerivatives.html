@@ -412,9 +412,10 @@
 <section id="dimensional-gaussian-filter">
 <h2>1-dimensional Gaussian Filter<a class="headerlink" href="#dimensional-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The univariate Gauss-function is defined as follows:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 g_{\sigma,\mu}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(x-\mu)^2}{2 \sigma^2}\right),
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation and <span class="math notranslate nohighlight">\(\mu\)</span> is the mean. In the context of filtering, the mean is always <span class="math notranslate nohighlight">\(\mu=0\)</span>, the standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> is a parameter, which determines the width of the filter. In the sequel the mean is implicetly assumed to be <span class="math notranslate nohighlight">\(\mu=0.\)</span></p>
 <p>Below, two Gauss functions with different <span class="math notranslate nohighlight">\(\sigma\)</span> are plotted:</p>
 <div class="cell docutils container">
@@ -460,9 +461,10 @@ g_{\sigma,\mu}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(x-\mu)^2}
 </div>
 </div>
 <p>In image processing we have discrete signals (the pixels of an image) and discrete filters. For the discrete index <span class="math notranslate nohighlight">\(u\)</span>, the <strong>discrete Gaussian filter</strong> is defined to be (for <span class="math notranslate nohighlight">\(\mu=0\)</span>):</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 g_{\sigma}(u) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{(u)^2}{2 \sigma^2}\right),
-\end{equation}</p>
+\]</div>
 <p>For discrete Gauss-filters, u is an integer in the range</p>
 <div class="math notranslate nohighlight">
 \[
@@ -470,9 +472,10 @@ u \in [-z, \ldots, z],
 \]</div>
 <p>where usually <span class="math notranslate nohighlight">\(z=\lceil 3\sigma \rceil\)</span>.</p>
 <p>The output of the discrete Gaussian filtering, if applied to the discrete signal <span class="math notranslate nohighlight">\(f(i)\)</span> is than</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 h(i) = \sum\limits_{u=-z}^{z} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{u^2}{2 \sigma^2}\right) f(i-u)
-\end{equation}</p>
+\]</div>
 <p>Below, two discrete Gauss functions with different <span class="math notranslate nohighlight">\(\sigma\)</span> are plotted:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -537,17 +540,20 @@ h(i) = \sum\limits_{u=-z}^{z} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{
 <section id="derivatives-of-1-dimensional-gaussian-filter">
 <h2>Derivatives of 1-dimensional Gaussian Filter<a class="headerlink" href="#derivatives-of-1-dimensional-gaussian-filter" title="Permalink to this headline">¶</a></h2>
 <p>The 1st order derivative of the zero mean Gaussian function</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 g_{\sigma}(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right)
-\end{equation}</p>
+\]</div>
 <p>can easily be calcultated to be</p>
-<p>\begin{equation}
-g’<em>{\sigma}(x)=\frac{\partial g</em>{\sigma}(x)}{\partial x}= -\frac{x}{\sigma^2} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = -\frac{x}{\sigma^2} g_{\sigma}(x),
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+g'_{\sigma}(x)=\frac{\partial g_{\sigma}(x)}{\partial x}= -\frac{x}{\sigma^2} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = -\frac{x}{\sigma^2} g_{\sigma}(x),
+\]</div>
 <p>And the 2nd order derivative is</p>
-<p>\begin{equation}
-g’’<em>{\sigma}(x)=\frac{\partial^2 g</em>{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = \left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) g_{\sigma}(x).
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+g''_{\sigma}(x)=\frac{\partial^2 g_{\sigma}(x)}{\partial x^2}=\left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) \frac{1}{\sqrt{2 \pi} \sigma} \exp \left( - \frac{x^2}{2 \sigma^2}\right) = \left(\frac{x^2}{\sigma^4} - \frac{1}{\sigma^2} \right) g_{\sigma}(x).
+\]</div>
 <p>Below, the gaussian function and it’s 1st and 2nd order derivative are visualized:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -584,17 +590,19 @@ g’’<em>{\sigma}(x)=\frac{\partial^2 g</em>{\sigma}(x)}{\partial x^2}=\left(\
 </div>
 <p><strong>Gradient of a Signal:</strong></p>
 <p>In <a class="reference internal" href="02filtering.html"><span class="doc std std-doc">section filtering</span></a> it was shown that the gradient <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x}\)</span> of a 1-dimensional discrete signal <span class="math notranslate nohighlight">\(f\)</span> can be calculated by convolving the signal with the filter <span class="math notranslate nohighlight">\(h=(1,0,-1)\)</span>:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial f}{\partial x}=h*f
-\end{equation}</p>
+\]</div>
 <p>By comparing the form of filter <span class="math notranslate nohighlight">\(h\)</span>, with the first derivative of the Gaussian, it becomes obvious, that the first derivative of the Gaussian is a smoothed form of <span class="math notranslate nohighlight">\(h\)</span>. <strong>Filtering a signal <span class="math notranslate nohighlight">\(f\)</span> with a Gaussian and then calculating its gradient is the same as filtering the signal <span class="math notranslate nohighlight">\(f\)</span> with the first order derivative of the Gaussian.</strong></p>
 </section>
 <section id="dimensional-gaussian-filter-1">
 <h2>2-dimensional Gaussian Filter<a class="headerlink" href="#dimensional-gaussian-filter-1" title="Permalink to this headline">¶</a></h2>
 <p>A 2-dimensional continous Gaussian filter (again <span class="math notranslate nohighlight">\(\mu=0\)</span>) is defined as follows:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 G_{\sigma}(x,y) = \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{x^2+y^2}{2 \sigma^2}\right)
-\end{equation}</p>
+\]</div>
 <p>The following function <code class="docutils literal notranslate"><span class="pre">gauss2d(mu,sigma,order)</span></code> plots either</p>
 <ul class="simple">
 <li><p>the 2-dimensional Gauss-function, if <code class="docutils literal notranslate"><span class="pre">order=[0,0]</span></code></p></li>
@@ -675,14 +683,16 @@ G_{\sigma}(x,y) = \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{x^2+y^2}{2 \sigma
 </div>
 </div>
 <p>The discrete form of the Gaussian filter is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 G_{\sigma}(u,v)  =  \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{u^2+v^2}{2 \sigma^2}\right),
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are integers in the range of <span class="math notranslate nohighlight">\([-z, \ldots, z]\)</span>, and <span class="math notranslate nohighlight">\(z=\lceil 3\sigma \rceil\)</span>.</p>
 <p>The convolution of a discrete 2-dimensional signal <span class="math notranslate nohighlight">\(F\)</span> with the 2-dimensional Gaussian filter <span class="math notranslate nohighlight">\(G\)</span> is then:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 H(i,j) = \sum\limits_{u=-k}^{k} \sum\limits_{v=-k}^{k} \frac{1}{2 \pi \sigma^2} \exp \left( - \frac{u^2+v^2}{2 \sigma^2}\right) F(i-u,j-v).
-\end{equation}</p>
+\]</div>
 <p>Next, 2-dimensional Gaussian filtering is demonstrated. For this we define
 a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> of shape (10,10) as a numpy-array. The signal values are 1 (white) in the (4,4)-center region and 0 (black) elsewhere.</p>
 <div class="cell docutils container">
@@ -737,10 +747,14 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 <section id="derivatives-of-the-2-dimensional-gauss-filter">
 <h2>Derivatives of the 2-dimensional Gauss filter<a class="headerlink" href="#derivatives-of-the-2-dimensional-gauss-filter" title="Permalink to this headline">¶</a></h2>
 <p>For the 2-dimensional Gaussian <span class="math notranslate nohighlight">\(G_{\sigma}(x,y)\)</span> the 1st order partial derivatives are</p>
-<p>\begin{eqnarray}
-\frac{\partial G_{\sigma}(x,y)}{\partial x} &amp; = &amp; -\frac{x}{\sigma^2} G_{\sigma}(x,y) \
-\frac{\partial G_{\sigma}(x,y)}{\partial y} &amp; = &amp; -\frac{y}{\sigma^2} G_{\sigma}(x,y)
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial G_{\sigma}(x,y)}{\partial x}  =  -\frac{x}{\sigma^2} G_{\sigma}(x,y) 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial G_{\sigma}(x,y)}{\partial y}  =  -\frac{y}{\sigma^2} G_{\sigma}(x,y)
+\]</div>
 <p>The 1st order derivatives are visualized below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -867,16 +881,18 @@ a 2-dimensional signal <span class="math notranslate nohighlight">\(X1\)</span> 
 <ul class="simple">
 <li><p>The <strong>Laplacian Operator <span class="math notranslate nohighlight">\(\nabla^2 F\)</span></strong> is the undirected 2nd derivative of a 2-dimensional image <span class="math notranslate nohighlight">\(F\)</span>:</p></li>
 </ul>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \nabla^2 F = \frac{\partial^2 F}{\partial x^2}+\frac{\partial^2 F}{\partial y^2}
-\end{equation}</p>
+\]</div>
 <ul class="simple">
 <li><p>The second order derivatives of the 2-dim Gaussian filter are defined in <a class="reference internal" href="#equation-2nd-derivative-gauss">(1)</a></p></li>
 <li><p>Smoothing an image <span class="math notranslate nohighlight">\(F\)</span> with a Gaussian and then taking its Laplacian operator is equivalent to convolving the image <span class="math notranslate nohighlight">\(F\)</span> with the <strong>Laplacian of Gaussian (LoG) Filter</strong>:</p></li>
 </ul>
-<p>\begin{equation}
-\nabla^2 G_{\sigma}(x,y)=\left(\frac{x^2+y^2}{\sigma^4} - \frac{2}{\sigma^2}\right) G_{\sigma}(x,y)
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^2 G_{\sigma}(x,y)=\left(\frac{x^2+y^2}{\sigma^4} - \frac{2}{\sigma^2}\right) G_{\sigma}(x,y) 
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">gauss2d</span><span class="p">(</span><span class="n">MU</span><span class="p">,</span> <span class="n">SIGMA</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
