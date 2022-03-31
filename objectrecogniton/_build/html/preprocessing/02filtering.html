@@ -477,31 +477,42 @@
 <li><p><span class="math notranslate nohighlight">\(g(i)\)</span> is the <span class="math notranslate nohighlight">\(i.th\)</span> component of the 1-D diskret output signal</p></li>
 </ul>
 <p><strong>Correlation Filtering</strong> <span class="math notranslate nohighlight">\(g=h \circledast f\)</span></p>
-<p>\begin{equation}
-g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u)
-\end{equation}</p>
-<p><strong>Convolution Filtering</strong> <span class="math notranslate nohighlight">\(g=h*f\)</span>
-\begin{equation}
-g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u)
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
+\]</div>
+<p><strong>Convolution Filtering</strong> <span class="math notranslate nohighlight">\(g=h*f\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u) 
+\]</div>
 <p><strong>Correlation- and Convolutional Filtering of a 1-dimensional analog signal:</strong></p>
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/ComparisonConvolutionCorrelation.png" style="width:500px" align="center"><section id="example-1-dimensional-discrete-filtering">
 <h3>Example 1-dimensional discrete filtering:<a class="headerlink" href="#example-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p><strong>Without extension (padding) of the signal</strong></p>
-<p>The input signal:
-\begin{equation}
+<p>The input signal:</p>
+<div class="math notranslate nohighlight">
+\[
 f= \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
-\end{equation}
-shall be convolved with the <strong>length-3 moving average filter:</strong>
-\begin{equation}
+\]</div>
+<p>shall be convolved with the <strong>length-3 moving average filter:</strong></p>
+<div class="math notranslate nohighlight">
+\[
 h=\left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right]
-\end{equation}</p>
-<p>The result <span class="math notranslate nohighlight">\(g\)</span> of convolutional filtering is:
-\begin{eqnarray*}
-g &amp;=&amp; h * f \
-&amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \
-&amp;=&amp; \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
-\end{eqnarray*}</p>
+\]</div>
+<p>The result <span class="math notranslate nohighlight">\(g\)</span> of convolutional filtering is:</p>
+<div class="math notranslate nohighlight">
+\[
+g =  h * f 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
+\]</div>
 <p><a id="1dextension"></a></p>
 </section>
 <section id="signal-extension-padding">
@@ -541,13 +552,20 @@ p=\lfloor \frac{a-1}{2} \rfloor
 \[
 \left[1,2,3 \right] \Rightarrow \left[0,1,2,3,0 \right]
 \]</div>
-<p>See also <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html">Scipy documentation</a></p>
+<p>See also <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/ndimage.html">Scipy documentation</a></p>
 <p>With the extension option <strong>nearest</strong> the output of the example above is:</p>
-<p>\begin{eqnarray*}
-g &amp;=&amp; h * f \
-&amp;=&amp; \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \
-&amp;=&amp; \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
-\end{eqnarray*}</p>
+<div class="math notranslate nohighlight">
+\[
+g = h * f
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
+\]</div>
 </section>
 <section id="implementation-of-1-dimensional-discrete-filtering">
 <h3>Implementation of 1-dimensional discrete filtering<a class="headerlink" href="#implementation-of-1-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
@@ -653,14 +671,16 @@ h=[1,0,-1].
 <li><p><span class="math notranslate nohighlight">\(G(i,j)\)</span> is the component in row <span class="math notranslate nohighlight">\(i\)</span>, column <span class="math notranslate nohighlight">\(j\)</span> of the 2-dimensional diskret output signal</p></li>
 </ul>
 <p><strong>Correlation Filtering <span class="math notranslate nohighlight">\(G=H \circledast F\)</span></strong></p>
-<p>\begin{equation}
-G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v)
-\label{eq:2dimFilter}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v) 
+\label{eq:2dimFilter} 
+\]</div>
 <p><strong>Convolution Filtering <span class="math notranslate nohighlight">\(G=H*F\)</span>:</strong></p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
-\end{equation}</p>
+\]</div>
 <section id="example-2-dimensional-discrete-filtering">
 <h3>Example 2-dimensional discrete filtering<a class="headerlink" href="#example-2-dimensional-discrete-filtering" title="Permalink to this headline">¶</a></h3>
 <p><strong>Without extension:</strong></p>
@@ -779,29 +799,39 @@ G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
 <ul class="simple">
 <li><p>1-dimensional continuous function:</p></li>
 </ul>
-<p>\begin{equation}
-f’(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon} 
+\]</div>
 <ul class="simple">
 <li><p>1-dimensional discrete function:</p></li>
 </ul>
-<p>\begin{equation}
-f’(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+f'(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
+\]</div>
 <ul class="simple">
 <li><p>2-dimensional continuous function:</p></li>
 </ul>
-<p>\begin{eqnarray}
-\frac{\partial f(x,y)}{\partial x} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon} \
-\frac{\partial f(x,y)}{\partial y} &amp; = &amp; \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f(x,y)}{\partial x}  =  \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f(x,y)}{\partial y}  =  \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
+\]</div>
 <ul class="simple">
 <li><p>2-dimensional discrete function (<strong>Image</strong>):</p></li>
 </ul>
-<p>\begin{eqnarray}
-\frac{\partial f(x,y)}{\partial x} &amp; \approx &amp; \frac{f(x+1,y)-f(x,y)}{1} \
-\frac{\partial f(x,y)}{\partial y} &amp; \approx &amp; \frac{f(x,y+1)-f(x,y)}{1}
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f(x,y)}{\partial x} \approx  \frac{f(x+1,y)-f(x,y)}{1} 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial f(x,y)}{\partial y}  \approx  \frac{f(x,y+1)-f(x,y)}{1}
+\]</div>
 <section id="filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal">
 <h3>Filter for calculating 1st order derivative of discrete 1-dimensional signal<a class="headerlink" href="#filter-for-calculating-1st-order-derivative-of-discrete-1-dimensional-signal" title="Permalink to this headline">¶</a></h3>
 <p>For a discrete 1-dimensional function the derivative is just the <strong>difference between two successive values</strong>. Calculating the difference of successive values in signal <span class="math notranslate nohighlight">\(f\)</span> can be realized by convolving the signal with the filter</p>
@@ -821,72 +851,81 @@ h=(1,0,-1)
 <section id="filters-for-calculating-1st-order-derivative-in-images">
 <h3>Filters for calculating 1st order derivative in images<a class="headerlink" href="#filters-for-calculating-1st-order-derivative-in-images" title="Permalink to this headline">¶</a></h3>
 <p>Similar to the 1-dimensional case, for a 2-dimensional discrete signals <span class="math notranslate nohighlight">\(F\)</span> the <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(x\)</span></strong> is calculated as convolution</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial F}{\partial x}=H_x * F
-\end{equation}</p>
+\]</div>
 <p>with the derivative filter</p>
-<p>\begin{equation}
-H_x = \left[
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H_x = \left[ 
 \begin{array}{ccc}
-1 &amp; 0 &amp; -1 \
-1 &amp; 0 &amp; -1 \
-1 &amp; 0 &amp; -1 \
+1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \\
 \end{array}
 \right]
-\end{equation}</p>
+\end{split}\]</div>
 <p>The <strong>partial derivative of <span class="math notranslate nohighlight">\(F\)</span> in the direction of <span class="math notranslate nohighlight">\(y\)</span></strong> is calculated as convolution</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial F}{\partial y}=H_y * F
-\end{equation}</p>
+\]</div>
 <p>with the derivative filter</p>
-<p>\begin{equation}
-H_y = \left[
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H_y = \left[ 
 \begin{array}{ccc}
-1 &amp; 1 &amp; 1 \
-0 &amp; 0 &amp; 0 \
--1 &amp; -1 &amp; -1 \
+1 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0 \\
+-1 &amp; -1 &amp; -1 \\
 \end{array}
 \right]
-\end{equation}</p>
+\end{split}\]</div>
 <p>The filter pair <span class="math notranslate nohighlight">\(H_x\)</span> and <span class="math notranslate nohighlight">\(H_y\)</span> as defined above is called <strong>Prewitt Filter</strong>.</p>
 <p>Another frequently applied filter for edge-detection is the <strong>Sobel Filter</strong>, which is defined by:</p>
-<p>\begin{equation}
-H_x = \left[
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H_x = \left[ 
 \begin{array}{ccc}
-1 &amp; 0 &amp; -1 \
-2 &amp; 0 &amp; -2 \
-1 &amp; 0 &amp; -1 \
+1 &amp; 0 &amp; -1 \\
+2 &amp; 0 &amp; -2 \\
+1 &amp; 0 &amp; -1 \\
 \end{array}
 \right] \quad \mbox{ and }
 H_y = \left[ \begin{array}{ccc}
-1 &amp; 2 &amp; 1 \
-0 &amp; 0 &amp; 0 \
--1 &amp; -2 &amp; -1 \
+1 &amp; 2 &amp; 1 \\
+0 &amp; 0 &amp; 0 \\
+-1 &amp; -2 &amp; -1 \\
 \end{array}
 \right]
-\end{equation}</p>
+\end{split}\]</div>
 <p>There exists even more edge-detection filters, for example der derivatives of the Gaussian, which are introduced in the <a class="reference internal" href="04gaussianDerivatives.html"><span class="doc std std-doc">next section</span></a>.</p>
 <p>For all of the edge detectors</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial F}{\partial x}= H_x * F
 \quad \mbox{ and } \quad
 \frac{\partial F}{\partial y}= H_y * F
-\end{equation}</p>
+\]</div>
 <p>constitute the <strong>gradient of image <span class="math notranslate nohighlight">\(F\)</span></strong>:</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \nabla F = \left( \begin{array}{c}
-\frac{\partial F}{\partial x} \
+\frac{\partial F}{\partial x} \\
 \frac{\partial F}{\partial y}
 \end{array} \right)
-\end{equation}</p>
-<p>The magnitude of the gradient is
-\begin{equation}
+\end{split}\]</div>
+<p>The magnitude of the gradient is</p>
+<div class="math notranslate nohighlight">
+\[
 \Vert \nabla F \Vert = \sqrt{\left(\frac{\partial F}{\partial x}\right)^2 + \left(\frac{\partial F}{\partial y}\right)^2}
-\end{equation}</p>
+\]</div>
 <p>and its direction is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \theta = \arctan\left( \frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x}}\right)
-\end{equation}</p>
+\]</div>
 <p><strong>Edges</strong> are at the <strong>extremas</strong> of <span class="math notranslate nohighlight">\(\Vert \nabla F \Vert\)</span>.</p>
 </section>
 <section id="implementation-of-edge-detection-in-images">
@@ -1077,7 +1116,7 @@ Filter Sobel-y:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from skimage import data</span>
 <span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">match_template</span>
-<span class="kn">from</span> <span class="nn">skimage.draw</span> <span class="kn">import</span> <span class="n">circle</span>
+<span class="c1">#from skimage.draw import ellipse</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
@@ -1161,14 +1200,16 @@ Filter Sobel-y:
 <li><p><strong>Linear Filter</strong>, A filter is a linear filter, if and only if it fulfills the following two properties:</p>
 <ul>
 <li><p>Superposition</p>
-<p>\begin{equation}
-H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+        H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
+        \]</div>
 </li>
 <li><p>Scaling</p>
-<p>\begin{equation}
-H \odot (k F) = k(H \odot F)
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+        H \odot (k F) = k(H \odot F)
+        \]</div>
 </li>
 </ul>
 </li>
@@ -1179,12 +1220,16 @@ H \odot (k F) = k(H \odot F)
 <li><p>Commutative:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[H*G = G*H\]</div>
+\[
+H*G = G*H
+\]</div>
 <ul class="simple">
 <li><p>Associative:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[F*(G*H)=(F*G)*H\]</div>
+\[
+F*(G*H)=(F*G)*H
+\]</div>
 <ul class="simple">
 <li><p>Identity:</p></li>
 </ul>
@@ -1195,15 +1240,17 @@ H * \delta = H, \mbox{ where }  \delta \mbox{ is the unit impulse } \delta=\left
 <ul class="simple">
 <li><p>Differentiation:</p></li>
 </ul>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial}{\partial x}(H*G) = \frac{\partial H}{\partial x} *G
-\end{equation}</p>
+\]</div>
 <ul class="simple">
-<li><p><strong>Fourier Transform:</strong>
-\begin{equation}
-\mathcal{F}(H*G)=\mathcal{F}(H)\cdot \mathcal{F}(G)
-\end{equation}</p></li>
+<li><p><strong>Fourier Transform:</strong></p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{F}(H*G)=\mathcal{F}(H)\cdot \mathcal{F}(G)
+\]</div>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
 <li><p>Averaging Filter (=Uniform Filter) and Gaussian Filter can be described as convolution. Thus they are linear and shift invariant.</p></li>

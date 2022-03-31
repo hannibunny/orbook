@@ -51,11 +51,15 @@ plt.show()
 # ## Similarity and Distance
 # The **similarity** between a pair of vectors $\mathbf{u}=(u_0,u_1,\ldots,u_{N-1})$ and $\mathbf{v}=(v_0,v_1,\ldots,v_{N-1})$, each of length $N$, is denoted by 
 # 
-# $$s(\mathbf{u},\mathbf{v}).$$ 
+# $$
+# s(\mathbf{u},\mathbf{v}).
+# $$ 
 # 
 # The **distance** between the same pair of vectors is denoted by 
 # 
-# $$d(\mathbf{u},\mathbf{v}).$$ 
+# $$
+# d(\mathbf{u},\mathbf{v}).
+# $$ 
 # 
 # Distance and similarity are inverse to each other, i.e. the higher the distance the lower the similarity between anc vice versa. Below the most important distance- and similarity-measures are described. Some of them are primarily defined as distance-metric (e.g. euclidean distance) and a transformation-function can be applied to compute the associated similarity. Others are primarily defined as similarity-metric (e.g. cosine similarity) and a transformation function can be applied to compute the associated distance.
 # 
@@ -63,9 +67,9 @@ plt.show()
 # 
 # We denote by 
 # 
-# \begin{equation}
+# $$
 # H_q = \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(N) \right)
-# \end{equation}
+# $$
 # 
 # the N-bin histogram of an image(-region) $q$. The value $H_q(i)$ is the frequency of the values in $q$, which fall into the $i.th$ bin.
 # 
@@ -79,9 +83,9 @@ plt.show()
 # 
 # where
 # 
-# \begin{equation}
+# $$
 # m_q=\sum\limits_{i=1}^Z H_q(i)
-# \end{equation}
+# $$
 
 # ## Common Distance- and Similarity Metrics
 # 
@@ -91,15 +95,15 @@ plt.show()
 # 
 # The Euclidean distance between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # d_E(H_q,H_p)=\sqrt{\sum_i (H_q(i)-H_p(i))^2}
-# \end{equation}
+# $$
 # 
 # The corresponding similarity measure is
 # 
-# \begin{equation}
+# $$
 # s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
-# \end{equation}
+# $$
 # 
 # where $\epsilon$ is a small value $>0$, used to avoid zero-division.
 # 
@@ -116,16 +120,16 @@ plt.show()
 # 
 # The Cosine similarity between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # s_C(H_q,H_p)= \frac{\sum_i H_q(i)\cdot H_p(i)}{\sqrt{\sum_i H_q(i)^2 \cdot \sum_i H_p(i)^2}},
-# \end{equation}
+# $$
 # 
 # 
 # The corresponding distance measure is
 # 
-# \begin{equation}
+# $$
 # d_C(H_q,H_p)=1-s_C(H_q,H_p)
-# \end{equation}
+# $$
 # 
 # Characteristics of the Cosine similarity $s_C(H_q,H_p)$:
 # 
@@ -137,10 +141,9 @@ plt.show()
 # 
 # The Pearson correlation (similarity measure) between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q(i)-\mu_q)^2 \cdot \sum_i (H_p(i)-\mu_p)^2}},
-# \end{equation}
-# 
+# $$
 # where 
 # 
 # $$
@@ -151,9 +154,9 @@ plt.show()
 # 
 # The corresponding distance measure is
 # 
-# \begin{equation}
+# $$
 # d_P(H_q,H_p)=1-s_P(H_q,H_p)
-# \end{equation}
+# $$
 # 
 # Characteristics of the Pearson correlation $s_P(H_q,H_p)$:
 # 
@@ -166,15 +169,15 @@ plt.show()
 # 
 # The Bray-Curtis distance between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # d_{BC}(H_q,H_p)=\frac{\sum_i |H_q(i)-H_p(i)|}{\sum_i|H_q(i)+H_p(i)|}
-# \end{equation}
+# $$
 # 
 # The corresponding similarity measure is
 # 
-# \begin{equation}
+# $$
 # s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
-# \end{equation}
+# $$
 # 
 # Characteristics:
 # 
@@ -188,15 +191,15 @@ plt.show()
 # 
 # The Canberra distance between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # d_{Ca}(H_q,H_p)=\sum_i\frac{|H_q(i)-H_p(i)|}{|H_q(i)|+|H_p(i)|}
-# \end{equation}
+# $$
 # 
 # The corresponding similarity measure is
 # 
-# \begin{equation}
+# $$
 # s_{Ca}(H_q,H_p)=1-d_{Ca}(H_q,H_p)
-# \end{equation}
+# $$
 # 
 # Characteristics:
 # 
@@ -209,9 +212,9 @@ plt.show()
 # 
 # The Bhattacharyya distance between two normalized histograms $H^n_q$ and $H^n_p$ is
 # 
-# \begin{equation}
+# $$
 # d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
-# \end{equation}
+# $$
 # 
 # Characteristics:
 # 
@@ -226,16 +229,16 @@ plt.show()
 # 
 # The Chi-Square ($\chi^2$) distance between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # d_{\chi^2}(H_q,H_p)=\sum_i \frac{(H_q(i)-H_p(i))^2}{H_q(i)+H_p(i)}
-# \end{equation}
+# $$
 # 
 # 
 # The corresponding similarity measure is
 # 
-# \begin{equation}
+# $$
 # s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
-# \end{equation}
+# $$
 # 
 # where $\epsilon$ is a small value $>0$, used to avoid zero-division.
 # 
@@ -251,15 +254,15 @@ plt.show()
 # 
 # The Intersection distance between two histograms $H_q$ and $H_p$ is
 # 
-# \begin{equation}
+# $$
 # d_{IS}(H_q,H_p)=\sum_i \min(H_q(i),H_p(i))
-# \end{equation}
+# $$
 # 
 # The corresponding similarity measure is
 # 
-# \begin{equation}
+# $$
 # s_{IS}(H_q,H_p)=\frac{1}{d_{IS}(H_q,H_p)+\epsilon},
-# \end{equation}
+# $$
 # 
 # where $\epsilon$ is a small value $>0$, used to avoid zero-division.
 # 

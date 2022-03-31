@@ -25,14 +25,15 @@
 # 
 # **Correlation Filtering** $g=h \circledast f$
 # 
-# \begin{equation}
+# $$
 # g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i+u) 
-# \end{equation}
+# $$
 # 
 # **Convolution Filtering** $g=h*f$
-# \begin{equation}
+# 
+# $$
 # g(i) = \sum\limits_{u=-k}^{u=k} h(u) f(i-u) 
-# \end{equation}
+# $$
 
 # **Correlation- and Convolutional Filtering of a 1-dimensional analog signal:**
 # 
@@ -43,20 +44,31 @@
 # **Without extension (padding) of the signal**
 # 
 # The input signal:
-# \begin{equation}
+# 
+# $$
 # f= \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
-# \end{equation}
+# $$
+# 
 # shall be convolved with the **length-3 moving average filter:**
-# \begin{equation}
+# 
+# $$
 # h=\left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right]
-# \end{equation}
+# $$
 # 
 # The result $g$ of convolutional filtering is:
-# \begin{eqnarray*}
-# g &=& h * f \\
-#   &=& \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \\
-#   &=& \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
-# \end{eqnarray*}
+# 
+# $$
+# g =  h * f 
+# $$
+# 
+# $$
+# = \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
+# $$
+# 
+# $$
+# = \left[1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1 \right]
+# $$
+# 
 # 
 
 # <a id="1dextension"></a>
@@ -97,15 +109,21 @@
 # \left[1,2,3 \right] \Rightarrow \left[0,1,2,3,0 \right]
 # $$
 # 
-# See also [Scipy documentation](http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html)
+# See also [Scipy documentation](https://docs.scipy.org/doc/scipy/reference/ndimage.html)
 
 # With the extension option **nearest** the output of the example above is:
 # 
-# \begin{eqnarray*}
-# g &=& h * f \\
-#   &=& \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right] \\
-#   &=& \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
-# \end{eqnarray*}
+# $$
+# g = h * f
+# $$
+# 
+# $$
+# = \left[ \frac{1}{3},\frac{1}{3},\frac{1}{3}\right] * \left[ 1,1,1,1,2,2,2,1,1,1,1 \right]
+# $$
+# 
+# $$
+# = \left[1,1,1,\frac{4}{3},\frac{5}{3},\frac{6}{3},\frac{5}{3},\frac{4}{3},1,1,1 \right]
+# $$
 
 # ### Implementation of 1-dimensional discrete filtering
 # 
@@ -197,16 +215,16 @@ plt.text(6,0.5,'Applied Filter: H=[1.0,0.0,-1.0]')
 # 
 # **Correlation Filtering $G=H \circledast F$**
 # 
-# \begin{equation}
+# $$
 # G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i+u,j+v) 
 # \label{eq:2dimFilter} 
-# \end{equation}
+# $$
 # 
 # **Convolution Filtering $G=H*F$:**
 # 
-# \begin{equation}
+# $$
 # G(i,j) = \sum\limits_{u=-k}^{k}\sum\limits_{v=-k}^{k} H(u,v) F(i-u,j-v)
-# \end{equation}
+# $$
 
 # ### Example 2-dimensional discrete filtering
 # 
@@ -312,29 +330,35 @@ plt.title('Average-filtered Image x2')
 # 
 # - 1-dimensional continuous function:
 # 
-# \begin{equation}
+# $$
 # f'(x)=\frac{\partial f(x)}{\partial x} = \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon)-f(x)}{\epsilon} 
-# \end{equation}
+# $$
 # 
 # - 1-dimensional discrete function:
 # 
-# \begin{equation}
+# $$
 # f'(x)=\frac{\partial f(x)}{\partial x} \approx \frac{f(x+1)-f(x)}{1}
-# \end{equation}
+# $$
 # 
 # - 2-dimensional continuous function:
 # 
-# \begin{eqnarray}
-# \frac{\partial f(x,y)}{\partial x} & = & \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon} \\
-# \frac{\partial f(x,y)}{\partial y} & = & \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
-# \end{eqnarray}
+# $$
+# \frac{\partial f(x,y)}{\partial x}  =  \lim_{\epsilon \rightarrow 0} \frac{f(x+\epsilon,y)-f(x,y)}{\epsilon}
+# $$
+# 
+# $$
+# \frac{\partial f(x,y)}{\partial y}  =  \lim_{\epsilon \rightarrow 0} \frac{f(x,y+\epsilon)-f(x,y)}{\epsilon}
+# $$
 # 
 # - 2-dimensional discrete function (**Image**):
 # 
-# \begin{eqnarray}
-# \frac{\partial f(x,y)}{\partial x} & \approx & \frac{f(x+1,y)-f(x,y)}{1} \\
-# \frac{\partial f(x,y)}{\partial y} & \approx & \frac{f(x,y+1)-f(x,y)}{1}
-# \end{eqnarray}
+# $$
+# \frac{\partial f(x,y)}{\partial x} \approx  \frac{f(x+1,y)-f(x,y)}{1} 
+# $$
+# 
+# $$
+# \frac{\partial f(x,y)}{\partial y}  \approx  \frac{f(x,y+1)-f(x,y)}{1}
+# $$
 #   
 # 
 
@@ -363,13 +387,13 @@ plt.title('Average-filtered Image x2')
 # 
 # Similar to the 1-dimensional case, for a 2-dimensional discrete signals $F$ the **partial derivative of $F$ in the direction of $x$** is calculated as convolution
 # 
-# \begin{equation}
+# $$
 # \frac{\partial F}{\partial x}=H_x * F
-# \end{equation}
+# $$
 # 
 # with the derivative filter
 # 
-# \begin{equation}
+# $$
 # H_x = \left[ 
 # \begin{array}{ccc}
 # 1 & 0 & -1 \\
@@ -377,17 +401,17 @@ plt.title('Average-filtered Image x2')
 # 1 & 0 & -1 \\
 # \end{array}
 # \right]
-# \end{equation}
+# $$
 # 
 # The **partial derivative of $F$ in the direction of $y$** is calculated as convolution
 # 
-# \begin{equation}
+# $$
 # \frac{\partial F}{\partial y}=H_y * F
-# \end{equation}
+# $$
 # 
 # with the derivative filter
 # 
-# \begin{equation}
+# $$
 # H_y = \left[ 
 # \begin{array}{ccc}
 # 1 & 1 & 1 \\
@@ -395,13 +419,13 @@ plt.title('Average-filtered Image x2')
 # -1 & -1 & -1 \\
 # \end{array}
 # \right]
-# \end{equation}
+# $$
 
 # The filter pair $H_x$ and $H_y$ as defined above is called **Prewitt Filter**. 
 # 
 # Another frequently applied filter for edge-detection is the **Sobel Filter**, which is defined by: 
 # 
-# \begin{equation}
+# $$
 # H_x = \left[ 
 # \begin{array}{ccc}
 # 1 & 0 & -1 \\
@@ -415,38 +439,39 @@ plt.title('Average-filtered Image x2')
 # -1 & -2 & -1 \\
 # \end{array}
 # \right]
-# \end{equation}
+# $$
 
 # There exists even more edge-detection filters, for example der derivatives of the Gaussian, which are introduced in the [next section](04gaussianDerivatives.ipynb).
 # 
 # For all of the edge detectors 
 # 
-# \begin{equation}
+# $$
 # \frac{\partial F}{\partial x}= H_x * F
 # \quad \mbox{ and } \quad
 # \frac{\partial F}{\partial y}= H_y * F
-# \end{equation}
+# $$
 # 
 # 
 # constitute the **gradient of image $F$**:
 # 
-# \begin{equation}
+# $$
 # \nabla F = \left( \begin{array}{c}
 # \frac{\partial F}{\partial x} \\
 # \frac{\partial F}{\partial y}
 # \end{array} \right)
-# \end{equation} 
+# $$
 # 
 # The magnitude of the gradient is
-# \begin{equation}
+# 
+# $$
 # \Vert \nabla F \Vert = \sqrt{\left(\frac{\partial F}{\partial x}\right)^2 + \left(\frac{\partial F}{\partial y}\right)^2}
-# \end{equation}
+# $$
 # 
 # and its direction is
 # 
-# \begin{equation}
+# $$
 # \theta = \arctan\left( \frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial x}}\right)
-# \end{equation}
+# $$
 # 
 # **Edges** are at the **extremas** of $\Vert \nabla F \Vert$. 
 
@@ -576,19 +601,19 @@ plt.show()
 # 
 # [Scikits-Image](http://scikit-image.org/) modules are applied in this excercise for importing the data, for template-matching and for indicating the positions where the pattern (template) is found in the image.
 
-# In[17]:
+# In[23]:
 
 
 #from skimage import data
 from skimage.feature import match_template
-from skimage.draw import circle
+#from skimage.draw import ellipse
 from matplotlib import pyplot as plt
 import numpy as np
 
 
 # The image is imported in python. The template applied here is a region of the image, which contains the identifiaction of a chip on a platine. The pattern and the image are plotted
 
-# In[18]:
+# In[24]:
 
 
 full=plt.imread('../Data/platine.JPG')
@@ -599,7 +624,7 @@ plt.show()
 
 # The Scikits Image method match_template calculates the correlation of the pattern and the image at all possible positions. The returned matrx contains all correlation values.
 
-# In[19]:
+# In[25]:
 
 
 correlation=match_template(full,template)
@@ -607,7 +632,7 @@ correlation=match_template(full,template)
 
 # In the following loop all positions with a correlation value >0.9 are extracted from the correlation matrix.
 
-# In[20]:
+# In[26]:
 
 
 xcoords=[]
@@ -622,7 +647,7 @@ for row in range(correlation.shape[0]):
 
 # Finally, the positions with correlation value >0.9 are marked in the image
 
-# In[21]:
+# In[27]:
 
 
 plt.figure(num=None, figsize=(18,12), dpi=80, facecolor='w', edgecolor='k')
@@ -647,15 +672,15 @@ plt.show()
 # 
 #     - Superposition
 #     
-#         \begin{equation}
+#         $$
 #         H \odot (F_1 + F_2) = (H \odot F_1)+(H \odot F_2)
-#         \end{equation}
+#         $$
 #         
 #     - Scaling
 #     
-#         \begin{equation}
+#         $$
 #         H \odot (k F) = k(H \odot F)
-#         \end{equation}
+#         $$
 # 
 # Here $\odot$ denotes an arbitrary filter operation, not necessarily correlation or convolution.
 # 
@@ -663,11 +688,15 @@ plt.show()
 # 
 # - Commutative: 
 # 
-# $$H*G = G*H$$
+# $$
+# H*G = G*H
+# $$
 # 
 # - Associative: 
 # 
-# $$F*(G*H)=(F*G)*H$$
+# $$
+# F*(G*H)=(F*G)*H
+# $$
 # 
 # - Identity: 
 # 
@@ -677,14 +706,15 @@ plt.show()
 # 
 # - Differentiation:
 # 
-# \begin{equation}
+# $$
 # \frac{\partial}{\partial x}(H*G) = \frac{\partial H}{\partial x} *G
-# \end{equation} 
+# $$
 # 
 # - **Fourier Transform:**
-# \begin{equation}
+# 
+# $$
 # \mathcal{F}(H*G)=\mathcal{F}(H)\cdot \mathcal{F}(G)
-# \end{equation}
+# $$
 # 
 # **Examples:**
 # 
@@ -715,3 +745,9 @@ plt.show()
 # - Removes spikes (Salt and Pepper Noise)
 # 
 # The application of the Median Filter on images, disturbed by Salt-and-Pepper Noise is shown in [this section](06GaussianNoiseReduction).
+
+# In[ ]:
+
+
+
+
