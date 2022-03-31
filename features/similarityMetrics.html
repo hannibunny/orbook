@@ -495,16 +495,21 @@ v3 =  [7 5 1 1 1 1 1 1]
 <h2>Similarity and Distance<a class="headerlink" href="#similarity-and-distance" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>similarity</strong> between a pair of vectors <span class="math notranslate nohighlight">\(\mathbf{u}=(u_0,u_1,\ldots,u_{N-1})\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}=(v_0,v_1,\ldots,v_{N-1})\)</span>, each of length <span class="math notranslate nohighlight">\(N\)</span>, is denoted by</p>
 <div class="math notranslate nohighlight">
-\[s(\mathbf{u},\mathbf{v}).\]</div>
+\[
+s(\mathbf{u},\mathbf{v}).
+\]</div>
 <p>The <strong>distance</strong> between the same pair of vectors is denoted by</p>
 <div class="math notranslate nohighlight">
-\[d(\mathbf{u},\mathbf{v}).\]</div>
+\[
+d(\mathbf{u},\mathbf{v}).
+\]</div>
 <p>Distance and similarity are inverse to each other, i.e. the higher the distance the lower the similarity between anc vice versa. Below the most important distance- and similarity-measures are described. Some of them are primarily defined as distance-metric (e.g. euclidean distance) and a transformation-function can be applied to compute the associated similarity. Others are primarily defined as similarity-metric (e.g. cosine similarity) and a transformation function can be applied to compute the associated distance.</p>
 <p>In the context of this section vectors represent Histograms. However, the distance metrics described below can be applied for arbitrary numeric vectors.</p>
 <p>We denote by</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 H_q = \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(N) \right)
-\end{equation}</p>
+\]</div>
 <p>the N-bin histogram of an image(-region) <span class="math notranslate nohighlight">\(q\)</span>. The value <span class="math notranslate nohighlight">\(H_q(i)\)</span> is the frequency of the values in <span class="math notranslate nohighlight">\(q\)</span>, which fall into the <span class="math notranslate nohighlight">\(i.th\)</span> bin.</p>
 <p><strong>Normalized Histogram:</strong></p>
 <p>A normalized representation <span class="math notranslate nohighlight">\(H^n_q\)</span> of histogram <span class="math notranslate nohighlight">\(H_q\)</span> can be obtained as follows:</p>
@@ -513,22 +518,25 @@ H_q = \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(N) \right)
 H^n_q := \frac{1}{m_q} \left(H_q(0),H_q(1),H_q(2),\ldots,H_q(Z) \right),
 \]</div>
 <p>where</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 m_q=\sum\limits_{i=1}^Z H_q(i)
-\end{equation}</p>
+\]</div>
 </section>
 <section id="common-distance-and-similarity-metrics">
 <h2>Common Distance- and Similarity Metrics<a class="headerlink" href="#common-distance-and-similarity-metrics" title="Permalink to this headline">¶</a></h2>
 <section id="euclidean-distance">
 <h3>Euclidean Distance<a class="headerlink" href="#euclidean-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Euclidean distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_E(H_q,H_p)=\sqrt{\sum_i (H_q(i)-H_p(i))^2}
-\end{equation}</p>
+\]</div>
 <p>The corresponding similarity measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
 <p>Characteristics of the Euclidean distance <span class="math notranslate nohighlight">\(d_E(H_q,H_p)\)</span> are:</p>
 <ul class="simple">
@@ -541,13 +549,15 @@ s_E(H_q,H_p)=\frac{1}{d_E(H_q,H_p)+\epsilon},
 <section id="cosine-similarity">
 <h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h3>
 <p>The Cosine similarity between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_C(H_q,H_p)= \frac{\sum_i H_q(i)\cdot H_p(i)}{\sqrt{\sum_i H_q(i)^2 \cdot \sum_i H_p(i)^2}},
-\end{equation}</p>
+\]</div>
 <p>The corresponding distance measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_C(H_q,H_p)=1-s_C(H_q,H_p)
-\end{equation}</p>
+\]</div>
 <p>Characteristics of the Cosine similarity <span class="math notranslate nohighlight">\(s_C(H_q,H_p)\)</span>:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([-1,1]\)</span></p></li>
@@ -558,9 +568,10 @@ d_C(H_q,H_p)=1-s_C(H_q,H_p)
 <section id="pearson-correlation">
 <h3>Pearson Correlation<a class="headerlink" href="#pearson-correlation" title="Permalink to this headline">¶</a></h3>
 <p>The Pearson correlation (similarity measure) between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q(i)-\mu_q)^2 \cdot \sum_i (H_p(i)-\mu_p)^2}},
-\end{equation}</p>
+\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[
@@ -568,9 +579,10 @@ s_P(H_q,H_p)= \frac{\sum_i (H_q(i)-\mu_q)\cdot (H_p(i)-\mu_p)}{\sqrt{\sum_i (H_q
 \]</div>
 <p>is the mean value over all bins in <span class="math notranslate nohighlight">\(H_q\)</span>.</p>
 <p>The corresponding distance measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_P(H_q,H_p)=1-s_P(H_q,H_p)
-\end{equation}</p>
+\]</div>
 <p>Characteristics of the Pearson correlation <span class="math notranslate nohighlight">\(s_P(H_q,H_p)\)</span>:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([-1,1]\)</span></p></li>
@@ -581,13 +593,15 @@ d_P(H_q,H_p)=1-s_P(H_q,H_p)
 <section id="bray-curtis-distance">
 <h3>Bray-Curtis Distance<a class="headerlink" href="#bray-curtis-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Bray-Curtis distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_{BC}(H_q,H_p)=\frac{\sum_i |H_q(i)-H_p(i)|}{\sum_i|H_q(i)+H_p(i)|}
-\end{equation}</p>
+\]</div>
 <p>The corresponding similarity measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
-\end{equation}</p>
+\]</div>
 <p>Characteristics:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([0,1]\)</span> for positive signals as in the case of histograms</p></li>
@@ -599,13 +613,15 @@ s_{BC}(H_q,H_p)=1-d_{BC}(H_q,H_p)
 <section id="canberra-distance">
 <h3>Canberra Distance<a class="headerlink" href="#canberra-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Canberra distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_{Ca}(H_q,H_p)=\sum_i\frac{|H_q(i)-H_p(i)|}{|H_q(i)|+|H_p(i)|}
-\end{equation}</p>
+\]</div>
 <p>The corresponding similarity measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_{Ca}(H_q,H_p)=1-d_{Ca}(H_q,H_p)
-\end{equation}</p>
+\]</div>
 <p>Characteristics:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([0,1]\)</span></p></li>
@@ -616,9 +632,10 @@ s_{Ca}(H_q,H_p)=1-d_{Ca}(H_q,H_p)
 <section id="bhattacharyya-distance">
 <h3>Bhattacharyya Distance<a class="headerlink" href="#bhattacharyya-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Bhattacharyya distance between two normalized histograms <span class="math notranslate nohighlight">\(H^n_q\)</span> and <span class="math notranslate nohighlight">\(H^n_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
-\end{equation}</p>
+\]</div>
 <p>Characteristics:</p>
 <ul class="simple">
 <li><p>Value range: <span class="math notranslate nohighlight">\([0,1]\)</span></p></li>
@@ -630,13 +647,15 @@ d_{Ba}(H^n_q,H^n_p)= \sqrt{1-\sum_i \sqrt{H^n_q(i) \cdot H^n_p(i)}}
 <section id="chi-square-distance">
 <h3>Chi-Square Distance<a class="headerlink" href="#chi-square-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Chi-Square (<span class="math notranslate nohighlight">\(\chi^2\)</span>) distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_{\chi^2}(H_q,H_p)=\sum_i \frac{(H_q(i)-H_p(i))^2}{H_q(i)+H_p(i)}
-\end{equation}</p>
+\]</div>
 <p>The corresponding similarity measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
 <p>Characteristics:</p>
 <ul class="simple">
@@ -649,13 +668,15 @@ s_{\chi^2}(H_q,H_p)=\frac{1}{d_{\chi^2}(H_q,H_p)+\epsilon},
 <section id="intersection-distance">
 <h3>Intersection Distance<a class="headerlink" href="#intersection-distance" title="Permalink to this headline">¶</a></h3>
 <p>The Intersection distance between two histograms <span class="math notranslate nohighlight">\(H_q\)</span> and <span class="math notranslate nohighlight">\(H_p\)</span> is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 d_{IS}(H_q,H_p)=\sum_i \min(H_q(i),H_p(i))
-\end{equation}</p>
+\]</div>
 <p>The corresponding similarity measure is</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 s_{IS}(H_q,H_p)=\frac{1}{d_{IS}(H_q,H_p)+\epsilon},
-\end{equation}</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is a small value <span class="math notranslate nohighlight">\(&gt;0\)</span>, used to avoid zero-division.</p>
 <p>Characteristics:</p>
 <ul class="simple">
