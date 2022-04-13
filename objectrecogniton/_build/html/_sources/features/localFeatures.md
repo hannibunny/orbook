@@ -243,10 +243,13 @@ Local image gradients are measured at the selected scale in the region around ea
     
 - **Difference of Gaussian (DoG)**:
 
-\begin{eqnarray}
-D(x,y,\sigma) & = & \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)  \nonumber \\
-              & = & L(x,y,k\sigma)-L(x,y,\sigma).
-\end{eqnarray}
+$$
+D(x,y,\sigma)  =  \left(G(x,y,k\sigma)-G(x,y,\sigma)\right) * I(x,y)
+$$
+
+$$
+= L(x,y,k\sigma)-L(x,y,\sigma).
+$$
 
 - **DoG** has already been introduced in [](../preprocessing/05GaussianLowPassFilter.ipynb). It is
     - efficient to compute - the smoothed images L must be computed in any case for the scale space feature description
@@ -380,16 +383,20 @@ indicates a large curvature in one direction and a small in the perpendicular di
 
 - Calculate trace and determinant of $\mathbf{H}$
 
-\begin{eqnarray}
-Tr(\mathbf{H}) & = D_{xx}+D_{yy} = \alpha + \beta \\
-Det(\mathbf{H}) & = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
-\end{eqnarray}
+$$
+Tr(\mathbf{H})  = D_{xx}+D_{yy} = \alpha + \beta 
+$$
+
+$$
+Det(\mathbf{H})  = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
+$$
+
 
 then
 
-\begin{equation}
+$$
 \frac{Tr(\mathbf{H})^2}{Det(\mathbf{H})} = \frac{(\alpha + \beta)^2}{\alpha \beta} = \frac{(r \beta + \beta)^2}{r\beta^2}=\frac{(r+1)^2}{r}
-\end{equation}
+$$
 
 depends only on the ratio $r$ of eigenvalues. 
 
