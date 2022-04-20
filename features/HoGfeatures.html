@@ -433,7 +433,7 @@
 <h1>Histogram of Oriented Gradients: Step-by-Step<a class="headerlink" href="#histogram-of-oriented-gradients-step-by-step" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Author: Johannes Maucher</p></li>
-<li><p>Last update: 03.03.2021</p></li>
+<li><p>Last update: 20.04.2022</p></li>
 </ul>
 <p>Histogram of Oriented Gradients (HoG) is a global feature representation, in the sense that one feature description is calculated for the entire image or an image-patch. The descriptor is a vector which contains many histograms. Each histogram belongs to a local area within the image and counts the frequency of gradient-directions in this local area.</p>
 <p>In images gradients in x- and y-direction, can easily be calculated by filters like <em>Prewitt</em>, <em>Sobel</em>, or the first-order derivative of a Gaussian. The magnitude of a gradient is large at edges and the orientation of the gradient-vector indicates the orientation of edges. Hence HoG-features encode the structure of objects in an image and can be applied for all detection and recognition tasks, for which structure-information is assumed to be crucial.</p>
@@ -933,7 +933,7 @@
 <p>Due to the circular nature of angles, the next higher bin center <span class="math notranslate nohighlight">\(\Theta_R\)</span> for all angles <span class="math notranslate nohighlight">\(160°&lt;\Theta_{ij}&lt;180°\)</span> is <span class="math notranslate nohighlight">\(0°\)</span>.</p>
 </li>
 </ul>
-<p><strong>Example:</strong> Assume that at a given pixel the gradient-magnitude is <span class="math notranslate nohighlight">\(|g|=40\)</span> and the gradient-angle is <span class="math notranslate nohighlight">\(325°\)</span>. The gradient-angle is mapped to <span class="math notranslate nohighlight">\(\Theta=325-180=145\)</span>. The next lower bin-center is <span class="math notranslate nohighlight">\(\Theta_L=140\)</span>, the next higher bin-center is <span class="math notranslate nohighlight">\(\Theta_L=160\)</span>. This gradient contributes a value of <span class="math notranslate nohighlight">\(0.25 \cdot 40 = 10\)</span> to the bin centered at <span class="math notranslate nohighlight">\(\Theta_R=160\)</span> and a value of <span class="math notranslate nohighlight">\(0.75 \cdot 40 = 30\)</span> to the bin centered at <span class="math notranslate nohighlight">\(\Theta_L=140\)</span>.</p>
+<p><strong>Example:</strong> Assume that at a given pixel the gradient-magnitude is <span class="math notranslate nohighlight">\(|g|=40\)</span> and the gradient-angle is <span class="math notranslate nohighlight">\(325°\)</span>. The gradient-angle is mapped to <span class="math notranslate nohighlight">\(\Theta=325-180=145\)</span>. The next lower bin-center is <span class="math notranslate nohighlight">\(\Theta_L=140\)</span>, the next higher bin-center is <span class="math notranslate nohighlight">\(\Theta_R=160\)</span>. This gradient contributes a value of <span class="math notranslate nohighlight">\(0.25 \cdot 40 = 10\)</span> to the bin centered at <span class="math notranslate nohighlight">\(\Theta_R=160\)</span> and a value of <span class="math notranslate nohighlight">\(0.75 \cdot 40 = 30\)</span> to the bin centered at <span class="math notranslate nohighlight">\(\Theta_L=140\)</span>.</p>
 <p>The function <code class="docutils literal notranslate"><span class="pre">createHist()</span></code>, as defined in the following code cell, calculates for the gradient-angles <code class="docutils literal notranslate"><span class="pre">AngArray</span></code> and the gradient magnitudes <code class="docutils literal notranslate"><span class="pre">MagArray</span></code> of a given array the corresponding histogram.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -943,14 +943,14 @@
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">AngArray</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="c1">#print(AngArray[r,c])</span>
             <span class="n">binel</span><span class="p">,</span><span class="n">rem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divmod</span><span class="p">(</span><span class="n">AngArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">],</span><span class="n">BS</span><span class="p">)</span>
-            <span class="n">weight0</span><span class="o">=</span><span class="n">rem</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="n">BS</span>
-            <span class="n">weight1</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">weight0</span>
-            <span class="n">delta0</span><span class="o">=</span><span class="n">MagArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="n">weight0</span>
-            <span class="n">delta1</span><span class="o">=</span><span class="n">MagArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="n">weight1</span>
-            <span class="n">bin0</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">binel</span><span class="p">)</span>
-            <span class="n">bin1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">bin0</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">BINS</span><span class="p">)</span>
-            <span class="n">hist</span><span class="p">[</span><span class="n">bin0</span><span class="p">]</span><span class="o">+=</span><span class="n">delta0</span>
-            <span class="n">hist</span><span class="p">[</span><span class="n">bin1</span><span class="p">]</span><span class="o">+=</span><span class="n">delta1</span>
+            <span class="n">weightR</span><span class="o">=</span><span class="n">rem</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="n">BS</span>
+            <span class="n">weightL</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">weightR</span>
+            <span class="n">deltaR</span><span class="o">=</span><span class="n">MagArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="n">weightR</span>
+            <span class="n">deltaL</span><span class="o">=</span><span class="n">MagArray</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">*</span><span class="n">weightL</span>
+            <span class="n">binL</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">binel</span><span class="p">)</span>
+            <span class="n">binR</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">binL</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">BINS</span><span class="p">)</span>
+            <span class="n">hist</span><span class="p">[</span><span class="n">binL</span><span class="p">]</span><span class="o">+=</span><span class="n">deltaL</span>
+            <span class="n">hist</span><span class="p">[</span><span class="n">binR</span><span class="p">]</span><span class="o">+=</span><span class="n">deltaR</span>
     <span class="k">return</span> <span class="n">hist</span>         
 </pre></div>
 </div>
@@ -969,7 +969,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gradient histogram of the selected region:
-[1183.45  238.75  299.95  184.55  296.1   245.75  417.1   288.45 1849.9 ]
+[1794.55  331.25  240.05  175.45  257.9   476.25  173.9   406.55 1148.1 ]
 </pre></div>
 </div>
 </div>
@@ -1030,10 +1030,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1183.45  238.75  299.95  184.55  296.1   245.75  417.1   288.45 1849.9 ]
-[ 305.6   649.05  548.    141.8  1021.6  1923.35  454.05  218.05  160.5 ]
-[ 571.45  950.4    66.35    6.     19.2   113.7   148.35  116.65 1917.9 ]
-[264.8  127.85  77.45 178.1  374.5  560.9  269.9  217.   260.5 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1794.55  331.25  240.05  175.45  257.9   476.25  173.9   406.55 1148.1 ]
+[ 230.4   528.95  568.    484.2  1899.4   967.65  263.95  241.95  237.5 ]
+[2722.55  209.6    41.65   24.     24.8    51.3   179.65  211.35  445.1 ]
+[286.2   58.15  95.55 163.9  484.5  498.1  197.1  128.   419.5 ]
 </pre></div>
 </div>
 </div>
@@ -1081,18 +1081,18 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raw Histogram of upper-left super-region:
-[1183.45  238.75  299.95  184.55  296.1   245.75  417.1   288.45 1849.9
-  305.6   649.05  548.    141.8  1021.6  1923.35  454.05  218.05  160.5
-  571.45  950.4    66.35    6.     19.2   113.7   148.35  116.65 1917.9
-  264.8   127.85   77.45  178.1   374.5   560.9   269.9   217.    260.5 ]
+[1794.55  331.25  240.05  175.45  257.9   476.25  173.9   406.55 1148.1
+  230.4   528.95  568.    484.2  1899.4   967.65  263.95  241.95  237.5
+ 2722.55  209.6    41.65   24.     24.8    51.3   179.65  211.35  445.1
+  286.2    58.15   95.55  163.9   484.5   498.1   197.1   128.    419.5 ]
 
 L2-Norm:
-4122.47236133852
+4406.395587098371
 
 Normalized Histogram of upper-left super-region:
-[0.29 0.06 0.07 0.04 0.07 0.06 0.1  0.07 0.45 0.07 0.16 0.13 0.03 0.25
- 0.47 0.11 0.05 0.04 0.14 0.23 0.02 0.   0.   0.03 0.04 0.03 0.47 0.06
- 0.03 0.02 0.04 0.09 0.14 0.07 0.05 0.06]
+[0.41 0.08 0.05 0.04 0.06 0.11 0.04 0.09 0.26 0.05 0.12 0.13 0.11 0.43
+ 0.22 0.06 0.05 0.05 0.62 0.05 0.01 0.01 0.01 0.01 0.04 0.05 0.1  0.06
+ 0.01 0.02 0.04 0.11 0.11 0.04 0.03 0.1 ]
 </pre></div>
 </div>
 </div>

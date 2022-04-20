@@ -797,7 +797,7 @@ Det(\mathbf{H})  = D_{xx} D_{yy} -(D_{xy})^2 = \alpha  \beta
 <p>and <strong>gradient orientation</strong></p>
 <div class="math notranslate nohighlight">
 \[
-    \theta(x,y)=\tanh\frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}
+    \theta(x,y) = arctan \frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}
     \]</div>
 </li>
 <li><p>Calculate a 36 bin gradient histogram (<span class="math notranslate nohighlight">\( 1 bin \triangleq 10°\)</span>) from the gradients of the samples in the local neighbourhood of the keypoint. The contribution of each gradient to the histogram is the product of</p>

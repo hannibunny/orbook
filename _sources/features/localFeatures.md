@@ -426,7 +426,7 @@ This step is required in order to provide an image-descriptor, which is *invaria
     and **gradient orientation**
     
     $$
-    \theta(x,y)=\tanh\frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}
+    \theta(x,y) = arctan \frac{L(x,y+1)-L(x,y-1)}{L(x+1,y)-L(x-1,y)}
     $$
     
 3. Calculate a 36 bin gradient histogram ($ 1 bin \triangleq 10°$) from the gradients of the samples in the local neighbourhood of the keypoint. The contribution of each gradient to the histogram is the product of
