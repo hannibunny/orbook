@@ -36,15 +36,15 @@ In contrast to NLP in Object Recognition the input are not texts but images. Mor
 
 The centroids of the calculated $k$ clusters constitute the set of visual words, also called the **Visual Vocabulary:** 
 
-\begin{equation}
+$$
 V=\lbrace v_t \rbrace_{t=1}^K
-\end{equation}
+$$
 
 In the Bag-Of-Visual Word matrix, each of the $k$ columns corresponds to a visual word $v_t \in V$ and each image in the set ov $N$ images
 
-\begin{equation}
+$$
 I=\lbrace I_i \rbrace_{i=1}^N
-\end{equation} 
+$$
 
 corresponds to a row. The entry $N(t,i)$ in row $i$, column $t$ of the matrix counts the number of times visual word $v_t$ occurs in image $I_i$. Or more accurate: $N(t,i)$ is the number of local descriptors in image $i$, which are assigned to the $t.th$ cluster.  
 
@@ -122,16 +122,16 @@ Flow chart of k-means clustering
 2. Then $k$ initial cluster centers $\mathbf{v}_i$ are randomly placed into the d-dimensional space  
 3. Next, each of the given vectors $\mathbf{x}_p \in T$ is assigned to it's closest center-vector $\mathbf{v}_i$:
 
-	\begin{equation}
+	$$
 	\left\|\mathbf{x}_p-\mathbf{v}_i \right\| = \min\limits_{j \in 1 \ldots k } \left\|\mathbf{x}_p-\mathbf{v}_j \right\|,
-	\end{equation}
+	$$
 	
 	where $\left\| \mathbf{x}-\mathbf{v} \right\|$ is the distance between $\mathbf{x}$ and $\mathbf{v}$.
 4. After this assignment for each cluster $C_i$ the new cluster centroid $\mathbf{v}_i$ is calculated as follows:
 
-	\begin{equation}
+	$$
 	\mathbf{v}_i = \frac{1}{n_i} \sum\limits_{\forall \mathbf{x}_p \in C_i} \mathbf{x}_p,
-	\end{equation}
+	$$
 	
 	where $n_i$ is the number of vectors that are assigned to $C_i$. 
 5. Continue with step 3 until the cluster-centers remain at a stable position.
@@ -143,7 +143,7 @@ $$
 E=\sum\limits_{i=1}^K \sum\limits_{\forall \mathbf{x}_p \in C_i} \left\|\mathbf{x}_p-\mathbf{v}_i \right\|
 $$ (recerror)
 
-A nice demonstration of the k-means clustering algorithm is given here [k-means clustering demo](https://stanford.edu/class/engr108/visualizations/kmeans/kmeans.html).
+A nice demonstration of the k-means clustering algorithm is given here [k-means clustering demo](https://user.ceng.metu.edu.tr/~akifakkus/courses/ceng574/k-means/).
 
 Drawbacks of the algorithms are: 
 
@@ -188,23 +188,23 @@ In order to calculate {eq}`eq:NBred` for all classes, the terms on the right han
 
 The *a-priori probabilities* of the classes are estimated by
 
-\begin{equation}
+$$
 P(C_j)=\frac{|C_j|}{N},
-\end{equation}  
+$$ 
 
 for all classes $C_1,C_2,\ldots,C_L$.
 
 For all visual words $v_t$ and all classes $C_j$ the **likelihood** is estimated by
 
-\begin{equation}
+$$
 P(v_t|C_j)=\frac{\sum\limits_{I_i \in C_j}N(t,i)}{\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
-\end{equation}
+$$
 
 In order to avoid likelihoods of value $0$ **Laplace Smoothing** is applied instead of the equation above:
 
-\begin{equation}
+$$
 P(v_t|C_j)=\frac{1+\sum\limits_{I_i \in C_j}N(t,i)}{K+\sum\limits_{s=1}^K \sum\limits_{I_i \in C_j}N(s,i)}
-\end{equation} 
+$$
 
 In {cite}`Csurka04` the authors applied a dataset of 1776 images of 7 different classes. 700 images thereof have been applied for test, the remaining for training. Below for each of the 7 classes a few examples are shown:
 
