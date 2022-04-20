@@ -3,7 +3,7 @@
 
 # # Histogram of Oriented Gradients: Step-by-Step
 # * Author: Johannes Maucher
-# * Last update: 03.03.2021
+# * Last update: 20.04.2022
 # 
 # Histogram of Oriented Gradients (HoG) is a global feature representation, in the sense that one feature description is calculated for the entire image or an image-patch. The descriptor is a vector which contains many histograms. Each histogram belongs to a local area within the image and counts the frequency of gradient-directions in this local area.
 # 
@@ -322,7 +322,7 @@ print(mappedAngles[Location[0]:Location[0]+W,Location[1]:Location[1]+W])
 #     
 #     Due to the circular nature of angles, the next higher bin center $\Theta_R$ for all angles $160°<\Theta_{ij}<180°$ is $0°$.
 
-#  **Example:** Assume that at a given pixel the gradient-magnitude is $|g|=40$ and the gradient-angle is $325°$. The gradient-angle is mapped to $\Theta=325-180=145$. The next lower bin-center is $\Theta_L=140$, the next higher bin-center is $\Theta_L=160$. This gradient contributes a value of $0.25 \cdot 40 = 10$ to the bin centered at $\Theta_R=160$ and a value of $0.75 \cdot 40 = 30$ to the bin centered at $\Theta_L=140$.
+#  **Example:** Assume that at a given pixel the gradient-magnitude is $|g|=40$ and the gradient-angle is $325°$. The gradient-angle is mapped to $\Theta=325-180=145$. The next lower bin-center is $\Theta_L=140$, the next higher bin-center is $\Theta_R=160$. This gradient contributes a value of $0.25 \cdot 40 = 10$ to the bin centered at $\Theta_R=160$ and a value of $0.75 \cdot 40 = 30$ to the bin centered at $\Theta_L=140$.
 
 # The function `createHist()`, as defined in the following code cell, calculates for the gradient-angles `AngArray` and the gradient magnitudes `MagArray` of a given array the corresponding histogram.
 
@@ -335,14 +335,14 @@ def createHist(AngArray,MagArray,BS=20,BINS=9):
         for c in range(AngArray.shape[1]):
             #print(AngArray[r,c])
             binel,rem = np.divmod(AngArray[r,c],BS)
-            weight0=rem*1.0/BS
-            weight1=1-weight0
-            delta0=MagArray[r,c]*weight0
-            delta1=MagArray[r,c]*weight1
-            bin0=int(binel)
-            bin1=np.mod(bin0+1,BINS)
-            hist[bin0]+=delta0
-            hist[bin1]+=delta1
+            weightR=rem*1.0/BS
+            weightL=1-weightR
+            deltaR=MagArray[r,c]*weightR
+            deltaL=MagArray[r,c]*weightL
+            binL=int(binel)
+            binR=np.mod(binL+1,BINS)
+            hist[binL]+=deltaL
+            hist[binR]+=deltaR
     return hist         
 
 
@@ -477,3 +477,9 @@ plt.show()
 
 # ## Further References
 # * [HOG in scikit image](http://scikit-image.org/docs/dev/auto_examples/features_detection/plot_hog.html)
+
+# In[ ]:
+
+
+
+
