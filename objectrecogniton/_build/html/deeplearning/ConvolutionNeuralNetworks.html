@@ -54,7 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Deconvolution" href="convolutionDemos.html" />
+    <link rel="next" title="Animations of Convolution and Deconvolution" href="convolutionDemos.html" />
     <link rel="prev" title="Object Recognition" href="../recognition/objectrecognition.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -216,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="convolutionDemos.html">
-   Deconvolution
+   Animations of Convolution and Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -1004,8 +1004,11 @@ o=\frac{r-a+2p}{s}+1.
 <h3>Dilated Convolution<a class="headerlink" href="#dilated-convolution" title="Permalink to this headline">¶</a></h3>
 <p>In the convolution operation as introduced above, the input to the filter at a given position is a small contiguous field within the input-array, e.g. an area of <span class="math notranslate nohighlight">\((3 \times 3)\)</span> pixels. This area of contiguous values, which influence the output at a given position of the filter is also called <strong>local receptive field</strong>. In a dilated convolution the local receptive field of a filter need not be a contiguous area. Instead, a <strong>dilation rate of <span class="math notranslate nohighlight">\(d\)</span></strong> defines, that there are <span class="math notranslate nohighlight">\(d-1\)</span> gaps inbetween the elements, which constitute the local receptive field. The lower part in the picture below shows a dilated convolutional filtering with <span class="math notranslate nohighlight">\(d=2\)</span>.</p>
 <p><img alt="Semantic Segmentation Net" src="https://maucher.home.hdm-stuttgart.de/Pics/ConvDilated.png" /></p>
-<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is <span class="math notranslate nohighlight">\((a-1)(d-1)\)</span>. The side-length of the filter-result is then</p>
-<p>$<span class="math notranslate nohighlight">\(o=\frac{r-a+2p+(a-1)(d-1)}{s}+1\)</span>$.</p>
+<p>If the width of a filter without dilation is <span class="math notranslate nohighlight">\(a\)</span>, the corresponding area covered by this filter with a dilation rate of <span class="math notranslate nohighlight">\(d\)</span> is <span class="math notranslate nohighlight">\((a-1)d+1\)</span>. The side-length of the filter-result is then</p>
+<div class="math notranslate nohighlight">
+\[
+o=\frac{r+2p-(a-1)d-1}{s}+1.
+\]</div>
 <p>Dilation allows the extraction of features, from a larger input area, without increasing the filter-width and thus the number of parameters, which must be learned. Simultaneously it implies a stronger subsampling, thus pooling may be not required.</p>
 </section>
 <section id="dropout">
@@ -1206,7 +1209,7 @@ As depicted in the image below, in a FCN not only one class per input is calcula
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../recognition/objectrecognition.html" title="previous page">Object Recognition</a>
-    <a class='right-next' id="next-link" href="convolutionDemos.html" title="next page">Deconvolution</a>
+    <a class='right-next' id="next-link" href="convolutionDemos.html" title="next page">Animations of Convolution and Deconvolution</a>
 
         </div>
         

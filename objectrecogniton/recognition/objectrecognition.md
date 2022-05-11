@@ -762,7 +762,7 @@ The application of Sparse Coding, Pooling and linear SVM in the context of this 
 **Training of Sparse Coder:** 
 
 * Let $X$ be the set of $N$ training descriptors, as defined in equation {eq}`notX`
-* equation {eq}`sparsecoding` w.r.t. $U$ and $V$ for the given training images, where $U$ and $V$ are defined as in equation {eq}`notU` and {eq}`notV`, respectively.
+* Solve equation {eq}`sparsecoding` w.r.t. $U$ and $V$ for the given training images, where $U$ and $V$ are defined as in equation {eq}`notU` and {eq}`notV`, respectively.
 
 **Inference Phase Sparse Coder:**
 

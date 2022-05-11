@@ -1,2 +1,3 @@
 .ipynb_checkpoints
 objectrecognition/notIncludedStuff.ipynb
+*.DS_Store

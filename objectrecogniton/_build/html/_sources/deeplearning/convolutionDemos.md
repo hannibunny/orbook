@@ -1,4 +1,3 @@
----
 # Animations of Convolution and Deconvolution
 The concepts convolution, deconvolution (=transposed convolution), strides and padding have been introduced in the [previous section](ConvolutionalNeuralNetworks.ipynb). Below, these concepts are demonstrated. The animations are from {cite}`dumoulin2016guide`. In the demos only a single channel is at the input and only a single feature map is calculated. In a convolution- or deconvolution-layer typically many feature maps are calculated from many channels at the input.
 
@@ -10,6 +9,7 @@ padding = 0, stride = 1
 <figure align="center">
 <img src="https://maucher.home.hdm-stuttgart.de/Pics/gif/no_padding_no_strides.gif" style="width:200px" align="center">
 </figure>
+---
 padding = 1, stride = 1
 ^^^
 <figure align="center">
