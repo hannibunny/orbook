@@ -111,12 +111,14 @@ specify the pixel coordinates of the center, width and height of the region prop
 
 * The goal is to learn a transformation from $P$ to $G$ (index $i$ is omitted ). This transformation is parametrized as follows:
 
-\begin{eqnarray}
+$$
+\begin{align}
 \hat{G}_x & = & P_w d_x(P) + P_x \\
 \hat{G}_y & = & P_h d_y(P) + P_y \\
 \hat{G}_w & = & P_w \exp(d_w(P))\\
 \hat{G}_h & = & P_h \exp(d_h(P))\\
-\end{eqnarray}
+\end{align}
+$$
 
 where $\hat{G}$ is the regressors prediction for $G$. Each of the 4 function $d_*(P)$ is modeled as a linear function 
 
@@ -132,12 +134,14 @@ $$
 
 where the components of the regression targets $t$ are 
 
-\begin{eqnarray}
+$$
+\begin{align}
 t_x & = & (G_x - P_x) / P_w \\
 t_y & = & (G_y - P_y) / P_h \\
 t_w & = & \log(G_w / P_w) \\
 t_h & = & \log(G_h / P_h). \\
-\end{eqnarray}
+\end{align}
+$$
 
 
 	
@@ -448,13 +452,15 @@ individually. In {cite}`RedmonDGF15` $\lambda_{coord}=5$ and $\lambda_{noobj}=0.
 
 
 
-\begin{eqnarray}
+$$
+\begin{align}
 L & = &\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
  & + & \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
  & + &  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
   & + &  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
    & + &  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
-\end{eqnarray}
+\end{align}
+$$
 
 In this equation 
 * $\mathbb{1}_{i}^{obj}$ is 1, if a object appears in cell $i$, otherwise 0

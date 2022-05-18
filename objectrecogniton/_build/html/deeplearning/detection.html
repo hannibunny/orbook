@@ -216,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="convolutionDemos.html">
-   Deconvolution
+   Animations of Convolution and Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -603,12 +603,15 @@ P^i=(P^i_x,P^i_y,P^i_w,P^i_h) \quad \mbox{ and } \quad G^i=(G^i_x,G^i_y,G^i_w,G^
 <ul class="simple">
 <li><p>The goal is to learn a transformation from <span class="math notranslate nohighlight">\(P\)</span> to <span class="math notranslate nohighlight">\(G\)</span> (index <span class="math notranslate nohighlight">\(i\)</span> is omitted ). This transformation is parametrized as follows:</p></li>
 </ul>
-<p>\begin{eqnarray}
-\hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \
-\hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \
-\hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\
-\hat{G}_h &amp; = &amp; P_h \exp(d_h(P))\
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{G}_x &amp; = &amp; P_w d_x(P) + P_x \\
+\hat{G}_y &amp; = &amp; P_h d_y(P) + P_y \\
+\hat{G}_w &amp; = &amp; P_w \exp(d_w(P))\\
+\hat{G}_h &amp; = &amp; P_h \exp(d_h(P))\\
+\end{align}
+\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{G}\)</span> is the regressors prediction for <span class="math notranslate nohighlight">\(G\)</span>. Each of the 4 function <span class="math notranslate nohighlight">\(d_*(P)\)</span> is modeled as a linear function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -620,12 +623,15 @@ d_*(P)= w_*^T \phi(P)
 w_* = \operatorname*{argmin}_{\hat{w}_*} \sum\limits_{i=1}^N (t^i - \hat{w}_* \phi(P^i))^2 + \lambda \mid\mid \hat{w}_* \mid\mid^2,
 \]</div>
 <p>where the components of the regression targets <span class="math notranslate nohighlight">\(t\)</span> are</p>
-<p>\begin{eqnarray}
-t_x &amp; = &amp; (G_x - P_x) / P_w \
-t_y &amp; = &amp; (G_y - P_y) / P_h \
-t_w &amp; = &amp; \log(G_w / P_w) \
-t_h &amp; = &amp; \log(G_h / P_h). \
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+t_x &amp; = &amp; (G_x - P_x) / P_w \\
+t_y &amp; = &amp; (G_y - P_y) / P_h \\
+t_w &amp; = &amp; \log(G_w / P_w) \\
+t_h &amp; = &amp; \log(G_h / P_h). \\
+\end{align}
+\end{split}\]</div>
 </section>
 <section id="r-cnn-performance-and-drawbacks">
 <h3>R-CNN Performance and Drawbacks<a class="headerlink" href="#r-cnn-performance-and-drawbacks" title="Permalink to this headline">¶</a></h3>
@@ -876,13 +882,16 @@ P(C_j|object) \cdot  P(object) \cdot IoU(pred,truth) = P(C_j) \cdot IoU(pred,tru
 <li><p>the <span class="math notranslate nohighlight">\(C\)</span> conditional class probabilities</p></li>
 </ul>
 <p>individually. In <span id="pending-xref-19">[<a class="reference internal" href="../referenceSection.html#citation-38">RDGF15</a>]</span> <span class="math notranslate nohighlight">\(\lambda_{coord}=5\)</span> and <span class="math notranslate nohighlight">\(\lambda_{noobj}=0.5\)</span> are proposed. In this way the loss from predictions for boxes that don’t contain objects is decreased.</p>
-<p>\begin{eqnarray}
-L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}<em>{i,j}^{obj} \left[ (x_i-\hat{x}<em>i)^2 + (y_i-\hat{y}<em>i)^2 \right] \nonumber \
-&amp; + &amp; \lambda</em>{coord} \sum\limits</em>{i=0}^{S^2} \sum\limits</em>{j=0}^{B} \mathbb{1}<em>{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}<em>i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}<em>i})^2 \right] \nonumber \
-&amp; + &amp;  \sum\limits</em>{i=0}^{S^2} \sum\limits</em>{j=0}^{B} \mathbb{1}</em>{i,j}^{obj}  (C_i-\hat{C}<em>i)^2 \nonumber \
-&amp; + &amp;  \lambda</em>{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}<em>{i,j}^{noobj}  (C_i-\hat{C}<em>i)^2 \nonumber \
-&amp; + &amp;  \sum\limits</em>{i=0}^{S^2} \mathbb{1}</em>{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \
-\end{eqnarray}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+L &amp; = &amp;\lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (x_i-\hat{x}_i)^2 + (y_i-\hat{y}_i)^2 \right] \nonumber \\
+ &amp; + &amp; \lambda_{coord} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj} \left[ (\sqrt{w_i}-\sqrt{\hat{w}_i})^2 + (\sqrt{h_i}-\sqrt{\hat{h}_i})^2 \right] \nonumber \\
+ &amp; + &amp;  \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{obj}  (C_i-\hat{C}_i)^2 \nonumber \\
+  &amp; + &amp;  \lambda_{noobj} \sum\limits_{i=0}^{S^2} \sum\limits_{j=0}^{B} \mathbb{1}_{i,j}^{noobj}  (C_i-\hat{C}_i)^2 \nonumber \\
+   &amp; + &amp;  \sum\limits_{i=0}^{S^2} \mathbb{1}_{i}^{obj}  \sum\limits_{c \in classes }   (p_i(c)-\hat{p}_i(c))^2 \nonumber \\
+\end{align}
+\end{split}\]</div>
 <p>In this equation</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb{1}_{i}^{obj}\)</span> is 1, if a object appears in cell <span class="math notranslate nohighlight">\(i\)</span>, otherwise 0</p></li>
