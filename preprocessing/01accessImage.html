@@ -216,7 +216,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../deeplearning/convolutionDemos.html">
-   Deconvolution
+   Animations of Convolution and Deconvolution
   </a>
  </li>
  <li class="toctree-l1">
@@ -658,11 +658,18 @@ Shape of numpy array : 	 (388, 599, 3)
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">img2</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Video&quot;</span><span class="p">,</span><span class="n">img2</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span> <span class="c1"># Stop if ESC is pressed</span>
-                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="o">==</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span> <span class="c1"># quit when &#39;q&#39; is pressed</span>
+            <span class="n">cam</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+            <span class="k">break</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No camera available&quot;</span><span class="p">)</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># usually unnecessary, but it fixes a bug on MacOS where the window doesn&#39;t close</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
 </pre></div>
 </div>
 </div>
@@ -690,16 +697,20 @@ Shape of numpy array : 	 (388, 599, 3)
         <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Video&quot;</span><span class="p">,</span><span class="n">img2</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frame can not be displayed&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="o">==</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span> <span class="c1"># quit when &#39;q&#39; is pressed</span>
+        <span class="n">cam</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
         <span class="k">break</span>
-<span class="n">cam</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># usually unnecessary, but it fixes a bug on MacOS where the window doesn&#39;t close</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Video Properties:
 	 Number of Frames:  3915.0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
 </pre></div>
 </div>
 </div>
