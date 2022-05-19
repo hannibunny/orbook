@@ -23,7 +23,7 @@
 # * [SciPy](http://docs.scipy.org/doc/) is an open-source software for mathematics, science, and engineering. The SciPy library depends on Numpy, which provides convenient and fast N-dimensional array manipulation. Image processing functionality is encapsulated in the Scipy package ndimage.
 # 
 
-# In[2]:
+# In[1]:
 
 
 #!pip install opencv-python
@@ -52,7 +52,7 @@ cv2.__version__
 
 # ### Option 1: Read image with matplotlib
 
-# In[7]:
+# In[4]:
 
 
 imgpath='../Data/mo.png'
@@ -69,7 +69,7 @@ plt.show()
 
 # ### Option 2: Read image with PIL
 
-# In[8]:
+# In[5]:
 
 
 pil_im = Image.open(imgpath)
@@ -87,7 +87,7 @@ plt.show()
 
 # Read and display image as greyscale
 
-# In[9]:
+# In[6]:
 
 
 pil_im_grey = Image.open(imgpath).convert('L')
@@ -102,7 +102,7 @@ plt.show()
 
 # The python [os package](http://docs.python.org/2/library/os.html) provides miscellaneous operating system interfaces. Using this package it is possible to access a set of files, which is defined by a partiular pattern. In the following example all .jpg files of the given directory are accessed and displayed. In the third line a list is created, which contains all file- and pathnames, which match the specified pattern.
 
-# In[8]:
+# In[7]:
 
 
 imageformat=".JPG"
@@ -119,13 +119,13 @@ for el in imfilelist[:10]:
 # ### Option 3: Read Images using OpenCv
 # [OpenCV](http://opencv.org/) is the most comprehensive open source library for video- and imageprocessing. OpenCV is implemented in C++, bindings for other languages exist. We apply the OpenCV python bindings. After installing OpenCV it can be accessed by importing cv2
 
-# In[10]:
+# In[8]:
 
 
 import cv2
 
 
-# In[10]:
+# In[9]:
 
 
 print(cv2.__version__)
@@ -138,7 +138,7 @@ plt.imshow(image)
 plt.show()
 
 
-# In[11]:
+# In[10]:
 
 
 image[:5,:5,0]
@@ -147,7 +147,7 @@ image[:5,:5,0]
 # ## Capture video from camera
 # Using OpenCV videos can be captured, processed and displayed. Within a video sequence each frame is read and stored in a 2D Numpy array. In this representation frames of a video sequence can be processed in the same way as single images
 
-# In[13]:
+# In[12]:
 
 
 try:
@@ -155,17 +155,19 @@ try:
     while True:
         img2 = cam.read()[1]
         cv2.imshow("Video",img2)
-        if cv2.waitKey(1) == 27: # Stop if ESC is pressed
-                break
+        if cv2.waitKey(1) & 0xFF==ord('q'): # quit when 'q' is pressed
+            cam.release()
+            break
 except:
     print("No camera available")
 cv2.destroyAllWindows()
+cv2.waitKey(1) # usually unnecessary, but it fixes a bug on MacOS where the window doesn't close
 
 
 # ## Capture Video from Disk
 # Specify location of video file and open VideoCapture object. Get video properties and display them. Read video frame by frame.
 
-# In[12]:
+# In[11]:
 
 
 file="../Data/4p-c1.avi"
@@ -185,10 +187,11 @@ while True and frameCount<NofFrames:
         cv2.imshow("Video",img2)
     except:
         print("Frame can not be displayed")
-    if cv2.waitKey(33) == 27: 
+    if cv2.waitKey(1) & 0xFF==ord('q'): # quit when 'q' is pressed
+        cam.release()
         break
-cam.release()
 cv2.destroyAllWindows()
+cv2.waitKey(1) # usually unnecessary, but it fixes a bug on MacOS where the window doesn't close
 
 
 # In[ ]:
